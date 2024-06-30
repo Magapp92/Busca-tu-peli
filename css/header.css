@@ -1,0 +1,204 @@
+
+/* HEADER */
+
+.Header{
+    width: 100%;
+    min-height: 15vh;
+    background-color:var(--bg-section-color);
+    padding: 1rem;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+    z-index: 3;
+}
+
+.Header-h1{
+    font-family: "logo";
+    color: var(--color-primary-text);
+    font-size: 1.875em;
+    margin: .625rem 0 0 2.5rem;
+
+    position: absolute;
+    top: 25%;
+}
+
+
+.Header-logo{
+    position: relative;
+}
+
+.Header-img{
+    width: 25rem;
+    min-height: 5rem;
+}
+
+.Header-search{
+    width: 18.75rem;
+    margin: 0 auto;
+
+    position: relative;
+}
+
+/* En esta class damos estilo a la lista desplegable de .Header.search */
+.Header-ulsearch{
+    width: 100%;
+    max-height: 12.5rem;
+    background-color: rgba(255, 255, 255, 0.852);
+    border-radius: .625rem;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    z-index: 4;
+    overflow: auto;
+}
+
+/*Damos estilo a nuestros li de la class .Header-ulsearch*/
+.Header-ulsearch li{
+    font-family: "text";
+    color: var(--color-secondary-text);
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.Header-ulsearch li:hover{
+    background-color: var(--bg-selected-color);
+    border-radius: .625rem;
+}
+
+.Header-input{
+    width: 18.75rem;
+    padding: .9375rem;
+    border-radius: 3.125rem;
+    background-color: transparent;
+    border: 3px solid var(--bg-selected-color);
+
+}
+.Header-input::placeholder{
+    color: var(--color-primary-text);
+    font-family: "text";
+}
+.Header-input:focus{
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 3px solid white;
+    color: var(--color-primary-text);
+    outline: none;
+}
+
+.Header-nav{
+    position: relative;
+}
+
+.Header-icon{
+    width: 2.5rem;
+    max-height: 2.5rem;
+    margin: 0 .625rem 0 0;
+
+    cursor: pointer;
+    display: inline;
+}
+.Header-icon:hover{
+    border: 2px solid white;
+    transform: scale (0.6);
+    padding: 0 2px 0 0;
+    
+}
+
+.Header-icon--close{
+    width: 2.5rem;
+    max-height: 2.5rem;
+}
+
+.isHidden{
+    display: none;
+}
+
+.Header-ul{
+    width: 15.625rem;
+    max-height: 12.5rem;
+    padding: 1.5625rem 1.25rem;
+    background-color: var(--bg-section-color);
+    
+    position: absolute;
+    top: 100%;
+    right: -1rem;
+
+    opacity: 0;
+    z-index: 1;
+
+    transform: translateY(-1.25rem);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    visibility: hidden;
+}
+.Header-ul.isActive{
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.Header-a{
+    font-family: "text";
+    font-weight: 700;
+    color: var(--color-primary-text);
+}
+
+.Menu-ul {
+    max-height: 0;
+    background-color: var(--bg-section-color);
+    padding: 0 0 0 .9375rem;
+    
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(-1rem);
+    transition: opacity .9s ease, transform .9s ease, max-height .9s ease;
+    overflow: hidden;
+  }
+  .Menu-ul.show {
+    opacity: 0.7;
+    max-height: 20rem;
+    transform: translateY(0);
+    visibility: visible;
+  }
+  
+  .Menu-li {
+    font-family: "text";
+    color: var(--color-primary-text);
+    display: block;
+}
+
+.Menu-li:hover{
+    text-decoration: underline;
+}
+
+@media (max-width: 930px){
+    .Header{
+        flex-flow: column nowrap;
+        gap: 1.25rem;
+    }
+ .Header-h1{
+    font-size: 180%;
+ }
+}
+
+@media (max-width: 450px){
+    .Header-img{
+        max-width: 80%;
+       position: relative;
+       top: 20%;
+       left: 10%;
+    }
+
+    .Header-h1{
+        font-size: 130%;
+        margin: .625rem 0 0 4.5rem;
+    }
+}
+
+
+
+

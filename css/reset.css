@@ -1,0 +1,113 @@
+*{
+    margin:0;
+    padding: 0;
+    border: 0;
+    box-sizing:border-box;
+}
+li{
+    list-style: none;
+}
+html{
+    scroll-behavior: smooth;
+}
+a{
+    display: block;
+}
+p a {
+    display: inline;
+}
+img , svg{
+    display: block;
+    width: 100%;
+    height: initial;
+}
+h1 , h2 , h3 , h4 , h5 , h6 , p , strong , em , mark , a{
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    color:inherit;
+    text-decoration: none;
+    background-color: inherit;
+}
+button{
+    display: block;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+}
+:root{
+    font-size: 100%;
+    --bg-color-primary:#393939;
+    --bg-section-color:#0B9BA8;
+    --bg-color-transparency: #0b9ba878 ;
+    --bg-main-color: rgba(255, 255, 255, 0.463);
+    --bg-selected-color: rgba(255, 255, 255, 0.853);
+    --color-primary-text: rgb(255, 255, 255);
+    --color-secondary-text: rgb(0, 0, 0);
+}
+
+/* Agrupamos todas las tipografías */
+
+@font-face {
+    font-family: "logo";
+    src: url(../css/tipografía/Permanent_Marker/PermanentMarker-Regular.ttf);
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "title";
+    src: url(../css/tipografía/Montserrat/Montserrat-ExtraBold.ttf);
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "text";
+    src: url(../css/tipografía/Montserrat/Montserrat-Medium.ttf);
+    font-display: swap;
+}
+
+/* Agrupamos los keyframes para las animaciones de los article */
+
+@keyframes slideInLeft {
+    from{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    from{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    to{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutRight {
+    from{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    to{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}

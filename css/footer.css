@@ -1,0 +1,128 @@
+
+/* Footer */
+
+.Footer{
+    width: 100%;
+    max-height: 30vh;
+    background-color: var(--bg-section-color);
+    padding: 2.5rem 3.125rem;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Footer-contact{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+} 
+
+.Footer-social{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    gap: .9375rem;
+    margin: 0 0 1.25rem;
+}
+
+.Footer-h4{
+    font-family: "title";
+    font-size: 1.7em;
+    color: var(--color-primary-text);
+    margin: 0 0 1.25rem;
+}
+
+.Footer-svg{
+   max-width: 2.5rem;
+   max-height: 2.5rem;
+}
+
+.Footer-email{
+    font-family: "text";
+    font-size: .9375em;
+    color: var(--color-primary-text);
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .9375rem;
+}
+
+.Footer-form{
+    width: 18.75rem;
+    max-height: 3.125rem;
+    margin: 0 3.125rem 0 0;
+    border-radius: 3.125rem;
+    border: 2px solid black;
+    
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .625rem;
+
+    position:relative ;
+}
+
+.Footer-suscribe{
+    max-width: 1.25rem;
+    max-height: 1.25rem;
+}
+
+.Footer-input{
+    width: 70%;
+    min-height: 1.875rem;
+    background-color: transparent;
+    padding: 0 .625rem;
+}
+.Footer-input::placeholder{
+    font-family: "text";
+    color: var(--color-primary-text);
+}
+.Footer-input:focus{
+    color: var(--color-primary-text);
+    outline: none;
+    border-radius: 3.125rem ;
+}
+
+@media (max-width: 750px){
+    .Footer{
+       padding:2.5rem 1.5rem;
+    }
+
+    .Footer-form{
+        max-width: 50%;
+    } 
+}
+
+@media (max-width: 600px){
+    .Footer{
+        flex-flow: column-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 3.125rem;
+        padding: 1.875rem 0 3.75rem;
+
+        position: relative;
+    }
+
+    .Footer-form{
+        margin: 0;
+        
+        position: absolute;
+        top: 15%;
+        left: 25%;
+    }
+
+    .Footer-contact{
+        margin: 7rem 0 0;
+    }
+
+    .Footer-email{
+        padding: 0 0 1.25rem;
+    }
+
+}

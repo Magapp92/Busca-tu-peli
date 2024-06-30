@@ -1,0 +1,429 @@
+
+/* Main page */
+
+.Main{
+    width: 100%;
+    background-color: var(--bg-color-primary);
+    overflow: hidden;
+}
+
+.Main-bottom{
+    padding: 0 12.5rem;
+}
+
+.Main-top{
+    width: 100%;
+    max-width: 150rem; /*verificar en pantallas grandes */
+    max-height: 90vh;
+    padding: 7.5rem 0 0 0;
+    margin: 0 0 3.125rem;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.Main-message{
+    width: 80%;
+    min-height: 16rem;
+    background-color:var(--bg-main-color);
+    border-radius: 2.5rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    
+    font-family: "title";
+    text-align: center;
+    color: var(--color-primary-text);
+    font-size: 4em;
+    text-shadow: 2px 3px rgba(57, 57, 57, 0.788);
+
+    position: absolute;
+    top:calc(50% - 10rem);
+    left: 10%;
+    z-index: 2;
+
+}
+
+.Main-slider{
+    width: 600%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between; 
+    transform: translateX(0%);
+    
+
+}
+.Main-slider.withTransition{
+    transition: transform 1s ease;
+    
+}
+
+
+.Slider-img{
+    width:calc(100% / 6 );
+    max-height: 40rem;
+   
+    
+}
+
+.Main-h2{
+    font-family: "title";
+    font-size: 2em;
+    color: var(--color-primary-text);
+    line-height: 5rem;
+    margin: 0 0 0 3.75rem;
+}
+
+.Main-p{
+    font-family: "text";
+    font-size: 1.2em;
+    color: var(--color-primary-text);
+    margin: 0 0 2.5rem 1.875rem;
+}
+
+.Main-carrousel {
+    width: 100%;
+    max-height: 80vh;
+    border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
+    padding: 1.875rem 3.125rem;
+    
+    position: relative;
+    margin: 0 auto;
+}
+
+.Main-innercarrousel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.Main-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+   
+}
+
+.Main-wrapperimg {
+    width:100%;
+    flex-shrink: 0;
+    min-height: 20rem;
+    opacity: 1;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.Main-awrapper {
+    width: 20%;
+    max-height: 25rem;
+    flex-shrink: 0;
+}
+
+
+.Main-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Main-button--prev {
+    left: 0;
+}
+
+.Main-button--next {
+    right: 0;
+}
+
+.Main-svgcarrousel {
+    width: 2rem;
+    height: 2rem;
+    fill: white;
+}
+
+
+
+
+/*Sección de recientes*/
+
+.Main-background{
+    background-color: var(--bg-color-transparency);
+}
+
+.Main-container{
+    width: 90%;
+    min-height: 40vh;
+    background-color: var(--bg-section-color);
+    box-shadow: .3125rem .3125rem 1.875rem 1.25rem rgba(45, 45, 45, 0.636);
+
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    gap: 1.875rem;
+
+    margin: 0 auto 3.125rem;
+    padding: 3.125rem 1.875rem;
+}
+
+.Main-containerimg{
+    width: 100%;
+    transition: scale 1s ease;
+}
+.Main-containerimg:hover{
+    transform: scale(1.1);
+    box-shadow: 2px 2px 10px 15px #016e78;
+}
+
+
+/* Sección noticias */
+
+.Main-noticias{
+    width: 100%;
+    min-height: 90vh;
+}
+
+.Main-content{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3.75rem;
+
+    padding: 2rem 3rem 6.25rem 7rem;
+}
+
+.Main-imgcontent{
+    width: 100%;
+    max-width: 18.75rem;
+    max-height: 25rem;
+    object-fit: cover;
+    border: 3px solid white;
+
+    z-index: 2;
+}
+
+.Main-article {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.875rem;
+
+    margin: 1.25rem 0;
+    padding: 1.25rem 0;
+}
+.Main-article.visible{
+    animation: slideInLeft 1.2s forwards;
+}
+.Main-article.hidden{
+    animation: slideOutLeft 1.5s forwards;
+}
+
+.Main-h3{
+    font-family: "title";
+    font-size: 1.2em;
+    color: var(--color-primary-text);
+
+
+}
+.Main-h3:hover{
+    text-shadow: .5rem .5rem rgb(40, 39, 39);
+    transform: scale(1.1);
+    transition: scale 2s ease;
+}
+
+.Main-text{
+    max-width: 90%;
+
+    font-family: "text";
+    color: var(--color-primary-text);
+}
+
+.Main-contentreverse{
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3.75rem;
+
+    padding: 2rem 7rem 6.25rem 2rem;
+    
+}
+
+.Main-imgreverse{
+    width: 100%;
+    max-width: 18.75rem;
+    max-height: 25rem;
+    object-fit: cover;
+    border: 3px solid white;
+
+    z-index: 2;
+}
+
+.Main-articlereverse{
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1.875rem;
+
+    margin: 1.25rem 0;
+    padding: 1.25rem;
+}
+.Main-articlereverse.visible{
+    animation: slideInRight 1.2s forwards;
+}
+.Main-articlereverse.hidden{
+    animation: slideOutRight 1.5s forwards;
+}
+
+.Main-h3reverse{
+    font-family: "title";
+    font-size: 1.2em;
+    color: var(--color-primary-text);
+    text-align: right;
+
+    transition: scale 2s ease;
+}
+.Main-h3reverse:hover{
+    text-shadow: .5rem .5rem rgb(40, 39, 39);
+    transform: scale(1.1);
+}
+
+.Main-textreverse{
+    max-width: 90%;
+
+    font-family: "text";
+    color: var(--color-primary-text);
+    text-align: right;
+}
+
+/* Hacemos el responsive para poder adaptar la web a los diferentes
+ tamaños y dispositivos */
+
+@media (max-width: 1250px){
+    .Main-bottom{
+        padding: 0 6.25rem;
+    }
+}
+
+@media (max-width: 1000px){
+    .Main-bottom{
+        padding: 0 3.125rem;
+    }
+    .Main-top{
+        margin: 0;
+    }
+}
+
+@media (max-width: 930px){
+    .Main-message{
+        font-size: 250%;
+        max-height: 10rem;
+        top: calc(50% - 5rem);
+    }
+    .Main-top{
+        padding: 15rem 0;
+    }
+    .Main-container{
+        padding: 4.5rem 1.875rem 2rem;
+    
+    }
+ 
+    .Main-content , .Main-contentreverse{
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 3.125rem 0 0;
+
+        border-top: 2px solid white;
+    }
+
+    .Main-articlereverse{
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: flex-start;
+
+        padding: 0 0 0 7.5rem;
+        gap: 1.25rem;
+    }
+
+    .Main-article{
+        margin: 0 0 0 7.5rem;
+        padding: 0;
+        gap: 1.25rem;
+    }
+
+    .Main-h3reverse{
+        text-align: left;
+    }
+
+    .Main-textreverse{
+        margin: 0 0 5rem;
+        text-align: left;
+    }
+
+    .Main-text{
+        margin: 0 0 7.5rem;
+    }
+}
+
+
+@media (max-width: 750px){
+.Main-top{
+    padding: 15rem 0 5rem;
+}
+
+.Main-message{
+    top: calc(50% - 1rem);
+}
+
+.Main-carrousel{
+    display: none;
+}
+
+.Main-container{
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    overflow: scroll;
+    
+}
+
+}
+
+
+
+@media (max-width: 600px){
+    .Main-message{
+        font-size: 160%;
+        min-height: 10rem;
+    }
+
+    .Main-h2{
+        font-size: 140%;
+        margin: 0;
+    }
+
+    .Main-article, .Main-articlereverse{
+        margin: 0 0 0 1.875rem;
+    }
+
+    .Main-articlereverse{
+        padding: 0;
+    }
+}
+
+
