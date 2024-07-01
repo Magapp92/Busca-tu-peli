@@ -140,11 +140,11 @@
 }
 
 .Main-button--prev {
-    left: 0;
+    left: .225rem;
 }
 
 .Main-button--next {
-    right: 0;
+    right: .225rem;
 }
 
 .Main-svgcarrousel {
