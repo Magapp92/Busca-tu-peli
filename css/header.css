@@ -192,6 +192,9 @@
        top: 20%;
        left: 10%;
     }
+    .Header-ul{
+        right: -5rem;
+    }
 
     .Header-h1{
         font-size: 130%;

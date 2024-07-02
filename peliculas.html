@@ -43,7 +43,7 @@
             </svg>
             <svg class="Header-icon Header-icon--close isHidden">
                 <use xlink:href="#close-symbol"></use>
-            </svg>
+    </svg>
         <ul class="Header-ul">
             <li class="Header-li">
                 <a href="index.html" class="Header-a">Inicio</a>
@@ -52,19 +52,19 @@
                 <a href="" class="Header-a Header-a--hover">Categorias</a>
                 <ul class="Menu-ul">
                     <li class="Menu-li">
-                        <a href="" class="Menu-a">Acción</a>
+                        <a href="accion.html" class="Menu-a">Acción</a>
                     </li>
                     <li class="Menu-li">
-                        <a href="" class="Menu-a">Comedia</a>
+                        <a href="comedia.html" class="Menu-a">Comedia</a>
                     </li>
                     <li class="Menu-li">
-                        <a href="" class="Menu-a">Drama</a>
+                        <a href="drama.html" class="Menu-a">Drama</a>
                     </li>
                     <li class="Menu-li">
-                        <a href="" class="Menu-a">Romance</a>
+                        <a href="romance.html" class="Menu-a">Romance</a>
                     </li>
                     <li class="Menu-li">
-                        <a href="" class="Menu-a">Terror</a>
+                        <a href="terror.html" class="Menu-a">Terror</a>
                     </li>
                 </ul>
             </li> 
@@ -74,22 +74,28 @@
         </ul>
     </nav>
   </header>
+  
   <main class="Main">
     <div class="Main-content">
-        <div class="Main-postercontainer">
-            <img class="Main-poster" data-element="poster" src="" alt="Poster de la película">
-        </div>
-        <div class="Main-details">
+        <div class="Main-header">
             <h2 class="Main-title" data-element="title"></h2>
-            <p class="Main-sinopsis" data-element="sinopsis"></p>
-            <div class="Main-plataformas" data-element="plataformas"></div>
+        </div>
+        <div class="Main-body">
+            <div class="Main-poster-container">
+                <img class="Main-poster" data-element="poster" src="" alt="Poster de la película">
+            </div>
+            <div class="Main-details">
+                <p class="Main-sinopsis" data-element="sinopsis"></p>
+                <div class="Main-plataformas" data-element="plataformas"></div>
+            </div>
         </div>
         <div class="Main-trailer-container">
-            <iframe class="Main-trailer" data-element="trailer" src="" frameborder="0" allowfullscreen autoplay muted></iframe>
+            <iframe class="Main-trailer" data-element="trailer" src="" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </main>
-    <footer class="Footer">
+    
+<footer class="Footer">
         <div class="Footer-contact">
           <h4 class="Footer-h4">Contacto</h4>
           <div class="Footer-social">      

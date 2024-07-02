@@ -51,12 +51,25 @@
         // Toggle show class on headerAHover hover
         if (headerAHover) {
             const menuUl = headerAHover.parentElement.querySelector('.Menu-ul');
-    
-            headerAHover.addEventListener(`mouseover` , () => handleMouseOver(menuUl , `show`))
-            headerAHover.addEventListener(`mouseleave` , () => handleMouseOut(menuUl , `show`))
-            menuUl.addEventListener(`mouseover` , () => handleMouseOver(menuUl , `show`))
-            menuUl.addEventListener(`mouseleave` , () => handleMouseOut(menuUl , `show`))
+            if (window.innerWidth <= 450) {
+                // Toggle show class on click for mobile
+                headerAHover.addEventListener(`click`, (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    if (menuUl.classList.contains('show')) {
+                        handleMouseOut(menuUl, `show`);
+                    } else {
+                        handleMouseOver(menuUl, `show`);
+                    }
+                });
+            } else {
+                // Toggle show class on hover for larger screens
+                headerAHover.addEventListener(`mouseover`, () => handleMouseOver(menuUl, `show`));
+                headerAHover.addEventListener(`mouseleave`, () => handleMouseOut(menuUl, `show`));
+                menuUl.addEventListener(`mouseover`, () => handleMouseOver(menuUl, `show`));
+                menuUl.addEventListener(`mouseleave`, () => handleMouseOut(menuUl, `show`));
+            }
         }
+
 
 
 
@@ -70,10 +83,10 @@
     const movies = [
         { title: 'Bad Boys For Life', url: 'peliculas.html?nombre=Bad%20Boys%20for%20Life'},
         { title: 'Dune', url: 'peliculas.html?nombre=Dune'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
+        { title: 'No Te Metas Con El Zohan', url: 'peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan'},
+        { title: 'Ant-Man And The Wasp: Quantumania', url: 'peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania'},
+        { title: 'Godzilla Vs. Kong', url: 'peliculas.html?nombre=Godzilla%20Vs.%20Kong'},
+        { title: '¿Y Dónde Están Las Rubias?', url: 'peliculas.html?nombre=%C2%BFY%20D%C3%B3nde%20Est%C3%A1n%20Las%20Rubias?'},
         { title: 'newPeli', url: '#'},
         { title: 'newPeli', url: '#'},
         { title: 'newPeli', url: '#'},

@@ -1,35 +1,76 @@
 [
-    {
-      "nombre": "Bad Boys for Life",
-      "poster": "assets/plataformas/prime/Acción/bad boys.webp",
-      "sinopsis": "Los Bad Boys Mike Lowrey y Marcus Burnett vuelven a unirse para un último viaje en la muy esperada Bad Boys for Life.",
-      "plataformas": [
+  {
+    "nombre": "Bad Boys for Life",
+    "poster": "assets/plataformas/prime/Acción/bad boys.webp",
+    "sinopsis": "Los detectives Mike Lowrey y Marcus Burnett vuelven a formar equipo para enfrentarse a los capos de la droga en Miami en una última y explosiva misión.",
+    "plataformas": [
         {
-          "imagen": "path/to/netflix_logo.png",
-          "url": "https://www.netflix.com"
-        },
-        {
-          "imagen": "path/to/prime_video_logo.png",
-          "url": "https://www.primevideo.com"
+            "imagen": "assets/svg/icons8-amazon-prime.svg",
+            "url": "https://www.primevideo.com"
         }
-      ],
-      "trailer": "https://www.youtube.com/embed/jKCj3XuPG8M"
-    },
-    {
-      "nombre": "Dune",
-      "poster": "assets/plataformas/netflix/Acción/dune.webp",
-      "sinopsis": "Un brillante y dotado joven nacido con un gran destino más allá de su comprensión, debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su gente.",
-      "plataformas": [
-        {
-          "imagen": "path/to/hbo_max_logo.png",
+    ],
+    "trailer": "https://www.youtube.com/embed/jKCj3XuPG8M"
+},
+{
+  "nombre": "Dune",
+  "poster": "assets/plataformas/netflix/Acción/dune.webp",
+  "sinopsis": "Un joven noble debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su pueblo.",
+  "plataformas": [
+      {
+          "imagen": "assets/svg/icons8-hbo-max.svg",
           "url": "https://www.hbomax.com"
-        },
-        {
-          "imagen": "path/to/disney_plus_logo.png",
+      }
+  ],
+  "trailer": "https://www.youtube.com/embed/n9xhJrPXop4"
+},
+{
+  "nombre": "No Te Metas Con El Zohan",
+  "poster": "assets/plataformas/apple tv/Comedia/no_te_metas_con_el_zohan.webp",
+  "sinopsis": "Zohan, un comando israelí de lucha contra el terrorismo, finge su propia muerte para perseguir su verdadero sueño: convertirse en estilista en Nueva York.",
+  "plataformas": [
+      {
+          "imagen": "assets/svg/icons8-apple-tv.svg",
+          "url": "https://www.apple.com/apple-tv-plus/"
+      }
+  ],
+   "trailer": "https://www.youtube.com/embed/rEdwm9q40JA?si=h8jYEhGM2vpzQrXP"
+},
+{
+  "nombre": "Ant-Man And The Wasp: Quantumania",
+  "poster": "assets/plataformas/Disney+/Acción/antmanQuantumania.webp",
+  "sinopsis": "Scott Lang y Hope Van Dyne, junto con Hank Pym y Janet Van Dyne, exploran el Reino Cuántico, donde interactúan con extrañas criaturas y se embarcan en una aventura que va más allá de los límites de lo que creían posible.",
+  "plataformas": [
+      {
+          "imagen": "assets/svg/icons8-disney.svg",
           "url": "https://www.disneyplus.com"
-        }
-      ],
-      "trailer": "https://www.youtube.com/embed/n9xhJrPXop4"
-    }
+      }
+  ],
+  "trailer": "https://www.youtube.com/embed/ZlNFpri-Y40"
+},
+{
+  "nombre": "Godzilla Vs. Kong",
+  "poster": "assets/plataformas/Max/Acción/godzillaVsKong.webp",
+  "sinopsis": "Las leyendas chocan cuando Godzilla y Kong, las dos fuerzas más poderosas de un planeta habitado por aterradoras criaturas, se enfrentan en una espectacular batalla que sacude los cimientos de la humanidad.",
+  "plataformas": [
+      {
+          "imagen": "aassets/svg/icons8-hbo-max.svg",
+          "url": "https://www.hbomax.com"
+      }
+  ],
+  "trailer": "https://www.youtube.com/embed/odM92ap8_c0"
+},
+{
+  "nombre": "¿Y Dónde Están Las Rubias?",
+  "poster": "assets/plataformas/netflix/Comedia/y_donde_estan_las_rubias_200x300.webp",
+  "sinopsis": "Dos agentes del FBI se hacen pasar por dos jóvenes herederas para investigar un secuestro.",
+  "plataformas": [
+      {
+          "imagen": "assets/svg/icons8-netflix.svg",
+          "url": "https://www.netflix.com"
+      }
+  ],
+  "trailer": "https://www.youtube.com/embed/aeVkbNka9HM"
+}
+
   ]
   

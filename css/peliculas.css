@@ -9,12 +9,13 @@ body {
 }
 
 .Main {
-
+    width: 100%;
+    
     padding: 1.25rem;
-    margin: 0 auto;
     background-color: #2c3e50; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: .625rem;
+    
 }
 
 .Main-content {
@@ -26,28 +27,52 @@ body {
     margin: 20rem 0 0 0;
 }
 
-.Main-poster-container {
-    width: 100%;
-    max-width: 18.75rem;
-    margin-bottom: 1.25rem;
+.Main-header {
     text-align: center;
+    margin: 0 0 1.5rem 0;
+}
+
+.Main-title {
+    font-size: 2.5em;
+    color: #fff;
+}
+
+.Main-body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.Main-poster-container {
+    width: 30%;
+    max-height: 30rem;
+    margin-bottom: 1.25rem;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .Main-poster {
     width: 100%;
+    height: 30rem;
     border-radius: .625rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .Main-details {
-    text-align: center;
-    padding: 20rem;
-}
-
-.Main-title {
-    font-size: 2em;
-    margin-bottom: .625rem;
-    color: #fff;
+    width: 100%;
+    
+    
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: left;
+    padding: 1rem;
+    background-color: #34495e;
+    border-radius: .625rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .Main-sinopsis {
@@ -57,10 +82,8 @@ body {
 }
 
 .Main-plataformas {
-    display: flex;
-    justify-content: center;
     gap: .9375rem;
-    margin-bottom: 1.25rem;
+    margin: 0 0 1.25rem 0;
 }
 
 .Main-plataformas img {
@@ -68,21 +91,28 @@ body {
     height: auto;
     transition: transform 0.3s;
 }
+
 .Main-plataformas img:hover {
     transform: scale(1.1);
 }
 
 .Main-trailer-container {
+    
     width: 100%;
     max-width: 50rem;
+    padding: 20rem 0 0 15rem; 
+    
+    overflow: hidden;
     margin: 1.25rem 0;
-    text-align: center;
+    position: relative;
 }
 
-.Main-trailer {
+.Main-trailer-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 28.125rem;
+    height: 100%;
     border-radius: .625rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-

@@ -84,33 +84,7 @@ const transitionCompleted = function() {
 
 // Función para mover el carrusel hacia la izquierda
 
-function prev() {
-    if (translationComplete) { // Para desplazar el elemento debe haber sido completada transición anterior
-        translationComplete = false
-        index--
-        if (index === -1) { // Si el índice es -1 volvemos al elemento anterior
-            index = amount - 1
-        }
-        const outerIndex = index % amount // Calcula posición haciendo que haga un loop
-        
-        for (let i = 0; i < amount; i++) {
-            const poster = document.querySelectorAll('.Main-wrapperimg')[i]
-            poster.style.opacity = '1' // Devuelve la opacidad
-            poster.style.transform = 'translateX(' + (currTransl[i] + moveOffset) + 'px)' // Mueve el elemento correspondiente
-            currTransl[i] += moveOffset // Actualiza la posición 
-        }
-        // Indicamos el movimiento del elemento exterior y lo ocultamos
-        const posterExt = document.querySelectorAll('.Main-wrapperimg')[outerIndex]
-        posterExt.style.transform = 'translateX(' + (currTransl[outerIndex] - (moveOffset * amount)) + 'px)'
-        posterExt.style.opacity = '0'
-        currTransl[outerIndex] -= moveOffset * amount
-    }
-}
-
-// Función para mover el carrusel hacia la derecha
-
-function next() {
-    if (translationComplete) { 
+function prev() {  if (translationComplete) { 
         translationComplete = false
         const outerIndex = index % amount
         index++
@@ -127,6 +101,32 @@ function next() {
         posterExt.style.opacity = '0'
         currTransl[outerIndex] += moveOffset * amount
     }
+    
+}
+
+// Función para mover el carrusel hacia la derecha
+
+function next() {if (translationComplete) { // Para desplazar el elemento debe haber sido completada transición anterior
+    translationComplete = false
+    index--
+    if (index === -1) { // Si el índice es -1 volvemos al elemento anterior
+        index = amount - 1
+    }
+    const outerIndex = index % amount // Calcula posición haciendo que haga un loop
+    
+    for (let i = 0; i < amount; i++) {
+        const poster = document.querySelectorAll('.Main-wrapperimg')[i]
+        poster.style.opacity = '1' // Devuelve la opacidad
+        poster.style.transform = 'translateX(' + (currTransl[i] + moveOffset) + 'px)' // Mueve el elemento correspondiente
+        currTransl[i] += moveOffset // Actualiza la posición 
+    }
+    // Indicamos el movimiento del elemento exterior y lo ocultamos
+    const posterExt = document.querySelectorAll('.Main-wrapperimg')[outerIndex]
+    posterExt.style.transform = 'translateX(' + (currTransl[outerIndex] - (moveOffset * amount)) + 'px)'
+    posterExt.style.opacity = '0'
+    currTransl[outerIndex] -= moveOffset * amount
+}
+  
 }
 
 
