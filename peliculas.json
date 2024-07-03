@@ -1,76 +1,129 @@
 [
-  {
-    "nombre": "Bad Boys for Life",
-    "poster": "assets/plataformas/prime/Acción/bad boys.webp",
-    "sinopsis": "En esta tercera entrega de la franquicia, justo cuando Marcus está intentando pasar más tiempo con su familia surgirá una amenaza que pondrá en peligro la vida de Mike, involucrando otra vez a Marcus. Después de todo, Mike también es familia, y no va a dejarle solo en la misión. Mike Lowrey (Will Smith) y Marcus Burnett (Martin Lawrence) vuelven a patrullar juntos para intentar derrotar a Armando Armas (Jacob Scipio), el líder de un cartel de drogas mexicano en Miami.",
-    "plataformas": [
-        {
-            "imagen": "assets/svg/icons8-amazon-prime.svg",
-            "url": "https://www.primevideo.com"
-        }
-    ],
-    "trailer": "https://www.youtube.com/embed/jKCj3XuPG8M"
-},
-{
-  "nombre": "Dune",
-  "poster": "assets/plataformas/netflix/Acción/dune.webp",
-  "sinopsis": "Un joven noble debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su pueblo.",
-  "plataformas": [
-      {
-          "imagen": "assets/svg/icons8-hbo-max.svg",
-          "url": "https://www.hbomax.com"
-      }
-  ],
-  "trailer": "https://www.youtube.com/embed/n9xhJrPXop4"
-},
-{
-  "nombre": "No Te Metas Con El Zohan",
-  "poster": "assets/plataformas/apple tv/Comedia/no_te_metas_con_el_zohan.webp",
-  "sinopsis": "Zohan, un comando israelí de lucha contra el terrorismo, finge su propia muerte para perseguir su verdadero sueño: convertirse en estilista en Nueva York.",
-  "plataformas": [
-      {
-          "imagen": "assets/svg/icons8-apple-tv.svg",
-          "url": "https://www.apple.com/apple-tv-plus/"
-      }
-  ],
-   "trailer": "https://www.youtube.com/embed/rEdwm9q40JA?si=h8jYEhGM2vpzQrXP"
-},
-{
-  "nombre": "Ant-Man And The Wasp: Quantumania",
-  "poster": "assets/plataformas/Disney+/Acción/antmanQuantumania.webp",
-  "sinopsis": "Scott Lang y Hope Van Dyne, junto con Hank Pym y Janet Van Dyne, exploran el Reino Cuántico, donde interactúan con extrañas criaturas y se embarcan en una aventura que va más allá de los límites de lo que creían posible.",
-  "plataformas": [
-      {
-          "imagen": "assets/svg/icons8-disney.svg",
-          "url": "https://www.disneyplus.com"
-      }
-  ],
-  "trailer": "https://www.youtube.com/embed/ZlNFpri-Y40"
-},
-{
-  "nombre": "Godzilla Vs. Kong",
-  "poster": "assets/plataformas/Max/Acción/godzillaVsKong.webp",
-  "sinopsis": "Las leyendas chocan cuando Godzilla y Kong, las dos fuerzas más poderosas de un planeta habitado por aterradoras criaturas, se enfrentan en una espectacular batalla que sacude los cimientos de la humanidad.",
-  "plataformas": [
-      {
-          "imagen": "aassets/svg/icons8-hbo-max.svg",
-          "url": "https://www.hbomax.com"
-      }
-  ],
-  "trailer": "https://www.youtube.com/embed/odM92ap8_c0"
-},
-{
-  "nombre": "¿Y Dónde Están Las Rubias?",
-  "poster": "assets/plataformas/netflix/Comedia/y_donde_estan_las_rubias_200x300.webp",
-  "sinopsis": "Dos agentes del FBI se hacen pasar por dos jóvenes herederas para investigar un secuestro.",
-  "plataformas": [
-      {
-          "imagen": "assets/svg/icons8-netflix.svg",
-          "url": "https://www.netflix.com"
-      }
-  ],
-  "trailer": "https://www.youtube.com/embed/aeVkbNka9HM"
-}
-
+    {
+      "nombre": "Bad Boys for Life",
+      "poster": "assets/plataformas/prime/Acción/bad boys.webp",
+      "sinopsis": "En esta tercera entrega de la franquicia, justo cuando Marcus está intentando pasar más tiempo con su familia, surgirá una amenaza que pondrá en peligro la vida de Mike, involucrando otra vez a Marcus. Después de todo, Mike también es familia, y no va a dejarle solo en la misión. Mike Lowrey (Will Smith) y Marcus Burnett (Martin Lawrence) vuelven a patrullar juntos para intentar derrotar a Armando Armas (Jacob Scipio), el líder de un cartel de drogas mexicano en Miami.",
+      "plataformas": [
+          {
+              "imagen": "assets/svg/icons8-amazon-prime.svg",
+              "url": "https://www.primevideo.com"
+          }
+      ],
+      "trailer": "https://www.youtube.com/embed/jKCj3XuPG8M",
+      "titulo_original": "Bad Boys for Life",
+      "año": 2020,
+      "duracion": "124 min",
+      "pais": "Estados Unidos",
+      "direccion": "Adil El Arbi, Bilall Fallah",
+      "guion": "Chris Bremner, Peter Craig, Joe Carnahan",
+      "reparto": "Will Smith, Martin Lawrence, Vanessa Hudgens, Alexander Ludwig...",
+      "companias": "Columbia Pictures, 2.0 Entertainment",
+      "genero": "Acción, Comedia, Crimen"
+    },
+    {
+      "nombre": "Dune",
+      "poster": "assets/plataformas/netflix/Acción/dune.webp",
+      "sinopsis": "Un joven noble debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su pueblo. En el inhóspito y árido planeta Arrakis, la única fuente de la especia más codiciada del universo, se enfrentarán a grandes desafíos. Paul Atreides, junto con su familia y aliados, debe superar traiciones y conspiraciones en un viaje épico.",
+      "plataformas": [
+          {
+              "imagen": "assets/svg/icons8-hbo-max.svg",
+              "url": "https://www.hbomax.com"
+          }
+      ],
+      "trailer": "https://www.youtube.com/embed/n9xhJrPXop4",
+      "titulo_original": "Dune",
+      "año": 2021,
+      "duracion": "155 min",
+      "pais": "Estados Unidos",
+      "direccion": "Denis Villeneuve",
+      "guion": "Jon Spaihts, Denis Villeneuve, Eric Roth",
+      "reparto": "Timothée Chalamet, Rebecca Ferguson, Oscar Isaac, Josh Brolin...",
+      "companias": "Legendary Pictures, Warner Bros.",
+      "genero": "Ciencia ficción, Aventura, Drama"
+    },
+    {
+      "nombre": "No Te Metas Con El Zohan",
+      "poster": "assets/plataformas/apple tv/Comedia/no_te_metas_con_el_zohan.webp",
+      "sinopsis": "Zohan, un comando israelí de lucha contra el terrorismo, finge su propia muerte para perseguir su verdadero sueño: convertirse en estilista en Nueva York. Dejando atrás su vida de acción, Zohan intenta integrarse en la sociedad estadounidense mientras se enfrenta a viejos enemigos y nuevas aventuras. Con un humor único y situaciones hilarantes, Zohan busca encontrar su lugar en el mundo.",
+      "plataformas": [
+          {
+              "imagen": "assets/svg/icons8-apple-tv.svg",
+              "url": "https://www.apple.com/apple-tv-plus/"
+          }
+      ],
+      "trailer": "https://www.youtube.com/embed/rEdwm9q40JA?si=h8jYEhGM2vpzQrXP",
+      "titulo_original": "You Don't Mess with the Zohan",
+      "año": 2008,
+      "duracion": "113 min",
+      "pais": "Estados Unidos",
+      "direccion": "Dennis Dugan",
+      "guion": "Adam Sandler, Robert Smigel, Judd Apatow",
+      "reparto": "Adam Sandler, John Turturro, Emmanuelle Chriqui, Nick Swardson...",
+      "companias": "Columbia Pictures, Happy Madison Productions",
+      "genero": "Comedia, Acción"
+    },
+    {
+      "nombre": "Ant-Man And The Wasp: Quantumania",
+      "poster": "assets/plataformas/Disney+/Acción/antmanQuantumania.webp",
+      "sinopsis": "Scott Lang y Hope Van Dyne, junto con Hank Pym y Janet Van Dyne, exploran el Reino Cuántico, donde interactúan con extrañas criaturas y se embarcan en una aventura que va más allá de los límites de lo que creían posible. Enfrentándose a un nuevo y poderoso enemigo, deben unir fuerzas y usar sus habilidades para proteger su mundo y salvar el universo de una amenaza inminente.",
+      "plataformas": [
+          {
+              "imagen": "assets/svg/icons8-disney.svg",
+              "url": "https://www.disneyplus.com"
+          }
+      ],
+      "trailer": "https://www.youtube.com/embed/ZlNFpri-Y40",
+      "titulo_original": "Ant-Man and the Wasp: Quantumania",
+      "año": 2023,
+      "duracion": "125 min",
+      "pais": "Estados Unidos",
+      "direccion": "Peyton Reed",
+      "guion": "Jeff Loveness",
+      "reparto": "Paul Rudd, Evangeline Lilly, Michael Douglas, Michelle Pfeiffer...",
+      "companias": "Marvel Studios",
+      "genero": "Acción, Aventura, Ciencia ficción"
+    },
+    {
+      "nombre": "Godzilla Vs. Kong",
+      "poster": "assets/plataformas/Max/Acción/godzillaVsKong.webp",
+      "sinopsis": "Las leyendas chocan cuando Godzilla y Kong, las dos fuerzas más poderosas de un planeta habitado por aterradoras criaturas, se enfrentan en una espectacular batalla que sacude los cimientos de la humanidad. Mientras tanto, una conspiración humana amenaza con erradicar a estas criaturas, independientemente del costo. En una lucha épica por la supremacía, el destino del mundo pende de un hilo.",
+      "plataformas": [
+          {
+              "imagen": "assets/svg/icons8-hbo-max.svg",
+              "url": "https://www.hbomax.com"
+          }
+      ],
+      "trailer": "https://www.youtube.com/embed/odM92ap8_c0",
+      "titulo_original": "Godzilla vs. Kong",
+      "año": 2021,
+      "duracion": "113 min",
+      "pais": "Estados Unidos",
+      "direccion": "Adam Wingard",
+      "guion": "Eric Pearson, Max Borenstein",
+      "reparto": "Alexander Skarsgård, Millie Bobby Brown, Rebecca Hall, Brian Tyree Henry...",
+      "companias": "Legendary Pictures, Warner Bros.",
+      "genero": "Acción, Ciencia ficción"
+    },
+    {
+      "nombre": "¿Y Dónde Están Las Rubias?",
+      "poster": "assets/plataformas/netflix/Comedia/y_donde_estan_las_rubias_200x300.webp",
+      "sinopsis": "Dos agentes del FBI se hacen pasar por dos jóvenes herederas para investigar un secuestro. Durante su misión encubierta, enfrentan una serie de situaciones cómicas y absurdas mientras intentan mantener su disfraz. Enfrentándose a enemigos y obstáculos inesperados, deben usar su ingenio para resolver el caso sin ser descubiertos.",
+      "plataformas": [
+          {
+              "imagen": "assets/svg/icons8-netflix.svg",
+              "url": "https://www.netflix.com"
+          }
+      ],
+      "trailer": "https://www.youtube.com/embed/aeVkbNka9HM",
+      "titulo_original": "White Chicks",
+      "año": 2004,
+      "duracion": "109 min",
+      "pais": "Estados Unidos",
+      "direccion": "Keenen Ivory Wayans",
+      "guion": "Keenen Ivory Wayans, Shawn Wayans, Marlon Wayans",
+      "reparto": "Shawn Wayans, Marlon Wayans, Jaime King, Frankie Faison...",
+      "companias": "Revolution Studios, Wayans Bros. Entertainment",
+      "genero": "Comedia"
+    }
   ]
   

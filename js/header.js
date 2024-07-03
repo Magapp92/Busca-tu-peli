@@ -86,25 +86,8 @@
         { title: 'No Te Metas Con El Zohan', url: 'peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan'},
         { title: 'Ant-Man And The Wasp: Quantumania', url: 'peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania'},
         { title: 'Godzilla Vs. Kong', url: 'peliculas.html?nombre=Godzilla%20Vs.%20Kong'},
-        { title: '¿Y Dónde Están Las Rubias?', url: 'peliculas.html?nombre=%C2%BFY%20D%C3%B3nde%20Est%C3%A1n%20Las%20Rubias?'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'},
-        { title: 'newPeli', url: '#'}
-
+        { title: '¿Y Dónde Están Las Rubias?', url: 'peliculas.html?nombre=%C2%BFY%20D%C3%B3nde%20Est%C3%A1n%20Las%20Rubias?'}
+        
     ]
 
     headerInput.addEventListener('input' , function() {
