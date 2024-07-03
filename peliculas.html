@@ -15,7 +15,9 @@
 <body>
     <header class="Header">
         <div class="Header-logo">
-            <h1 class="Header-h1">Busca tu Peli</h1>
+            <h1 class="Header-h1">
+                <a href="index.html" class="Header-aLogo">Busca tu Peli</a>
+            </h1>
             <img src="assets/logo/logobuscatupeli.svg" alt="logo busca tu peli" class="Header-img">
         </div>
     <div class="Header-search">
@@ -74,27 +76,39 @@
         </ul>
     </nav>
   </header>
-  
   <main class="Main">
-    <div class="Main-content">
-        <div class="Main-header">
-            <h2 class="Main-title" data-element="title"></h2>
-        </div>
-        <div class="Main-body">
-            <div class="Main-poster-container">
-                <img class="Main-poster" data-element="poster" src="" alt="Poster de la película">
+    <article class="Main-article">
+            <h2 class="Main-h2" data-element="title"></h2>
+        <div class="Main-info">
+            <img class="Main-img" data-element="poster" title="Poster" src="" alt="Poster de la película">
+            <div class="Main-description">
+                <div class="Main-title"> <b>Título original:</b> Harry Potter and the Deathly Hallows: Part 2</div>
+                <div class="Main-year"><b>Año:</b> 2011 </div>
+                <div class="Main-duration"><b>Duración:</b> 130 min </div>
+                <div class="Main-country"><b>País:</b> Reino Unido Reino Unido</div>
+                <div class="Main-director"><b>Dirección:</b> David Yates</div>
+                <div class="Main-script"><b>Guión:</b> Steve Kloves. </div>
+                <div class="Main-cast">
+                <b>Reparto:</b> Daniel Radcliffe, Rupert Grint, Emma Watson
+                Helena Bonham Carter, Robbie Coltrane, Ralph Fiennes
+                Michael Gambon, John Hurt, Jason Isaacs, Kelly Macdonald
+                Gary Oldman, Alan Rickman...
+                </div>
+                <div class="Main-producers"><b>Compañías:</b> Warner Bros., Heyday Films</div>
+                <div class="Main-genre"><b>Género:</b> Fantástico, Aventuras, Drama</div>
             </div>
-            <div class="Main-details">
-                <p class="Main-sinopsis" data-element="sinopsis"></p>
-                <div class="Main-plataformas" data-element="plataformas"></div>
-            </div>
-        </div>
-        <div class="Main-trailer-container">
-            <iframe class="Main-trailer" data-element="trailer" src="" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-</main>
-    
+        </div>        
+        <section class="Main-section">
+            <h3 class="Main-h3">Disponible en:</h3>
+            <div class="Main-plataformas" data-element="plataformas"></div>
+            <p class="Main-p" data-element="sinopsis"></p>
+        </section>
+        <h3 class="Main-h3">Trailer oficial</h3>
+        <iframe class="Main-iframe" data-element="trailer" width="700" height="500" src="" title="oficial movie trailer" frameborder="0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>  
+    </article>
+  </main>
 <footer class="Footer">
         <div class="Footer-contact">
           <h4 class="Footer-h4">Contacto</h4>
