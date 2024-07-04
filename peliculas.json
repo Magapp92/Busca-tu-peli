@@ -5,7 +5,7 @@
       "sinopsis": "En esta tercera entrega de la franquicia, justo cuando Marcus está intentando pasar más tiempo con su familia, surgirá una amenaza que pondrá en peligro la vida de Mike, involucrando otra vez a Marcus. Después de todo, Mike también es familia, y no va a dejarle solo en la misión. Mike Lowrey (Will Smith) y Marcus Burnett (Martin Lawrence) vuelven a patrullar juntos para intentar derrotar a Armando Armas (Jacob Scipio), el líder de un cartel de drogas mexicano en Miami.",
       "plataformas": [
           {
-              "imagen": "assets/svg/icons8-amazon-prime.svg",
+              "imagen": "assets/svg/amazon prime.svg",
               "url": "https://www.primevideo.com"
           }
       ],
@@ -20,13 +20,14 @@
       "companias": "Columbia Pictures, 2.0 Entertainment",
       "genero": "Acción, Comedia, Crimen"
     },
+
     {
       "nombre": "Dune",
       "poster": "assets/plataformas/netflix/Acción/dune.webp",
       "sinopsis": "Un joven noble debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su pueblo. En el inhóspito y árido planeta Arrakis, la única fuente de la especia más codiciada del universo, se enfrentarán a grandes desafíos. Paul Atreides, junto con su familia y aliados, debe superar traiciones y conspiraciones en un viaje épico.",
       "plataformas": [
           {
-              "imagen": "assets/svg/icons8-hbo-max.svg",
+              "imagen": "assets/svg/hbo max.svg",
               "url": "https://www.hbomax.com"
           }
       ],
@@ -41,13 +42,14 @@
       "companias": "Legendary Pictures, Warner Bros.",
       "genero": "Ciencia ficción, Aventura, Drama"
     },
+
     {
       "nombre": "No Te Metas Con El Zohan",
       "poster": "assets/plataformas/apple tv/Comedia/no_te_metas_con_el_zohan.webp",
       "sinopsis": "Zohan, un comando israelí de lucha contra el terrorismo, finge su propia muerte para perseguir su verdadero sueño: convertirse en estilista en Nueva York. Dejando atrás su vida de acción, Zohan intenta integrarse en la sociedad estadounidense mientras se enfrenta a viejos enemigos y nuevas aventuras. Con un humor único y situaciones hilarantes, Zohan busca encontrar su lugar en el mundo.",
       "plataformas": [
           {
-              "imagen": "assets/svg/icons8-apple-tv.svg",
+              "imagen": "assets/svg/apple tv",
               "url": "https://www.apple.com/apple-tv-plus/"
           }
       ],
@@ -62,13 +64,14 @@
       "companias": "Columbia Pictures, Happy Madison Productions",
       "genero": "Comedia, Acción"
     },
+
     {
       "nombre": "Ant-Man And The Wasp: Quantumania",
       "poster": "assets/plataformas/Disney+/Acción/antmanQuantumania.webp",
       "sinopsis": "Scott Lang y Hope Van Dyne, junto con Hank Pym y Janet Van Dyne, exploran el Reino Cuántico, donde interactúan con extrañas criaturas y se embarcan en una aventura que va más allá de los límites de lo que creían posible. Enfrentándose a un nuevo y poderoso enemigo, deben unir fuerzas y usar sus habilidades para proteger su mundo y salvar el universo de una amenaza inminente.",
       "plataformas": [
           {
-              "imagen": "assets/svg/icons8-disney.svg",
+              "imagen": "assets/svg/disney.svg",
               "url": "https://www.disneyplus.com"
           }
       ],
@@ -83,13 +86,14 @@
       "companias": "Marvel Studios",
       "genero": "Acción, Aventura, Ciencia ficción"
     },
+
     {
       "nombre": "Godzilla Vs. Kong",
       "poster": "assets/plataformas/Max/Acción/godzillaVsKong.webp",
       "sinopsis": "Las leyendas chocan cuando Godzilla y Kong, las dos fuerzas más poderosas de un planeta habitado por aterradoras criaturas, se enfrentan en una espectacular batalla que sacude los cimientos de la humanidad. Mientras tanto, una conspiración humana amenaza con erradicar a estas criaturas, independientemente del costo. En una lucha épica por la supremacía, el destino del mundo pende de un hilo.",
       "plataformas": [
           {
-              "imagen": "assets/svg/icons8-hbo-max.svg",
+              "imagen": "assets/svg/hbo max.svg",
               "url": "https://www.hbomax.com"
           }
       ],
@@ -104,13 +108,14 @@
       "companias": "Legendary Pictures, Warner Bros.",
       "genero": "Acción, Ciencia ficción"
     },
+
     {
       "nombre": "¿Y Dónde Están Las Rubias?",
       "poster": "assets/plataformas/netflix/Comedia/y_donde_estan_las_rubias_200x300.webp",
       "sinopsis": "Dos agentes del FBI se hacen pasar por dos jóvenes herederas para investigar un secuestro. Durante su misión encubierta, enfrentan una serie de situaciones cómicas y absurdas mientras intentan mantener su disfraz. Enfrentándose a enemigos y obstáculos inesperados, deben usar su ingenio para resolver el caso sin ser descubiertos.",
       "plataformas": [
           {
-              "imagen": "assets/svg/icons8-netflix.svg",
+              "imagen": "assets/svg/netflix.svg",
               "url": "https://www.netflix.com"
           }
       ],
