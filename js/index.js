@@ -13,13 +13,15 @@ const buttonPrev = mainCarrousel.querySelector(`.Main-button--prev`)
 
 
 
-/*Slider .Main-Top*/
+/*Slider .Main-top*/
 
 let anchoImagenes = 100 / sliderImgs.length
 let contador = 0
 let automatico
 
-const sliderTranslate = ()=>{
+// IFE que agrupa efectos slider
+(()=> {
+    const sliderTranslate = ()=>{
      mainSlider.style.transform =`translateX(-${anchoImagenes * contador}%)`
 }
 
@@ -51,15 +53,15 @@ const sliderOut =  ()=>{
 
 automatico = setInterval( siguiente , 4000)
 
+})()
 
 
-// Carrousel populares
+/*Carrousel populares*/
 
 let index = 0
 let amount = 10 
 let currTransl = [ ] // Array contiene posiciones actuales de cada elemento
 let translationComplete = true // Indica si la transición se ha completado
-
 
 const transitionCompleted = function() {
     translationComplete = true // Indica que la transición se ha hecho
@@ -101,9 +103,7 @@ function prev() {  if (translationComplete) {
         posterExt.style.opacity = '0'
         currTransl[outerIndex] += moveOffset * amount
     }
-    
 }
-
 // Función para mover el carrusel hacia la derecha
 
 function next() {if (translationComplete) { // Para desplazar el elemento debe haber sido completada transición anterior
@@ -126,13 +126,12 @@ function next() {if (translationComplete) { // Para desplazar el elemento debe h
     posterExt.style.opacity = '0'
     currTransl[outerIndex] -= moveOffset * amount
 }
-  
 }
 
 
-
-
-// Noticias y articles
+// IFE que agrupa efecto noticias
+(()=> {
+    /*Noticias y articles*/
 
 const user = new IntersectionObserver( e => {
     e.forEach( _ =>{
@@ -153,4 +152,6 @@ const user = new IntersectionObserver( e => {
 }, {threshold: 0.1} ) /*El callback se ejecutará cuando al menos el 10% de los articles sean visibles en la ventana*/
 
 user.observe(document.querySelector(`.Main-noticias`))
+})()
+
 

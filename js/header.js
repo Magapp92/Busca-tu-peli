@@ -70,12 +70,7 @@
             }
         }
 
-
-
-
-
         
-  
 // IFE que agrupa acción de buscar películas
         (() => {
            // Search field
