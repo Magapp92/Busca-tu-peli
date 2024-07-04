@@ -51,7 +51,7 @@
         // Toggle show class on headerAHover hover
         if (headerAHover) {
             const menuUl = headerAHover.parentElement.querySelector('.Menu-ul');
-            if (window.innerWidth <= 450) {
+            if (window.innerWidth <= 930) {
                 // Toggle show class on click for mobile
                 headerAHover.addEventListener(`click`, (event) => {
                     event.preventDefault(); // Prevent default link behavior
