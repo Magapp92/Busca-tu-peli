@@ -50,23 +50,23 @@ button{
 
 @font-face {
     font-family: "logo";
-    src: url(../css/tipografía/Permanent_Marker/PermanentMarker-Regular.ttf);
+    src: url(../css/tipografia/PermanentMarkerRegular.ttf);
     font-display: swap;
 }
 
 @font-face {
     font-family: "title";
-    src: url(../css/tipografía/Montserrat/Montserrat-ExtraBold.ttf);
+    src: url(../css/tipografia/MontserratExtraBold.ttf);
     font-display: swap;
 }
 
 @font-face {
     font-family: "text";
-    src: url(../css/tipografía/Montserrat/Montserrat-Medium.ttf);
+    src: url(../css/tipografia/MontserratMedium.ttf);
     font-display: swap;
 }
 
-/* Agrupamos los keyframes para las animaciones de los article */
+/* Agrupamos los keyframes para las animaciones de los article de noticias */
 
 @keyframes slideInLeft {
     from{
