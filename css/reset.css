@@ -4,23 +4,29 @@
     border: 0;
     box-sizing:border-box;
 }
+
 li{
     list-style: none;
 }
+
 html{
     scroll-behavior: smooth;
 }
+
 a{
     display: block;
 }
+
 p a {
     display: inline;
 }
+
 img , svg{
     display: block;
     width: 100%;
     height: initial;
 }
+
 h1 , h2 , h3 , h4 , h5 , h6 , p , strong , em , mark , a{
     font-size: inherit;
     font-style: inherit;
@@ -29,12 +35,14 @@ h1 , h2 , h3 , h4 , h5 , h6 , p , strong , em , mark , a{
     text-decoration: none;
     background-color: inherit;
 }
+
 button{
     display: block;
     background-color: transparent;
     font-family: inherit;
     font-size: inherit;
 }
+
 :root{
     font-size: 100%;
     --bg-color-primary:#393939;
