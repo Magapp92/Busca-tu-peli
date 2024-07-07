@@ -9,36 +9,39 @@
     background-color: var(--bg-color-transparency);
     padding: 6.25rem 0 1rem;
 }
+
+.Main-header{
+    padding: 0 5rem;
+}
+
 .Main-h2{
     font-family: "title";
     color: var(--color-primary-text);
     font-size: 2.5em;
 
     background-color: transparent;
-    margin: 0 0 0 6rem;
 }
 
-.Main-div{
+/* .Main-div{
     margin: 0 0 6rem;
     padding: 0 0 4rem;
-}
+} */
 
 .Main-p{
-    max-width: 80%;
     font-family: "title";
     color: var(--color-primary-text);
     font-size: 1.2em;
 
-    margin: 1.25rem 0 0 6.25rem;
+    margin: 20px 0 0;
     background-color: transparent;
     padding: 0 0 0 1.875rem;
-    }
+}
 
 .Main-article{
     width: 90%;
     padding: 4rem 4rem 0;
     border-top: 3px solid white;
-    margin: 3rem auto 10rem;
+    margin: 1.25rem auto 10rem;
 }
 
 .Main-h3{
@@ -46,7 +49,7 @@
     color: var(--color-primary-text);
     font-size: 1.8em;
 
-    margin: 4rem 0 4rem;
+    margin: 4rem 0 2rem;
 }
 
 .Main-intro{
@@ -56,13 +59,15 @@
     align-items: center;
     gap: 3.125rem;
 
-    margin: 0 0 5rem;
+    margin: 5rem 70px 0;
 }
 
 .Main-img{
     width: 100%;
     max-width: 25rem;
     max-height: 37.5rem;
+
+    border: var(--border-imgs);
 }
 
 .Main-subtitle{
@@ -79,7 +84,21 @@
     font-size: 1.2em;
     line-height: 2rem;
 
+    margin: 0 auto;
+    padding: 40px 0 0;
+}
+
+.Main-news--bottom{
+    width: 90%;
+
+    font-family: "text";
+    color: var(--color-primary-text);
+    font-size: 1.2em;
+    line-height: 2rem;
+
     margin: 0 auto 1.875rem;
+    padding: 20px 0 0;
+
 }
 
 .Main-ol{
@@ -93,6 +112,10 @@
 
 .Main-li{
     list-style: decimal;
+}
+
+.Symbol{
+    display: none;
 }
 
 

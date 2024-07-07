@@ -5,7 +5,7 @@
     width: 100%;
     min-height: 15vh;
     background-color:var(--bg-section-color);
-    padding: 1rem;
+    padding: 2rem 3.125rem;
 
     display: flex;
     flex-flow: row nowrap;
@@ -74,7 +74,7 @@
 .Header-input{
     width: 18.75rem;
     padding: .9375rem;
-    border-radius: 3.125rem;
+    border-radius: var(--border-radius);
     background-color: transparent;
     border: 3px solid var(--bg-selected-color);
 
@@ -187,18 +187,18 @@
 
 @media (max-width: 450px){
     .Header-img{
-        max-width: 80%;
+       max-width: 90%;
        position: relative;
        top: 20%;
-       left: 10%;
+       left: 5%;
     }
     .Header-ul{
         right: -5rem;
     }
 
     .Header-h1{
-        font-size: 130%;
-        margin: .625rem 0 0 4.5rem;
+        font-size: 125%;
+        margin: .625rem 0 0 2.8rem;
     }
 }
 

@@ -94,6 +94,10 @@
     margin: 1.875rem 10% 9.375rem;
 }
 
+.Symbol{
+    display: none;
+}
+
 @media (max-width: 930px){
     .Main{
         padding: 25rem 0 8rem;

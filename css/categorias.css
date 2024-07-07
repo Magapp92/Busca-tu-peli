@@ -9,7 +9,11 @@
 
 .Main-section{
     background-color: var(--bg-color-transparency);
-    padding: 6.25rem 12.5rem 1rem;
+    padding: 6.25rem 0 1rem;
+}
+
+.Main-header{
+    padding: 0 12.5rem;
 }
 
 .Main-h2{
@@ -25,10 +29,10 @@
     color: var(--color-primary-text);
     font-size: 1.2em;
 
-    margin: 1.25rem 0 7.5rem 0;
+    margin: var(--margin-main-p);
     background-color: transparent;
-    padding: 0 0 1.25rem 1.875rem;
-    border-bottom: 3px solid white;
+    padding: var(--padding-main-p);
+    border-bottom: var(--border-main-p);
 }
 
 .Main-article{
@@ -59,9 +63,8 @@
 
 .Main-img{
     width: 15.625rem;
-    max-width: 21.875rem;
-    height: 21.875rem;
-    max-height: 28.125rem;
+    min-height: 21.875rem;
+    border: var(--border-imgs);
 }
 
 .Main-h3{
@@ -101,6 +104,10 @@
     position: absolute;
     top: 30%;
     left: 23%;
+}
+
+.Symbol{
+    display: none;
 }
 
 @media (max-width: 930px){

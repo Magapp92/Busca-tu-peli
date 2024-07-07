@@ -11,11 +11,13 @@
     padding: 0 12.5rem;
 }
 
+/*Sección slider*/
+
 .Main-top{
     width: 100%;
     max-width: 150rem; /*verificar en pantallas grandes */
-    max-height: 90vh;
-    padding: 7.5rem 0 0 0;
+    
+    padding: 10.2rem 0 0 0;
     margin: 0 0 3.125rem;
 
     overflow: hidden;
@@ -26,6 +28,7 @@
     width: 80%;
     min-height: 16rem;
     background-color:var(--bg-main-color);
+    backdrop-filter: blur(.375rem);
     border-radius: 2.5rem;
 
     display: flex;
@@ -37,7 +40,7 @@
     text-align: center;
     color: var(--color-primary-text);
     font-size: 4em;
-    text-shadow: 2px 3px rgba(57, 57, 57, 0.788);
+    text-shadow: 2px 3px 5px rgba(2, 2, 2, 0.541);
 
     position: absolute;
     top:calc(50% - 10rem);
@@ -61,107 +64,109 @@
     
 }
 
-
 .Slider-img{
-    width:calc(100% / 6 );
+    width:calc( 100% / 6 );
     max-height: 35rem;
-   
-    
 }
+
+/*Sección carrousel*/
 
 .Main-h2{
     font-family: "title";
     font-size: 2.5em;
     color: var(--color-primary-text);
+
+    margin: 5rem 0 0;
 }
 
 .Main-p{
     font-family: "title";
     font-size: 1.2em;
     color: var(--color-primary-text);
-    margin: 1.25rem 0 7.5rem 0;
-    padding: 0 0 1.25rem 1.875rem;
+   
+    margin: var(--margin-main-p);
+    padding: var(--padding-main-p);
+    border-bottom: var(--border-main-p);
 }
 
-.Main-carrousel {
+.Main-carrousel{
     width: 100%;
-    max-height: 80vh;
+
     border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
     border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
     padding: 1.875rem 3.125rem;
     
     position: relative;
     margin: 0 auto;
 }
 
-.Main-innercarrousel {
+.Main-innerCarrousel{
     width: 100%;
+    
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-.Main-wrapper {
+.Main-wrapper{
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     gap: 1.25rem;
-   
 }
 
-.Main-wrapperimg {
+.Main-wrapperImg {
     width:100%;
     min-height: 20rem;
+    border: var(--border-imgs);
 
     opacity: 1;
     transition: transform 0.5s ease, opacity 0.5s ease, scale 0.5s ease, translate 1s ease;
 }
-.Main-wrapperimg:hover{
+.Main-wrapperImg:hover{
     transform: scale(.95) translate(0px, -0.9375rem);
 }
 
-.Main-awrapper {
+.Main-aWrapper {
     width: 20%;
     max-height: 25rem;
     flex-shrink: 0;
 }
 
-
 .Main-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 1rem;
     cursor: pointer;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 30%;
+
+    position: absolute;
+    top: 50%;
+    
+    transform: translateY(-50%);
 }
 
 .Main-button--prev {
-    left: .225rem;
+    left: -1.5rem;
 }
 
 .Main-button--next {
-    right: .225rem;
+    right: -1.5rem;
 }
 
-.Main-svgcarrousel {
-    width: 2rem;
-    height: 2rem;
-    fill: white;
+.Main-svgCarrousel {
+    width: 2.5rem;
+    min-height: 2.5rem;
 }
-
-
 
 
 /*Sección de recientes*/
 
 .Main-background{
     background-color: var(--bg-color-transparency);
+    border-radius: 15%;
 }
 
 .Main-container{
@@ -169,6 +174,7 @@
     min-height: 40vh;
     background-color: var(--bg-section-color);
     box-shadow: .3125rem .3125rem 1.875rem 1.25rem rgba(45, 45, 45, 0.636);
+    border-radius: 5%;
 
     display: grid;
     grid-template-columns: repeat(4 , 1fr);
@@ -180,6 +186,8 @@
 
 .Main-containerimg{
     width: 100%;
+    border: var(--border-imgs);
+
     transition: scale 1s ease;
 }
 .Main-containerimg:hover{
@@ -210,13 +218,17 @@
     max-width: 18.75rem;
     max-height: 25rem;
     object-fit: cover;
-    border: 3px solid white;
+    border: var(--border-imgs);
 
     z-index: 2;
+    animation: appear 3s ease-in-out;
+}
+
+.Main-imgcontent.visible{
+animation: appear 3s forwards;
 }
 
 .Main-article {
-
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -253,7 +265,7 @@
     color: var(--color-primary-text);
 }
 
-.Main-contentreverse{
+.Main-contentReverse{
     display: flex;
     flex-flow: row-reverse nowrap;
     justify-content: space-between;
@@ -264,7 +276,7 @@
     
 }
 
-.Main-imgreverse{
+.Main-imgReverse{
     width: 100%;
     max-width: 18.75rem;
     max-height: 25rem;
@@ -272,9 +284,10 @@
     border: 3px solid white;
 
     z-index: 2;
+    animation: appear 5s forwards;
 }
 
-.Main-articlereverse{
+.Main-articleReverse{
 
     display: flex;
     flex-flow: column nowrap;
@@ -285,14 +298,14 @@
     margin: 1.25rem 0;
     padding: 1.25rem;
 }
-.Main-articlereverse.visible{
+.Main-articleReverse.visible{
     animation: slideInRight 1.2s forwards;
 }
-.Main-articlereverse.hidden{
+.Main-articleReverse.hidden{
     animation: slideOutRight 1.5s forwards;
 }
 
-.Main-h3reverse{
+.Main-h3Reverse{
     font-family: "title";
     font-size: 1.2em;
     color: var(--color-primary-text);
@@ -300,17 +313,21 @@
 
     transition: scale 2s ease;
 }
-.Main-h3reverse:hover{
+.Main-h3Reverse:hover{
     text-shadow: .5rem .5rem rgb(40, 39, 39);
     transform: scale(1.1);
 }
 
-.Main-textreverse{
+.Main-textReverse{
     max-width: 90%;
 
     font-family: "text";
     color: var(--color-primary-text);
     text-align: right;
+}
+
+.Symbol{
+    display: none;
 }
 
 /* Hacemos el responsive para poder adaptar la web a los diferentes
@@ -334,11 +351,11 @@
 @media (max-width: 930px){
     .Main-message{
         font-size: 250%;
-        max-height: 10rem;
-        top: calc(50% - 5rem);
+        min-height: 10rem;
+        top: calc(50% - 3rem);
     }
     .Main-top{
-        padding: 15rem 0;
+        padding: 18.7rem 0 2rem;
     }
     .Main-container{
         padding: 4.5rem 1.875rem 2rem;
@@ -386,7 +403,7 @@
 
 @media (max-width: 750px){
 .Main-top{
-    padding: 15rem 0 5rem;
+    padding: 18.5rem 0 2rem;
 }
 
 .Main-message{
@@ -403,15 +420,13 @@
     overflow: scroll;
     
 }
-
 }
-
 
 
 @media (max-width: 600px){
     .Main-message{
-        font-size: 160%;
-        min-height: 10rem;
+        font-size: 150%;
+        top: calc(50% - -1rem);
     }
 
     .Main-h2{
@@ -425,6 +440,18 @@
 
     .Main-articlereverse{
         padding: 0;
+    }
+}
+
+
+@media (max-width:450px){
+    .Main-top{
+        padding: 17.4rem 0 2rem;
+    }
+    .Main-message{
+        font-size: 130%;
+        top: calc(50% - -2rem);
+        min-height: 8rem;
     }
 }
 

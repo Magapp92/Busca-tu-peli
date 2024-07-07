@@ -46,12 +46,17 @@ button{
 :root{
     font-size: 100%;
     --bg-color-primary:#393939;
-    --bg-section-color:#0B9BA8;
+    --bg-section-color:#0b9ba8eb;
     --bg-color-transparency: #0b9ba878 ;
     --bg-main-color: rgba(255, 255, 255, 0.463);
     --bg-selected-color: rgba(255, 255, 255, 0.853);
     --color-primary-text: rgb(255, 255, 255);
     --color-secondary-text: rgb(0, 0, 0);
+    --margin-main-p: 1.25rem 0 7.5rem 0;
+    --padding-main-p: 0 0 1.25rem 1.875rem;
+    --border-main-p: 3px solid white;
+    --border-radius: 1rem;
+    --border-imgs:3px solid white;
 }
 
 /* Agrupamos todas las tipografías */
@@ -118,4 +123,15 @@ button{
         transform: translateX(100%);
         opacity: 0;
     }
+}
+
+@keyframes appear {
+    from{
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
+    } 
 }
