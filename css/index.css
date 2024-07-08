@@ -480,4 +480,10 @@ animation: appear 3s forwards;
     }
 }
 
+@media (max-width:450px){
+    .Main-top{
+        padding: 17.4rem 0 2rem;
+    }
+}
+
 
