@@ -7,11 +7,11 @@
     <meta name="keywords" content="películas, cine, streaming, acción, comedia, drama, romance, terror">
     <title>Busca tu Peli</title>
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/recomendaciones.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/reset.css">
     <script src="js/header.js" defer></script>
-    <script src="js/index.js" defer></script>
+    <script src="js/recomendaciones.js" defer></script>
     <script src="js/footer.js" defer></script>
 </head>
 <body>
@@ -66,146 +66,30 @@
     </nav>
   </header>
   <main class="Main">
-    <div class="Main-top">
-        <p class="Main-message">
-            Accede a todo el contenido <br> a través de cualquier plataforma
+    <span class="Main-span">
+        <p class="Main-p">
+            Si no has conseguido lo que buscabas, escríbelo más abajo y te notificaremos cuando se añada a la plataforma.
         </p>
-        <div class="Main-slider">
-            <img src="assets/plataformas/appleTv/Acción/EscuadronMalditoHoriz.webp" alt="Imagen 0" title="imagen pelicula escuadron maldito" class="Slider-img" loading="lazy">
-            <img src="assets/plataformas/DisneyPlus/Acción/Quantumania.webp" alt="Imagen 1" title="imagen pelicula antman quantumania" class="Slider-img" loading="lazy">
-            <img src="assets/plataformas/Max/Acción/kongVsGodzillaHorizontal.webp" alt="Imagen 2" title="imagen pelicula kong vs godzilla" class="Slider-img" loading="lazy">
-            <img src="assets/plataformas/netflix/Acción/duneHorizontal.webp" alt="Imagen 3" title="imagen pelicula dune" class="Slider-img" loading="lazy">
-            <img src="assets/plataformas/prime/Acción/badBoysForLifeHorizontal.webp" alt="Imagen 4" title="imagen pelicula bad boys for life" class="Slider-img" loading="lazy">
-            <img src="assets/plataformas/appleTv/Acción/EscuadronMalditoHoriz.webp" alt="Imagen 0" title="imagen pelicula escuadron maldito" class="Slider-img" loading="lazy">
-        </div>    
+    </span>
+    <div class="Main-formulario">
+       <form action="send" method="post" class="Main-form">
+            <div class="Main-campo">
+                <label for="full name" class="Main-label">Nombre completo</label>
+                <input type="text" id="full name" class="Main-input" required>
+            </div>
+            <div class="Main-campo">
+                <label for="email" class="Main-label">Email</label>
+                <input type="email" id="email" class="Main-input" required>
+            </div>
+            <div class="Main-campo">
+                <label for="movie title" class="Main-label">Titulo de la película</label>
+                <textarea name="Escribe tu sugerencia" id="movie title" class="Main-textarea" required></textarea>
+            </div>
+            <button class="Main-button">
+                <input type="submit" class="Main-send">
+            </button>   
+       </form>
     </div>
-<div class="Main-bottom">
-    <section class="Main-section">
-        <h2 class="Main-h2">Populares</h2>
-        <p class="Main-p">
-            Estas son las películas más buscadas en nuestra plataforma
-        </p>
-        <div class="Main-carrousel">
-            <div class="Main-innerCarrousel">
-                <div class="Main-wrapper">
-                    <a href=""  class="Main-aWrapper" title="Ir a pelicula 50 primeras citas">
-                    <img class="Main-wrapperImg" title="poster pelicula 50 primeras citas"  src="assets/populares/50PrimerasCitas.webp" alt="Image 1">
-                    </a>
-                    <a href=""  class="Main-aWrapper" title="Ir a pelicula expediente warren">
-                    <img class="Main-wrapperImg" title="poster pelicula expediente warren" src="assets/populares/ExpedienteWarren.webp" alt="Image 2">
-                    </a>
-                    <a href=""  class="Main-aWrapper" title="Ir a pelicula pearl harbor">
-                    <img class="Main-wrapperImg" title="poster pelicula pearl harbor" src="assets/populares/pearlHarbor.webp" alt="Image 3">
-                    </a>
-                    <a href=""  class="Main-aWrapper" title="Ir a pelicula Hombres de Honor">
-                    <img class="Main-wrapperImg" title="poster pelicula Hombres de Honor" src="assets/populares/HombresDeHonor.webp" alt="Image 4">
-                    </a>
-                    <a href=""  class="Main-aWrapper" title="Ir a pelicula Si Señor">
-                    <img class="Main-wrapperImg" title="poster pelicula Si Señor" src="assets/populares/SiSenor.webp" alt="Image 5">
-                    </a>
-                    <a href=""  class="Main-aWrapper" title="Ir a pelicula La Monja">
-                    <img class="Main-wrapperImg" title="poster pelicula La Monja" src="assets/populares/LaMonja.webp" alt="Image 6">
-                    </a>
-                    <a href="peliculas.html?nombre=Dune"  class="Main-aWrapper" title="Ir a pelicula Dune">
-                    <img class="Main-wrapperImg" title="poster pelicula Dune" src="assets/populares/dune.webp" alt="Image 7">
-                    </a>
-                    <a href="peliculas.html?nombre=Bad%20Boys%20for%20Life"  class="Main-aWrapper" title="Ir a pelicula Bad Boys For Life">
-                    <img class="Main-wrapperImg" title="poster pelicula Bad Boys For Life" src="assets/populares/badBoys.webp" alt="Image 8">
-                    </a>
-                    <a href="peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan"  class="Main-aWrapper" title="Ir a pelicula No te metas con el Zohan">
-                    <img class="Main-wrapperImg" title="poster pelicula No te metas con el Zohan" src="assets/populares/zohan.webp" alt="Image 9">
-                    </a>
-                    <a href="peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania"  class="Main-aWrapper" title="Ir a pelicula Antman Quantumania">
-                    <img class="Main-wrapperImg" title="poster pelicula Antman Quantumania" src="assets/populares/antmanQuantumania.webp" alt="Image 10">
-                    </a>
-                    <a href=""  class="Main-aWrapper" title="Ir a pelicula Smile">
-                    <img class="Main-wrapperImg" title="poster pelicula Smile" src="assets/populares/Smile.webp" alt="Image 11">
-                    </a>
-                </div>
-            </div>   
-            <button class="Main-button Main-button--prev" title="boton pelicula anterior">
-                <svg class="Main-svgCarrousel" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#left-arrow" />
-                </svg>
-            </button>
-            <button class="Main-button Main-button--next" title="boton siguiente pelicula">
-                <svg class="Main-svgCarrousel" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#right-arrow" />
-                </svg>
-            </button>    
-        </div>
-    </section>
-    <article class="Main-recientes">
-        <h2 class="Main-h2">Añadido recientemente</h2>
-        <p class="Main-p">
-            Ya disponibles para ver en streaming. Estas son las novedades
-        </p>
-      <div class="Main-background">
-        <div class="Main-container">
-            <a href="" class="Main-a" title="Ir a pelicula crazy stupid love">
-                <img src="assets/recientemente/CrazyStupidLove.webp" alt="pelicula Crazy stupid love" class="Main-containerimg" title="poster pelicula crazy stupid love" loading="lazy">
-            </a>
-            <a href="" class="Main-a" title="Ir a pelicula pobres criaturas">
-                <img src="assets/recientemente/pobresCriaturas.webp" alt="pelicula pobres criaturas" class="Main-containerimg" title="poster pelicula pobres criaturas" loading="lazy">
-            </a>
-            <a href="" class="Main-a" title="Ir a pelicula smile">
-               <img src="assets/recientemente/smile.webp" alt="pelicula smile" class="Main-containerimg" title="poster pelicula smile" loading="lazy"> 
-            </a>
-            <a href="" class="Main-a" title="Ir a pelicula la sociedad de la nieve">
-               <img src="assets/recientemente/LaSociedadDeLaNieve.webp" alt="pelicula La sociedad de la nieve" class="Main-containerimg" title="poster pelicula la sociedad de la nieve" loading="lazy">
-            </a>  
-        </div>
-      </div>
-    </article>
-    <section class="Main-noticias">
-        <h2 class="Main-h2">Noticias</h2>
-        <p class="Main-p">
-            Te ponemos al día con las noticias más actuales en el mundo del cine
-        </p>
-        <div class="Main-content">
-            <img src="assets/noticias/deadpool3.jpg" alt="Noticia peliculas acción más esperadas de 2024" class="Main-imgcontent" title="Poster deadpool 3" loading="lazy">
-        <article class="Main-article">
-            <h3 class="Main-h3">
-                <a href="noticias.html" class="Main-aH3" title="Ir a noticias">
-                Las 15 películas de acción más esperadas de 2024
-                </a>
-            </h3>
-                <p class="Main-text">
-                Repasamos las mejores películas de acción estrenadas en un año
-                en el que los superhéroes se toma un descanso. 'Furiosa', 'Deadpool y Lobezno'...
-            </p>
-        </article>
-        </div>
-        <div class="Main-contentReverse">
-            <img src="assets/noticias/theCreator.webp" alt="Noticia película The Creator" class="Main-imgReverse" title="Poster pelicula the creator" loading="lazy">
-        <article class="Main-articleReverse">
-            <h3 class="Main-h3Reverse">
-                <a href="noticias.html" class="Main-aH3" title="Ir a noticias">
-                La cinta revelación de ciencia ficción en Disney+
-                </a>
-            </h3>
-                <p class="Main-textReverse">
-                Está en Disney+ y es una de las películas de ciencia ficción más ambiciosas
-                y visualmente más espectaculares de los últimos años.  Se trata de The Creator.
-            </p>          
-        </article>
-        </div>
-        <div class="Main-content">
-           <img src="assets/noticias/presence.webp" alt="Noticia mejores películas terror 2024" class="Main-imgcontent" title="Ir a noticias" loading="lazy"> 
-        <article class="Main-article">
-            <h3 class="Main-h3">
-                <a href="noticias.html" class="Main-ah3" title="Poster pelicula presence">
-                Las 16 mejores películas de terror de 2024 
-                </a>
-            </h3>
-                <p class="Main-text">
-                'Alien: Romulus', la precuela de 'Un lugar tranquilo', un nuevo Nosferatu, 
-                Nicolas Cage... este va a ser un año apasionante para los amantes del terror.
-            </p>
-        </article>
-        </div>
-    </section>
-</div>
   </main>
   <footer class="Footer">
     <div class="Footer-contact">

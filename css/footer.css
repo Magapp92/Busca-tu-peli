@@ -41,7 +41,8 @@
 
 .Footer-email{
     font-family: "text";
-    font-size: .9375em;
+    font-size: 1em;
+    font-weight: 700;
     color: var(--color-primary-text);
 
     display: flex;
