@@ -358,20 +358,20 @@ animation: appear 3s forwards;
         padding: 18.7rem 0 2rem;
     }
     .Main-container{
-        padding: 4.5rem 1.875rem 2rem;
+        padding: 3.5rem 1.875rem 3rem;
     
     }
  
-    .Main-content , .Main-contentreverse{
+    .Main-content , .Main-contentReverse{
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
-        padding: 3.125rem 0 0;
+        padding: 5rem 0 0;
 
         border-top: 2px solid white;
     }
 
-    .Main-articlereverse{
+    .Main-articleReverse{
         flex-flow: column nowrap;
         justify-content: center;
         align-items: flex-start;
@@ -386,40 +386,52 @@ animation: appear 3s forwards;
         gap: 1.25rem;
     }
 
-    .Main-h3reverse{
+    .Main-p{
+        border: none;
+        margin: 1.25rem 0 0;
+    }
+
+    .Main-h3Reverse{
         text-align: left;
     }
 
-    .Main-textreverse{
+    .Main-textReverse{
         margin: 0 0 5rem;
         text-align: left;
     }
 
     .Main-text{
-        margin: 0 0 7.5rem;
+        margin: 0 0 8rem;
     }
 }
 
 
 @media (max-width: 750px){
-.Main-top{
-    padding: 18.5rem 0 2rem;
-}
+    .Main-top{
+        padding: 18.5rem 0 2rem;
+    }
 
-.Main-message{
-    top: calc(50% - 1rem);
-}
+    .Main-message{
+        top: calc(50% - 1rem);
+    }
 
-.Main-carrousel{
-    display: none;
-}
+    .Main-carrousel{
+        display: none;
+    }
 
-.Main-container{
-    display: grid;
-    grid-template-columns: repeat(2 , 1fr);
-    overflow: scroll;
-    
-}
+    .Main-container{
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+        overflow: scroll;
+    }
+
+    .Main-article, .Main-articlereverse{
+        width: 100%;
+    }
+
+    .Main-articleReverse{
+        padding: 0 0 0 4rem;
+    }
 }
 
 
@@ -434,24 +446,37 @@ animation: appear 3s forwards;
         margin: 0;
     }
 
-    .Main-article, .Main-articlereverse{
+    .Main-article, .Main-articleReverse{
         margin: 0 0 0 1.875rem;
     }
 
-    .Main-articlereverse{
+    .Main-articleReverse{
         padding: 0;
     }
 }
 
 
-@media (max-width:450px){
+@media (max-width:480px){
     .Main-top{
-        padding: 17.4rem 0 2rem;
+        padding: 18.5rem 0 2rem;
     }
     .Main-message{
         font-size: 130%;
         top: calc(50% - -2rem);
         min-height: 8rem;
+    }
+
+    .Main-p{
+        font-size: 3.6vw;
+        padding: 0 0 2.5rem 0;
+    }
+
+    .Main-container{
+        padding: 2.5rem 1.25rem;
+    }
+
+    .Main-imgcontent, .Main-imgReverse{
+        width: 80%;
     }
 }
 
