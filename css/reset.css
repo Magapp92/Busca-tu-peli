@@ -48,6 +48,7 @@ button{
     --bg-color-primary:#393939;
     --bg-section-color:#0b9ba8eb;
     --bg-color-transparency: #0b9ba878 ;
+    --form-button-color:#07c5d6;
     --bg-main-color: rgba(255, 255, 255, 0.463);
     --bg-selected-color: rgba(255, 255, 255, 0.853);
     --color-primary-text: rgb(255, 255, 255);
