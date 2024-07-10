@@ -107,7 +107,7 @@
     display: none;
 }
 
-@media (min-width:1950px){
+@media (min-width:1650px){
     .Main-button{
         top: 60%;
     }
