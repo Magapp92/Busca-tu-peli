@@ -107,9 +107,13 @@
     display: none;
 }
 
-@media (max-width:1950px){
+@media (min-width:1950px){
     .Main-button{
         top: 60%;
+    }
+
+    .Main-formulario{
+        padding: 4rem 0 6rem;
     }
 }
 
