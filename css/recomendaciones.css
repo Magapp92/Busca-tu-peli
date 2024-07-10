@@ -107,6 +107,12 @@
     display: none;
 }
 
+@media (max-width:1950px){
+    .Main-button{
+        top: 70%;
+    }
+}
+
 @media (max-width:930px){
     .Main-container{
         padding: 25rem 8rem 15rem;
