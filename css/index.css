@@ -117,7 +117,7 @@
     flex-flow: row nowrap;
     justify-content: center;
    
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease;
 }
 
 .Main-innerCarrousel.withTransition {
@@ -142,7 +142,7 @@
     max-height: 18.75rem;
     border: var(--border-imgs);
     opacity: 1;
-    transition: opacity 0.5s ease, scale 0.5s ease, translate 0.5s ease;
+    transition: opacity 0.5s ease, transform  0.5s ease;
 
 }
 .Main-wrapperImg:hover{
@@ -162,19 +162,17 @@
     cursor: pointer;
     border-radius: 30%;
 
-    position: absolute;
-    top: 50%;
-    
-    
-    transform: translateY(-50%);
+    position: relative;
 }
 
 .Main-button--prev {
-    left: -1rem;
+    top: -14.5rem;
+    left: -1.8rem;
 }
 
 .Main-button--next {
-    right: -1rem;
+    top: -19rem;
+    right: -96%;
 }
 
 .Main-svgCarrousel {
@@ -213,7 +211,7 @@ colocamos las imágenes que contiene .Main-container con grid */
     width: 100%;
     border: var(--border-imgs);
 
-    transition: scale 1s ease;
+    transition: transform .5s ease;
 }
 .Main-containerimg:hover{
     transform: scale(1.1);
@@ -283,7 +281,7 @@ para aplicar los animation */
     font-size: 1.2em;
     color: var(--color-primary-text);
 
-    transition: scale 2s ease;
+    transition: transform .8s ease;
 }
 .Main-h3:hover{
     text-shadow: .5rem .5rem rgb(40, 39, 39);
@@ -343,7 +341,7 @@ para aplicar los animation */
     color: var(--color-primary-text);
     text-align: right;
 
-    transition: scale 2s ease;
+    transition: transform .8s ease;
 }
 .Main-h3Reverse:hover{
     text-shadow: .5rem .5rem rgb(40, 39, 39);
@@ -452,10 +450,6 @@ positions y padding */
 
     .Main-message{
         top: calc(50% - 1rem);
-    }
-
-    .Main-carrousel{
-        display: none;
     }
 
     .Main-container{

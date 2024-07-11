@@ -8,8 +8,8 @@ const innerCarrousel = mainCarrousel.querySelector(`.Main-innerCarrousel`)
 const mainWrapper = mainCarrousel.querySelector(`.Main-wrapper`)
 const wrapperImgs = mainCarrousel.querySelectorAll(`.Main-wrapperImg`)
 const mainBtns = mainCarrousel.querySelectorAll(`.Main-button`)
-const buttonNext = mainCarrousel.querySelector(`.Main-button--next`)
-const buttonPrev = mainCarrousel.querySelector(`.Main-button--prev`)
+const buttonNext = document.querySelector(`.Main-button--next`)
+const buttonPrev = document.querySelector(`.Main-button--prev`)
 
 
 
@@ -47,15 +47,16 @@ automatico = setInterval( siguiente , 4000)
 
 /*Carrousel populares*/
 
+/* Declaramos la variable del número de imágenes, y las constantes que indican el número total de imágenes, el cálculo
+del tamaño del carraousel y de las imágenes a repetir para dar efecto de infinito */
 let currentIndex = 5
 const slidesToShow = 11
 const totalSlides = wrapperImgs.length
 const slideWidth = mainCarrousel.offsetWidth / slidesToShow
-
-// Adjust totalSlides to include the cloned elements
 const totalSlidesWithClones = totalSlides + slidesToShow * 11 
 
-// Duplicate first few elements to create the infinite effect
+
+/* Bucle en el que se hacen las copias de las primeras y últimas imágenes y se van añadiendo al principio y final de .Main-wrapper */
 for (let i = 0; i < slidesToShow; i++) {
     let firstClone = wrapperImgs[i].cloneNode(true)
     let lastClone = wrapperImgs[totalSlides - 1 - i].cloneNode(true)
@@ -63,10 +64,9 @@ for (let i = 0; i < slidesToShow; i++) {
     mainWrapper.insertBefore(lastClone, mainWrapper.firstChild)
 }
 
-
-
+/* Funciones en las que se le indica a .Main-innerCarrousel los movimientos y transiciones qu debe hacer */
 const updateSlidePosition = () => {
-    innerCarrousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`
+    innerCarrousel.style.transform = `translateX(-${currentIndex * slideWidth}px)` /* Se calcula el desplazamiento */
 }
 
 const smoothTransition = () => {
@@ -77,6 +77,7 @@ const noTransition = () => {
     innerCarrousel.style.transition = 'none'
 }
 
+/* Da el movimiento con los botones de next y prev al carrousel y aplica las funciones de posición y transición */
 const nextSlide = () => {
     currentIndex++
     smoothTransition()
@@ -84,11 +85,11 @@ const nextSlide = () => {
     if (currentIndex >= totalSlides + slidesToShow) {
         setTimeout(() => {
             noTransition()
-            currentIndex = slidesToShow;
+            currentIndex = slidesToShow
             updateSlidePosition()
         }, 500)
     }
-};
+}
 
 const prevSlide = () => {
     currentIndex--
@@ -101,23 +102,23 @@ const prevSlide = () => {
             updateSlidePosition()
         }, 500)
     }
-};
+}
 
+/* Agregamos los eventos de click a los botones next y prev */
 buttonNext.addEventListener('click', nextSlide)
 buttonPrev.addEventListener('click', prevSlide)
 
-// Start at one clone offset
 currentIndex = slidesToShow
 noTransition()
 updateSlidePosition()
 
 
- /*Noticias y articles*/
 
-
+ /*Noticias*/
 
 /*Creamos el intersectionObserver y creamos un callback en el que recorremos cada elemento en pantalla, si el elemento es visible en pantalla,
 para cada article se add y remove las clases visible y hidden correspondientemente en cada caso para que aparezcan con un cierto retraso para cada article*/
+
 const user = new IntersectionObserver( e => {
  e.forEach( _ => {
      if ( _ .isIntersecting) {

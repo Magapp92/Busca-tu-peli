@@ -98,7 +98,7 @@ un efecto de scale en hover */
     font-size: 1.3em;
 
     position: relative;
-    transition: scale 1s ease;
+    transition: transform .5s ease;
 }
 .Main-button:hover{
     transform: scale(0.9);
@@ -171,12 +171,12 @@ y algunas tablets */
 
     .Main-h2{
         font-size: 2em;
-        margin: 0 0 0 4rem;
+        margin: 0 0 0 2rem;
     }
 
     .Main-p{
         font-size: 1em;
-        margin: 1.25rem 0 0 3.5rem;
+        margin: 1.25rem 0 0 1.5rem;
     }
 
     .Main-section{

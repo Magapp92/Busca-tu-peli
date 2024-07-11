@@ -104,6 +104,8 @@ fixed para que no se desplace con el scroll y un z-index para que quede por enci
 
     cursor: pointer;
     display: inline;
+
+    transition: transform 1s ease, border .2s ease;
 }
 .Header-icon:hover{
     border: 2px solid white;
@@ -156,13 +158,13 @@ fixed para que no se desplace con el scroll y un z-index para que quede por enci
 /* Damos estilo y propiedades al submenú desplegable con hover de las categorías y lo hacemos visible añadiendo la clase .show */
 .Menu-ul {
     max-height: 0;
-    background-color: var(--bg-section-color);
+    background-color: transparent;
     padding: 0 0 0 .9375rem;
     
     z-index: 2;
     opacity: 0;
     transform: translateY(-1rem);
-    transition: opacity .9s ease, transform .9s ease, max-height .9s ease;
+    transition: opacity 2s ease, transform 2s ease, max-height 2s ease-in-out;
     overflow: hidden;
   }
   .Menu-ul.show {
@@ -178,7 +180,6 @@ fixed para que no se desplace con el scroll y un z-index para que quede por enci
     color: var(--color-primary-text);
     display: block;
 }
-
 .Menu-li:hover{
     text-decoration: underline;
 }

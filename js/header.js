@@ -83,9 +83,7 @@
 
 /*BÚSQUEDA HEADER SEARCH*/
 
-
-    // Search field
-
+/* Aquí se agrupa el array que contiene la constante movies con todos los títulos de las películas y el enlace que te redirige a cada una */
     const movies = [
      { title: 'Bad Boys For Life', url: 'peliculas.html?nombre=Bad%20Boys%20for%20Life'},
      { title: 'Dune', url: 'peliculas.html?nombre=Dune'},
@@ -113,10 +111,9 @@
      { title: 'Smile', url: 'peliculas.html?nombre=Smile'},
      { title: 'Los Puentes De Madison', url: 'peliculas.html?nombre=Los%20Puentes%20De%20Madison'},
      { title: 'The Bloody Hundredth', url: 'peliculas.html?nombre=The%20Bloody%20Hundredth'}
- ];
+ ]
 
-// IFE que agrupa el buscador de películas
-(() => {
+
     /*Añadimos a .Header-input el evento de input que se ejecuta al escribir en el campo correspondiente*/
     headerInput.addEventListener('input' , function() {
         const text = headerInput.value.trim().toLowerCase() /*Convertimos el texto escrito a minúscula y eliminamos espacios*/
@@ -142,7 +139,7 @@
         suggestions.forEach(sugestion => suggestionList.appendChild(suggestionItem(sugestion))) /*Recorre sugestion creando un nuevo elemento para cada sugerencia
          y lo incluye en suggestionList*/
     }
-    })()
+   
 
 
 
