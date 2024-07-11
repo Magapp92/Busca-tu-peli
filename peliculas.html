@@ -63,11 +63,16 @@
         </ul>
     </nav>
   </header>
+  <!-- El Main se corresponde al contenido princiapl de la página, en este caso trabajaremos en conjunto con un archivo .json por lo que
+   dejaremos campos vacíos que se llenarán cuando mediante funciones de JS se hagan las llamadas del contenido según la película correspondiente -->
   <main class="Main">
+    <!-- Agrupamos el contenido global en un article para que se vaya rellenando según se hagan las llamadas de JS al .json -->
     <article class="Main-article">
             <h2 class="Main-h2" data-element="title"></h2>
         <div class="Main-info">
+            <!-- Aquí se introducirá la img de cada película -->
             <img class="Main-img" data-element="poster" title="Poster" src="" alt="Poster de la película">
+            <!-- Se irán rellenando los campos de cada div con la información del .json -->
             <div class="Main-description">
                 <div class="Main-title">
                     <b>Título original:</b> 
@@ -107,11 +112,13 @@
                 </div>
             </div>
         </div>        
+        <!-- Esta sección contiene las plataformas en las que se encuentra cada película -->
         <section class="Main-section">
             <h3 class="Main-h3">Disponible en:</h3>
             <div class="Main-plataformas" data-element="plataformas"></div>
             <p class="Main-p" data-element="sinopsis"></p>
         </section>
+        <!-- Insertamos el video del trailer de cada película -->
         <h3 class="Main-h3">Trailer oficial</h3>
         <iframe class="Main-iframe" data-element="trailer" width="700" height="500" src="" title="oficial movie trailer" frameborder="0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>

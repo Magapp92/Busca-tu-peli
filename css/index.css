@@ -1,6 +1,7 @@
 
 /* Main page */
 
+/* Añadimos propiedades de estilo al Main y un padding a .Main-botton para solventar el que el header sea fixed */
 .Main{
     width: 100%;
     background-color: var(--bg-color-primary);
@@ -11,11 +12,13 @@
     padding: 0 12.5rem;
 }
 
+
 /*Sección slider*/
 
+/* Damos propiedades al .Main-top y colocamos un overflow hidden para el slider */
 .Main-top{
     width: 100%;
-    max-width: 150rem; /*verificar en pantallas grandes */
+    max-width: 150rem; 
     
     padding: 10.2rem 0 0 0;
     margin: 0 0 3.125rem;
@@ -24,6 +27,7 @@
     position: relative;
 }
 
+/* Damos estilo a .Main-message colocándolo con  position y dando z-index 2 para que se sitúe por encima del slider */
 .Main-message{
     width: 80%;
     min-height: 16rem;
@@ -49,6 +53,7 @@
 
 }
 
+/* Damos estilo al slider y le añadimos la clase .withTransition para darle el efecto de translate en X */
 .Main-slider{
     width: 600%;
 
@@ -56,21 +61,22 @@
     flex-flow: row nowrap;
     justify-content: space-between; 
     transform: translateX(0%);
-    
-
 }
 .Main-slider.withTransition{
     transition: transform 1s ease;
     
 }
 
+/* Hacemos el cálculo del ancho que deben tener las imágenes para el slider y les damos un alto máximo */
 .Slider-img{
     width:calc( 100% / 6 );
     max-height: 35rem;
 }
 
+
 /*Sección carrousel*/
 
+/* Damos estilo al título h2 y texto p de la sección de carrousel */
 .Main-h2{
     font-family: "title";
     font-size: 2.5em;
@@ -89,6 +95,7 @@
     border-bottom: var(--border-main-p);
 }
 
+/* Damos estilo a la etiqueta externa del carrousel que contiene al carrousel en sí y a las imágenes */
 .Main-carrousel{
     width: 100%;
 
@@ -99,45 +106,58 @@
     
     position: relative;
     margin: 0 auto;
-}
-
-.Main-innerCarrousel{
-    width: 100%;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
 }
 
-.Main-wrapper{
-    display: flex;
+/* Colocamos con flex a las imágenes dentro del carrousel */
+.Main-innerCarrousel{
+    width: calc(100% * 23 / 5);
+    
+    display:flex;
     flex-flow: row nowrap;
     justify-content: center;
-    align-items: center;
-    gap: 1.25rem;
+   
+    transition: transform 0.5s ease-in-out;
 }
 
-.Main-wrapperImg {
-    width:100%;
-    min-height: 20rem;
-    border: var(--border-imgs);
+.Main-innerCarrousel.withTransition {
+    transition: transform 0.5s ease;
+}
 
+/* Colocamos con flex a las imágenes dentro del wrapper */
+.Main-wrapper{
+    width: 20%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+    gap: .625rem;
+}
+
+/* Damos estilo a las imágenes del carrousel y un efecto de hover */
+.Main-wrapperImg {
+    width: calc(100% - .625rem);
+    
+    max-height: 18.75rem;
+    border: var(--border-imgs);
     opacity: 1;
-    transition: transform 0.5s ease, opacity 0.5s ease, scale 0.5s ease, translate 1s ease;
+    transition: opacity 0.5s ease, scale 0.5s ease, translate 0.5s ease;
+
 }
 .Main-wrapperImg:hover{
     transform: scale(.95) translate(0px, -0.9375rem);
 }
 
 .Main-aWrapper {
-    width: 20%;
+    width:calc(100% / 5%);
     max-height: 25rem;
     flex-shrink: 0;
 }
 
+/* Damos estilo a los botones y los colocamos con position */
 .Main-button {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 1rem;
     cursor: pointer;
     border-radius: 30%;
@@ -145,15 +165,16 @@
     position: absolute;
     top: 50%;
     
+    
     transform: translateY(-50%);
 }
 
 .Main-button--prev {
-    left: -1.5rem;
+    left: -1rem;
 }
 
 .Main-button--next {
-    right: -1.5rem;
+    right: -1rem;
 }
 
 .Main-svgCarrousel {
@@ -162,8 +183,11 @@
 }
 
 
+
 /*Sección de recientes*/
 
+/* Damos estilo a .Main-background y .Main-container para dar una sensación de supersposición con las sombras y juegos de tamaño
+colocamos las imágenes que contiene .Main-container con grid */
 .Main-background{
     background-color: var(--bg-color-transparency);
     border-radius: 15%;
@@ -184,6 +208,7 @@
     padding: 3.125rem 1.875rem;
 }
 
+/* Damos estilo a las imágenes y le aplicamos un scale y una sombra al hacer hover */
 .Main-containerimg{
     width: 100%;
     border: var(--border-imgs);
@@ -198,11 +223,14 @@
 
 /* Sección noticias */
 
+/* Damos tamaño a la sección que contiene las noticias */
 .Main-noticias{
     width: 100%;
     min-height: 90vh;
 }
 
+/* Agrupamos en .Main-content la imágen y el texto de la noticia y lo colocamos
+con display flex y lo centramos */
 .Main-content{
     display: flex;
     flex-flow: row nowrap;
@@ -213,6 +241,8 @@
     padding: 2rem 3rem 6.25rem 7rem;
 }
 
+/* Damos tamaño y estilo a las imágenes así como un z-index y un animation para que haga el efecto
+de aparecer y que quede por encima del texto que aparecerá pasando por detrás de ellas */
 .Main-imgcontent{
     width: 100%;
     max-width: 18.75rem;
@@ -228,7 +258,9 @@
 animation: appear 3s forwards;
 }
 
-.Main-article {
+/* Damos estilo a la contenedora del texto con un display flex y creamos las clases .visible y .hidden
+para aplicar los animation */
+.Main-article{
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -236,7 +268,7 @@ animation: appear 3s forwards;
     gap: 1.875rem;
 
     margin: 1.25rem 0;
-    padding: 1.25rem 0;
+    padding: 1.25rem 0;  
 }
 .Main-article.visible{
     animation: slideInLeft 1.2s forwards;
@@ -245,17 +277,17 @@ animation: appear 3s forwards;
     animation: slideOutLeft 1.5s forwards;
 }
 
+/* Damos estilo a los h3 y efectos en hover para indicar al usuario que son enlaces */
 .Main-h3{
     font-family: "title";
     font-size: 1.2em;
     color: var(--color-primary-text);
 
-
+    transition: scale 2s ease;
 }
 .Main-h3:hover{
     text-shadow: .5rem .5rem rgb(40, 39, 39);
     transform: scale(1.1);
-    transition: scale 2s ease;
 }
 
 .Main-text{
@@ -265,6 +297,7 @@ animation: appear 3s forwards;
     color: var(--color-primary-text);
 }
 
+/* Aplicamos los estilos a la noticia que está con reverse poniendolo en el display flex */
 .Main-contentReverse{
     display: flex;
     flex-flow: row-reverse nowrap;
@@ -273,7 +306,6 @@ animation: appear 3s forwards;
     gap: 3.75rem;
 
     padding: 2rem 7rem 6.25rem 2rem;
-    
 }
 
 .Main-imgReverse{
@@ -287,8 +319,8 @@ animation: appear 3s forwards;
     animation: appear 5s forwards;
 }
 
+/* Damos estilo y aplicamos de nuevo la animación a las clases creadas de .visible y .hidden */
 .Main-articleReverse{
-
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -326,13 +358,15 @@ animation: appear 3s forwards;
     text-align: right;
 }
 
+/* A los symbol que tenemos agrupados al final del html les damos un display none para que no interfieran en
+la vista de la página */
 .Symbol{
     display: none;
 }
 
-/* Hacemos el responsive para poder adaptar la web a los diferentes
- tamaños y dispositivos */
 
+/*Hacemos el responsive para poder adaptar la web a los diferentes tamaños de dispositivos, modificamos padding en los casos de
+pantallas intermedias*/
 @media (max-width: 1250px){
     .Main-bottom{
         padding: 0 6.25rem;
@@ -348,6 +382,8 @@ animation: appear 3s forwards;
     }
 }
 
+/* Para tamaño tipo portátiles pequeños y algunas tablets, adaptamos algunas secciones de a flex direction: column, y principalmente se hacen modificaciones
+de margin, padding y tamaños de tipografías */
 @media (max-width: 930px){
     .Main-message{
         font-size: 250%;
@@ -407,7 +443,8 @@ animation: appear 3s forwards;
     }
 }
 
-
+/* Para tablet modificamos el grid de la sección de añadidos recientemente y hacemos modificaciones de tamaños,
+positions y padding */
 @media (max-width: 750px){
     .Main-top{
         padding: 18.5rem 0 2rem;
@@ -437,6 +474,7 @@ animation: appear 3s forwards;
 }
 
 
+/* Para móviles hacemos modificaciones principalmente de position, tipografías, margins y padding */
 @media (max-width: 600px){
     .Main-message{
         font-size: 150%;

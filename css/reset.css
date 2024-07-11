@@ -43,6 +43,7 @@ button{
     font-size: inherit;
 }
 
+/*Agrupamos todas las custom properties de colores de tipografía, de fondos y bordes, padding y margin*/
 :root{
     font-size: 100%;
     --bg-color-primary:#393939;
@@ -60,7 +61,7 @@ button{
     --border-imgs:3px solid white;
 }
 
-/* Agrupamos todas las tipografías */
+/* Agrupamos todas las tipografías del logo, de títulos y párrafos */
 
 @font-face {
     font-family: "logo";

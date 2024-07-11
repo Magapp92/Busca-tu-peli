@@ -15,18 +15,23 @@
     <script src="js/footer.js" defer></script>
 </head>
 <body>
+    <!-- En el header de esta página agrupamos el logo con un h1, un buscador y un menú nav tipo hamburguesa -->
   <header class="Header">
+    <!-- En el Header-logo agrupamos la imágen del logo sobre la cual, colocamos el h1 asociado a un 'a' que nos va a redirigir
+    siempre a la página de inicio -->
         <div class="Header-logo">
             <h1 class="Header-h1">
                 <a href="index.html" class="Header-aLogo" title="busca tu pelim link a main page">Busca tu Peli</a>
             </h1>
             <img src="assets/logo/logobuscatupeli.svg" alt="logo busca tu peli" title="logo página busca tu peli" class="Header-img">
         </div>
+        <!-- Creamos el buscador que nos va a permitir buscar cada película individualmente -->
     <div class="Header-search">
         <label for="movie search" class="Header-label"></label>
         <input type="text" class="Header-input" placeholder="Buscar...">
         <ul class="Header-ulsearch"></ul>
     </div>
+    <!-- El menu nav se compone de los svg del icono hamburguesa, icono close y una lista desordenada de elementos -->
     <nav class="Header-nav">  
         <nav class="Header-nav">
               <svg class="Header-icon">
@@ -35,12 +40,15 @@
             <svg class="Header-icon Header-icon--close isHidden">
                 <use xlink:href="#close-symbol"></use>
            </svg>
+           <!-- Esta lista desordenada engloba el link para volver al inicio, un elemento categorias sobre el que al hacer hover se despliega un submenú,
+            y un link que nos lleva a la sección de recomendaciones que es un formulario -->
         <ul class="Header-ul">
             <li class="Header-li">
                 <a href="index.html" class="Header-a" title="Ir a página inicio">Inicio</a>
             </li>
+            <!-- Dentro de este li agrupamos otra lista desordenada ul que contiene nuevos li clicables que te llevan a la página de cada categoría -->
             <li class="Header-li">
-                <a href="" class="Header-a Header-a--hover" title="Ir a página categorías">Categorias</a>
+                <span class="Header-span">Categorias</span>
                 <ul class="Menu-ul">
                     <li class="Menu-li">
                         <a href="accion.html" class="Menu-a" title="Ir a página de acción">Acción</a>
@@ -65,11 +73,14 @@
         </ul>
     </nav>
   </header>
+  <!-- En el main agrupamos todo el contenido principal de la página -->
   <main class="Main">
+    <!-- Dividimos el main en top y bottom para poder dar estilos diferentes en el CSS -->
     <div class="Main-top">
         <p class="Main-message">
             Accede a todo el contenido <br> a través de cualquier plataforma
         </p>
+        <!-- Este slider o carrousel muestra imágenes de películas de forma automática -->
         <div class="Main-slider">
             <img src="assets/plataformas/appleTv/Acción/EscuadronMalditoHoriz.webp" alt="Imagen 0" title="imagen pelicula escuadron maldito" class="Slider-img" loading="lazy">
             <img src="assets/plataformas/DisneyPlus/Acción/Quantumania.webp" alt="Imagen 1" title="imagen pelicula antman quantumania" class="Slider-img" loading="lazy">
@@ -79,12 +90,16 @@
             <img src="assets/plataformas/appleTv/Acción/EscuadronMalditoHoriz.webp" alt="Imagen 0" title="imagen pelicula escuadron maldito" class="Slider-img" loading="lazy">
         </div>    
     </div>
+    <!-- En el Main-bottom agrupamos el contenido restante de la página -->
 <div class="Main-bottom">
+    <!-- Este section se compone de su correspondiente h2, un breve texto p y añadimos un carrousel de imágenes -->
     <section class="Main-section">
         <h2 class="Main-h2">Populares</h2>
         <p class="Main-p">
             Estas son las películas más buscadas en nuestra plataforma
         </p>
+        <!-- El carrousel contiene 10 imágenes contenidas en un div que contiene a la vez un wrapper con las imágenes, lo agrupamos así por motivos de estilo en el CSS.
+         Las imágenes que se repiten son debido a que son necesarias a nivel de JS para crear una ilusión de carrousel infinito  -->
         <div class="Main-carrousel">
             <div class="Main-innerCarrousel">
                 <div class="Main-wrapper">
@@ -122,7 +137,9 @@
                     <img class="Main-wrapperImg" title="poster pelicula Smile" src="assets/populares/Smile.webp" alt="Image 11">
                     </a>
                 </div>
-            </div>   
+            </div>
+               <!-- Estos botones son los que se encargan de dar el movimiento del carrousel mediante funciones en JS, contienen cada uno un svg vinculado a unas
+                funciones específicas -->
             <button class="Main-button Main-button--prev" title="boton pelicula anterior">
                 <svg class="Main-svgCarrousel" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#left-arrow" />
@@ -135,11 +152,14 @@
             </button>    
         </div>
     </section>
+    <!-- En este article con su correspondiente h2 y texto p, agrupamos mediante imágenes englobadas en un a para que sean clicables, las películas añadidas
+     recientemente, cada película al hacer click te llevará a su ficha de información correspondiente -->
     <article class="Main-recientes">
         <h2 class="Main-h2">Añadido recientemente</h2>
         <p class="Main-p">
             Ya disponibles para ver en streaming. Estas son las novedades
         </p>
+        <!-- Envolvemos las imágenes en los div Main-baclground y Main-containes para poder dar estilos diferentes en el CSS -->
       <div class="Main-background">
         <div class="Main-container">
             <a href="" class="Main-a" title="Ir a pelicula crazy stupid love">
@@ -157,13 +177,17 @@
         </div>
       </div>
     </article>
+    <!-- Este section con su correspondiente h2 y texto p, se compone de 3 articles independientes que dan información de distintas noticias -->
     <section class="Main-noticias">
         <h2 class="Main-h2">Noticias</h2>
         <p class="Main-p">
             Te ponemos al día con las noticias más actuales en el mundo del cine
         </p>
+        <!-- Englobamos la noticia en el div Main-content para poder darle estilo en CSS, en el div agrupamos la img y el article que contiene la noticia -->
         <div class="Main-content">
             <img src="assets/noticias/deadpool3.jpg" alt="Noticia peliculas acción más esperadas de 2024" class="Main-imgcontent" title="Poster deadpool 3" loading="lazy">
+            <!-- El article tiene un h3 con un enlace haciendo que el texto sea clicable y nos lleva a la página de noticias, también tiene un texto p
+             con una breve introducción a la noticia -->
         <article class="Main-article">
             <h3 class="Main-h3">
                 <a href="noticias.html" class="Main-aH3" title="Ir a noticias">
@@ -176,6 +200,8 @@
             </p>
         </article>
         </div>
+        <!-- En este caso por motivos de diseño hemos creado la especificación de reverse para poder alterar a nivel del CSS el orden de la imágen
+        y el texto contenido e el article  -->
         <div class="Main-contentReverse">
             <img src="assets/noticias/theCreator.webp" alt="Noticia película The Creator" class="Main-imgReverse" title="Poster pelicula the creator" loading="lazy">
         <article class="Main-articleReverse">
@@ -192,7 +218,7 @@
         </div>
         <div class="Main-content">
            <img src="assets/noticias/presence.webp" alt="Noticia mejores películas terror 2024" class="Main-imgcontent" title="Ir a noticias" loading="lazy"> 
-        <article class="Main-article">
+        <article class="Main-article ">
             <h3 class="Main-h3">
                 <a href="noticias.html" class="Main-ah3" title="Poster pelicula presence">
                 Las 16 mejores películas de terror de 2024 
@@ -207,7 +233,9 @@
     </section>
 </div>
   </main>
+  <!-- Esta parte corresponde al footer de la página -->
   <footer class="Footer">
+    <!-- El footer se compone de dos partes la de contacto y un formulario, en contacto tenemos un h4 y un div que agrupa los diferentes svg de cada red social -->
     <div class="Footer-contact">
       <h4 class="Footer-h4">Contacto</h4>
       <div class="Footer-social">      
@@ -229,6 +257,8 @@
         <div class="Footer-text">info@buscatupeli.com</div>        
       </div>
     </div>
+    <!-- Esto es un formulario sencillo que solo consta de un campo a rellenar, para poder hacer una subscrición a la página para poder recibir actualizaciones
+     y noticias, aunque la función real no se ha creado en este proyecto se hace para poder hacerla funcional en un futuro -->
     <form class="Footer-form">
         <label class="Footer-label" for="email"></label>
         <input class="Footer-input" id="email" type="email" class="Footer-input" placeholder="Suscríbete" required>
@@ -240,6 +270,7 @@
     </form>
   </footer>
 
+  <!-- Aqui se agrupan todos los symbol de los svg de la página para permitir un código visualmente menos sucio -->
   <div class="Symbol">
     <svg class="Header-svg" xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="hamburger-symbol" viewBox="0 0 60 60">

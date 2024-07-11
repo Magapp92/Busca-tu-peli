@@ -1,10 +1,15 @@
 
+/* FORMULARIO DE RECOMENDACIONES */
+
+/* Damos propiedades al .Main para que siga el estilo del resto de páginas */
 .Main{
     width: 100%;
     background-color: var(--bg-color-primary);
     overflow: hidden;
 }
 
+/* En .Main-container agrupamos tanto el formulario como el texto introductorio, le damos
+padding para centrarlo y display flex para posicionarlos entre sí en respecto a la ventana */
 .Main-container{
     padding: 15rem 12.5rem;
 
@@ -15,6 +20,7 @@
     gap: 5rem;
 }
 
+/* Damos estilo al párrafo usando la tipografía y colores creados en el CSS de reset */
 .Main-p{
     font-family: "title";
     font-size: 1.5em;
@@ -22,6 +28,8 @@
     text-align: center;
 }
 
+/* Damos estilo a la parte que agrupa todos los componentes del formulario y display para poder colocar
+cada parte del mismo, añadimos position relative para posteriormente colocar el boton de submit */
 .Main-formulario{
     width: 34.375rem;
     min-height: 80vh;
@@ -37,6 +45,7 @@
     position: relative;
 }
 
+/* Damos estilo al párrafo introductorio */
 .Main-message{
     font-family: "title";
     color: var(--color-primary-text);
@@ -46,6 +55,7 @@
     margin: 0 0 2.5rem;
 }
 
+/* Damos estilo al los label que van sobre cada input */
 .Main-label{
     font-family: "text";
     color: var(--color-primary-text);
@@ -55,6 +65,7 @@
     
 }
 
+/* Determinamos las propiedades de tamaño y espacios del input donde se rellenará el texto */
 .Main-input{
     width: 100%;
     min-height: 2rem;
@@ -62,6 +73,7 @@
     padding: 0 0 0 .625rem;
 }
 
+/* Damos tamaño y display flex a la etiqueta que contiene el label y el input para colocarlos en column */
 .Main-campo{
     width: 18.75rem;
 
@@ -78,6 +90,7 @@
     padding: 0 0 0 .625rem;
 }
 
+/* Damos tamaño y añadimos un position para colocar el botón submit */
 .Main-button{
     width: 20%;
     min-height: 3.5rem;
@@ -87,6 +100,7 @@
     left: 40%;
 }
 
+/* Damos estilo al texto del botón así como un efecto al hacer hover sobre el botón */
 .Main-send{
     width: 100%;
     min-height: 3.5rem;
@@ -107,9 +121,11 @@
     display: none;
 }
 
-@media (min-width:1650px){
+
+/* Adaptamos el tamaño del formulario y la posición del botón a pantallas grandes */
+@media (min-width:1900px){
     .Main-button{
-        top: 60%;
+        top: 70%;
     }
 
     .Main-formulario{
@@ -117,6 +133,8 @@
     }
 }
 
+/* Modificamos el tamaño del formulario, los padding y el tamaño y posición del botón para
+tamaños de pantalla pequeña */
 @media (max-width:930px){
     .Main-container{
         padding: 25rem 8rem 15rem;
@@ -132,6 +150,7 @@
     }
 }
 
+/* Para tablets y móviles cambiamos tamaños de tipografías, padding, tamaños, margins así como la posisción del botón */
 @media (max-width:600px){
     .Main-container{
         padding: 22rem 2rem 12rem;
@@ -178,5 +197,4 @@
     .Main-send{
         font-size: 4vw;
     }
-
 }

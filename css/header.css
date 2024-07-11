@@ -1,6 +1,8 @@
 
 /* HEADER */
 
+/* Damos estilo al Header con display flex y añadimos el position
+fixed para que no se desplace con el scroll y un z-index para que quede por encima del resto */
 .Header{
     width: 100%;
     min-height: 15vh;
@@ -16,16 +18,16 @@
     z-index: 3;
 }
 
+/* Al .Header-h1 le damos un position absolute para poder superponerlo a .Header-logo */
 .Header-h1{
     font-family: "logo";
-    color: var(--color-primary-text);
+    color: var(--color-primary-text);/* Usamos custom properties creadas en el CSS reset */
     font-size: 1.875em;
     margin: .625rem 0 0 2.5rem;
 
     position: absolute;
     top: 25%;
 }
-
 
 .Header-logo{
     position: relative;
@@ -43,7 +45,7 @@
     position: relative;
 }
 
-/* En esta class damos estilo a la lista desplegable de .Header.search */
+/* Le damos estilo a la lista desplegable de .Header-ulsearch, damos un z-index 4 para que no quede por debajo del .Header*/
 .Header-ulsearch{
     width: 100%;
     max-height: 12.5rem;
@@ -58,7 +60,7 @@
     overflow: auto;
 }
 
-/*Damos estilo a nuestros li de la class .Header-ulsearch*/
+/*Damos estilo a nuestros li de .Header-ulsearch y le damos el efecto hover*/
 .Header-ulsearch li{
     font-family: "text";
     color: var(--color-secondary-text);
@@ -71,13 +73,13 @@
     border-radius: .625rem;
 }
 
+/* Damos estilo a .Header-input añadiendo propiedades tanto al placeholder como al propio .Header-input cuanso está en focus */
 .Header-input{
     width: 18.75rem;
     padding: .9375rem;
     border-radius: var(--border-radius);
     background-color: transparent;
     border: 3px solid var(--bg-selected-color);
-
 }
 .Header-input::placeholder{
     color: var(--color-primary-text);
@@ -94,6 +96,7 @@
     position: relative;
 }
 
+/* Damos estilo a los iconos del nav añadiendo el efecto hover sobre el icono hamburguesa */
 .Header-icon{
     width: 2.5rem;
     max-height: 2.5rem;
@@ -114,10 +117,12 @@
     max-height: 2.5rem;
 }
 
+/* Le damos display none a la class .isHidden*/
 .isHidden{
     display: none;
 }
 
+/*Al .Header-ul que es el menú desplegable con click le damos estilo y le añadimos las variaciones cuando tenga la clase .isActive*/
 .Header-ul{
     width: 15.625rem;
     max-height: 12.5rem;
@@ -125,7 +130,7 @@
     background-color: var(--bg-section-color);
     
     position: absolute;
-    top: 100%;
+    top: 6.45rem;
     right: -1rem;
 
     opacity: 0;
@@ -141,12 +146,14 @@
     visibility: visible;
 }
 
-.Header-a{
+/* Damos estilo a los li clicables */
+.Header-a, .Header-span{
     font-family: "text";
     font-weight: 700;
     color: var(--color-primary-text);
 }
 
+/* Damos estilo y propiedades al submenú desplegable con hover de las categorías y lo hacemos visible añadiendo la clase .show */
 .Menu-ul {
     max-height: 0;
     background-color: var(--bg-section-color);
@@ -165,6 +172,7 @@
     visibility: visible;
   }
   
+  /* Damos estilo y le añadimos la función de hover para darle un underline a los li del submenú desplegable */
   .Menu-li {
     font-family: "text";
     color: var(--color-primary-text);
@@ -175,16 +183,25 @@
     text-decoration: underline;
 }
 
+/* Escribimos las media queries para poder dar estilo según los diferentes tamaños de pantalla y mejorar el responsive de la página  */
+/* En un tamaño de hasta 930px, hacemos cambios en el .Header y en el h1 para que pasen a columna y aumentar el tamaño de letra respectivamente  */
 @media (max-width: 930px){
     .Header{
         flex-flow: column nowrap;
         gap: 1.25rem;
     }
+
+    .Header-ul{
+        right: -6rem;
+        top: 4.75rem;
+    }
+
  .Header-h1{
     font-size: 180%;
  }
 }
 
+/* En un tamaño de hasta 450px, hacemos cambios en la img del logo en el menú con clic para posicionarlo mejor y en el h1 para reducir el tamaño */
 @media (max-width: 450px){
     .Header-img{
        max-width: 90%;
@@ -193,7 +210,7 @@
        left: 5%;
     }
     .Header-ul{
-        right: -5rem;
+        right: -6rem;
     }
 
     .Header-h1{

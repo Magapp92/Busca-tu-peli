@@ -2,11 +2,11 @@
 
 const sliderImgs = document.querySelectorAll(`.Slider-img`)
 const mainSlider = document.querySelector(`.Main-slider`)
-const articles = document.querySelectorAll(`.Main-article , .Main-articlereverse`)
+const articles = document.querySelectorAll(`.Main-article, .Main-articleReverse`)
 const mainCarrousel = document.querySelector(`.Main-carrousel`)
-const innerCarrousel = mainCarrousel.querySelector(`.Main-innercarrousel`)
+const innerCarrousel = mainCarrousel.querySelector(`.Main-innerCarrousel`)
 const mainWrapper = mainCarrousel.querySelector(`.Main-wrapper`)
-const wrapperImgs = mainCarrousel.querySelectorAll(`.Main-wrapperimg`)
+const wrapperImgs = mainCarrousel.querySelectorAll(`.Main-wrapperImg`)
 const mainBtns = mainCarrousel.querySelectorAll(`.Main-button`)
 const buttonNext = mainCarrousel.querySelector(`.Main-button--next`)
 const buttonPrev = mainCarrousel.querySelector(`.Main-button--prev`)
@@ -21,34 +21,23 @@ let automatico
 
 // IFE que agrupa efectos slider
 (()=> {
+
+    /*Permite mover horizontalmente el slider según el valor de la variable contador y el tamaño de las imágenes*/
     const sliderTranslate = ()=>{
-     mainSlider.style.transform =`translateX(-${anchoImagenes * contador}%)`
+    mainSlider.style.transform =`translateX(-${anchoImagenes * contador}%)` /*Cambiamos con style la propiedad transform del slider*/
 }
 
 const siguiente = ()=>{
-    mainSlider.classList.add('withTransition')
-    contador++
+    mainSlider.classList.add('withTransition') /*Añadimos a Main-slider la clase withTransition que suaviza el movimiento*/
+    contador++ /*Incrementamos la variable contador para que pase a la siguiente imágen*/
     if( contador == 5 ){
         setTimeout(()=>{
-            contador = 0
-            sliderTranslate()
-            mainSlider.classList.remove('withTransition')
-        } , 1000)
+         contador = 0
+         sliderTranslate()
+         mainSlider.classList.remove('withTransition')
+        } , 1000) /*Cuando lleguemos a la imágen 5 reiniciamos la variable contador y le quitamos la clase withTransition a .Main-slider*/
     }
     sliderTranslate()
-}
-const anterior = ()=>{
-    contador--
-    if( contador < 0 ){
-        contador = 4
-    }
-    sliderTranslate()
-}
-const sliderOver = ()=>{
-    clearInterval( automatico )
-}
-const sliderOut =  ()=>{
-    automatico = setInterval( siguiente , 4000)
 }
 
 automatico = setInterval( siguiente , 4000)
@@ -58,100 +47,97 @@ automatico = setInterval( siguiente , 4000)
 
 /*Carrousel populares*/
 
-let index = 0
-let amount = 10 
-let currTransl = [ ] // Array contiene posiciones actuales de cada elemento
-let translationComplete = true // Indica si la transición se ha completado
+let currentIndex = 5
+const slidesToShow = 11
+const totalSlides = wrapperImgs.length
+const slideWidth = mainCarrousel.offsetWidth / slidesToShow
 
-const transitionCompleted = function() {
-    translationComplete = true // Indica que la transición se ha hecho
-}
-    amount = wrapperImgs.length
-    moveOffset = document.querySelector('.Main-carrousel').offsetWidth / 5 // Calcular lo que se desplaza cada elemento teniendo en cuenta que deben ser 5 en pantalla
-    mainWrapper.style.width = (amount * moveOffset) + 'px' // Nos da un ancho para el carrousel
+// Adjust totalSlides to include the cloned elements
+const totalSlidesWithClones = totalSlides + slidesToShow * 11 
 
-    // Inicia el movimiento y añade evento a cada elemento transitionCompleted
-    for (let i = 0; i < amount; i++) {
-        currTransl[i] = -moveOffset
-        wrapperImgs[i].addEventListener("transitionend", transitionCompleted, true)
-    }
-
-    // Posiciona último elemento al principio para continuar el ciclo
-    mainWrapper.insertBefore(mainWrapper.children[amount - 1], mainWrapper.children[0])
-
-    // Añadeimos el click a los botones next y prev
-    document.querySelector('.Main-button--prev').addEventListener('click', prev, true)
-    document.querySelector('.Main-button--next').addEventListener('click', next, true)
-
-
-// Función para mover el carrusel hacia la izquierda
-
-function prev() {  if (translationComplete) { 
-        translationComplete = false
-        const outerIndex = index % amount
-        index++
-        // Mueve cada elemento del carrousel
-        for (let i = 0; i < amount; i++) {
-            const poster = document.querySelectorAll('.Main-wrapperimg')[i]
-            poster.style.opacity = '1'
-            poster.style.transform = 'translateX(' + (currTransl[i] - moveOffset) + 'px)'
-            currTransl[i] -= moveOffset
-        }
-    
-        const posterExt = document.querySelectorAll('.Main-wrapperimg')[outerIndex]
-        posterExt.style.transform = 'translateX(' + (currTransl[outerIndex] + (moveOffset * amount)) + 'px)'
-        posterExt.style.opacity = '0'
-        currTransl[outerIndex] += moveOffset * amount
-    }
-}
-// Función para mover el carrusel hacia la derecha
-
-function next() {if (translationComplete) { // Para desplazar el elemento debe haber sido completada transición anterior
-    translationComplete = false
-    index--
-    if (index === -1) { // Si el índice es -1 volvemos al elemento anterior
-        index = amount - 1
-    }
-    const outerIndex = index % amount // Calcula posición haciendo que haga un loop
-    
-    for (let i = 0; i < amount; i++) {
-        const poster = document.querySelectorAll('.Main-wrapperimg')[i]
-        poster.style.opacity = '1' // Devuelve la opacidad
-        poster.style.transform = 'translateX(' + (currTransl[i] + moveOffset) + 'px)' // Mueve el elemento correspondiente
-        currTransl[i] += moveOffset // Actualiza la posición 
-    }
-    // Indicamos el movimiento del elemento exterior y lo ocultamos
-    const posterExt = document.querySelectorAll('.Main-wrapperimg')[outerIndex]
-    posterExt.style.transform = 'translateX(' + (currTransl[outerIndex] - (moveOffset * amount)) + 'px)'
-    posterExt.style.opacity = '0'
-    currTransl[outerIndex] -= moveOffset * amount
-}
+// Duplicate first few elements to create the infinite effect
+for (let i = 0; i < slidesToShow; i++) {
+    let firstClone = wrapperImgs[i].cloneNode(true)
+    let lastClone = wrapperImgs[totalSlides - 1 - i].cloneNode(true)
+    mainWrapper.appendChild(firstClone)
+    mainWrapper.insertBefore(lastClone, mainWrapper.firstChild)
 }
 
 
-// IFE que agrupa efecto noticias
-(()=> {
-    /*Noticias y articles*/
 
+const updateSlidePosition = () => {
+    innerCarrousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`
+}
+
+const smoothTransition = () => {
+    innerCarrousel.style.transition = 'transform 0.6s ease'
+}
+
+const noTransition = () => {
+    innerCarrousel.style.transition = 'none'
+}
+
+const nextSlide = () => {
+    currentIndex++
+    smoothTransition()
+    updateSlidePosition()
+    if (currentIndex >= totalSlides + slidesToShow) {
+        setTimeout(() => {
+            noTransition()
+            currentIndex = slidesToShow;
+            updateSlidePosition()
+        }, 500)
+    }
+};
+
+const prevSlide = () => {
+    currentIndex--
+    smoothTransition()
+    updateSlidePosition()
+    if (currentIndex <= 0) {
+        setTimeout(() => {
+            noTransition()
+            currentIndex = totalSlides
+            updateSlidePosition()
+        }, 500)
+    }
+};
+
+buttonNext.addEventListener('click', nextSlide)
+buttonPrev.addEventListener('click', prevSlide)
+
+// Start at one clone offset
+currentIndex = slidesToShow
+noTransition()
+updateSlidePosition()
+
+
+ /*Noticias y articles*/
+
+
+
+/*Creamos el intersectionObserver y creamos un callback en el que recorremos cada elemento en pantalla, si el elemento es visible en pantalla,
+para cada article se add y remove las clases visible y hidden correspondientemente en cada caso para que aparezcan con un cierto retraso para cada article*/
 const user = new IntersectionObserver( e => {
-    e.forEach( _ =>{
-        if ( _ .isIntersecting){
-            articles.forEach((article , index) =>{
-                setTimeout(() => {
-                    article.classList.add('visible')
-                    article.classList.remove('hidden')
-                }, index * 800);
-            })
-        }else{
-            articles.forEach(article => {
-                article.classList.remove('visible')
-                article.classList.add('hidden')
-            })
-        }
-    })
-}, {threshold: 0.1} ) /*El callback se ejecutará cuando al menos el 10% de los articles sean visibles en la ventana*/
+ e.forEach( _ => {
+     if ( _ .isIntersecting) {
+        articles.forEach((article , index) =>{
+         setTimeout(() => {
+          article.classList.add('visible')
+          article.classList.remove('hidden')
+         }, index * 900)
+        })
+    } else{
+        articles.forEach( article => {
+          article.classList.remove('visible')
+          article.classList.add('hidden')
+        })
+    }
+ })
+}, {threshold: 0.1} ) /*Indicamos que el callback se ejecute cuando al menos el 10% de los articles sean visibles en la ventana*/
 
 user.observe(document.querySelector(`.Main-noticias`))
-})()
+
+
 
 
