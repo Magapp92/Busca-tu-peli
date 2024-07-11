@@ -1,4 +1,7 @@
 
+/* SECCIÓN DE NOTICIAS */
+
+/*  Damos estilo a .Mani y .Main-section para que sean todas las páginas iguales */
 .Main{
     width: 100%;
     background-color: var(--bg-color-primary);
@@ -14,6 +17,7 @@
     padding: 0 5rem;
 }
 
+/* Damos estilo a los textos con las custom properties para que sean iguales entre las diferentes páginas */
 .Main-h2{
     font-family: "title";
     color: var(--color-primary-text);
@@ -52,6 +56,7 @@
     margin: 0 auto;
 }
 
+/* Aquí agrupamos parte del texto de la noticia y las imágenes, les damos display flex para colocarlos */
 .Main-intro{
     display: flex;
     flex-flow: row nowrap;
@@ -63,6 +68,7 @@
     padding: 0 7rem;
 }
 
+/* Damos tamaño y estilo a las imágenes */
 .Main-img{
     width: 17.5rem;
     min-height: 25rem;
@@ -77,6 +83,7 @@
     font-size: 1.4em;
 }
 
+/* Colocamos y damos estilo a la parte de la noticia con la imágen y a la parte inferior */
 .Main-news{
     width: 90%;
 
@@ -90,10 +97,13 @@
     margin: 0 auto;
 }
 
+/* Al ser un modificador adquiere el estilo de .Main-news pero le damos una prodiedad diferente
+al grupo anteior, en este cado un padding */
 .Main-news--bottom{
     padding: .9375rem 0 0;
 }
 
+/* Adaptamos la sección de lista dentro de una de las noticias */
 .Main-ol{
     font-family: "text";
     color: var(--color-primary-text);
@@ -104,6 +114,8 @@
     margin: 1.5rem 0 12.5rem 5rem;
 }
 
+/* Como en el reset teníamos restringido los li con list-style none, ahora debemos indicar que en este
+caso concreto si queremos un list-style */
 .Main-li{
     list-style: decimal;
 }

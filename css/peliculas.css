@@ -1,6 +1,6 @@
 
 
-/* Peliculas */
+/* PELICULAS */
 
 .Main{
     width: 100%;
@@ -23,6 +23,7 @@
     text-align: center;
 }
 
+/* Damos estilo y colocamos la imágen y el texto dentro de su contenedora con flex */
 .Main-info{
     display: flex;
     flex-flow: row nowrap;
@@ -37,8 +38,10 @@
 .Main-img{
     max-width: 25rem;
     max-height: 37.5rem;
+    border: var(--border-imgs)
 }
 
+/* Damos estilo a todos los textos contenidos en .Main-description */
 .Main-description{
     font-family: "text";
     color: var(--color-primary-text);
@@ -47,6 +50,9 @@
 
     margin: 2.5rem 0 0;
 }
+
+/* Damos un espacio entre lineas inferior para que se entienda que forma parte
+todo de la misma sección */
 .Main-cast{
     line-height: 1.875rem;
 }
@@ -60,6 +66,7 @@
     margin: 0 0 1.875rem 6.25rem;
 }
 
+/* Damos estilo y colocamos los iconos que te llevan a cada plataforma y les damos un efecto en hover*/
 .Main-plataformas{
     width: 100%;
     max-height: 20vh;
@@ -71,6 +78,7 @@
     gap: 1.25rem;
 
     margin: 0 0 2.5rem;
+    transition: scale 2s ease;
 }
 
 .Main-plataformas img:hover {
@@ -87,6 +95,7 @@
     margin: 0 0 3.125rem;
 }
 
+/* Damos tamaño y comocamos el video */
 .Main-iframe{
     width: 80%;
     max-height: 37.5rem;
@@ -97,6 +106,7 @@
 .Symbol{
     display: none;
 }
+
 
 @media (max-width: 930px){
     .Main{
@@ -197,117 +207,3 @@
 
 
 
-/* body {
-    font-family: "text";
-    background-color: #f0f0f0;
-    color: #fff; 
-}
-
-.Main {
-    width: 100%;
-    
-    padding: 1.25rem;
-    background-color: #2c3e50; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: .625rem;
-    
-}
-
-.Main-content {
-    width: 100%;
-    min-height: 50rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 20rem 0 0 0;
-}
-
-.Main-header {
-    text-align: center;
-    margin: 0 0 1.5rem 0;
-}
-
-.Main-title {
-    font-size: 2.5em;
-    color: #fff;
-}
-
-.Main-body {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-}
-
-.Main-poster-container {
-    width: 30%;
-    max-height: 30rem;
-    margin-bottom: 1.25rem;
-    
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.Main-poster {
-    width: 100%;
-    height: 30rem;
-    border-radius: .625rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.Main-details {
-    width: 100%;
-    
-    
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    text-align: left;
-    padding: 1rem;
-    background-color: #34495e;
-    border-radius: .625rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.Main-sinopsis {
-    font-size: 1.2em;
-    margin-bottom: 1.25rem;
-    color: #fff;
-}
-
-.Main-plataformas {
-    gap: .9375rem;
-    margin: 0 0 1.25rem 0;
-}
-
-.Main-plataformas img {
-    width: 3.125rem;
-    height: auto;
-    transition: transform 0.3s;
-}
-
-.Main-plataformas img:hover {
-    transform: scale(1.1);
-}
-
-.Main-trailer-container {
-    
-    width: 100%;
-    max-width: 50rem;
-    padding: 20rem 0 0 15rem; 
-    
-    overflow: hidden;
-    margin: 1.25rem 0;
-    position: relative;
-}
-
-.Main-trailer-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: .625rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-} */
