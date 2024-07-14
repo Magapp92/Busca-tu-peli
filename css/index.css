@@ -5,6 +5,7 @@
 .Main{
     width: 100%;
     background-color: var(--bg-color-primary);
+    padding: 10rem 0 0;
     overflow: hidden;
 }
 
@@ -20,7 +21,7 @@
     width: 100%;
     max-width: 180rem; 
     
-    padding: 10.2rem 0 0 0;
+    /* padding: 10.2rem 0 0 0; */
     margin: 0 0 3.125rem;
 
     overflow: hidden;
@@ -369,6 +370,11 @@ pantallas intermedias*/
     .Main-bottom{
         padding: 0 6.25rem;
     }
+    .Main-message{
+        font-size: 250%;
+        min-height: 10rem;
+        top: calc(50% - 7rem);
+    }
 }
 
 @media (max-width: 1000px){
@@ -390,7 +396,7 @@ de margin, padding y tamaños de tipografías */
     }
 
     .Main-top{
-        padding: 18.7rem 0 2rem;
+        padding: 8.7rem 0 2rem;
     }
     
     
@@ -445,15 +451,14 @@ de margin, padding y tamaños de tipografías */
 /* Para tablet modificamos el grid de la sección de añadidos recientemente y hacemos modificaciones de tamaños,
 positions y padding */
 @media (max-width: 750px){
-    .Main-top{
-        padding: 18.5rem 0 2rem;
-    }
-
     .Main-message{
-        top: calc(50% - 1rem);
+        top: calc(50% - 1.5rem);
+        
+        font-size: 3.5vw;
+        padding: 0 2rem;
+        min-height: 8rem;
     }
    
-
     .Main-container{
         display: grid;
         grid-template-columns: repeat(2 , 1fr);
@@ -472,11 +477,6 @@ positions y padding */
 
 /* Para móviles hacemos modificaciones principalmente de position, tipografías, margins y padding */
 @media (max-width: 600px){
-    .Main-message{
-        font-size: 150%;
-        top: calc(50% - -1rem);
-    }
-
     .Main-h2{
         font-size: 140%;
         margin: 0;
@@ -494,12 +494,13 @@ positions y padding */
 
 @media (max-width:480px){
     .Main-top{
-        padding: 18.5rem 0 2rem;
+        padding: 8.6rem 0 2rem;
     }
     .Main-message{
-        font-size: 130%;
-        top: calc(50% - -2rem);
-        min-height: 8rem;
+        font-size: 115%;
+        top: calc(50% - -.5rem);
+        min-height: 6rem;
+        border-radius: 2rem;
     }
 
     .Main-p{
@@ -518,7 +519,14 @@ positions y padding */
 
 @media (max-width:450px){
     .Main-top{
-        padding: 17.4rem 0 2rem;
+        padding: 7.4rem 0 2rem;
+    }
+
+    .Main-message{
+        top: calc(50% - .2rem);
+        font-size: 110%;
+        min-height: 5rem;
+        border-radius: 1.5rem;
     }
 }
 
