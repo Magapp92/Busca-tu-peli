@@ -70,7 +70,7 @@
 /* Hacemos el cálculo del ancho que deben tener las imágenes para el slider y les damos un alto máximo */
 .Slider-img{
     width:calc( 100% / 6 );
-    
+    object-fit: cover;
 }
 
 
@@ -81,8 +81,6 @@
     font-family: "title";
     font-size: 2.5em;
     color: var(--color-primary-text);
-
-    margin: 5rem 0 0;
 }
 
 .Main-p{
@@ -152,9 +150,6 @@
     transform: scale(.95) translate(0px, -0.9375rem);
 }
 
-.Main-aWrapper {
-    width:100%;
-}
 
 /* Damos estilo a los botones y los colocamos con position */
 .Main-button {
@@ -398,13 +393,30 @@ de margin, padding y tamaños de tipografías */
     .Main-top{
         padding: 8.7rem 0 2rem;
     }
+
+    .Main-carrousel{
+       margin: 6.25rem 0 0;
+       padding: 0 3.125rem;
+    }
+
+    .Main-button--prev {
+        top: -18rem;
+        left: -1.8rem;
+    }
     
+    .Main-button--next {
+        top: -22.5rem;
+        right: -96%;
+    }
     
     .Main-container{
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+
         padding: 2.5rem 1.875rem 2rem;
-        overflow: hidden;
+        margin: 6.25rem 3rem 8rem;
     }
- 
+
     .Main-content , .Main-contentReverse{
         flex-flow: column nowrap;
         justify-content: center;
@@ -429,7 +441,7 @@ de margin, padding y tamaños de tipografías */
         gap: 1.25rem;
     }
 
-    .Main-p{
+    .Main-p--bottom{
         border: none;
         margin: 1.25rem 0 0;
     }
@@ -458,11 +470,9 @@ positions y padding */
         padding: 0 2rem;
         min-height: 8rem;
     }
-   
-    .Main-container{
-        display: grid;
-        grid-template-columns: repeat(2 , 1fr);
-        overflow: scroll;
+
+    .Main-carrousel{
+        padding: 0;
     }
 
     .Main-article, .Main-articlereverse{
@@ -480,6 +490,19 @@ positions y padding */
     .Main-h2{
         font-size: 140%;
         margin: 0;
+    }
+
+    .Main-carrousel{
+        max-height: 50vh;
+    }
+
+    .Main-wrapper{
+        max-height: 50vh;
+    }
+
+    .Main-wrapperImg{
+        max-width: 70%;
+        height: 40vh;
     }
 
     .Main-article, .Main-articleReverse{

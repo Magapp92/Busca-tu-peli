@@ -195,6 +195,10 @@ tamaños de pantalla pequeña */
         left: 35%;
     }
 
+    .Main-h3{
+        text-align: center;
+    }
+
     .Main-send{
         font-size: 4vw;
     }

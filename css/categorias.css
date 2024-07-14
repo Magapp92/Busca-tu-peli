@@ -158,8 +158,19 @@ y algunas tablets */
     }
 }
 
+@media (max-width: 750px){
+    .Main-header{
+        padding: 0 4rem;
+    }
+
+    .Main-p{
+        padding: 0 0 1.25rem;
+    }
+
+}
+
 /* Cambiamos margins, paddings y font size para tablets y móviles */
-@media (max-width:600px){
+@media (max-width: 600px){
     .Main{
         padding: 20rem 0 4rem;
     }
@@ -169,14 +180,17 @@ y algunas tablets */
         max-height: 18.75rem;
     }
 
+    .Main-header{
+        padding: 0 3rem;
+    }
+
     .Main-h2{
         font-size: 2em;
-        margin: 0 0 0 2rem;
     }
 
     .Main-p{
         font-size: 1em;
-        margin: 1.25rem 0 0 1.5rem;
+        margin: 1.25rem 0 0 .5rem;
     }
 
     .Main-section{
