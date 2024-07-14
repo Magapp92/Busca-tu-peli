@@ -46,7 +46,7 @@ cada parte del mismo, añadimos position relative para posteriormente colocar el
 }
 
 /* Damos estilo al párrafo introductorio */
-.Main-message{
+.Main-h3{
     font-family: "title";
     color: var(--color-primary-text);
     font-size: 1.6em;

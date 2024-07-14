@@ -1,7 +1,7 @@
 [
   {
       "nombre": "Bad Boys for Life",
-      "poster": "assets/plataformas/prime/Acción/badBoys.webp",
+      "poster": "assets/plataformas/prime/Accion/badBoys.webp",
       "sinopsis": "En esta tercera entrega de la franquicia, justo cuando Marcus está intentando pasar más tiempo con su familia, surgirá una amenaza que pondrá en peligro la vida de Mike, involucrando otra vez a Marcus. Después de todo, Mike también es familia, y no va a dejarle solo en la misión. Mike Lowrey (Will Smith) y Marcus Burnett (Martin Lawrence) vuelven a patrullar juntos para intentar derrotar a Armando Armas (Jacob Scipio), el líder de un cartel de drogas mexicano en Miami.",
       "plataformas": [
           {
@@ -18,11 +18,11 @@
       "guion": "Chris Bremner, Peter Craig, Joe Carnahan",
       "reparto": "Will Smith, Martin Lawrence, Vanessa Hudgens, Alexander Ludwig...",
       "companias": "Columbia Pictures, 2.0 Entertainment",
-      "genero": "Acción, Comedia, Crimen"
+      "genero": "Accion, Comedia, Crimen"
   },
   {
       "nombre": "Dune",
-      "poster": "assets/plataformas/netflix/Acción/dune.webp",
+      "poster": "assets/plataformas/netflix/Accion/dune.webp",
       "sinopsis": "Un joven noble debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su pueblo. En el inhóspito y árido planeta Arrakis, la única fuente de la especia más codiciada del universo, se enfrentarán a grandes desafíos. Paul Atreides, junto con su familia y aliados, debe superar traiciones y conspiraciones en un viaje épico.",
       "plataformas": [
           {
@@ -60,11 +60,11 @@
       "guion": "Adam Sandler, Robert Smigel, Judd Apatow",
       "reparto": "Adam Sandler, John Turturro, Emmanuelle Chriqui, Nick Swardson...",
       "companias": "Columbia Pictures, Happy Madison Productions",
-      "genero": "Comedia, Acción"
+      "genero": "Comedia, Accion"
   },
   {
       "nombre": "Ant-Man And The Wasp: Quantumania",
-      "poster": "assets/plataformas/DisneyPlus/Acción/antmanQuantumania.webp",
+      "poster": "assets/plataformas/DisneyPlus/Accion/antmanQuantumania.webp",
       "sinopsis": "Scott Lang y Hope Van Dyne, junto con Hank Pym y Janet Van Dyne, exploran el Reino Cuántico, donde interactúan con extrañas criaturas y se embarcan en una aventura que va más allá de los límites de lo que creían posible. Enfrentándose a un nuevo y poderoso enemigo, deben unir fuerzas y usar sus habilidades para proteger su mundo y salvar el universo de una amenaza inminente.",
       "plataformas": [
           {
@@ -81,11 +81,11 @@
       "guion": "Jeff Loveness",
       "reparto": "Paul Rudd, Evangeline Lilly, Michael Douglas, Michelle Pfeiffer...",
       "companias": "Marvel Studios",
-      "genero": "Acción, Aventura, Ciencia ficción"
+      "genero": "Accion, Aventura, Ciencia ficción"
   },
   {
       "nombre": "Godzilla Vs. Kong",
-      "poster": "assets/plataformas/Max/Acción/godzillaVsKong.webp",
+      "poster": "assets/plataformas/Max/Accion/godzillaVsKong.webp",
       "sinopsis": "Las leyendas chocan cuando Godzilla y Kong, las dos fuerzas más poderosas de un planeta habitado por aterradoras criaturas, se enfrentan en una espectacular batalla que sacude los cimientos de la humanidad. Mientras tanto, una conspiración humana amenaza con erradicar a estas criaturas, independientemente del costo. En una lucha épica por la supremacía, el destino del mundo pende de un hilo.",
       "plataformas": [
           {
@@ -102,7 +102,7 @@
       "guion": "Eric Pearson, Max Borenstein",
       "reparto": "Alexander Skarsgård, Millie Bobby Brown, Rebecca Hall, Brian Tyree Henry...",
       "companias": "Legendary Pictures, Warner Bros.",
-      "genero": "Acción, Ciencia ficción"
+      "genero": "Accion, Ciencia ficción"
   },
   {
       "nombre": "¿Y Dónde Están Las Rubias?",
@@ -212,7 +212,7 @@
     },
     {
         "nombre": "Escuadrón Maldito",
-        "poster": "assets/plataformas/appleTv/Acción/EscuadraonMaldito.webp",
+        "poster": "assets/plataformas/appleTv/Accion/EscuadraonMaldito.webp",
         "sinopsis": "Este documental apadrinado y presentado por Tom Hanks y Steven Spielberg, productores ejecutivos de Los amos del aire, demuestra en una hora que detrás de esa serie había una gran historia que no nos habían contado. Más bien había un centenar, muchas de ellas silenciadas por la muerte.El francés Laurent Bouzereau es uno de los grandes documentalistas actuales, con medio centenar de producciones sobre historia y cine, algunos tan notables como la docuserie La guerra en Hollywood, que ahora mismo puede verse en Netflix.",
         "plataformas": [
             {
@@ -229,7 +229,7 @@
         "guion": "Neil Marshall, Edward Evers-Swindell",
         "reparto": "Sean Pertwee, Kevin McKidd, Emma Cleasby...",
         "companias": "Apple TV+, BBC Films",
-        "genero": "Acción, Bélico, Documental, Histórico"
+        "genero": "Accion, Bélico, Documental, Histórico"
     },
     {
         "nombre": "Hombres De Honor",
@@ -339,7 +339,7 @@
     {
         "nombre": "Pearl Harbor",
         "poster": "assets/plataformas/DisneyPlus/Romance/pearlHarbor.webp",
-        "sinopsis": "Una dramatización del ataque a Pearl Harbor y sus consecuencias para dos amigos de la infancia. Rafe y Danny, ambos pilotos, se ven envueltos en el conflicto global después del devastador ataque. La película narra sus experiencias en la guerra y cómo el amor, la amistad y el deber se entrelazan en tiempos de crisis. Con escenas de acción impresionantes y momentos emocionales, 'Pearl Harbor' ofrece una visión épica de uno de los eventos más significativos de la Segunda Guerra Mundial. La historia también aborda el impacto personal y las pérdidas sufridas por aquellos que participaron en el conflicto.",
+        "sinopsis": "Una dramatización del ataque a Pearl Harbor y sus consecuencias para dos amigos de la infancia. Rafe y Danny, ambos pilotos, se ven envueltos en el conflicto global después del devastador ataque. La película narra sus experiencias en la guerra y cómo el amor, la amistad y el deber se entrelazan en tiempos de crisis. Con escenas de accion impresionantes y momentos emocionales, 'Pearl Harbor' ofrece una visión épica de uno de los eventos más significativos de la Segunda Guerra Mundial. La historia también aborda el impacto personal y las pérdidas sufridas por aquellos que participaron en el conflicto.",
         "plataformas": [
             {
                 "imagen": "assets/svg/disney.svg",
@@ -527,7 +527,7 @@
     },
     {
         "nombre": "The Bloody Hundredth",
-        "poster": "assets/plataformas/appleTv/Acción/EscuadraonMaldito.webp",
+        "poster": "assets/plataformas/appleTv/Accion/EscuadraonMaldito.webp",
         "sinopsis": "Una historia de la Segunda Guerra Mundial centrada en la valentía y sacrificio de un escuadrón de bombarderos. El escuadrón conocido como 'The Bloody Hundredth' se enfrenta a misiones peligrosas en el cielo de Europa, con la tarea de debilitar las defensas enemigas. A través de su lucha, los aviadores forman lazos indestructibles y enfrentan la pérdida y el miedo con coraje. La película rinde homenaje a su heroísmo y destaca las difíciles decisiones que deben tomar en medio del caos de la guerra. Con escenas de batalla impresionantes y una narrativa emotiva, 'The Bloody Hundredth' muestra el impacto duradero de la guerra en aquellos que lucharon.",
         "plataformas": [
             {
@@ -544,6 +544,6 @@
         "guion": "John Logan",
         "reparto": "Tom Hanks, Matt Damon, Tom Sizemore...",
         "companias": "Apple TV+, DreamWorks Pictures",
-        "genero": "Acción, Drama, Guerra"
+        "genero": "Accion, Drama, Guerra"
     }
   ]

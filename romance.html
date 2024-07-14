@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Romance</title>
+    <title>Pagina  peliculas de romance </title>
+	<meta name="description" content="Pagina donde el usuario puede visualizar las diferentes peliculas de romance disponibles en plataformas">
+	<meta name="keywords" content="peliculas romance usuario  netflix primevideo appletv hbomax disneyplus">
+	<meta property="og:title" content="Pagina de peliculas de romance ">
+	<meta property="og:description" content="Pagina donde el usuario puede visualizar las diferentes peliculas de romance disponibles en plataformas">
+	<meta property="og:url" content="https://buscatupeli.com/romance">
+	<link rel="canonical" href="https://buscatupeli.com/romance">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -15,7 +20,7 @@
     <header class="Header">
         <div class="Header-logo">
             <h1 class="Header-h1">
-                <a href="index.html" class="Header-aLogo" title="busca tu pelim link a main page">Busca tu Peli</a>
+                <a href="index.html" class="Header-aLogo" title="busca tu peli link a main page">Busca tu Peli</a>
             </h1>
             <img src="assets/logo/logobuscatupeli.svg" alt="logo busca tu peli" title="logo página busca tu peli" class="Header-img">
         </div>
@@ -80,7 +85,7 @@
                     Danny y Evelyn son destinados a la base aérea de Pearl Harbor en Hawai.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula pearl harbor">Más info</a>
+                    <a href="peliculas.html?nombre=Pearl%20Harbor" class="Main-a" title="Ir a la información pelicula pearl harbor">Más info</a>
                 </div>
                 </div>
             </article>
@@ -95,7 +100,7 @@
                      Lo que ambos ignoran es que mantienen una relación por correo electrónico. 
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula tienes un email">Más info</a>
+                    <a href="peliculas.html?nombre=Tienes%20Un%20Email" class="Main-a" title="Ir a la información pelicula tienes un email">Más info</a>
                 </div>
                </div> 
             </article>
@@ -109,7 +114,7 @@
                     se esconde en las profundidades del núcleo de la Tierra.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula crazy stupid love">Más info</a>
+                    <a href="peliculas.html?nombre=Crazy%20Stupid%20Love" class="Main-a" title="Ir a la información pelicula crazy stupid love">Más info</a>
                 </div>
                 </div>
             </article>
@@ -124,7 +129,7 @@
                     un amor verdadero y una pasión desconocida nacerá entre ellos.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula los puentes de madison">Más info</a>
+                    <a href="peliculas.html?nombre=Los%20Puentes%20De%20Madison" class="Main-a" title="Ir a la información pelicula los puentes de madison">Más info</a>
                 </div>
                 </div>
             </article>
@@ -139,7 +144,7 @@
                     decide abandonar su acomodada vida y lo arriesga todo, emprendiendo un viaje alrededor del mundo.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula come reza ama">Más info</a>
+                    <a href="peliculas.html?nombre=Come,%20Reza,%20Ama" class="Main-a" title="Ir a la información pelicula come reza ama">Más info</a>
                 </div>
                 </div>
             </article>
@@ -167,10 +172,10 @@
             <div class="Footer-text">info@buscatupeli.com</div>        
           </div>
         </div>
-        <form class="Footer-form">
+        <form class="Footer-form" action="send" method="POST">
             <label class="Footer-label" for="email"></label>
             <input class="Footer-input" id="email" type="email" class="Footer-input" placeholder="Suscríbete" required>
-            <button class="Footer-button" type="submit" title="boton enviar correo para suscribirse"> 
+            <button class="Footer-button" type="submit" title="boton enviar correo para suscribirse"63> 
             <svg class="Footer-suscribe">
                 <use href="#suscribe" x="0" y="0" />
             </svg>

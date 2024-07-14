@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drama</title>
+    <title>Pagina peliculas de drama</title>
+	<meta name="description" content="Pagina donde el usuario puede visualizar las diferentes peliculas de drama disponibles en diferentes plataformas">
+	<meta name="keywords" content="peliculas drama usuario  netflix primevideo appletv hbomax disneyplus">
+	<meta property="og:title" content="Pagina peliculas de drama">
+	<meta property="og:description" content="Pagina donde el usuario puede visualizar las diferentes peliculas de drama disponibles en diferentes plataformas">
+	<meta property="og:url" content="https://buscatupeli.com/drama">
+	<link rel="canonical" href="https://buscatupeli.com/drama">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -80,7 +86,7 @@
                 Descubre  los entrañables lazos que pueden unir a una persona y a un animal. 
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula siempre a tu lado">Más info</a>
+                    <a href="peliculas.html?nombre=Siempre%20A%20Tu%20Lado" class="Main-a" title="Ir a la información pelicula siempre a tu lado">Más info</a>
                 </div>
                 </div>
             </article>
@@ -94,7 +100,7 @@
                     el valor de la perseverancia como arma para vencer los obstáculos y alcanzar sus sueños.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula hombres de honor">Más info</a>
+                    <a href="peliculas.html?nombre=Hombres%20De%20Honor" class="Main-a" title="Ir a la información pelicula hombres de honor">Más info</a>
                 </div>
                </div> 
             </article>
@@ -108,7 +114,7 @@
                     Atrapados en uno de los entornos más inaccesibles y hostiles del planeta.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula la sociedad de la nieve">Más info</a>
+                    <a href="peliculas.html?nombre=Society%20Of%20Snow" class="Main-a" title="Ir a la información pelicula la sociedad de la nieve">Más info</a>
                 </div>
                 </div>
             </article>
@@ -122,7 +128,7 @@
                     dispuesto a alejarse del mundo de la violencia.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula american history x">Más info</a>
+                    <a href="peliculas.html?nombre=American%20History%20X" class="Main-a" title="Ir a la información pelicula american history x">Más info</a>
                 </div>
                 </div>
             </article>
@@ -136,7 +142,7 @@
                     un sofisticado y perverso abogado, en una aventura vertiginosa a través de los continentes.
                 </p>
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información pelicula pobres criaturas">Más info</a>
+                    <a href="peliculas.html?nombre=Poor%20Things" class="Main-a" title="Ir a la información pelicula pobres criaturas">Más info</a>
                 </div>
                 </div>
             </article>
@@ -164,7 +170,7 @@
             <div class="Footer-text">info@buscatupeli.com</div>        
           </div>
         </div>
-        <form class="Footer-form">
+        <form class="Footer-form" action="send" method="POST">
             <label class="Footer-label" for="email"></label>
             <input class="Footer-input" id="email" type="email" class="Footer-input" placeholder="Suscríbete" required>
             <button class="Footer-button" type="submit" title="boton enviar correo para suscribirse"> 
@@ -172,6 +178,7 @@
                 <use href="#suscribe" x="0" y="0" />
             </svg>
             </button>
+        </form>
         </form>
       </footer>
     

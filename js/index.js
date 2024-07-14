@@ -47,70 +47,71 @@ automatico = setInterval( siguiente , 4000)
 
 /*Carrousel populares*/
 
-/* Declaramos la variable del número de imágenes, y las constantes que indican el número total de imágenes, el cálculo
-del tamaño del carraousel y de las imágenes a repetir para dar efecto de infinito */
-let currentIndex = 5
-const slidesToShow = 11
-const totalSlides = wrapperImgs.length
-const slideWidth = mainCarrousel.offsetWidth / slidesToShow
-const totalSlidesWithClones = totalSlides + slidesToShow * 11 
+let initialIndex = 0 //Indice inicial
 
+const updateImgPosition = () => { //Funcion para actualizar la posicion de las imagenes del carrusel
+  const slideWidth = wrapperImgs[0].offsetWidth //Calculo el ancho de cada poster
+  const maxTranslateX = slideWidth * (wrapperImgs.length - 1)//calculo el maximo desplazamiento posible en x
+  const translateX = Math.min(initialIndex * slideWidth, maxTranslateX)//Limito el desplazamiento en x del valor calculado
 
-/* Bucle en el que se hacen las copias de las primeras y últimas imágenes y se van añadiendo al principio y final de .Main-wrapper */
-for (let i = 0; i < slidesToShow; i++) {
-    let firstClone = wrapperImgs[i].cloneNode(true)
-    let lastClone = wrapperImgs[totalSlides - 1 - i].cloneNode(true)
-    mainWrapper.appendChild(firstClone)
-    mainWrapper.insertBefore(lastClone, mainWrapper.firstChild)
+  
+  const margin = 30 //Declaro una variable para gregar un margen adicional que se aplica al desplazamiento de los poster
+  const adjustedTranslateX = Math.min(translateX + margin, maxTranslateX)//ajusto la posicion del desplazamiento en x 
+
+  innerCarrousel.style.transform = `translateX(-${adjustedTranslateX}px)`//aplico el desplazamiento al elemento que contiene las imagenes de los poster
 }
 
-/* Funciones en las que se le indica a .Main-innerCarrousel los movimientos y transiciones qu debe hacer */
-const updateSlidePosition = () => {
-    innerCarrousel.style.transform = `translateX(-${currentIndex * slideWidth}px)` /* Se calcula el desplazamiento */
+const checkButtons = () => {//Funcion que verifica la visibilidad de los botones next y prev ajustando su opacidad segun el caso 
+    const slidesToShow = window.innerWidth >= 1024 ? 5 : window.innerWidth >= 600 ? 3 : 1
+    buttonPrev.style.opacity = initialIndex === 0 ? '0' : '1'
+    buttonNext.style.opacity = initialIndex >= wrapperImgs.length - slidesToShow ? '0' : '1'
+  }
+  
+
+const nextSlide = () => {//Funcion para avanzar al siguiente poster 
+  const slidesToShow = window.innerWidth >= 1024 ? 5 : window.innerWidth >= 600 ? 3 : 1
+  if (initialIndex < wrapperImgs.length - slidesToShow) {
+    initialIndex++
+    updateImgPosition()
+    checkButtons()//visibilidad del boton next
+  }
 }
 
-const smoothTransition = () => {
-    innerCarrousel.style.transition = 'transform 0.6s ease'
+const prevSlide = () => {//Funcion para retroceder
+  if (initialIndex > 0) {
+    initialIndex--
+    updateImgPosition()
+    checkButtons()//visibilidad del boton prev
+  }
 }
 
-const noTransition = () => {
-    innerCarrousel.style.transition = 'none'
+buttonNext.addEventListener('click', nextSlide)//Escucha el evento click para el boton next y llama a nextSlide
+buttonPrev.addEventListener('click', prevSlide)//Escucha el evento click para el boton prev y llama a prevSlide
+
+const adjustSlideWidth = () => {//Funcion que determina cuantas imagenes de poster mostrar por ancho de pantallla
+  let slidesToShow
+  if (window.innerWidth >= 1500) {
+    slidesToShow = 5
+  } else if (window.innerWidth >= 600) {
+    slidesToShow = 3
+  } else {
+    slidesToShow = 1
+  }
+
+  const slideWidth = mainCarrousel.offsetWidth / slidesToShow // Constante que calcula el ancho de cada imagen de poster segun el numero de posters a mostrar
+  wrapperImgs.forEach(slide => {// Ajusta el ancho y la altura máxima de cada imagen de poster 
+    slide.style.width = `${slideWidth}px`
+    slide.style.maxHeight = `${mainCarrousel.offsetHeight}px`
+  })
+  innerCarrousel.style.width = `${slideWidth * wrapperImgs.length}px`//// Ajusta el ancho del contenedor interno que contiene los poster
+  // Actualiza la posición del poster mostrado y verifica la visibilidad de los botones
+  updateImgPosition()
+  checkButtons()
 }
 
-/* Da el movimiento con los botones de next y prev al carrousel y aplica las funciones de posición y transición */
-const nextSlide = () => {
-    currentIndex++
-    smoothTransition()
-    updateSlidePosition()
-    if (currentIndex >= totalSlides + slidesToShow) {
-        setTimeout(() => {
-            noTransition()
-            currentIndex = slidesToShow
-            updateSlidePosition()
-        }, 500)
-    }
-}
-
-const prevSlide = () => {
-    currentIndex--
-    smoothTransition()
-    updateSlidePosition()
-    if (currentIndex <= 0) {
-        setTimeout(() => {
-            noTransition()
-            currentIndex = totalSlides
-            updateSlidePosition()
-        }, 500)
-    }
-}
-
-/* Agregamos los eventos de click a los botones next y prev */
-buttonNext.addEventListener('click', nextSlide)
-buttonPrev.addEventListener('click', prevSlide)
-
-currentIndex = slidesToShow
-noTransition()
-updateSlidePosition()
+window.addEventListener('resize', adjustSlideWidth)// Escucha el evento de cambio de tamaño de ventana para ajustar el ancho de los poster
+adjustSlideWidth()
+checkButtons()
 
 
 

@@ -18,7 +18,7 @@
 /* Damos propiedades al .Main-top y colocamos un overflow hidden para el slider */
 .Main-top{
     width: 100%;
-    max-width: 150rem; 
+    max-width: 180rem; 
     
     padding: 10.2rem 0 0 0;
     margin: 0 0 3.125rem;
@@ -64,13 +64,12 @@
 }
 .Main-slider.withTransition{
     transition: transform 1s ease;
-    
 }
 
 /* Hacemos el cálculo del ancho que deben tener las imágenes para el slider y les damos un alto máximo */
 .Slider-img{
     width:calc( 100% / 6 );
-    max-height: 35rem;
+    
 }
 
 
@@ -111,13 +110,14 @@
 
 /* Colocamos con flex a las imágenes dentro del carrousel */
 .Main-innerCarrousel{
-    width: calc(100% * 23 / 5);
+    width:100%;
     
     display:flex;
     flex-flow: row nowrap;
     justify-content: center;
+    margin: 2rem auto;
    
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-in-out;
 }
 
 .Main-innerCarrousel.withTransition {
@@ -126,11 +126,13 @@
 
 /* Colocamos con flex a las imágenes dentro del wrapper */
 .Main-wrapper{
-    width: 20%;
+    width: 100%;
+
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
+    
     transition: transform 0.5s ease-in-out;
     gap: .625rem;
 }
@@ -139,10 +141,10 @@
 .Main-wrapperImg {
     width: calc(100% - .625rem);
     
-    max-height: 18.75rem;
     border: var(--border-imgs);
     opacity: 1;
-    transition: opacity 0.5s ease, transform  0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease, scale 0.5s ease, translate 1s ease;
+    object-fit: cover;
 
 }
 .Main-wrapperImg:hover{
@@ -150,9 +152,7 @@
 }
 
 .Main-aWrapper {
-    width:calc(100% / 5%);
-    max-height: 25rem;
-    flex-shrink: 0;
+    width:100%;
 }
 
 /* Damos estilo a los botones y los colocamos con position */
@@ -166,12 +166,12 @@
 }
 
 .Main-button--prev {
-    top: -14.5rem;
+    top: -20rem;
     left: -1.8rem;
 }
 
 .Main-button--next {
-    top: -19rem;
+    top: -25rem;
     right: -96%;
 }
 
@@ -392,7 +392,8 @@ de margin, padding y tamaños de tipografías */
     .Main-top{
         padding: 18.7rem 0 2rem;
     }
-
+    
+    
     .Main-container{
         padding: 2.5rem 1.875rem 2rem;
         overflow: hidden;
@@ -451,6 +452,7 @@ positions y padding */
     .Main-message{
         top: calc(50% - 1rem);
     }
+   
 
     .Main-container{
         display: grid;

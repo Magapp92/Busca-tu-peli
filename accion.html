@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acción</title>
+    <title>Pagina peliculas de accion</title>
+	<meta name="description" content="Pagina donde el usuario puede visualizar las diferentes peliculas de accion disponibles en diferentes plataformas">
+	<meta name="keywords" content="peliculas accion usuario  netflix primevideo appletv hbomax disneyplus">
+	<meta property="og:title" content="Pagina peliculas de accion">
+	<meta property="og:description" content="Pagina donde el usuario puede visualizar las diferentes peliculas de accion disponibles en diferentes plataformas">
+	<meta property="og:url" content="https://buscatupeli.com/accion">
+	<link rel="canonical" href="https://buscatupeli.com/accion">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -40,7 +46,7 @@
                 <span class="Header-span">Categorias</span>
                 <ul class="Menu-ul">
                     <li class="Menu-li">
-                        <a href="accion.html" class="Menu-a" title="Ir a página de acción">Acción</a>
+                        <a href="accion.html" class="Menu-a" title="Ir a página de accion">Accion</a>
                     </li>
                     <li class="Menu-li">
                         <a href="comedia.html" class="Menu-a" title="Ir a página comedia">Comedia</a>
@@ -67,7 +73,7 @@
         <!-- Agrupamos la totalidad de información de cada película en un section con su correspondiente h2 y p agrupados a su vez un un div -->
         <section class="Main-section">
             <div class="Main-header">
-            <h2 class="Main-h2">Acción</h2>
+            <h2 class="Main-h2">Accion</h2>
             <p class="Main-p">
                 Dale vida a tu día con un poco de acción
             </p>
@@ -75,7 +81,7 @@
             <!-- Dentro del section dividimos la información de cada película en articles donde se agrupa la imágen, el h3 o título,
              el p que es una sinopsis breve y un botón -->
             <article class="Main-article"> 
-                <img src="assets/plataformas/appleTv/Acción/EscuadraonMaldito.webp" alt="poster película the bloody hundred" title="poster pelicula escuadron maldito" class="Main-img" loading="lazy">
+                <img src="assets/plataformas/appleTv/Accion/EscuadraonMaldito.webp" alt="poster película the bloody hundred" title="poster pelicula escuadron maldito" class="Main-img" loading="lazy">
                 <div class="Main-container">
                 <h3 class="Main-h3">The Bloody Hundredth</h3>
                 <p class="Main-sinopsis">
@@ -86,12 +92,12 @@
                 </p>
                 <!-- Este botón nos va a llevar al html que contiene la información de la película correspondiente -->
                 <div class="Main-button">
-                    <a href="" class="Main-a" title="Ir a la información película escuadron maldito" >Más info</a>
+                    <a href="peliculas.html?nombre=Escuadr%C3%B3n%20Maldito" class="Main-a" title="Ir a la información película escuadron maldito" >Más info</a>
                 </div>
                 </div>
             </article>
             <article class="Main-article">
-                <img src="assets/plataformas/DisneyPlus/Acción/antmanQuantumania.webp" alt="poster pelicula Ant-Man and The Wasp: Quantumania" title="poster pelicula antman quantumania" class="Main-img" loading="lazy">
+                <img src="assets/plataformas/DisneyPlus/Accion/antmanQuantumania.webp" alt="poster pelicula Ant-Man and The Wasp: Quantumania" title="poster pelicula antman quantumania" class="Main-img" loading="lazy">
                 <div class="Main-container">
                 <h3 class="Main-h3">Ant-Man and The Wasp: Quantumania</h3>
                 <p class="Main-sinopsis">
@@ -105,7 +111,7 @@
                </div> 
             </article>
             <article class="Main-article">
-                <img src="assets/plataformas/Max/Acción/godzillaVsKong.webp" alt="poster pelicula Godzilla vs. Kong" title="poster pelicula kong vs godzilla" class="Main-img" loading="lazy">
+                <img src="assets/plataformas/Max/Accion/godzillaVsKong.webp" alt="poster pelicula Godzilla vs. Kong" title="poster pelicula kong vs godzilla" class="Main-img" loading="lazy">
                 <div class="Main-container">
                 <h3 class="Main-h3">Godzilla vs. Kong</h3>
                 <p class="Main-sinopsis">
@@ -119,7 +125,7 @@
                 </div>
             </article>
             <article class="Main-article">
-                <img src="assets/plataformas/netflix/Acción/dune.webp" alt="poster pelicula Dune" title="poster pelicula dune" class="Main-img" loading="lazy">
+                <img src="assets/plataformas/netflix/Accion/dune.webp" alt="poster pelicula Dune" title="poster pelicula dune" class="Main-img" loading="lazy">
                 <div class="Main-container">
                 <h3 class="Main-h3">Dune</h3>
                 <p class="Main-sinopsis">
@@ -133,7 +139,7 @@
                 </div>
             </article>
             <article class="Main-article">
-                <img src="assets/plataformas/prime/Acción/badBoys.webp" alt="poster pelicula Bad Boys for Life" title="poster pelicula bad boys for life" class="Main-img" loading="lazy">
+                <img src="assets/plataformas/prime/Accion/badBoys.webp" alt="poster pelicula Bad Boys for Life" title="poster pelicula bad boys for life" class="Main-img" loading="lazy">
                 <div class="Main-container">
                 <h3 class="Main-h3">Bad Boys for Life</h3>
                 <p class="Main-sinopsis">
@@ -170,7 +176,7 @@
             <div class="Footer-text">info@buscatupeli.com</div>        
           </div>
         </div>
-        <form class="Footer-form">
+        <form class="Footer-form" action="send" method="POST">
             <label class="Footer-label" for="email"></label>
             <input class="Footer-input" id="email" type="email" class="Footer-input" placeholder="Suscríbete" required>
             <button class="Footer-button" type="submit" title="boton enviar correo para suscribirse"> 
