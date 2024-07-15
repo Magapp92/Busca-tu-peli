@@ -156,19 +156,23 @@
     background-color: rgba(0, 0, 0, 0.8);
     padding: 1rem;
     cursor: pointer;
-    border-radius: 30%;
+    border-radius: 20%;
 
-    position: relative;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
 }
 
 .Main-button--prev {
-    top: -22rem;
-    left: -1.8rem;
+    left: 2rem;
+    transform: translate(-50%, -50%); 
 }
 
 .Main-button--next {
-    top: -26rem;
-    right: -97%;
+    right: 2rem;
+    transform: translate(50%, -50%);
 }
 
 .Main-svgCarrousel {
@@ -361,8 +365,9 @@ la vista de la página */
 
 /*Hacemos el responsive para poder adaptar la web a los diferentes tamaños de dispositivos, modificamos padding en los casos de
 pantallas intermedias*/
-@media (max-width:1700px){
-    .Main-button--prev {
+
+/* @media (max-width:1700px){
+    /* .Main-button--prev {
         top: -17rem;
         left: -1.8rem;
     }
@@ -371,7 +376,7 @@ pantallas intermedias*/
         top: -21.5rem;
         right: -96%;
     }
-}
+}*/  
 
 @media (max-width: 1250px){
     .Main-bottom{
@@ -415,7 +420,7 @@ de margin, padding y tamaños de tipografías */
        padding: 0 3.125rem;
     }
 
-    .Main-button--prev {
+    /* .Main-button--prev {
         top: -18rem;
         left: -1.8rem;
     }
@@ -423,7 +428,7 @@ de margin, padding y tamaños de tipografías */
     .Main-button--next {
         top: -22.5rem;
         right: -96%;
-    }
+    } */
     
     .Main-container{
         display: grid;
@@ -491,7 +496,7 @@ positions y padding */
         padding: 0;
     }
 
-    .Main-button--prev {
+    /* .Main-button--prev {
         top: -15.5rem;
         left: -1.8rem;
     }
@@ -499,7 +504,7 @@ positions y padding */
     .Main-button--next {
         top: -20rem;
         right: -93%;
-    }
+    } */
 
     .Main-article, .Main-articlereverse{
         width: 100%;
@@ -525,11 +530,7 @@ positions y padding */
         top: calc(50% - .1rem);
     }
 
-    .Main-carrousel{
-        max-height: 50vh;
-    }
-
-    .Main-button--prev {
+    /* .Main-button--prev {
         top: -17rem;
         left: -1.8rem;
     }
@@ -537,15 +538,15 @@ positions y padding */
     .Main-button--next {
         top: -21.5rem;
         right: -90%;
-    }
+    } */
 
     .Main-wrapper{
         max-height: 50vh;
     }
 
     .Main-wrapperImg{
-        max-width: 70%;
-        height: 40vh;
+        max-width: 100%;
+        height: 30vh;
     }
 
     .Main-article, .Main-articleReverse{

@@ -89,7 +89,7 @@
      { title: 'Dune', url: 'peliculas.html?nombre=Dune'},
      { title: 'No Te Metas Con El Zohan', url: 'peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan'},
      { title: 'Ant-Man And The Wasp: Quantumania', url: 'peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania'},
-     { title: 'Godzilla Vs. Kong', url: 'peliculas.html?nombre=Godzilla%20vs.%20Kong'},
+     { title: 'Godzilla Vs. Kong', url: 'peliculas.html?nombre=Godzilla%20Vs.%20Kong'},
      { title: '¿Y Dónde Están Las Rubias?', url: 'peliculas.html?nombre=%C2%BFY%20D%C3%B3nde%20Est%C3%A1n%20Las%20Rubias?'},
      { title: '50 Primeras Citas', url: 'peliculas.html?nombre=50%20Primeras%20Citas'},
      { title: 'Society Of Snow', url: 'peliculas.html?nombre=Society%20Of%20Snow'},
