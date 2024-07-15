@@ -162,12 +162,12 @@
 }
 
 .Main-button--prev {
-    top: -20rem;
+    top: -17.5rem;
     left: -1.8rem;
 }
 
 .Main-button--next {
-    top: -25rem;
+    top: -22rem;
     right: -96%;
 }
 
@@ -377,11 +377,11 @@ pantallas intermedias*/
         padding: 0 3.125rem;
     }
     .Main-top{
-        padding: 5rem 0 1rem;;
+        padding: 4rem 0 1rem;;
     }
 
     .Main-message{
-        top: calc(50% - 8rem);
+        top: calc(50% - 3rem);
     }
 }
 
