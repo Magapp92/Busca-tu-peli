@@ -162,13 +162,13 @@
 }
 
 .Main-button--prev {
-    top: -17.5rem;
+    top: -22rem;
     left: -1.8rem;
 }
 
 .Main-button--next {
-    top: -22rem;
-    right: -96%;
+    top: -26rem;
+    right: -97%;
 }
 
 .Main-svgCarrousel {
@@ -361,6 +361,18 @@ la vista de la página */
 
 /*Hacemos el responsive para poder adaptar la web a los diferentes tamaños de dispositivos, modificamos padding en los casos de
 pantallas intermedias*/
+@media (max-width:1700px){
+    .Main-button--prev {
+        top: -17rem;
+        left: -1.8rem;
+    }
+    
+    .Main-button--next {
+        top: -21.5rem;
+        right: -96%;
+    }
+}
+
 @media (max-width: 1250px){
     .Main-bottom{
         padding: 0 6.25rem;
@@ -479,6 +491,16 @@ positions y padding */
         padding: 0;
     }
 
+    .Main-button--prev {
+        top: -15.5rem;
+        left: -1.8rem;
+    }
+    
+    .Main-button--next {
+        top: -20rem;
+        right: -93%;
+    }
+
     .Main-article, .Main-articlereverse{
         width: 100%;
     }
@@ -505,6 +527,16 @@ positions y padding */
 
     .Main-carrousel{
         max-height: 50vh;
+    }
+
+    .Main-button--prev {
+        top: -17rem;
+        left: -1.8rem;
+    }
+    
+    .Main-button--next {
+        top: -21.5rem;
+        right: -90%;
     }
 
     .Main-wrapper{
