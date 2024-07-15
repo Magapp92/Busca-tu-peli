@@ -51,7 +51,8 @@ const gapWidth = 6
 const getSlidesToShow = () => {
   const windowWidth = window.innerWidth
   if (windowWidth >= 2200) return 7
-  if (windowWidth >= 1500) return 5
+  if (windowWidth >= 1600) return 5
+  if (windowWidth >= 1500) return 4
   if (windowWidth >= 1100) return 3
   if (windowWidth >= 600) return 2
   return 1

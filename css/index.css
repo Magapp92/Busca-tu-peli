@@ -138,7 +138,7 @@
 
 /* Damos estilo a las imágenes del carrousel y un efecto de hover */
 .Main-wrapperImg {
-    width: calc(100% - .625rem);
+    width:100%;
     
     border: var(--border-imgs);
     opacity: 1;
@@ -560,10 +560,8 @@ positions y padding */
        margin:0 0 3.125rem;
     }
 
-
     .Main-carrousel{
         margin: 6rem auto 8rem;
-       
      }
 
     .Main-button--prev {
@@ -573,7 +571,7 @@ positions y padding */
     
     .Main-button--next {
         right: 2rem;
-        transform: translate(9%, -50%);
+        transform: translate(35%, -50%);
     }
     
     .Main-svgCarrousel {
