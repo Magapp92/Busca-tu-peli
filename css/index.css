@@ -414,7 +414,7 @@ de margin, padding y tamaños de tipografías */
         grid-template-columns: repeat(2 , 1fr);
 
         padding: 2.5rem 1.875rem 2rem;
-        margin: 6.25rem 3rem 8rem;
+        margin: 6.25rem auto 8rem;
     }
 
     .Main-content , .Main-contentReverse{
@@ -492,6 +492,13 @@ positions y padding */
         margin: 0;
     }
 
+    .Main-message{
+        font-size: 120%;
+        min-height: 4rem;
+        border-radius: 1.2rem;
+        top: calc(50% - .1rem);
+    }
+
     .Main-carrousel{
         max-height: 50vh;
     }
@@ -519,11 +526,12 @@ positions y padding */
     .Main-top{
         padding: 8.6rem 0 2rem;
     }
+    
     .Main-message{
-        font-size: 115%;
-        top: calc(50% - -.5rem);
-        min-height: 6rem;
-        border-radius: 2rem;
+        font-size: 3.5vw;
+        min-height: 3rem;
+        border-radius: 1rem;
+        top: calc(50% - .2rem);
     }
 
     .Main-p{
