@@ -377,7 +377,11 @@ pantallas intermedias*/
         padding: 0 3.125rem;
     }
     .Main-top{
-        padding: 7rem 0 1rem;;
+        padding: 5rem 0 1rem;;
+    }
+
+    .Main-message{
+        top: calc(50% - 8rem);
     }
 }
 
