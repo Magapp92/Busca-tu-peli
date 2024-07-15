@@ -389,11 +389,11 @@ pantallas intermedias*/
         padding: 0 3.125rem;
     }
     .Main-top{
-        padding: 3rem 0 1rem;;
+        padding: 3.5rem 0 1rem;;
     }
 
     .Main-message{
-        top: calc(50% - 2rem);
+        top: calc(50% - 3rem);
     }
 }
 
