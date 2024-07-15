@@ -393,7 +393,7 @@ pantallas intermedias*/
     }
 
     .Main-message{
-        top: calc(50% - 3rem);
+        top: calc(50% - 5rem);
     }
 }
 
