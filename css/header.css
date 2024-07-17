@@ -107,11 +107,11 @@ fixed para que no se desplace con el scroll y un z-index para que quede por enci
 
     transition: transform 1s ease, border .2s ease;
 }
-.Header-icon:hover{
+.Header-icon:hover {
     border: 2px solid white;
-    transition: scale (0.6);
-    padding: 0 .125rem 0 0;
-    
+    transition: transform 0.6s;
+    padding: 0 0.125rem 0 0;
+    transform: scale(1.1); 
 }
 
 .Header-icon--close{
