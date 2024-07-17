@@ -65,19 +65,19 @@ button{
 
 @font-face {
     font-family: "logo";
-    src: url(../css/tipografia/PermanentMarkerRegular.ttf);
+    src: url(../css/tipografia/PermanentMarkerRegular.woff2);
     font-display: swap;
 }
 
 @font-face {
     font-family: "title";
-    src: url(../css/tipografia/MontserratExtraBold.ttf);
+    src: url(../css/tipografia/MontserratExtraBold.woff2);
     font-display: swap;
 }
 
 @font-face {
     font-family: "text";
-    src: url(../css/tipografia/MontserratMedium.ttf);
+    src: url(../css/tipografia/MontserratMedium.woff2);
     font-display: swap;
 }
 
