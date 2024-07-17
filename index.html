@@ -102,58 +102,163 @@
         <p class="Main-p">
             Estas son las películas más buscadas en nuestra plataforma
         </p>
-        <!-- El carrousel contiene 10 imágenes contenidas en un div que contiene a la vez un wrapper con las imágenes, lo agrupamos así por motivos de estilo en el CSS.
-         Las imágenes que se repiten son debido a que son necesarias a nivel de JS para crear una ilusión de carrousel infinito  -->
-        <div class="Main-carrousel">
-            <div class="Main-innerCarrousel">
-                <div class="Main-wrapper">
-                    <a href="peliculas.html?nombre=50%20Primeras%20Citas"  class="Main-aWrapper" title="Ir a pelicula 50 primeras citas">
-                    <img class="Main-wrapperImg" title="poster pelicula 50 primeras citas"  src="assets/populares/50PrimerasCitas.webp" alt="Image 1" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=Expediente%20Warren"  class="Main-aWrapper" title="Ir a pelicula expediente warren">
-                    <img class="Main-wrapperImg" title="poster pelicula expediente warren" src="assets/populares/ExpedienteWarren.webp" alt="Image 2" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=Pearl%20Harbor"  class="Main-aWrapper" title="Ir a pelicula pearl harbor">
-                    <img class="Main-wrapperImg" title="poster pelicula pearl harbor" src="assets/populares/pearlHarbor.webp" alt="Image 3" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=Hombres%20De%20Honor"  class="Main-aWrapper" title="Ir a pelicula Hombres de Honor">
-                    <img class="Main-wrapperImg" title="poster pelicula Hombres de Honor" src="assets/populares/HombresDeHonor.webp" alt="Image 4" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=%C2%A1S%C3%AD%20Se%C3%B1or!"  class="Main-aWrapper" title="Ir a pelicula Si Señor">
-                    <img class="Main-wrapperImg" title="poster pelicula Si Señor" src="assets/populares/SiSenor.webp" alt="Image 5" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=La%20Monja"  class="Main-aWrapper" title="Ir a pelicula La Monja">
-                    <img class="Main-wrapperImg" title="poster pelicula La Monja" src="assets/populares/LaMonja.webp" alt="Image 6" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=Dune"  class="Main-aWrapper" title="Ir a pelicula Dune">
-                    <img class="Main-wrapperImg" title="poster pelicula Dune" src="assets/populares/dune.webp" alt="Image 7" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=Bad%20Boys%20for%20Life"  class="Main-aWrapper" title="Ir a pelicula Bad Boys For Life">
-                    <img class="Main-wrapperImg" title="poster pelicula Bad Boys For Life" src="assets/populares/badBoys.webp" alt="Image 8" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan"  class="Main-aWrapper" title="Ir a pelicula No te metas con el Zohan">
-                    <img class="Main-wrapperImg" title="poster pelicula No te metas con el Zohan" src="assets/populares/zohan.webp" alt="Image 9" width="300" height="200">
-                    </a>
-                    <a href="peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania"  class="Main-aWrapper" title="Ir a pelicula Antman Quantumania">
-                    <img class="Main-wrapperImg" title="poster pelicula Antman Quantumania" src="assets/populares/antmanQuantumania.webp" alt="Image 10" width="300" height="200"666>
-                    </a>
-                    <a href="peliculas.html?nombre=Smile"  class="Main-aWrapper" title="Ir a pelicula Smile">
-                    <img class="Main-wrapperImg" title="poster pelicula Smile" src="assets/populares/Smile.webp" alt="Image 11">
-                    </a>
-                </div>
-            </div>
-             <!-- Estos botones son los que se encargan de dar el movimiento del carrousel mediante funciones en JS, contienen cada uno un svg vinculado a unas
-                funciones específicas -->
-            <button class="Main-button Main-button--prev" title="boton pelicula anterior">
+        <!-- El carrousel para pantallas grandes y tablets se compone de 3 contenedoras de 6 imágenes cada una, caga imágen se encuentra dentro
+         de un <a> para que sean clicables   -->
+         <div class="Main-carruselContainer">
+            <button class="Main-button Main-button--prev" title="boton pelicula anterior" style="display: none;">
                 <svg class="Main-svgCarrousel" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#left-arrow" />
                 </svg>
             </button>
+            <div class="Main-carrousel">
+                <div class="Main-innerCarrousel">
+                    <div class="Main-wrapper">
+                        <!-- Contenedor 1 agrupamos las imágenes de 6 en 6 en 3 contenedores para desplazarlos en grupo -->
+                        <div class="Main-block">
+                            <a href="peliculas.html?nombre=50%20Primeras%20Citas" class="Main-aWrapper" title="Ir a pelicula 50 primeras citas">
+                                <img class="Main-wrapperImg" title="poster pelicula 50 primeras citas" src="assets/populares/50PrimerasCitas.webp" alt="Image 1">
+                            </a>
+                            <a href="peliculas.html?nombre=Expediente%20Warren" class="Main-aWrapper" title="Ir a pelicula expediente warren">
+                                <img class="Main-wrapperImg" title="poster pelicula expediente warren" src="assets/populares/ExpedienteWarren.webp" alt="Image 2">
+                            </a>
+                            <a href="peliculas.html?nombre=Pearl%20Harbor" class="Main-aWrapper" title="Ir a pelicula pearl harbor">
+                                <img class="Main-wrapperImg" title="poster pelicula pearl harbor" src="assets/populares/pearlHarbor.webp" alt="Image 3">
+                            </a>
+                            <a href="peliculas.html?nombre=Hombres%20De%20Honor" class="Main-aWrapper" title="Ir a pelicula Hombres de Honor">
+                                <img class="Main-wrapperImg" title="poster pelicula Hombres de Honor" src="assets/populares/HombresDeHonor.webp" alt="Image 4">
+                            </a>
+                            <a href="peliculas.html?nombre=%C2%A1S%C3%AD%20Se%C3%B1or!" class="Main-aWrapper" title="Ir a pelicula Si Señor">
+                                <img class="Main-wrapperImg" title="poster pelicula Si Señor" src="assets/populares/SiSenor.webp" alt="Image 5">
+                            </a>
+                            <a href="peliculas.html?nombre=50%20Primeras%20Citas" class="Main-aWrapper" title="Ir a pelicula 50 primeras citas">
+                                <img class="Main-wrapperImg" title="poster pelicula 50 primeras citas" src="assets\plataformas\Max\Drama\AmericanHistoryX.webp" alt="Image 1">
+                            </a>
+                            <a href="peliculas.html?nombre=Expediente%20Warren" class="Main-aWrapper" title="Ir a pelicula expediente warren">
+                                <img class="Main-wrapperImg" title="poster pelicula expediente warren" src="assets\plataformas\Max\Romance\CrazyStupidLove.webp" alt="Image 2">
+                            </a>
+                        </div>
+                        <!-- Contenedor 2 -->
+                        <div class="Main-block">
+                            <a href="peliculas.html?nombre=La%20Monja" class="Main-aWrapper" title="Ir a pelicula La Monja">
+                                <img class="Main-wrapperImg" title="poster pelicula La Monja" src="assets/populares/LaMonja.webp" alt="Image 6">
+                            </a>
+                            <a href="peliculas.html?nombre=Dune" class="Main-aWrapper" title="Ir a pelicula Dune">
+                                <img class="Main-wrapperImg" title="poster pelicula Dune" src="assets/populares/dune.webp" alt="Image 7">
+                            </a>
+                            <a href="peliculas.html?nombre=Bad%20Boys%20for%20Life" class="Main-aWrapper" title="Ir a pelicula Bad Boys For Life">
+                                <img class="Main-wrapperImg" title="poster pelicula Bad Boys For Life" src="assets/populares/badBoys.webp" alt="Image 8">
+                            </a>
+                            <a href="peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan" class="Main-aWrapper" title="Ir a pelicula No te metas con el Zohan">
+                                <img class="Main-wrapperImg" title="poster pelicula No te metas con el Zohan" src="assets/populares/zohan.webp" alt="Image 9">
+                            </a>
+                            <a href="peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania" class="Main-aWrapper" title="Ir a pelicula Antman Quantumania">
+                                <img class="Main-wrapperImg" title="poster pelicula Antman Quantumania" src="assets/populares/antmanQuantumania.webp" alt="Image 10">
+                            </a>
+                            <a href="peliculas.html?nombre=50%20Primeras%20Citas" class="Main-aWrapper" title="Ir a pelicula 50 primeras citas">
+                                <img class="Main-wrapperImg" title="poster pelicula 50 primeras citas" src="assets\plataformas\Max\Drama\AmericanHistoryX.webp" alt="Image 1">
+                            </a>
+                            <a href="peliculas.html?nombre=Expediente%20Warren" class="Main-aWrapper" title="Ir a pelicula expediente warren">
+                                <img class="Main-wrapperImg" title="poster pelicula expediente warren" src="assets\plataformas\Max\Romance\CrazyStupidLove.webp" alt="Image 2">
+                            </a>
+                        </div>
+                        <!-- Contenedor 3 -->
+                        <div class="Main-block">
+                            <a href="peliculas.html?nombre=50%20Primeras%20Citas" class="Main-aWrapper" title="Ir a pelicula 50 primeras citas">
+                                <img class="Main-wrapperImg" title="poster pelicula 50 primeras citas" src="assets\plataformas\Max\Drama\AmericanHistoryX.webp" alt="Image 1">
+                            </a>
+                            <a href="peliculas.html?nombre=Expediente%20Warren" class="Main-aWrapper" title="Ir a pelicula expediente warren">
+                                <img class="Main-wrapperImg" title="poster pelicula expediente warren" src="assets\plataformas\Max\Romance\CrazyStupidLove.webp" alt="Image 2">
+                            </a>
+                            <a href="peliculas.html?nombre=Pearl%20Harbor" class="Main-aWrapper" title="Ir a pelicula pearl harbor">
+                                <img class="Main-wrapperImg" title="poster pelicula pearl harbor" src="assets/populares/pearlHarbor.webp" alt="Image 3">
+                            </a>
+                            <a href="peliculas.html?nombre=Hombres%20De%20Honor" class="Main-aWrapper" title="Ir a pelicula Hombres de Honor">
+                                <img class="Main-wrapperImg" title="poster pelicula Hombres de Honor" src="assets/populares/HombresDeHonor.webp" alt="Image 4">
+                            </a>
+                            <a href="peliculas.html?nombre=%C2%A1S%C3%AD%20Se%C3%B1or!" class="Main-aWrapper" title="Ir a pelicula Si Señor">
+                                <img class="Main-wrapperImg" title="poster pelicula Si Señor" src="assets/populares/SiSenor.webp" alt="Image 5">
+                            </a>
+                            <a href="peliculas.html?nombre=50%20Primeras%20Citas" class="Main-aWrapper" title="Ir a pelicula 50 primeras citas">
+                                <img class="Main-wrapperImg" title="poster pelicula 50 primeras citas" src="assets\plataformas\Max\Drama\AmericanHistoryX.webp" alt="Image 1">
+                            </a>
+                            <a href="peliculas.html?nombre=Expediente%20Warren" class="Main-aWrapper" title="Ir a pelicula expediente warren">
+                                <img class="Main-wrapperImg" title="poster pelicula expediente warren" src="assets\plataformas\Max\Romance\CrazyStupidLove.webp" alt="Image 2">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button class="Main-button Main-button--next" title="boton siguiente pelicula">
                 <svg class="Main-svgCarrousel" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#right-arrow" />
                 </svg>
-            </button>    
+            </button>
+        </div>
+        <!-- Creamos un carrusel para móvil con las 18 imágenes que irán pasando de 1 en 1 -->
+        <div class="Main-carruselMobile">
+            <button class="Main-button Main-button--mobilePrev" title="boton pelicula anterior">
+                <svg class="Main-svgMobile" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#left-arrow" />
+                </svg>
+            </button>
+            <div class="Main-mobileContainer">
+                <a href="peliculas.html?nombre=50%20Primeras%20Citas" class="Main-aMobile" title="Ir a pelicula 50 primeras citas">
+                    <img class="Main-mobileImg" title="poster pelicula 50 primeras citas" src="assets/plataformas/Max/Drama/AmericanHistoryX.webp" alt="Image 1">
+                </a>
+                <a href="peliculas.html?nombre=Expediente%20Warren" class="Main-aMobile" title="Ir a pelicula expediente warren">
+                    <img class="Main-mobileImg" title="poster pelicula expediente warren" src="assets/plataformas/Max/Romance/CrazyStupidLove.webp" alt="Image 2">
+                </a>
+                <a href="peliculas.html?nombre=Pearl%20Harbor" class="Main-aMobile" title="Ir a pelicula pearl harbor">
+                    <img class="Main-mobileImg" title="poster pelicula pearl harbor" src="assets/populares/pearlHarbor.webp" alt="Image 3">
+                </a>
+                <a href="peliculas.html?nombre=Hombres%20De%20Honor" class="Main-aMobile" title="Ir a pelicula Hombres de Honor">
+                    <img class="Main-mobileImg" title="poster pelicula Hombres de Honor" src="assets/populares/HombresDeHonor.webp" alt="Image 4">
+                </a>
+                <a href="peliculas.html?nombre=%C2%A1S%C3%AD%20Se%C3%B1or!" class="Main-aMobile" title="Ir a pelicula Si Señor">
+                    <img class="Main-mobileImg" title="poster pelicula Si Señor" src="assets/populares/SiSenor.webp" alt="Image 5">
+                </a>
+                <a href="peliculas.html?nombre=La%20Monja" class="Main-aMobile" title="Ir a pelicula La Monja">
+                    <img class="Main-mobileImg" title="poster pelicula La Monja" src="assets/populares/LaMonja.webp" alt="Image 6">
+                </a>
+                <a href="peliculas.html?nombre=Dune" class="Main-aMobile" title="Ir a pelicula Dune">
+                    <img class="Main-mobileImg" title="poster pelicula Dune" src="assets/populares/dune.webp" alt="Image 7">
+                </a>
+                <a href="peliculas.html?nombre=Bad%20Boys%20for%20Life" class="Main-aMobile" title="Ir a pelicula Bad Boys For Life">
+                    <img class="Main-mobileImg" title="poster pelicula Bad Boys For Life" src="assets/populares/badBoys.webp" alt="Image 8">
+                </a>
+                <a href="peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan" class="Main-aMobile" title="Ir a pelicula No te metas con el Zohan">
+                    <img class="Main-mobileImg" title="poster pelicula No te metas con el Zohan" src="assets/populares/zohan.webp" alt="Image 9">
+                </a>
+                <a href="peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania" class="Main-aMobile" title="Ir a pelicula Antman Quantumania">
+                    <img class="Main-mobileImg" title="poster pelicula Antman Quantumania" src="assets/populares/antmanQuantumania.webp" alt="Image 10">
+                </a>
+                <a href="peliculas.html?nombre=La%20Monja" class="Main-aMobile" title="Ir a pelicula La Monja">
+                    <img class="Main-mobileImg" title="poster pelicula La Monja" src="assets/populares/LaMonja.webp" alt="Image 11">
+                </a>
+                <a href="peliculas.html?nombre=Dune" class="Main-aMobile" title="Ir a pelicula Dune">
+                    <img class="Main-mobileImg" title="poster pelicula Dune" src="assets/populares/dune.webp" alt="Image 12">
+                </a>
+                <a href="peliculas.html?nombre=Bad%20Boys%20for%20Life" class="Main-aMobile" title="Ir a pelicula Bad Boys For Life">
+                    <img class="Main-mobileImg" title="poster pelicula Bad Boys For Life" src="assets/populares/badBoys.webp" alt="Image 13">
+                </a>
+                <a href="peliculas.html?nombre=No%20Te%20Metas%20Con%20El%20Zohan" class="Main-aMobile" title="Ir a pelicula No te metas con el Zohan">
+                    <img class="Main-mobileImg" title="poster pelicula No te metas con el Zohan" src="assets/populares/zohan.webp" alt="Image 14">
+                </a>
+                <a href="peliculas.html?nombre=Ant-Man%20And%20The%20Wasp:%20Quantumania" class="Main-aMobile" title="Ir a pelicula Antman Quantumania">
+                    <img class="Main-mobileImg" title="poster pelicula Antman Quantumania" src="assets/populares/antmanQuantumania.webp" alt="Image 15">
+                </a>
+                <a href="peliculas.html?nombre=50%20Primeras%20Citas" class="Main-aMobile" title="Ir a pelicula 50 primeras citas">
+                    <img class="Main-mobileImg" title="poster pelicula 50 primeras citas" src="assets\plataformas\Max\Drama\AmericanHistoryX.webp" alt="Image 16">
+                </a>
+                <a href="peliculas.html?nombre=Expediente%20Warren" class="Main-aMobile" title="Ir a pelicula expediente warren">
+                    <img class="Main-mobileImg" title="poster pelicula expediente warren" src="assets\plataformas\Max\Romance\CrazyStupidLove.webp" alt="Image 17">
+                </a>
+            </div>
+            <button class="Main-button Main-button--mobileNext" title="boton siguiente pelicula">
+                <svg class="Main-svgMobile" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#right-arrow" />
+                </svg>
+            </button> 
         </div>
     </section>
     <!-- En este article con su correspondiente h2 y texto p, agrupamos mediante imágenes englobadas en un a para que sean clicables, las películas añadidas

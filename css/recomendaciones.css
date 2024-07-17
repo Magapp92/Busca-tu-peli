@@ -62,7 +62,6 @@ cada parte del mismo, añadimos position relative para posteriormente colocar el
     font-size: 1em;
 
     margin: 1.5rem 0 .9375rem;
-    
 }
 
 /* Determinamos las propiedades de tamaño y espacios del input donde se rellenará el texto */
@@ -87,7 +86,7 @@ cada parte del mismo, añadimos position relative para posteriormente colocar el
     width: 100%;
     min-height: 5rem;
     border-radius: .5rem;
-    padding: 0 0 0 .625rem;
+    padding: .5rem 0 0 .625rem;
 }
 
 /* Damos tamaño y añadimos un position para colocar el botón submit */
@@ -131,6 +130,21 @@ cada parte del mismo, añadimos position relative para posteriormente colocar el
     .Main-formulario{
         padding: 4rem 0 6rem;
     }
+}
+
+@media (min-height: 1000px){
+    .Main-button{
+        top: 75%;
+    }
+
+    .Main-campo{
+        margin: 0 0 2rem;
+    }
+
+    .Main-textarea{
+        min-height: 7rem;
+    }
+    
 }
 
 /* Modificamos el tamaño del formulario, los padding y el tamaño y posición del botón para

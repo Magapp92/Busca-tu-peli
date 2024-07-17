@@ -4,12 +4,16 @@ const sliderImgs = document.querySelectorAll(`.Slider-img`)
 const mainSlider = document.querySelector(`.Main-slider`)
 const articles = document.querySelectorAll(`.Main-article, .Main-articleReverse`)
 const mainCarrousel = document.querySelector(`.Main-carrousel`)
-const innerCarrousel = mainCarrousel.querySelector(`.Main-innerCarrousel`)
-const mainWrapper = mainCarrousel.querySelector(`.Main-wrapper`)
-const wrapperImgs = Array.from(mainWrapper.children)
-const mainBtns = mainCarrousel.querySelectorAll(`.Main-button`)
-const buttonNext = document.querySelector(`.Main-button--next`)
-const buttonPrev = document.querySelector(`.Main-button--prev`)
+const prevButton = document.querySelector('.Main-button--prev')
+const nextButton = document.querySelector('.Main-button--next')
+const carouselInner = document.querySelector('.Main-wrapper')
+const blocks = document.querySelectorAll('.Main-block')
+const slider = document.querySelector('.Main-carruselMobile')
+const sliderContainer = slider.querySelector('.Main-mobileContainer')
+const mobileImgs = slider.querySelectorAll('.Main-mobileImg')
+const nextBtn = slider.querySelector('.Main-button--mobileNext')
+const prevBtn = slider.querySelector('.Main-button--mobilePrev')
+
 
 /*Slider .Main-top*/
 
@@ -40,84 +44,102 @@ let automatico
 
   automatico = setInterval(siguiente, 4000)
 
-})();
+})()
+
 
 /*Carrousel populares*/
 
-let currentIndex = 0
+  const totalBlocks = blocks.length
+  let currentBlock = 0
+  const blocksGap = 1
 
-const gapWidth = 6
-
-const getSlidesToShow = () => {
-  const windowWidth = window.innerWidth
-  if (windowWidth >= 2200) return 7
-  if (windowWidth >= 1600) return 5
-  if (windowWidth >= 1500) return 4
-  if (windowWidth >= 1100) return 3
-  if (windowWidth >= 600) return 2
-  return 1
-}
-
-const updateSlidePosition = () => {
-  const slideWidth = 300
-  const totalWidth = slideWidth + gapWidth
-  const slidesToShow = getSlidesToShow()
-  const maxTranslateX = totalWidth * (wrapperImgs.length - slidesToShow)
-  let translateX = currentIndex * totalWidth
-
-  if (translateX > maxTranslateX) {
-    translateX = maxTranslateX
+  /* Cálculo del tamaño por bloque y desplazamiento del carrusel */
+  function updateCarousel() {
+      const offset = -currentBlock * (100 + blocksGap)
+      carouselInner.style.transform = `translateX(${offset}%)`
+      
+      /* Se muestran u ocultan los botones según la posición */
+      prevButton.style.display = currentBlock === 0 ? 'none' : 'block'
+      nextButton.style.display = currentBlock === totalBlocks - 1 ? 'none' : 'block'
   }
 
-  innerCarrousel.style.transform = `translateX(-${translateX}px)`
-}
+  function updateBlocks() {
+      const width = window.innerWidth
+      let itemsPerBlock
+      
+    if (width >= 2200) {
+          itemsPerBlock = 7
+      } else if (width >= 1900) {
+        itemsPerBlock = 6
+      }else if (width >= 1500) {
+          itemsPerBlock = 5
+      } else if (width >= 930) {
+          itemsPerBlock = 4
+      } else if (width >= 600) {
+          itemsPerBlock = 3
+      } else {
+          itemsPerBlock = 1
+      }
 
-const checkButtons = () => {
-  const slidesToShow = getSlidesToShow()
-  if (buttonPrev) buttonPrev.style.display = currentIndex === 0 ? 'none' : 'block'
-  if (buttonNext) buttonNext.style.display = currentIndex >= wrapperImgs.length - slidesToShow ? 'none' : 'block'
-}
-
-const nextSlide = () => {
-  const slidesToShow = getSlidesToShow()
-  if (currentIndex < wrapperImgs.length - slidesToShow) {
-    currentIndex++
-    updateSlidePosition()
-    checkButtons()
+      blocks.forEach(block => {
+          const images = Array.from(block.children)
+          images.forEach(img => img.style.display = 'none')
+          images.slice(0, itemsPerBlock).forEach(img => img.style.display = 'block')
+      })
   }
-}
-
-const prevSlide = () => {
-  if (currentIndex > 0) {
-    currentIndex--
-    updateSlidePosition()
-    checkButtons()
-  }
-}
-
-buttonNext.addEventListener('click', nextSlide)
-buttonPrev.addEventListener('click', prevSlide)
-
-const adjustSlideWidth = () => {
-  const slidesToShow = getSlidesToShow()
-  const slideWidth = 300
-  const totalWidth = slideWidth + gapWidth
-  const totalVisibleWidth = totalWidth * slidesToShow
-  mainCarrousel.style.width = `${totalVisibleWidth}px`
-  wrapperImgs.forEach(slide => {
-    slide.style.width = `${slideWidth}px`
-    slide.style.marginRight = `${gapWidth}px`
+ /* Se crea el movimiento del carrusel con el click */
+  nextButton.addEventListener('click', function() {
+      if (currentBlock < totalBlocks - 1) {
+          currentBlock++
+          updateCarousel()
+      }
   })
-  innerCarrousel.style.width = `${totalWidth * wrapperImgs.length}px`
-  updateSlidePosition()
-  checkButtons()
+
+  prevButton.addEventListener('click', function() {
+      if (currentBlock > 0) {
+          currentBlock--
+          updateCarousel()
+      }
+  })
+
+  window.addEventListener('resize', function() {
+      updateBlocks()
+      updateCarousel()
+  })
+
+  updateBlocks()
+  updateCarousel()
+
+
+// /* Creamos otro JS que maneja el carrusel de móvil que solo aparece en tamaños de pantalla =< a 600px */
+/*Carrusel Modo Mobile*/
+let index = 0
+
+const updateSliderPosition = () => {
+    sliderContainer.style.transform = `translateX(-${index * 100}%)`
+    
+    prevBtn.style.display = index === 0 ? 'none' : 'block'
+    nextBtn.style.display = index === mobileImgs.length - 1 ? 'none' : 'block'
 }
+/* IFE que agrupa las funciones de movimiento de botones carrusel en móvil */
+(() => {
+nextBtn.addEventListener('click', () => {
+    if (index < mobileImgs.length - 1) {
+        index++
+        updateSliderPosition()
+    }
+})
 
-window.addEventListener('resize', adjustSlideWidth)
-adjustSlideWidth()
-checkButtons()
+prevBtn.addEventListener('click', () => {
+    if (index > 0) {
+        index--
+        updateSliderPosition()
+    }
+})
 
+updateSliderPosition()
 
+})()
 
 
  /*Noticias*/

@@ -78,10 +78,10 @@ todo de la misma sección */
     gap: 1.25rem;
 
     margin: 0 0 2.5rem;
-    transition: scale 2s ease;
+    transition: transform 1s ease;
 }
 
-.Main-plataformas img:hover {
+.Main-plataformas:hover {
     transform: scale(1.2);
 }
 

@@ -61,6 +61,9 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between; 
+    align-items: center;
+    margin: 0 0 3.125rem;
+    
     transform: translateX(0%);
 }
 .Main-slider.withTransition{
@@ -94,47 +97,62 @@
 }
 
 /* Damos estilo a la etiqueta externa del carrousel que contiene al carrousel en sí y a las imágenes */
+.Main-carruselContainer {
+    width: 90%;
+    
+    position: relative;
+    max-width: 156.25rem;
+    margin: 0 auto;
+}
+
 .Main-carrousel{
     width: 100%;
 
     border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
     border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
     border-radius: 5%;
-    padding: 1.875rem 3.125rem;
+    padding: 1.5rem 0 1.5rem;
+    margin: 0 0 6.25rem;
     
-    position: relative;
-    margin: 0 auto;
     overflow: hidden;
 }
 
 /* Colocamos con flex a las imágenes dentro del carrousel */
 .Main-innerCarrousel{
-    width:100%;
+    width: 100%;
     
     display:flex;
     flex-flow: row nowrap;
     justify-content: center;
-    margin: 2rem auto;
+    align-items: center;
+    margin: 0 .625rem 0 .3125rem;
    
     transition: transform 0.5s ease-in-out;
 }
 
-.Main-innerCarrousel.withTransition {
-    transition: transform 0.5s ease;
-}
-
 /* Colocamos con flex a las imágenes dentro del wrapper */
 .Main-wrapper{
-    width: 100%;
+    width: 300%;
 
     display: flex;
     flex-flow: row nowrap;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
+    gap: .9375rem;
     
-    transition: transform 0.5s ease-in-out;
-    gap: .625rem;
+    transition: transform 1s ease-in-out;
+    
 }
+
+.Main-block {
+    display: flex;
+    flex-flow: row nowrap;  
+    justify-content: center; 
+    align-items: center;
+    gap: 1rem;
+    flex: 0 0 100%;
+}
+
 
 /* Damos estilo a las imágenes del carrousel y un efecto de hover */
 .Main-wrapperImg {
@@ -143,7 +161,7 @@
     border: var(--border-imgs);
     opacity: 1;
     transition: transform 0.5s ease, opacity 0.5s ease, scale 0.5s ease, translate 1s ease;
-    object-fit: cover;
+    object-fit: contain;
 
 }
 .Main-wrapperImg:hover{
@@ -156,28 +174,81 @@
     background-color: rgba(0, 0, 0, 0.8);
     padding: 1rem;
     cursor: pointer;
-    border-radius: 20%;
+    border-radius: 30%;
 
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 40%;
     z-index: 1;
-
 }
 
 .Main-button--prev {
-    left: 2rem;
-    transform: translate(-50%, -50%); 
+    left: -3.2rem; 
 }
 
 .Main-button--next {
-    right: 2rem;
-    transform: translate(50%, -50%);
+    right: -3.8rem; 
+}
+.Main-svgCarrousel {
+    width: 2rem;
+    min-height: 2rem;
 }
 
-.Main-svgCarrousel {
-    width: 2.5rem;
-    min-height: 2.5rem;
+/* Carrusel para móvil */
+ /* Creamos un carrusel para móvil para facilitar el responsive, volvemos a dar estilo a las nuevas clases */
+.Main-carruselMobile {
+    width: 100%;
+    max-width: 18.75rem;
+    
+    margin: 0 auto 8rem;
+    border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    padding: 1.5rem 0 1.5rem;
+   
+    position: relative;
+    overflow: hidden;
+    display: none;
+    padding: .625rem;
+}
+
+.Main-mobileContainer {
+    width: 100%; 
+    
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    
+    transition: transform 1s ease;
+   
+}
+
+.Main-aMobile {
+    display: flex;
+    flex-flow: row nowrap;  
+    justify-content: flex-start; 
+    align-items: center;
+    
+    flex: 0 0 100%; 
+    padding:  1.875rem 1.2rem 1.875rem 2rem; 
+    box-sizing: border-box; 
+}
+
+.Main-mobileImg {
+    width: 100%;
+    object-fit: contain;
+}
+
+.Main-button---mobilePrev {
+    left: 0; 
+}
+
+.Main-button--mobileNext {
+    right: 0; 
+}
+
+.Main-svgMobile {
+    width: 1.5rem;
+    min-height: 1.5rem;
 }
 
 
@@ -193,7 +264,7 @@ colocamos las imágenes que contiene .Main-container con grid */
 
 .Main-container{
     width: 90%;
-    min-height: 40vh;
+
     background-color: var(--bg-section-color);
     box-shadow: .3125rem .3125rem 1.875rem 1.25rem rgba(45, 45, 45, 0.636);
     border-radius: 5%;
@@ -202,7 +273,7 @@ colocamos las imágenes que contiene .Main-container con grid */
     grid-template-columns: repeat(4 , 1fr);
     gap: 1.875rem;
 
-    margin: 0 auto 3.125rem;
+    margin: 0 auto 6.25rem;
     padding: 3.125rem 1.875rem;
 }
 
@@ -365,16 +436,71 @@ la vista de la página */
 
 /*Hacemos el responsive para poder adaptar la web a los diferentes tamaños de dispositivos, modificamos padding en los casos de
 pantallas intermedias*/
+@media (min-width: 2500px){
+    .Main-carrousel{
+        border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
+        border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
+        border-radius: 5%;
+        padding: 1.5rem 0 1.5rem;
+        margin: 0 0 6.25rem;
+        
+        overflow: hidden;
+    }
 
+    .Carrusel-Container {
+        width: 90%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Main-button {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 1rem;
+        cursor: pointer;
+        border-radius: 30%;
+    
+        position: absolute;
+        top: 40%;
+        z-index: 1;
+    }
+    
+    .Main-button--prev {
+        left: -1rem; 
+    }
+    
+    .Main-button--next {
+        right: -1rem; 
+    }
+
+    .Main-svgCarrousel {
+        width: 4rem;
+        min-height: 4rem;
+    }
+}
 
 @media (max-width: 1250px){
     .Main-bottom{
         padding: 0 6.25rem;
     }
+
     .Main-message{
         font-size: 250%;
         min-height: 10rem;
         top: calc(50% - 7rem);
+    }
+
+    .Main-carrousel{
+        left: 2rem;
+    }
+
+    .Main-button--prev {
+        left: -2.8rem; 
+    }
+    
+    .Main-button--next {
+        right: -3.8rem; 
     }
 }
 
@@ -388,6 +514,14 @@ pantallas intermedias*/
 
     .Main-message{
         top: calc(50% - 6rem);
+    }
+
+    .Main-button--prev {
+        left: -3.3rem; 
+    }
+    
+    .Main-button--next {
+        right: -4rem; 
     }
 }
 
@@ -405,11 +539,17 @@ de margin, padding y tamaños de tipografías */
     }
 
     .Main-carrousel{
-       margin: 6.25rem 0 0;
-       padding: 0 3.125rem;
+       margin: 0 0 8rem;
     }
 
-    
+    .Main-button--prev{
+        left: -2rem;
+    }
+
+    .Main-button--next{
+        right: -3rem;
+    }
+
     .Main-container{
         display: grid;
         grid-template-columns: repeat(2 , 1fr);
@@ -465,15 +605,22 @@ de margin, padding y tamaños de tipografías */
 positions y padding */
 @media (max-width: 750px){
     .Main-message{
+        min-height: 8rem;
         top: calc(50% - 1.5rem);
-        
         font-size: 3.5vw;
         padding: 0 2rem;
-        min-height: 8rem;
     }
 
     .Main-carrousel{
-        padding: 0;
+        margin: 0 auto 8rem;
+    }
+    
+    .Main-button--prev{
+        left: -2.5rem;
+    }
+
+    .Main-button--next{
+        right: -3.5rem;
     }
 
     .Main-article, .Main-articlereverse{
@@ -486,7 +633,8 @@ positions y padding */
 }
 
 
-/* Para móviles hacemos modificaciones principalmente de position, tipografías, margins y padding */
+/* Para móviles hacemos modificaciones principalmente de position, tipografías, margins y padding, también ponemos en display none
+el carrusel grande y hacemos visible el carrusel responsive de móvil */
 @media (max-width: 600px){
     .Main-h2{
         font-size: 140%;
@@ -499,14 +647,13 @@ positions y padding */
         border-radius: 1.2rem;
         top: calc(50% - .1rem);
     }
-
-    .Main-wrapper{
-        max-height: 50vh;
+    
+    .Main-carruselContainer{
+        display: none;
     }
-
-    .Main-wrapperImg{
-        max-width: 100%;
-        height: 55vh;
+    
+    .Main-carruselMobile {
+        display: flex;
     }
 
     .Main-article, .Main-articleReverse{
@@ -558,25 +705,6 @@ positions y padding */
     }
     .Main-p{
        margin:0 0 3.125rem;
-    }
-
-    .Main-carrousel{
-        margin: 6rem auto 8rem;
-     }
-
-    .Main-button--prev {
-        left: 2rem;
-        transform: translate(-50%, -50%); 
-    }
-    
-    .Main-button--next {
-        right: 2rem;
-        transform: translate(35%, -50%);
-    }
-    
-    .Main-svgCarrousel {
-        width: 1.5rem;
-        min-height: 1.5rem;
     }
 }
 
