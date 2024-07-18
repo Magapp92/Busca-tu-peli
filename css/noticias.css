@@ -136,8 +136,8 @@ caso concreto si queremos un list-style */
         padding: 0;
     }
 
-    .Main-h3{
-       text-align: center;
+    .Main-p{
+        padding: 0 0 0 1rem;
     }
 
     .Main-img{

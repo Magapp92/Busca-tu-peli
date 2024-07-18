@@ -2,17 +2,28 @@
 
 const sliderImgs = document.querySelectorAll(`.Slider-img`)
 const mainSlider = document.querySelector(`.Main-slider`)
+
 const articles = document.querySelectorAll(`.Main-article, .Main-articleReverse`)
+
 const mainCarrousel = document.querySelector(`.Main-carrousel`)
 const prevButton = document.querySelector('.Main-button--prev')
 const nextButton = document.querySelector('.Main-button--next')
 const carouselInner = document.querySelector('.Main-wrapper')
 const blocks = document.querySelectorAll('.Main-block')
+
+const tabletPrev = document.querySelector('.Main-button--tabletPrev')
+const tabletNext = document.querySelector('.Main-button--tabletNext')
+const tabletWrapper = document.querySelector('.Main-tabletWrapper')
+const tabletBlocks = document.querySelectorAll('.Main-blockTablet')
+
+
 const slider = document.querySelector('.Main-carruselMobile')
 const sliderContainer = slider.querySelector('.Main-mobileContainer')
 const mobileImgs = slider.querySelectorAll('.Main-mobileImg')
 const nextBtn = slider.querySelector('.Main-button--mobileNext')
 const prevBtn = slider.querySelector('.Main-button--mobilePrev')
+
+
 
 
 /*Slider .Main-top*/
@@ -51,7 +62,7 @@ let automatico
 
   const totalBlocks = blocks.length
   let currentBlock = 0
-  const blocksGap = 1
+  const blocksGap = 1.75
 
   /* Cálculo del tamaño por bloque y desplazamiento del carrusel */
   function updateCarousel() {
@@ -72,11 +83,11 @@ let automatico
       } else if (width >= 1900) {
         itemsPerBlock = 6
       }else if (width >= 1500) {
-          itemsPerBlock = 5
+          itemsPerBlock = 6
       } else if (width >= 930) {
-          itemsPerBlock = 4
+          itemsPerBlock = 5
       } else if (width >= 600) {
-          itemsPerBlock = 3
+          itemsPerBlock = 4
       } else {
           itemsPerBlock = 1
       }
@@ -110,8 +121,40 @@ let automatico
   updateBlocks()
   updateCarousel()
 
+/* Creamos un JS que maneja el carrusel de tablet, aparace en tamaños entre 930px y 600px */
+/* Carrusel Modo Tablet */
+let tabletCarruselBlock = 0
 
-// /* Creamos otro JS que maneja el carrusel de móvil que solo aparece en tamaños de pantalla =< a 600px */
+const tabletTotalBlocks = tabletBlocks.length
+const tabletGap = 1.2
+
+function updateTabletCarrusel () {
+    const offset = -tabletCarruselBlock * (100 + tabletGap)
+    tabletWrapper.style.transform = `translateX(${offset}%)`
+
+    tabletPrev.style.display = tabletCarruselBlock === 0 ? 'none' : 'block'
+    tabletNext.style.display = tabletCarruselBlock === tabletTotalBlocks - 1 ? 'none' : 'block'
+}
+
+tabletNext.addEventListener('click', function() {
+    if (tabletCarruselBlock < tabletTotalBlocks - 1) {
+        tabletCarruselBlock++
+        updateTabletCarrusel()
+    }
+})
+
+tabletPrev.addEventListener('click', function() {
+    if (tabletCarruselBlock > 0) {
+        tabletCarruselBlock--
+        updateTabletCarrusel()
+    }
+})
+
+updateTabletCarrusel()
+
+
+
+/* Creamos otro JS que maneja el carrusel de móvil que solo aparece en tamaños de pantalla =< a 600px */
 /*Carrusel Modo Mobile*/
 let index = 0
 

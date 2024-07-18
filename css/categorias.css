@@ -122,11 +122,19 @@ un efecto de scale en hover */
 y algunas tablets */
 @media (max-width: 930px){
     .Main{
-        padding: 25rem 0 8rem;
+        padding: 25rem 0 5rem;
     }
 
     .Main-header{
         padding: 0 5rem;
+    }
+
+    .Main-section{
+        padding: 2rem;
+    }
+
+    .Main-p{
+        margin: 1.25rem 0 0;
     }
 
     .Main-article{
@@ -134,9 +142,9 @@ y algunas tablets */
         justify-content: center;
         align-items: center;
 
-        gap: 1.875rem;
-        margin: 12.5rem auto 9.375rem;
-        padding: 15.625rem 0 ;
+        gap: .5rem;
+        margin: 15rem auto 9.375rem;
+        padding: 15em 0 ;
     }
 
     .Main-sinopsis{
@@ -153,7 +161,7 @@ y algunas tablets */
 
     .Main-container{
         gap: 1.25rem;
-        padding: 0 0 1.875rem;
+        padding: 0 0 2.5em;
         border-bottom: 3px solid white;
     }
 }
@@ -175,11 +183,6 @@ y algunas tablets */
         padding: 20rem 0 4rem;
     }
 
-    .Main-img{
-        width: 12.5rem;
-        max-height: 18.75rem;
-    }
-
     .Main-header{
         padding: 0 3rem;
     }
@@ -198,7 +201,7 @@ y algunas tablets */
     }
     
     .Main-article{
-        margin: 8rem auto 9.375rem;
+        margin: 15rem auto 9.375rem;
     }
 }
 

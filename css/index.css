@@ -111,7 +111,7 @@
     border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
     border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
     border-radius: 5%;
-    padding: 1.5rem 0 1.5rem;
+    padding: 1.5rem 1rem;
     margin: 0 0 6.25rem;
     
     overflow: hidden;
@@ -149,7 +149,7 @@
     flex-flow: row nowrap;  
     justify-content: center; 
     align-items: center;
-    gap: 1rem;
+    gap: 1.4rem;
     flex: 0 0 100%;
 }
 
@@ -191,6 +191,49 @@
 .Main-svgCarrousel {
     width: 2rem;
     min-height: 2rem;
+}
+
+.Main-tabletContainer{
+    width: 90%;
+    
+    position: relative;
+    margin: 0 auto;
+
+    display: none;
+}
+
+.Main-tabletInner{
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 0 .625rem 0 .3125rem;
+
+    transition:  transform 0.5s ease-in-out;
+}
+
+.Main-tabletWrapper{
+    width: 600%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .9375rem;
+
+    transition:  transform 1s ease-in-out;
+}
+.Main-blockTablet{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 0 0 .2rem;
+    gap: 1rem;
+    flex: 0 0 100%;
 }
 
 /* Carrusel para móvil */
@@ -238,7 +281,7 @@
     object-fit: contain;
 }
 
-.Main-button---mobilePrev {
+.Main-button--mobilePrev {
     left: 0; 
 }
 
@@ -320,11 +363,7 @@ de aparecer y que quede por encima del texto que aparecerá pasando por detrás 
     border: var(--border-imgs);
 
     z-index: 2;
-    animation: appear 3s ease-in-out;
-}
-
-.Main-imgcontent.visible{
-animation: appear 3s forwards;
+    animation: appear 5s ease;
 }
 
 /* Damos estilo a la contenedora del texto con un display flex y creamos las clases .visible y .hidden
@@ -509,7 +548,7 @@ pantallas intermedias*/
         padding: 0 3.125rem;
     }
     .Main-top{
-        padding: 3.4rem 0 1rem;;
+        padding: .2rem 0 1rem;;
     }
 
     .Main-message{
@@ -538,16 +577,28 @@ de margin, padding y tamaños de tipografías */
         padding: 8.7rem 0 2rem;
     }
 
-    .Main-carrousel{
-       margin: 0 0 8rem;
+    .Main-carruselContainer{
+       display: none;
     }
 
-    .Main-button--prev{
-        left: -2rem;
+    .Main-carruselMobile{
+        display: none;
     }
 
-    .Main-button--next{
-        right: -3rem;
+    .Main-tabletContainer{
+        display: flex;
+    }
+
+    .Main-button{
+        top: 35%;
+    }
+
+    .Main-button--tabletPrev{
+        left: -2.3rem;
+    }
+
+    .Main-button--tabletNext{
+        right: -2.3rem;
     }
 
     .Main-container{
@@ -611,18 +662,6 @@ positions y padding */
         padding: 0 2rem;
     }
 
-    .Main-carrousel{
-        margin: 0 auto 8rem;
-    }
-    
-    .Main-button--prev{
-        left: -2.5rem;
-    }
-
-    .Main-button--next{
-        right: -3.5rem;
-    }
-
     .Main-article, .Main-articlereverse{
         width: 100%;
     }
@@ -649,6 +688,14 @@ el carrusel grande y hacemos visible el carrusel responsive de móvil */
     }
     
     .Main-carruselContainer{
+        display: none;
+    }
+
+    .Main-button{
+        top: 40%;
+    }
+
+    .Main-tabletContainer{
         display: none;
     }
     
@@ -694,15 +741,14 @@ el carrusel grande y hacemos visible el carrusel responsive de móvil */
 
 @media (max-width:450px){
     .Main-top{
-        padding: 7.4rem 0 2rem;
+        padding: 7.4rem 0 0;
+        margin: 0;
     }
 
     .Main-message{
-        top: calc(50% - .2rem);
-        font-size: 110%;
-        min-height: 5rem;
-        border-radius: 1.5rem;
+        display: none;
     }
+
     .Main-p{
        margin:0 0 3.125rem;
     }
