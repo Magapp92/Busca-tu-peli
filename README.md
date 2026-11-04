@@ -31,7 +31,25 @@ sobre `frontend/`, el front apunta solo a `http://localhost:3100/buscatupeli`.
    `npm run importar 50` para otra cantidad). Se puede repetir: no duplica y actualiza plataformas.
 3. Películas sueltas: `admin.html` → **Importar desde TMDB** → buscar → **Añadir**.
 
+## Publicación (buscatupeli.com · Netlify)
+
+`netlify.toml` publica `frontend/` y ejecuta la API como función (`api/functions/api.js`),
+accesible en la misma ruta `/buscatupeli`. Variables en Netlify → *Site configuration →
+Environment variables*:
+
+| Variable | Para qué |
+|---|---|
+| `MONGO_URI` | Conexión a MongoDB Atlas |
+| `ADMIN_KEY` | Clave del panel admin (obligatoria en producción) |
+| `TMDB_TOKEN` | Importar desde TMDB en el admin |
+
+Para subir los datos locales a Atlas: pon la cadena en `api/.env` → `MONGO_URI_ATLAS=...`
+y ejecuta `npm run copiar-a-atlas`.
+
 ## Endpoints (`/buscatupeli`)
+
+Lectura pública. Crear, editar, borrar, importar y leer recomendaciones exigen la cabecera
+`x-admin-key` con el valor de `ADMIN_KEY`.
 
 | Recurso | Método | Ruta |
 |---|---|---|
@@ -56,6 +74,4 @@ Todas responden `{ message, data }`. Ejemplos en [api/_data/buscatupeli.http](ap
 - `pelicula.html?id=` – ficha completa pedida a la API al clicar un póster
 - `noticias.html` – listado; al abrir una noticia se pide su cuerpo por id
 - `recomendaciones.html` – formulario que guarda sugerencias (POST)
-- `admin.html` – CRUD de películas, noticias y gestión de sugerencias
-
-> El panel de administración no tiene login: es un MVP para uso local.
+- `admin.html` – CRUD de películas, noticias, sugerencias e importación TMDB (pide la clave de admin)

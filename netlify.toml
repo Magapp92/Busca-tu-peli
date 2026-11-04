@@ -1,0 +1,19 @@
+# Despliegue en Netlify (buscatupeli.com)
+#  - El front se sirve tal cual desde frontend/
+#  - La API de Express corre como función (api/functions/api.js)
+#  - Variables en Netlify → Site configuration → Environment variables:
+#    MONGO_URI, ADMIN_KEY y TMDB_TOKEN
+
+[build]
+  publish = "frontend"
+  command = "npm ci --prefix api"
+
+[functions]
+  directory = "api/functions"
+
+# /buscatupeli/* → la función de la API (misma URL que en local)
+[[redirects]]
+  from = "/buscatupeli/*"
+  to = "/.netlify/functions/api/buscatupeli/:splat"
+  status = 200
+  force = true

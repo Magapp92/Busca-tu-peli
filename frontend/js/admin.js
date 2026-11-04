@@ -2,7 +2,7 @@
    Películas: GET, POST, PUT (editar), PATCH (destacada), DELETE
    Noticias: GET, GET por id (para editar el cuerpo), POST, PUT, DELETE
    Sugerencias: GET (filtro por estado), PATCH (estado), DELETE */
-import { api } from './api.js'
+import { api, claveAdmin } from './api.js'
 import { $, $$, esc, ICON, PLATAFORMAS, abrirModal, cerrarModal, toast, fechaLarga } from './ui.js'
 
 const estado = { peliculas: [], noticias: [], recomendaciones: [] }
@@ -398,6 +398,46 @@ document.addEventListener('change', async (e) => {
 $('[data-filtro-peliculas]').addEventListener('input', pintarPeliculas)
 $('[data-filtro-estado]').addEventListener('change', cargarRecomendaciones)
 
-cargarPeliculas()
-cargarNoticias()
-cargarRecomendaciones()
+/* ---------- Acceso con clave de administrador ---------- */
+const pedirClave = (mensaje = '') => {
+    $('main').innerHTML = `
+        <div class="page-head" style="max-width:440px;margin-inline:auto">
+            <h1 class="page-head__title" style="font-size:2rem">Administración</h1>
+            <p class="page-head__text">Introduce la clave de administrador para gestionar el catálogo.</p>
+            <form class="form form-card" style="margin-top:1.4rem" data-login novalidate>
+                <div class="field${mensaje ? ' has-error' : ''}">
+                    <label for="clave-admin">Clave</label>
+                    <input class="input" id="clave-admin" type="password" autocomplete="current-password" required>
+                    <span class="field__error" aria-live="polite">${esc(mensaje)}</span>
+                </div>
+                <button class="btn btn--primary" type="submit">Entrar</button>
+            </form>
+        </div>`
+    $('#clave-admin').focus()
+    $('[data-login]').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const clave = $('#clave-admin').value.trim()
+        if (!clave) return pedirClave('Escribe la clave')
+        try {
+            await api.admin.verificar(clave)
+            claveAdmin.guardar(clave)
+            location.reload()
+        } catch (error) {
+            pedirClave(error.status === 401 ? 'Clave incorrecta' : error.message)
+        }
+    })
+}
+
+const iniciar = async () => {
+    try {
+        await api.admin.verificar()
+    } catch (error) {
+        claveAdmin.borrar()
+        return pedirClave(error.status === 401 ? '' : error.message)
+    }
+    cargarPeliculas()
+    cargarNoticias()
+    cargarRecomendaciones()
+}
+
+iniciar()

@@ -7,7 +7,8 @@
     "start": "node index",
     "dev": "nodemon index",
     "seed": "node seed",
-    "importar": "node importar"
+    "importar": "node importar",
+    "copiar-a-atlas": "node copiar-a-atlas"
   },
   "license": "ISC",
   "type": "commonjs",
@@ -17,7 +18,8 @@
     "express": "^5.2.1",
     "helmet": "^8.2.0",
     "mongoose": "^9.7.1",
-    "morgan": "^1.11.0"
+    "morgan": "^1.11.0",
+    "serverless-http": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

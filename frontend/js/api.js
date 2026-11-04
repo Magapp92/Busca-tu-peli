@@ -1,12 +1,21 @@
 /* Cliente único de la API. La API responde siempre { message, data }:
    devolvemos data si va bien y lanzamos un Error con message si no */
 
-/* Si la web la sirve la propia API (puerto 3100) usamos ruta relativa;
-   con Live Server u otro puerto apuntamos a localhost:3100 */
-const BASE_URL = window.BUSCATUPELI_API
-    || (location.port === '3100' ? '/buscatupeli' : 'http://localhost:3100/buscatupeli')
+/* La API vive en el mismo dominio (/buscatupeli): en local la sirve Express y en
+   buscatupeli.com la función de Netlify. Solo con Live Server u otro servidor de
+   desarrollo apuntamos a localhost:3100 */
+const SERVIDOR_DEV = location.protocol === 'file:' || ['5500', '5501', '5173', '8080'].includes(location.port)
+const BASE_URL = window.BUSCATUPELI_API || (SERVIDOR_DEV ? 'http://localhost:3100/buscatupeli' : '/buscatupeli')
 
-export const apiFetch = async (path, { method = 'GET', body, query } = {}) => {
+/* Clave del panel admin: se guarda solo durante la sesión del navegador */
+const CLAVE = 'buscatupeli-admin'
+export const claveAdmin = {
+    leer: () => { try { return sessionStorage.getItem(CLAVE) || '' } catch { return '' } },
+    guardar: (v) => { try { sessionStorage.setItem(CLAVE, v) } catch { /* sin almacenamiento */ } },
+    borrar: () => { try { sessionStorage.removeItem(CLAVE) } catch { /* sin almacenamiento */ } }
+}
+
+export const apiFetch = async (path, { method = 'GET', body, query, clave } = {}) => {
     const url = new URL(BASE_URL + path, location.origin)
     if (query) {
         Object.entries(query).forEach(([k, v]) => {
@@ -16,9 +25,12 @@ export const apiFetch = async (path, { method = 'GET', body, query } = {}) => {
 
     let res
     try {
+        const headers = { 'Content-Type': 'application/json' }
+        const admin = clave ?? claveAdmin.leer()
+        if (admin) headers['x-admin-key'] = admin
         res = await fetch(url, {
             method,
-            headers: { 'Content-Type': 'application/json' },
+            headers,
             body: body ? JSON.stringify(body) : undefined
         })
     } catch {
@@ -54,6 +66,9 @@ export const api = {
         crear: (body) => apiFetch('/noticias', { method: 'POST', body }),
         reemplazar: (id, body) => apiFetch(`/noticias/${id}`, { method: 'PUT', body }),
         borrar: (id) => apiFetch(`/noticias/${id}`, { method: 'DELETE' })
+    },
+    admin: {
+        verificar: (clave) => apiFetch('/admin/verificar', { clave })
     },
     tmdb: {
         buscar: (q) => apiFetch('/tmdb/buscar', { query: { q } }),
