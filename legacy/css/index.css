@@ -1,0 +1,757 @@
+
+/* Main page */
+
+/* Añadimos propiedades de estilo al Main y un padding a .Main-botton para solventar el que el header sea fixed */
+.Main{
+    width: 100%;
+    background-color: var(--bg-color-primary);
+    padding: 10rem 0 0;
+    overflow: hidden;
+}
+
+.Main-bottom{
+    padding: 0 12.5rem;
+}
+
+
+/*Sección slider*/
+
+/* Damos propiedades al .Main-top y colocamos un overflow hidden para el slider */
+.Main-top{
+    width: 100%;
+    max-width: 180rem; 
+    
+    /* padding: 10.2rem 0 0 0; */
+    margin: 0 0 3.125rem;
+
+    overflow: hidden;
+    position: relative;
+}
+
+/* Damos estilo a .Main-message colocándolo con  position y dando z-index 2 para que se sitúe por encima del slider */
+.Main-message{
+    width: 80%;
+    min-height: 16rem;
+    background-color:var(--bg-main-color);
+    backdrop-filter: blur(.375rem);
+    border-radius: 2.5rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    
+    font-family: "title";
+    text-align: center;
+    color: var(--color-primary-text);
+    font-size: 4em;
+    text-shadow: 2px 3px 5px rgba(2, 2, 2, 0.541);
+
+    position: absolute;
+    top:calc(50% - 10rem);
+    left: 10%;
+    z-index: 2;
+
+}
+
+/* Damos estilo al slider y le añadimos la clase .withTransition para darle el efecto de translate en X */
+.Main-slider{
+    width: 600%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between; 
+    align-items: center;
+    margin: 0 0 3.125rem;
+    
+    transform: translateX(0%);
+}
+.Main-slider.withTransition{
+    transition: transform 1s ease;
+}
+
+/* Hacemos el cálculo del ancho que deben tener las imágenes para el slider y les damos un alto máximo */
+.Slider-img{
+    width:calc( 100% / 6 );
+    object-fit: cover;
+}
+
+
+/*Sección carrousel*/
+
+/* Damos estilo al título h2 y texto p de la sección de carrousel */
+.Main-h2{
+    font-family: "title";
+    font-size: 2.5em;
+    color: var(--color-primary-text);
+}
+
+.Main-p{
+    font-family: "title";
+    font-size: 1.2em;
+    color: var(--color-primary-text);
+   
+    margin: var(--margin-main-p);
+    padding: var(--padding-main-p);
+    border-bottom: var(--border-main-p);
+}
+
+/* Damos estilo a la etiqueta externa del carrousel que contiene al carrousel en sí y a las imágenes */
+.Main-carruselContainer {
+    width: 90%;
+    
+    position: relative;
+    max-width: 156.25rem;
+    margin: 0 auto;
+}
+
+.Main-carrousel{
+    width: 100%;
+
+    border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    padding: 1.5rem 1rem;
+    margin: 0 0 6.25rem;
+    
+    overflow: hidden;
+}
+
+/* Colocamos con flex a las imágenes dentro del carrousel */
+.Main-innerCarrousel{
+    width: 100%;
+    
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .625rem 0 .3125rem;
+   
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Colocamos con flex a las imágenes dentro del wrapper */
+.Main-wrapper{
+    width: 300%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .9375rem;
+    
+    transition: transform 1s ease-in-out;
+    
+}
+
+.Main-block {
+    display: flex;
+    flex-flow: row nowrap;  
+    justify-content: center; 
+    align-items: center;
+    gap: 1.4rem;
+    flex: 0 0 100%;
+}
+
+
+/* Damos estilo a las imágenes del carrousel y un efecto de hover */
+.Main-wrapperImg {
+    width:100%;
+    
+    border: var(--border-imgs);
+    opacity: 1;
+    transition: transform 0.5s ease, opacity 0.5s ease, scale 0.5s ease, translate 1s ease;
+    object-fit: contain;
+
+}
+.Main-wrapperImg:hover{
+    transform: scale(.95) translate(0px, -0.9375rem);
+}
+
+
+/* Damos estilo a los botones y los colocamos con position */
+.Main-button {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 30%;
+
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+}
+
+.Main-button--prev {
+    left: -3.2rem; 
+}
+
+.Main-button--next {
+    right: -3.8rem; 
+}
+.Main-svgCarrousel {
+    width: 2rem;
+    min-height: 2rem;
+}
+
+.Main-tabletContainer{
+    width: 90%;
+    
+    position: relative;
+    margin: 0 auto;
+
+    display: none;
+}
+
+.Main-tabletInner{
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 0 .625rem 0 .3125rem;
+
+    transition:  transform 0.5s ease-in-out;
+}
+
+.Main-tabletWrapper{
+    width: 600%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .9375rem;
+
+    transition:  transform 1s ease-in-out;
+}
+.Main-blockTablet{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 0 0 .2rem;
+    gap: 1rem;
+    flex: 0 0 100%;
+}
+
+/* Carrusel para móvil */
+ /* Creamos un carrusel para móvil para facilitar el responsive, volvemos a dar estilo a las nuevas clases */
+.Main-carruselMobile {
+    width: 100%;
+    max-width: 18.75rem;
+    
+    margin: 0 auto 8rem;
+    border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    padding: 1.5rem 0 1.5rem;
+   
+    position: relative;
+    overflow: hidden;
+    display: none;
+    padding: .625rem;
+}
+
+.Main-mobileContainer {
+    width: 100%; 
+    
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    
+    transition: transform 1s ease;
+   
+}
+
+.Main-aMobile {
+    display: flex;
+    flex-flow: row nowrap;  
+    justify-content: flex-start; 
+    align-items: center;
+    
+    flex: 0 0 100%; 
+    padding:  1.875rem 1.2rem 1.875rem 2rem; 
+    box-sizing: border-box; 
+}
+
+.Main-mobileImg {
+    width: 100%;
+    object-fit: contain;
+}
+
+.Main-button--mobilePrev {
+    left: 0; 
+}
+
+.Main-button--mobileNext {
+    right: 0; 
+}
+
+.Main-svgMobile {
+    width: 1.5rem;
+    min-height: 1.5rem;
+}
+
+
+
+/*Sección de recientes*/
+
+/* Damos estilo a .Main-background y .Main-container para dar una sensación de supersposición con las sombras y juegos de tamaño
+colocamos las imágenes que contiene .Main-container con grid */
+.Main-background{
+    background-color: var(--bg-color-transparency);
+    border-radius: 15%;
+}
+
+.Main-container{
+    width: 90%;
+
+    background-color: var(--bg-section-color);
+    box-shadow: .3125rem .3125rem 1.875rem 1.25rem rgba(45, 45, 45, 0.636);
+    border-radius: 5%;
+
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    gap: 1.875rem;
+
+    margin: 0 auto 6.25rem;
+    padding: 3.125rem 1.875rem;
+}
+
+/* Damos estilo a las imágenes y le aplicamos un scale y una sombra al hacer hover */
+.Main-containerimg{
+    width: 100%;
+    border: var(--border-imgs);
+
+    transition: transform .5s ease;
+}
+.Main-containerimg:hover{
+    transform: scale(1.1);
+    box-shadow: 2px 2px 10px 15px #016e78;
+}
+
+
+/* Sección noticias */
+
+/* Damos tamaño a la sección que contiene las noticias */
+.Main-noticias{
+    width: 100%;
+    min-height: 90vh;
+}
+
+/* Agrupamos en .Main-content la imágen y el texto de la noticia y lo colocamos
+con display flex y lo centramos */
+.Main-content{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3.75rem;
+
+    padding: 2rem 3rem 6.25rem 7rem;
+}
+
+/* Damos tamaño y estilo a las imágenes así como un z-index y un animation para que haga el efecto
+de aparecer y que quede por encima del texto que aparecerá pasando por detrás de ellas */
+.Main-imgcontent{
+    width: 100%;
+    max-width: 18.75rem;
+    max-height: 25rem;
+    object-fit: cover;
+    border: var(--border-imgs);
+
+    z-index: 2;
+    animation: appear 5s ease;
+}
+
+/* Damos estilo a la contenedora del texto con un display flex y creamos las clases .visible y .hidden
+para aplicar los animation */
+.Main-article{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.875rem;
+
+    margin: 1.25rem 0;
+    padding: 1.25rem 0;  
+}
+.Main-article.visible{
+    animation: slideInLeft 1.2s forwards;
+}
+.Main-article.hidden{
+    animation: slideOutLeft 1.5s forwards;
+}
+
+/* Damos estilo a los h3 y efectos en hover para indicar al usuario que son enlaces */
+.Main-h3{
+    font-family: "title";
+    font-size: 1.2em;
+    color: var(--color-primary-text);
+
+    transition: transform .8s ease;
+}
+.Main-h3:hover{
+    text-shadow: .5rem .5rem rgb(40, 39, 39);
+    transform: scale(1.1);
+}
+
+.Main-text{
+    max-width: 90%;
+
+    font-family: "text";
+    color: var(--color-primary-text);
+}
+
+/* Aplicamos los estilos a la noticia que está con reverse poniendolo en el display flex */
+.Main-contentReverse{
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3.75rem;
+
+    padding: 2rem 7rem 6.25rem 2rem;
+}
+
+.Main-imgReverse{
+    width: 100%;
+    max-width: 18.75rem;
+    max-height: 25rem;
+    object-fit: cover;
+    border: 3px solid white;
+
+    z-index: 2;
+    animation: appear 5s forwards;
+}
+
+/* Damos estilo y aplicamos de nuevo la animación a las clases creadas de .visible y .hidden */
+.Main-articleReverse{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1.875rem;
+
+    margin: 1.25rem 0;
+    padding: 1.25rem;
+}
+.Main-articleReverse.visible{
+    animation: slideInRight 1.2s forwards;
+}
+.Main-articleReverse.hidden{
+    animation: slideOutRight 1.5s forwards;
+}
+
+.Main-h3Reverse{
+    font-family: "title";
+    font-size: 1.2em;
+    color: var(--color-primary-text);
+    text-align: right;
+
+    transition: transform .8s ease;
+}
+.Main-h3Reverse:hover{
+    text-shadow: .5rem .5rem rgb(40, 39, 39);
+    transform: scale(1.1);
+}
+
+.Main-textReverse{
+    max-width: 90%;
+
+    font-family: "text";
+    color: var(--color-primary-text);
+    text-align: right;
+}
+
+/* A los symbol que tenemos agrupados al final del html les damos un display none para que no interfieran en
+la vista de la página */
+.Symbol{
+    display: none;
+}
+
+
+/*Hacemos el responsive para poder adaptar la web a los diferentes tamaños de dispositivos, modificamos padding en los casos de
+pantallas intermedias*/
+@media (min-width: 2500px){
+    .Main-carrousel{
+        border-top: 1.125rem solid rgba(0, 0, 0, 0.4);
+        border-bottom: 1.125rem solid rgba(0, 0, 0, 0.4);
+        border-radius: 5%;
+        padding: 1.5rem 0 1.5rem;
+        margin: 0 0 6.25rem;
+        
+        overflow: hidden;
+    }
+
+    .Carrusel-Container {
+        width: 90%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Main-button {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 1rem;
+        cursor: pointer;
+        border-radius: 30%;
+    
+        position: absolute;
+        top: 40%;
+        z-index: 1;
+    }
+    
+    .Main-button--prev {
+        left: -1rem; 
+    }
+    
+    .Main-button--next {
+        right: -1rem; 
+    }
+
+    .Main-svgCarrousel {
+        width: 4rem;
+        min-height: 4rem;
+    }
+}
+
+@media (max-width: 1250px){
+    .Main-bottom{
+        padding: 0 6.25rem;
+    }
+
+    .Main-message{
+        font-size: 250%;
+        min-height: 10rem;
+        top: calc(50% - 7rem);
+    }
+
+    .Main-carrousel{
+        left: 2rem;
+    }
+
+    .Main-button--prev {
+        left: -2.8rem; 
+    }
+    
+    .Main-button--next {
+        right: -3.8rem; 
+    }
+}
+
+@media (max-width: 1000px){
+    .Main-bottom{
+        padding: 0 3.125rem;
+    }
+    .Main-top{
+        padding: .2rem 0 1rem;;
+    }
+
+    .Main-message{
+        top: calc(50% - 6rem);
+    }
+
+    .Main-button--prev {
+        left: -3.3rem; 
+    }
+    
+    .Main-button--next {
+        right: -4rem; 
+    }
+}
+
+/* Para tamaño tipo portátiles pequeños y algunas tablets, adaptamos algunas secciones de a flex direction: column, y principalmente se hacen modificaciones
+de margin, padding y tamaños de tipografías */
+@media (max-width: 930px){
+    .Main-message{
+        font-size: 250%;
+        min-height: 10rem;
+        top: calc(50% - 3rem);
+    }
+
+    .Main-top{
+        padding: 8.7rem 0 2rem;
+    }
+
+    .Main-carruselContainer{
+       display: none;
+    }
+
+    .Main-carruselMobile{
+        display: none;
+    }
+
+    .Main-tabletContainer{
+        display: flex;
+    }
+
+    .Main-button{
+        top: 35%;
+    }
+
+    .Main-button--tabletPrev{
+        left: -2.3rem;
+    }
+
+    .Main-button--tabletNext{
+        right: -2.3rem;
+    }
+
+    .Main-container{
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+
+        padding: 2.5rem 1.875rem 2rem;
+        margin: 6.25rem auto 8rem;
+    }
+
+    .Main-content , .Main-contentReverse{
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 5rem 0 0;
+
+        border-top: 2px solid white;
+    }
+
+    .Main-articleReverse{
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: flex-start;
+
+        padding: 0 0 0 7.5rem;
+        gap: 1.25rem;
+    }
+
+    .Main-article{
+        margin: 0 0 0 7.5rem;
+        padding: 0;
+        gap: 1.25rem;
+    }
+
+    .Main-p--bottom{
+        border: none;
+        margin: 1.25rem 0 0;
+    }
+
+    .Main-h3Reverse{
+        text-align: left;
+    }
+
+    .Main-textReverse{
+        margin: 0 0 5rem;
+        text-align: left;
+    }
+
+    .Main-text{
+        margin: 0 0 8rem;
+    }
+}
+
+/* Para tablet modificamos el grid de la sección de añadidos recientemente y hacemos modificaciones de tamaños,
+positions y padding */
+@media (max-width: 750px){
+    .Main-message{
+        min-height: 8rem;
+        top: calc(50% - 1.5rem);
+        font-size: 3.5vw;
+        padding: 0 2rem;
+    }
+
+    .Main-article, .Main-articlereverse{
+        width: 100%;
+    }
+
+    .Main-articleReverse{
+        padding: 0 0 0 4rem;
+    }
+}
+
+
+/* Para móviles hacemos modificaciones principalmente de position, tipografías, margins y padding, también ponemos en display none
+el carrusel grande y hacemos visible el carrusel responsive de móvil */
+@media (max-width: 600px){
+    .Main-h2{
+        font-size: 140%;
+        margin: 0;
+    }
+
+    .Main-message{
+        font-size: 120%;
+        min-height: 4rem;
+        border-radius: 1.2rem;
+        top: calc(50% - .1rem);
+    }
+    
+    .Main-carruselContainer{
+        display: none;
+    }
+
+    .Main-button{
+        top: 40%;
+    }
+
+    .Main-tabletContainer{
+        display: none;
+    }
+    
+    .Main-carruselMobile {
+        display: flex;
+    }
+
+    .Main-article, .Main-articleReverse{
+        margin: 0 0 0 1.875rem;
+    }
+
+    .Main-articleReverse{
+        padding: 0;
+    }
+}
+
+
+@media (max-width:480px){
+    .Main-top{
+        padding: 8.6rem 0 2rem;
+    }
+    
+    .Main-message{
+        font-size: 3.5vw;
+        min-height: 3rem;
+        border-radius: 1rem;
+        top: calc(50% - .2rem);
+    }
+
+    .Main-p{
+        font-size: 3.6vw;
+        padding: 0 0 2.5rem 0;
+    }
+
+    .Main-container{
+        padding: 2.5rem 1.25rem;
+    }
+
+    .Main-imgcontent, .Main-imgReverse{
+        width: 80%;
+    }
+}
+
+@media (max-width:450px){
+    .Main-top{
+        padding: 7.4rem 0 0;
+        margin: 0;
+    }
+
+    .Main-message{
+        display: none;
+    }
+
+    .Main-p{
+       margin:0 0 3.125rem;
+    }
+}
+
+

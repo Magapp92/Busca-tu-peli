@@ -1,0 +1,64 @@
+@base = http://localhost:3100/buscatupeli
+@id = PEGA_AQUI_UN_ID
+
+### Películas (filtros opcionales: q, genero, plataforma, anio, destacada, orden, limite)
+GET {{base}}/peliculas?genero=acción&orden=recientes
+
+### Géneros existentes
+GET {{base}}/peliculas/generos
+
+### Película por id
+GET {{base}}/peliculas/{{id}}
+
+### Relacionadas
+GET {{base}}/peliculas/{{id}}/relacionadas
+
+### Crear película
+POST {{base}}/peliculas
+Content-Type: application/json
+
+{
+  "titulo": "Oppenheimer",
+  "sinopsis": "La historia de J. Robert Oppenheimer y la bomba atómica.",
+  "poster": "https://ejemplo.com/oppenheimer.webp",
+  "anio": 2023,
+  "duracionMin": 180,
+  "generos": ["Drama", "Historia"],
+  "plataformas": [{ "clave": "prime", "url": "https://www.primevideo.com" }]
+}
+
+### Reemplazar película (PUT)
+PUT {{base}}/peliculas/{{id}}
+Content-Type: application/json
+
+{ "titulo": "Oppenheimer", "sinopsis": "Nueva sinopsis", "poster": "https://ejemplo.com/o.webp" }
+
+### Modificar campos (PATCH)
+PATCH {{base}}/peliculas/{{id}}
+Content-Type: application/json
+
+{ "destacada": true }
+
+### Borrar película
+DELETE {{base}}/peliculas/{{id}}
+
+### Noticias
+GET {{base}}/noticias
+
+### Noticia completa
+GET {{base}}/noticias/{{id}}
+
+### Recomendación desde el formulario
+POST {{base}}/recomendaciones
+Content-Type: application/json
+
+{ "nombre": "Ana García", "email": "ana@email.com", "pelicula": "Oppenheimer" }
+
+### Recomendaciones por estado (pendiente | añadida | descartada)
+GET {{base}}/recomendaciones?estado=pendiente
+
+### Cambiar estado
+PATCH {{base}}/recomendaciones/{{id}}
+Content-Type: application/json
+
+{ "estado": "añadida" }

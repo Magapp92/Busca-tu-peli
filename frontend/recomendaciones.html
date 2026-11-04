@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendar una película · Busca tu peli</title>
+    <meta name="description" content="¿Echas en falta alguna película? Cuéntanos cuál y te avisamos cuando la añadamos.">
+    <meta name="theme-color" content="#07090d">
+    <link rel="icon" href="assets/logo/logobuscatupeli.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/layout.js"></script>
+    <script type="module" src="js/recomendaciones.js"></script>
+</head>
+<body data-solid-header="true">
+    <main class="container">
+        <header class="page-head">
+            <h1 class="page-head__title">¿Qué peli echaste en falta?</h1>
+            <p class="page-head__text">Si no has encontrado lo que buscabas, escríbelo aquí y te avisaremos cuando la añadamos al catálogo.</p>
+        </header>
+
+        <div class="recommend">
+            <div class="recommend__collage" aria-hidden="true">
+                <img src="assets/plataformas/netflix/Drama/LaSociedadDeLaNieve.webp" alt="">
+                <img src="assets/plataformas/DisneyPlus/Drama/PoorThings.webp" alt="">
+                <img src="assets/plataformas/Max/Romance/CrazyStupidLove.webp" alt="">
+                <img src="assets/plataformas/netflix/Terror/Smile.webp" alt="">
+                <img src="assets/plataformas/Max/Accion/dune.webp" alt="">
+                <img src="assets/plataformas/prime/Comedia/50PrimerasCitas.webp" alt="">
+            </div>
+
+            <div class="form-card">
+                <form class="form" novalidate data-form>
+                    <div class="field">
+                        <label for="nombre">Nombre completo</label>
+                        <input class="input" id="nombre" name="nombre" autocomplete="name" placeholder="Ana García" required>
+                        <span class="field__error" aria-live="polite"></span>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="ana@email.com" required>
+                        <span class="field__error" aria-live="polite"></span>
+                    </div>
+                    <div class="field">
+                        <label for="pelicula">Título de la película</label>
+                        <textarea class="input" id="pelicula" name="pelicula" placeholder="Por ejemplo: Oppenheimer (2023)" required></textarea>
+                        <span class="field__error" aria-live="polite"></span>
+                    </div>
+                    <div data-mensaje></div>
+                    <button class="btn btn--primary" type="submit">Enviar sugerencia</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,958 @@
+[
+  {
+    "titulo": "Bad Boys for Life",
+    "tituloOriginal": "Bad Boys for Life",
+    "sinopsis": "En esta tercera entrega de la franquicia, justo cuando Marcus está intentando pasar más tiempo con su familia, surgirá una amenaza que pondrá en peligro la vida de Mike, involucrando otra vez a Marcus. Después de todo, Mike también es familia, y no va a dejarle solo en la misión. Mike Lowrey (Will Smith) y Marcus Burnett (Martin Lawrence) vuelven a patrullar juntos para intentar derrotar a Armando Armas (Jacob Scipio), el líder de un cartel de drogas mexicano en Miami.",
+    "poster": "assets/plataformas/prime/Accion/badBoys.webp",
+    "backdrop": "assets/plataformas/prime/Accion/badBoysForLifeHorizontal.webp",
+    "trailer": "https://www.youtube.com/embed/jKCj3XuPG8M",
+    "anio": 2020,
+    "duracionMin": 124,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Adil El Arbi",
+      "Bilall Fallah"
+    ],
+    "guion": [
+      "Chris Bremner",
+      "Peter Craig",
+      "Joe Carnahan"
+    ],
+    "reparto": [
+      "Will Smith",
+      "Martin Lawrence",
+      "Vanessa Hudgens",
+      "Alexander Ludwig"
+    ],
+    "companias": [
+      "Columbia Pictures",
+      "2.0 Entertainment"
+    ],
+    "generos": [
+      "Acción",
+      "Comedia",
+      "Crimen"
+    ],
+    "plataformas": [
+      {
+        "clave": "prime",
+        "url": "https://www.primevideo.com"
+      }
+    ],
+    "destacada": true
+  },
+  {
+    "titulo": "Dune",
+    "tituloOriginal": "Dune",
+    "sinopsis": "Un joven noble debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su pueblo. En el inhóspito y árido planeta Arrakis, la única fuente de la especia más codiciada del universo, se enfrentarán a grandes desafíos. Paul Atreides, junto con su familia y aliados, debe superar traiciones y conspiraciones en un viaje épico.",
+    "poster": "assets/plataformas/Max/Accion/dune.webp",
+    "backdrop": "assets/plataformas/Max/Accion/duneHorizontal.webp",
+    "trailer": "https://www.youtube.com/embed/n9xhJrPXop4",
+    "anio": 2021,
+    "duracionMin": 155,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Denis Villeneuve"
+    ],
+    "guion": [
+      "Jon Spaihts",
+      "Denis Villeneuve",
+      "Eric Roth"
+    ],
+    "reparto": [
+      "Timothée Chalamet",
+      "Rebecca Ferguson",
+      "Oscar Isaac",
+      "Josh Brolin"
+    ],
+    "companias": [
+      "Legendary Pictures",
+      "Warner Bros."
+    ],
+    "generos": [
+      "Ciencia ficción",
+      "Aventura",
+      "Drama"
+    ],
+    "plataformas": [
+      {
+        "clave": "max",
+        "url": "https://www.hbomax.com"
+      }
+    ],
+    "destacada": true
+  },
+  {
+    "titulo": "No Te Metas Con El Zohan",
+    "tituloOriginal": "You Don't Mess with the Zohan",
+    "sinopsis": "Zohan, un comando israelí de lucha contra el terrorismo, finge su propia muerte para perseguir su verdadero sueño: convertirse en estilista en Nueva York. Dejando atrás su vida de acción, Zohan intenta integrarse en la sociedad estadounidense mientras se enfrenta a viejos enemigos y nuevas aventuras. Con un humor único y situaciones hilarantes, Zohan busca encontrar su lugar en el mundo.",
+    "poster": "assets/plataformas/appleTv/Comedia/zohan.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/rEdwm9q40JA?si=h8jYEhGM2vpzQrXP",
+    "anio": 2008,
+    "duracionMin": 113,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Dennis Dugan"
+    ],
+    "guion": [
+      "Adam Sandler",
+      "Robert Smigel",
+      "Judd Apatow"
+    ],
+    "reparto": [
+      "Adam Sandler",
+      "John Turturro",
+      "Emmanuelle Chriqui",
+      "Nick Swardson"
+    ],
+    "companias": [
+      "Columbia Pictures",
+      "Happy Madison Productions"
+    ],
+    "generos": [
+      "Comedia",
+      "Acción"
+    ],
+    "plataformas": [
+      {
+        "clave": "appletv",
+        "url": "https://www.apple.com/apple-tv-plus/"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Ant-Man And The Wasp: Quantumania",
+    "tituloOriginal": "Ant-Man and the Wasp: Quantumania",
+    "sinopsis": "Scott Lang y Hope Van Dyne, junto con Hank Pym y Janet Van Dyne, exploran el Reino Cuántico, donde interactúan con extrañas criaturas y se embarcan en una aventura que va más allá de los límites de lo que creían posible. Enfrentándose a un nuevo y poderoso enemigo, deben unir fuerzas y usar sus habilidades para proteger su mundo y salvar el universo de una amenaza inminente.",
+    "poster": "assets/plataformas/DisneyPlus/Accion/antmanQuantumania.webp",
+    "backdrop": "assets/plataformas/DisneyPlus/Accion/Quantumania.webp",
+    "trailer": "https://www.youtube.com/embed/ZlNFpri-Y40",
+    "anio": 2023,
+    "duracionMin": 125,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Peyton Reed"
+    ],
+    "guion": [
+      "Jeff Loveness"
+    ],
+    "reparto": [
+      "Paul Rudd",
+      "Evangeline Lilly",
+      "Michael Douglas",
+      "Michelle Pfeiffer"
+    ],
+    "companias": [
+      "Marvel Studios"
+    ],
+    "generos": [
+      "Acción",
+      "Aventura",
+      "Ciencia ficción"
+    ],
+    "plataformas": [
+      {
+        "clave": "disney",
+        "url": "https://www.disneyplus.com"
+      }
+    ],
+    "destacada": true
+  },
+  {
+    "titulo": "Godzilla Vs. Kong",
+    "tituloOriginal": "Godzilla vs. Kong",
+    "sinopsis": "Las leyendas chocan cuando Godzilla y Kong, las dos fuerzas más poderosas de un planeta habitado por aterradoras criaturas, se enfrentan en una espectacular batalla que sacude los cimientos de la humanidad. Mientras tanto, una conspiración humana amenaza con erradicar a estas criaturas, independientemente del costo. En una lucha épica por la supremacía, el destino del mundo pende de un hilo.",
+    "poster": "assets/plataformas/Max/Accion/godzillaVsKong.webp",
+    "backdrop": "assets/plataformas/Max/Accion/kongVsGodzillaHorizontal.webp",
+    "trailer": "https://www.youtube.com/embed/odM92ap8_c0",
+    "anio": 2021,
+    "duracionMin": 113,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Adam Wingard"
+    ],
+    "guion": [
+      "Eric Pearson",
+      "Max Borenstein"
+    ],
+    "reparto": [
+      "Alexander Skarsgård",
+      "Millie Bobby Brown",
+      "Rebecca Hall",
+      "Brian Tyree Henry"
+    ],
+    "companias": [
+      "Legendary Pictures",
+      "Warner Bros."
+    ],
+    "generos": [
+      "Acción",
+      "Ciencia ficción"
+    ],
+    "plataformas": [
+      {
+        "clave": "max",
+        "url": "https://www.hbomax.com"
+      }
+    ],
+    "destacada": true
+  },
+  {
+    "titulo": "¿Y Dónde Están Las Rubias?",
+    "tituloOriginal": "White Chicks",
+    "sinopsis": "Dos agentes del FBI se hacen pasar por dos jóvenes herederas para investigar un secuestro. Durante su misión encubierta, enfrentan una serie de situaciones cómicas y absurdas mientras intentan mantener su disfraz. Enfrentándose a enemigos y obstáculos inesperados, deben usar su ingenio para resolver el caso sin ser descubiertos.",
+    "poster": "assets/plataformas/netflix/Comedia/YDondeEstanLasRubias.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/aeVkbNka9HM",
+    "anio": 2004,
+    "duracionMin": 109,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Keenen Ivory Wayans"
+    ],
+    "guion": [
+      "Keenen Ivory Wayans",
+      "Shawn Wayans",
+      "Marlon Wayans"
+    ],
+    "reparto": [
+      "Shawn Wayans",
+      "Marlon Wayans",
+      "Jaime King",
+      "Frankie Faison"
+    ],
+    "companias": [
+      "Revolution Studios",
+      "Wayans Bros. Entertainment"
+    ],
+    "generos": [
+      "Comedia"
+    ],
+    "plataformas": [
+      {
+        "clave": "netflix",
+        "url": "https://www.netflix.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "50 Primeras Citas",
+    "tituloOriginal": "50 First Dates",
+    "sinopsis": "Henry Roth se enamora de Lucy, una mujer que sufre de pérdida de memoria a corto plazo. Cada día, Lucy olvida todo lo que sucedió el día anterior, incluyendo a Henry. A pesar de este reto, Henry está decidido a conquistarla todos los días y a crear recuerdos inolvidables juntos. Con la ayuda de sus amigos, Henry encuentra formas creativas de recordarle a Lucy cuánto la ama. Esta comedia romántica explora la importancia del amor, la paciencia y la perseverancia en una relación única y desafiante.",
+    "poster": "assets/plataformas/prime/Comedia/50PrimerasCitas.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/17KJk3ErIx0?si=vzZHyPjYiYTsDSUA",
+    "anio": 2004,
+    "duracionMin": 99,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Peter Segal"
+    ],
+    "guion": [
+      "George Wing"
+    ],
+    "reparto": [
+      "Adam Sandler",
+      "Drew Barrymore",
+      "Rob Schneider",
+      "Sean Astin"
+    ],
+    "companias": [
+      "Columbia Pictures",
+      "Happy Madison Productions"
+    ],
+    "generos": [
+      "Comedia",
+      "Romance"
+    ],
+    "plataformas": [
+      {
+        "clave": "prime",
+        "url": "https://www.primevideo.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Society Of Snow",
+    "tituloOriginal": "La Sociedad de la Nieve",
+    "sinopsis": "En 1972, un avión uruguayo se estrella en los Andes y los sobrevivientes deben recurrir a medidas extremas para sobrevivir. Sin comida y enfrentando temperaturas heladas, los pasajeros del vuelo se ven obligados a tomar decisiones desesperadas. La lucha por la supervivencia revela la fuerza del espíritu humano y la capacidad de resistencia en las condiciones más adversas. Basada en hechos reales, esta historia muestra el coraje, la solidaridad y la esperanza en medio de una tragedia inimaginable. Los sobrevivientes deben unirse y confiar en su ingenio para mantenerse con vida hasta que llegue el rescate.",
+    "poster": "assets/plataformas/netflix/Drama/LaSociedadDeLaNieve.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/l9tP4M8URhQ?si=Ym5ntRkFIi_o3ekf",
+    "anio": 2023,
+    "duracionMin": 120,
+    "pais": "España",
+    "direccion": [
+      "J.A. Bayona"
+    ],
+    "guion": [
+      "Nicolás Casariego",
+      "Jaime Marques"
+    ],
+    "reparto": [
+      "Enzo Vogrincic",
+      "Matías Recalt",
+      "Agustín Pardella"
+    ],
+    "companias": [
+      "Netflix",
+      "Warner Bros."
+    ],
+    "generos": [
+      "Drama",
+      "Historia",
+      "Aventura"
+    ],
+    "plataformas": [
+      {
+        "clave": "netflix",
+        "url": "https://www.netflix.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Siempre A Tu Lado",
+    "tituloOriginal": "Hachi: A Dog's Tale",
+    "sinopsis": "Un perro llamado Hachiko espera a su dueño fallecido durante años en una estación de tren. Basada en una historia real, esta conmovedora película narra la inquebrantable lealtad y amor de un perro por su dueño. Cada día, Hachiko va a la estación de tren esperando el regreso de su amado dueño, sin saber que nunca volverá. La devoción de Hachiko toca los corazones de las personas que lo ven, convirtiéndose en un símbolo de fidelidad y amor eterno. Esta historia nos recuerda la importancia de los lazos emocionales entre los seres humanos y los animales.",
+    "poster": "assets/plataformas/prime/Drama/SiempreATuLado.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/jrVVIaO_hTg?si=tCqW_gqz2jQR0P1v",
+    "anio": 2009,
+    "duracionMin": 93,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Lasse Hallström"
+    ],
+    "guion": [
+      "Stephen P. Lindsey"
+    ],
+    "reparto": [
+      "Richard Gere",
+      "Joan Allen",
+      "Cary-Hiroyuki Tagawa"
+    ],
+    "companias": [
+      "Stage 6 Films",
+      "Inferno Distribution"
+    ],
+    "generos": [
+      "Drama",
+      "Familia"
+    ],
+    "plataformas": [
+      {
+        "clave": "prime",
+        "url": "https://www.primevideo.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "El Aro",
+    "tituloOriginal": "The Ring",
+    "sinopsis": "Una periodista investiga una misteriosa cinta de vídeo que mata a quien la ve en siete días. Rachel, la periodista, descubre una serie de muertes inexplicables vinculadas a la cinta y decide desentrañar el misterio antes de que sea demasiado tarde. Mientras profundiza en la investigación, Rachel y su hijo se convierten en los siguientes objetivos de la maldición. Con el tiempo corriendo en su contra, debe encontrar el origen de la cinta y romper la maldición. La atmósfera aterradora y los giros inesperados hacen de esta película un clásico del género de terror.",
+    "poster": "assets/plataformas/prime/Terror/ElAro.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/S2CFb2T8so4?si=KPjFUSdOfPdIrs6N",
+    "anio": 2002,
+    "duracionMin": 115,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Gore Verbinski"
+    ],
+    "guion": [
+      "Ehren Kruger"
+    ],
+    "reparto": [
+      "Naomi Watts",
+      "Martin Henderson",
+      "Brian Cox"
+    ],
+    "companias": [
+      "DreamWorks Pictures",
+      "BenderSpink"
+    ],
+    "generos": [
+      "Terror",
+      "Misterio"
+    ],
+    "plataformas": [
+      {
+        "clave": "prime",
+        "url": "https://www.primevideo.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Escuadrón Maldito",
+    "tituloOriginal": "The Bloody Hundredth",
+    "sinopsis": "Este documental apadrinado y presentado por Tom Hanks y Steven Spielberg, productores ejecutivos de Los amos del aire, demuestra en una hora que detrás de esa serie había una gran historia que no nos habían contado. Más bien había un centenar, muchas de ellas silenciadas por la muerte. El francés Laurent Bouzereau es uno de los grandes documentalistas actuales, con medio centenar de producciones sobre historia y cine, algunos tan notables como la docuserie La guerra en Hollywood, que ahora mismo puede verse en Netflix.",
+    "poster": "assets/plataformas/appleTv/Accion/EscuadraonMaldito.webp",
+    "backdrop": "assets/plataformas/appleTv/Accion/EscuadronMalditoHoriz.webp",
+    "trailer": "https://www.youtube.com/embed/xpGq3YJ04KE",
+    "anio": 2024,
+    "duracionMin": 62,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Mark Herzog",
+      "Laurent Bouzereau"
+    ],
+    "guion": [],
+    "reparto": [
+      "Tom Hanks (narrador)"
+    ],
+    "companias": [
+      "Playtone",
+      "Amblin",
+      "Apple TV+"
+    ],
+    "generos": [
+      "Documental",
+      "Guerra",
+      "Historia"
+    ],
+    "plataformas": [
+      {
+        "clave": "appletv",
+        "url": "https://www.apple.com/apple-tv-plus/"
+      }
+    ],
+    "destacada": true
+  },
+  {
+    "titulo": "Hombres De Honor",
+    "tituloOriginal": "Men of Honor",
+    "sinopsis": "La historia de Carl Brashear, el primer afroamericano en convertirse en un buzo maestro de la Marina de los Estados Unidos. A pesar de enfrentar discriminación racial y obstáculos físicos, Carl lucha por su sueño con una determinación inquebrantable. Su historia es un testimonio de coraje, resiliencia y la búsqueda de la igualdad en una época de segregación. Con el apoyo de su mentor y una fuerza de voluntad increíble, Carl demuestra que no hay límites cuando se trata de cumplir con un propósito. La película destaca los desafíos y triunfos en el camino hacia la grandeza.",
+    "poster": "assets/plataformas/appleTv/Drama/HombresDeHonor.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/E21xH5vg0yo?si=ME9nZsaPqq7BPOXU",
+    "anio": 2000,
+    "duracionMin": 129,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "George Tillman Jr."
+    ],
+    "guion": [
+      "Scott Marshall Smith"
+    ],
+    "reparto": [
+      "Cuba Gooding Jr.",
+      "Robert De Niro",
+      "Charlize Theron"
+    ],
+    "companias": [
+      "Fox 2000 Pictures",
+      "State Street Pictures"
+    ],
+    "generos": [
+      "Drama",
+      "Biografía"
+    ],
+    "plataformas": [
+      {
+        "clave": "appletv",
+        "url": "https://www.apple.com/apple-tv-plus/"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Tienes Un Email",
+    "tituloOriginal": "You've Got Mail",
+    "sinopsis": "Dos rivales en el negocio de librerías se enamoran por correspondencia electrónica sin saber que son competidores. Kathleen y Joe, desconocidos en la vida real, comparten sus pensamientos más íntimos a través de correos electrónicos anónimos. A medida que su relación online florece, sus interacciones en el mundo real están llenas de tensión y competencia. La película muestra cómo el amor puede surgir en los lugares más inesperados y cómo superar las diferencias puede llevar a una conexión profunda. La historia es una encantadora comedia romántica que explora el impacto de la tecnología en las relaciones humanas.",
+    "poster": "assets/plataformas/appleTv/Romance/TienesUnEmail.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/bjP4s7UUnK8?si=v84UvcBpYEY87cQU",
+    "anio": 1998,
+    "duracionMin": 119,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Nora Ephron"
+    ],
+    "guion": [
+      "Nora Ephron",
+      "Delia Ephron"
+    ],
+    "reparto": [
+      "Tom Hanks",
+      "Meg Ryan",
+      "Greg Kinnear"
+    ],
+    "companias": [
+      "Warner Bros.",
+      "Lauren Shuler Donner Productions"
+    ],
+    "generos": [
+      "Romance",
+      "Comedia"
+    ],
+    "plataformas": [
+      {
+        "clave": "appletv",
+        "url": "https://www.apple.com/apple-tv-plus/"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Expediente Warren",
+    "tituloOriginal": "The Conjuring",
+    "sinopsis": "Los investigadores paranormales Ed y Lorraine Warren trabajan para ayudar a una familia aterrorizada por una presencia oscura en su casa. Basada en una historia real, la película sigue a los Warren mientras enfrentan una entidad maligna que amenaza con destruir la vida de la familia. A medida que los eventos paranormales se intensifican, los Warren deben usar toda su experiencia y habilidades para combatir la fuerza malévola. La película es una mezcla de terror psicológico y sobrenatural, ofreciendo una experiencia escalofriante y emocionante. La historia destaca el coraje y la dedicación de los Warren en su lucha contra lo desconocido.",
+    "poster": "assets/plataformas/appleTv/Terror/ExpedienteWarren.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/1kOlrEwTfco?si=KeMCTsUf5vTURa_b",
+    "anio": 2013,
+    "duracionMin": 112,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "James Wan"
+    ],
+    "guion": [
+      "Chad Hayes",
+      "Carey W. Hayes"
+    ],
+    "reparto": [
+      "Vera Farmiga",
+      "Patrick Wilson",
+      "Lili Taylor"
+    ],
+    "companias": [
+      "New Line Cinema",
+      "The Safran Company"
+    ],
+    "generos": [
+      "Terror",
+      "Misterio"
+    ],
+    "plataformas": [
+      {
+        "clave": "appletv",
+        "url": "https://www.apple.com/apple-tv-plus/"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Mrs. Doubtfire",
+    "tituloOriginal": "Mrs. Doubtfire",
+    "sinopsis": "Un padre divorciado se disfraza de ama de llaves para poder estar cerca de sus hijos. Daniel Hillard, después de perder la custodia de sus hijos, se ve obligado a tomar medidas drásticas para seguir siendo parte de sus vidas. Con la ayuda de un talentoso amigo en efectos especiales, se transforma en la Sra. Doubtfire, una amable y estricta niñera escocesa. La película combina humor y emociones, mostrando los sacrificios que un padre está dispuesto a hacer por su familia. A través de esta experiencia, Daniel aprende valiosas lecciones sobre la paternidad, el amor y la importancia de la honestidad.",
+    "poster": "assets/plataformas/DisneyPlus/Comedia/MrsDoubtfire.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/PqxpC_jYncE?si=8OMu95c1oIjhqRRB",
+    "anio": 1993,
+    "duracionMin": 125,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Chris Columbus"
+    ],
+    "guion": [
+      "Randi Mayem Singer",
+      "Leslie Dixon"
+    ],
+    "reparto": [
+      "Robin Williams",
+      "Sally Field",
+      "Pierce Brosnan"
+    ],
+    "companias": [
+      "20th Century Fox",
+      "Blue Wolf Productions"
+    ],
+    "generos": [
+      "Comedia",
+      "Familia"
+    ],
+    "plataformas": [
+      {
+        "clave": "disney",
+        "url": "https://www.disneyplus.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Poor Things",
+    "tituloOriginal": "Poor Things",
+    "sinopsis": "La historia de una joven que lucha por escapar de un entorno opresivo y encontrar su propio camino. Ambientada en una época de estrictas normas sociales, la protagonista debe desafiar las expectativas para descubrir su verdadera identidad. A través de su viaje, enfrenta numerosos desafíos y adversidades que ponen a prueba su determinación. La película explora temas de libertad, empoderamiento y la búsqueda de la felicidad en un mundo lleno de restricciones. Con una narrativa poderosa y actuaciones destacadas, 'Poor Things' es un retrato conmovedor de la lucha por la autoafirmación.",
+    "poster": "assets/plataformas/DisneyPlus/Drama/PoorThings.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/WNfF_WA5kWY?si=IRPXOFaeJoJuVIJy",
+    "anio": 2023,
+    "duracionMin": 141,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Yorgos Lanthimos"
+    ],
+    "guion": [
+      "Tony McNamara"
+    ],
+    "reparto": [
+      "Emma Stone",
+      "Willem Dafoe",
+      "Mark Ruffalo"
+    ],
+    "companias": [
+      "Searchlight Pictures",
+      "Film4"
+    ],
+    "generos": [
+      "Drama",
+      "Ciencia ficción"
+    ],
+    "plataformas": [
+      {
+        "clave": "disney",
+        "url": "https://www.disneyplus.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Pearl Harbor",
+    "tituloOriginal": "Pearl Harbor",
+    "sinopsis": "Una dramatización del ataque a Pearl Harbor y sus consecuencias para dos amigos de la infancia. Rafe y Danny, ambos pilotos, se ven envueltos en el conflicto global después del devastador ataque. La película narra sus experiencias en la guerra y cómo el amor, la amistad y el deber se entrelazan en tiempos de crisis. Con escenas de accion impresionantes y momentos emocionales, 'Pearl Harbor' ofrece una visión épica de uno de los eventos más significativos de la Segunda Guerra Mundial. La historia también aborda el impacto personal y las pérdidas sufridas por aquellos que participaron en el conflicto.",
+    "poster": "assets/plataformas/DisneyPlus/Romance/pearlHarbor.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/lSTHpTsO6ts?si=GMBYm-_1ful45X9e",
+    "anio": 2001,
+    "duracionMin": 183,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Michael Bay"
+    ],
+    "guion": [
+      "Randall Wallace"
+    ],
+    "reparto": [
+      "Ben Affleck",
+      "Josh Hartnett",
+      "Kate Beckinsale"
+    ],
+    "companias": [
+      "Touchstone Pictures",
+      "Jerry Bruckheimer Films"
+    ],
+    "generos": [
+      "Romance",
+      "Guerra",
+      "Drama"
+    ],
+    "plataformas": [
+      {
+        "clave": "disney",
+        "url": "https://www.disneyplus.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Rec",
+    "tituloOriginal": "[REC]",
+    "sinopsis": "Una reportera de televisión y su cámara quedan atrapados en un edificio en cuarentena después de que estalla una infección viral. Mientras documentan la vida nocturna de los bomberos locales, una llamada de emergencia los lleva a un edificio donde una anciana ha mostrado un comportamiento violento. Pronto descubren que están en medio de una situación aterradora y mortal. Con el edificio sellado por las autoridades, los residentes y el equipo de televisión deben encontrar la manera de sobrevivir. La tensión y el miedo aumentan a medida que la infección se propaga, revelando oscuros secretos y horrores inimaginables.",
+    "poster": "assets/plataformas/DisneyPlus/Terror/Rec.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/eN4MnrkTpTE?si=MTyLMo0Aj9kTtqV_",
+    "anio": 2007,
+    "duracionMin": 78,
+    "pais": "España",
+    "direccion": [
+      "Jaume Balagueró",
+      "Paco Plaza"
+    ],
+    "guion": [
+      "Jaume Balagueró",
+      "Luiso Berdejo",
+      "Paco Plaza"
+    ],
+    "reparto": [
+      "Manuela Velasco",
+      "Ferran Terraza",
+      "Jorge Yamam"
+    ],
+    "companias": [
+      "Filmax",
+      "Castelao Producciones"
+    ],
+    "generos": [
+      "Terror",
+      "Misterio"
+    ],
+    "plataformas": [
+      {
+        "clave": "disney",
+        "url": "https://www.disneyplus.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "¡Sí Señor!",
+    "tituloOriginal": "Yes Man",
+    "sinopsis": "Un hombre decide decir sí a todo durante un año como forma de cambiar su vida y descubrir nuevas oportunidades. Carl Allen, atrapado en la rutina y la negatividad, asiste a un seminario de autoayuda que lo desafía a aceptar todas las oportunidades que se le presenten. Al principio, la filosofía de decir sí a todo trae cambios positivos y emocionantes en su vida. Sin embargo, pronto se enfrenta a situaciones inesperadas y desafíos que ponen a prueba su compromiso. La película es una comedia inspiradora sobre el poder del optimismo y la apertura a nuevas experiencias.",
+    "poster": "assets/plataformas/Max/Comedia/SiSenor.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/gTj6j56py-E?si=TipQdKVDIhoBL30F",
+    "anio": 2008,
+    "duracionMin": 104,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Peyton Reed"
+    ],
+    "guion": [
+      "Nicholas Stoller",
+      "Jarrad Paul",
+      "Andrew Mogel"
+    ],
+    "reparto": [
+      "Jim Carrey",
+      "Zooey Deschanel",
+      "Bradley Cooper"
+    ],
+    "companias": [
+      "Warner Bros.",
+      "Village Roadshow Pictures"
+    ],
+    "generos": [
+      "Comedia",
+      "Romance"
+    ],
+    "plataformas": [
+      {
+        "clave": "max",
+        "url": "https://www.hbomax.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "American History X",
+    "tituloOriginal": "American History X",
+    "sinopsis": "Un ex neonazi intenta evitar que su hermano menor siga el mismo camino de odio que él recorrió. Derek Vinyard, después de pasar tiempo en prisión, se da cuenta de los errores de su pasado y decide cambiar su vida. Sin embargo, su hermano menor, Danny, está siguiendo sus pasos en el mundo del racismo y la violencia. Derek lucha por deshacer el daño que ha causado y guiar a Danny hacia un futuro mejor. La película aborda temas de odio, redención y el impacto de las decisiones en la vida de uno y de los demás. Es un poderoso relato sobre la transformación personal y la importancia de la familia.",
+    "poster": "assets/plataformas/Max/Drama/AmericanHistoryX.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/XfQYHqsiN5g?si=U_SJxptTwhO6ksKF",
+    "anio": 1998,
+    "duracionMin": 119,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Tony Kaye"
+    ],
+    "guion": [
+      "David McKenna"
+    ],
+    "reparto": [
+      "Edward Norton",
+      "Edward Furlong",
+      "Beverly D'Angelo"
+    ],
+    "companias": [
+      "New Line Cinema",
+      "The Turman-Morrissey Company"
+    ],
+    "generos": [
+      "Drama",
+      "Crimen"
+    ],
+    "plataformas": [
+      {
+        "clave": "max",
+        "url": "https://www.hbomax.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Crazy Stupid Love",
+    "tituloOriginal": "Crazy, Stupid, Love.",
+    "sinopsis": "Un hombre de mediana edad navega el mundo de las citas después de que su esposa pide el divorcio, con la ayuda de un soltero empedernido. Cal Weaver, devastado por la noticia de que su esposa quiere el divorcio, se encuentra perdido en la escena de las citas modernas. Con la ayuda de Jacob Palmer, un joven y carismático mujeriego, Cal comienza a redescubrir su masculinidad y confianza. La película entrelaza múltiples historias de amor, mostrando los altibajos de las relaciones y la búsqueda de la felicidad. Es una comedia romántica que combina humor, emoción y una reflexión sobre el amor en todas sus formas.",
+    "poster": "assets/plataformas/Max/Romance/CrazyStupidLove.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/8iCwtxJejik?si=xD2FJXU3AWN03NIZ",
+    "anio": 2011,
+    "duracionMin": 118,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Glenn Ficarra",
+      "John Requa"
+    ],
+    "guion": [
+      "Dan Fogelman"
+    ],
+    "reparto": [
+      "Steve Carell",
+      "Ryan Gosling",
+      "Julianne Moore"
+    ],
+    "companias": [
+      "Warner Bros.",
+      "Carousel Productions"
+    ],
+    "generos": [
+      "Romance",
+      "Comedia"
+    ],
+    "plataformas": [
+      {
+        "clave": "max",
+        "url": "https://www.hbomax.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "La Monja",
+    "tituloOriginal": "The Nun",
+    "sinopsis": "Una joven monja en Rumanía y un sacerdote con un pasado atormentado investigan la muerte de una hermana y enfrentan una fuerza malévola. En un convento aislado, una novicia y un sacerdote son enviados por el Vaticano para investigar una misteriosa muerte. A medida que profundizan en los secretos del convento, descubren una entidad demoníaca que amenaza con desatar el mal. La película combina elementos de terror gótico y sobrenatural, creando una atmósfera de miedo constante. Con una narrativa intensa y giros inesperados, 'La Monja' es una adición escalofriante al universo de 'El Conjuro'.",
+    "poster": "assets/plataformas/Max/Terror/LaMonja.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/IKA9H68sgXo?si=C8Etpu9sSyjjWuso",
+    "anio": 2018,
+    "duracionMin": 96,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Corin Hardy"
+    ],
+    "guion": [
+      "Gary Dauberman",
+      "James Wan"
+    ],
+    "reparto": [
+      "Demián Bichir",
+      "Taissa Farmiga",
+      "Jonas Bloquet"
+    ],
+    "companias": [
+      "Warner Bros.",
+      "Atomic Monster"
+    ],
+    "generos": [
+      "Terror",
+      "Misterio"
+    ],
+    "plataformas": [
+      {
+        "clave": "max",
+        "url": "https://www.hbomax.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Come, Reza, Ama",
+    "tituloOriginal": "Eat Pray Love",
+    "sinopsis": "Una mujer embarca en un viaje alrededor del mundo para redescubrirse después de un doloroso divorcio. Liz Gilbert, insatisfecha con su vida y matrimonio, decide tomar un año sabático para encontrarse a sí misma. Su viaje la lleva a Italia, donde disfruta de la comida; a la India, donde busca la espiritualidad; y a Bali, donde encuentra un nuevo equilibrio y amor. Basada en el best-seller de Elizabeth Gilbert, la película es una exploración inspiradora de la autoaceptación y el autodescubrimiento. 'Come, Reza, Ama' es una oda a la aventura personal y la búsqueda de la felicidad genuina.",
+    "poster": "assets/plataformas/netflix/Romance/ComeRezaAma.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/fcyK1dtmqjM?si=yKffb2rDTwwqrzKe",
+    "anio": 2010,
+    "duracionMin": 133,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Ryan Murphy"
+    ],
+    "guion": [
+      "Ryan Murphy",
+      "Jennifer Salt"
+    ],
+    "reparto": [
+      "Julia Roberts",
+      "Javier Bardem",
+      "Richard Jenkins"
+    ],
+    "companias": [
+      "Columbia Pictures",
+      "Plan B Entertainment"
+    ],
+    "generos": [
+      "Romance",
+      "Drama"
+    ],
+    "plataformas": [
+      {
+        "clave": "netflix",
+        "url": "https://www.netflix.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Smile",
+    "tituloOriginal": "Smile",
+    "sinopsis": "Una terapeuta presencia un incidente traumático y comienza a experimentar eventos aterradores que no puede explicar. La Dra. Rose Cotter ve cómo un paciente comete un acto violento delante de ella, lo que desencadena una serie de experiencias sobrenaturales. Mientras Rose investiga, descubre que está siendo acechada por una entidad maligna que se alimenta del miedo y el trauma. Con el tiempo agotándose, debe encontrar una manera de detener la entidad antes de que sea demasiado tarde. La película combina elementos de terror psicológico y misterio, ofreciendo una experiencia aterradora e intrigante.",
+    "poster": "assets/plataformas/netflix/Terror/Smile.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/yhKiQGJop_8?si=V0YJaEphB7dTyLcS",
+    "anio": 2022,
+    "duracionMin": 115,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Parker Finn"
+    ],
+    "guion": [
+      "Parker Finn"
+    ],
+    "reparto": [
+      "Sosie Bacon",
+      "Jessie T. Usher",
+      "Kyle Gallner"
+    ],
+    "companias": [
+      "Paramount Pictures",
+      "Temple Hill Entertainment"
+    ],
+    "generos": [
+      "Terror",
+      "Misterio"
+    ],
+    "plataformas": [
+      {
+        "clave": "netflix",
+        "url": "https://www.netflix.com"
+      }
+    ],
+    "destacada": false
+  },
+  {
+    "titulo": "Los Puentes De Madison",
+    "tituloOriginal": "The Bridges of Madison County",
+    "sinopsis": "Una ama de casa en Iowa tiene un breve pero intenso romance con un fotógrafo del National Geographic. Francesca Johnson, que vive una vida tranquila en la granja, se encuentra con Robert Kincaid cuando él llega a fotografiar los puentes cubiertos de Madison County. Durante cuatro días, Francesca y Robert desarrollan una conexión profunda que desafía las normas de la vida cotidiana. La película explora temas de amor, sacrificio y la difícil elección entre el deber y el deseo. Basada en la novela de Robert James Waller, es una historia conmovedora sobre el amor verdadero y las decisiones que cambian vidas.",
+    "poster": "assets/plataformas/prime/Romance/LosPuentesDeMadison.webp",
+    "backdrop": "",
+    "trailer": "https://www.youtube.com/embed/UkohDUeP2tk?si=NGPChrbzLlrp3JKi",
+    "anio": 1995,
+    "duracionMin": 135,
+    "pais": "Estados Unidos",
+    "direccion": [
+      "Clint Eastwood"
+    ],
+    "guion": [
+      "Richard LaGravenese"
+    ],
+    "reparto": [
+      "Clint Eastwood",
+      "Meryl Streep",
+      "Annie Corley"
+    ],
+    "companias": [
+      "Amblin Entertainment",
+      "Malpaso Productions"
+    ],
+    "generos": [
+      "Romance",
+      "Drama"
+    ],
+    "plataformas": [
+      {
+        "clave": "prime",
+        "url": "https://www.primevideo.com"
+      }
+    ],
+    "destacada": false
+  }
+]

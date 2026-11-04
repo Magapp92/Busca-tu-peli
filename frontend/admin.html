@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración · Busca tu peli</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#07090d">
+    <link rel="icon" href="assets/logo/logobuscatupeli.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/layout.js"></script>
+    <script type="module" src="js/admin.js"></script>
+</head>
+<body data-solid-header="true">
+    <main class="container">
+        <header class="page-head">
+            <h1 class="page-head__title">Administración</h1>
+            <p class="page-head__text">Gestiona el catálogo, las noticias y las sugerencias de los usuarios.</p>
+        </header>
+
+        <div class="tabs" role="tablist">
+            <button class="tab is-active" role="tab" aria-selected="true" data-tab="peliculas">Películas <span class="tab__count" data-count="peliculas">–</span></button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="noticias">Noticias <span class="tab__count" data-count="noticias">–</span></button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="recomendaciones">Sugerencias <span class="tab__count" data-count="recomendaciones">–</span></button>
+        </div>
+
+        <section data-panel="peliculas">
+            <div class="toolbar">
+                <label class="search__field">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <span class="sr-only">Filtrar películas</span>
+                    <input class="search__input" type="search" placeholder="Filtrar por título…" data-filtro-peliculas>
+                </label>
+                <div class="section__controls">
+                    <button class="btn btn--outline" data-importar-tmdb>Importar desde TMDB</button>
+                    <button class="btn btn--primary" data-nueva="peliculas">+ Nueva película</button>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="table">
+                    <thead><tr><th></th><th>Título</th><th>Géneros</th><th>Dónde ver</th><th>Destacada</th><th></th></tr></thead>
+                    <tbody data-tabla="peliculas"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section data-panel="noticias" hidden>
+            <div class="toolbar">
+                <span></span>
+                <button class="btn btn--primary" data-nueva="noticias">+ Nueva noticia</button>
+            </div>
+            <div class="table-wrap">
+                <table class="table">
+                    <thead><tr><th></th><th>Título</th><th>Categoría</th><th>Fecha</th><th></th></tr></thead>
+                    <tbody data-tabla="noticias"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section data-panel="recomendaciones" hidden>
+            <div class="toolbar">
+                <label class="sr-only" for="filtro-estado">Estado</label>
+                <select class="select" id="filtro-estado" data-filtro-estado>
+                    <option value="">Todos los estados</option>
+                    <option value="pendiente">Pendientes</option>
+                    <option value="añadida">Añadidas</option>
+                    <option value="descartada">Descartadas</option>
+                </select>
+            </div>
+            <div class="table-wrap">
+                <table class="table">
+                    <thead><tr><th>Película sugerida</th><th>Usuario</th><th>Fecha</th><th>Estado</th><th></th></tr></thead>
+                    <tbody data-tabla="recomendaciones"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div class="drawer" data-drawer aria-hidden="true">
+        <div class="drawer__scrim" data-cerrar-drawer></div>
+        <form class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title" novalidate data-drawer-form>
+            <div class="drawer__head">
+                <h2 id="drawer-title">Película</h2>
+                <button type="button" class="icon-btn" aria-label="Cerrar" data-cerrar-drawer>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="drawer__body" data-drawer-body></div>
+            <div class="drawer__foot">
+                <button type="button" class="btn btn--outline" data-cerrar-drawer>Cancelar</button>
+                <button type="submit" class="btn btn--primary" data-guardar>Guardar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca tu peli · Dónde ver películas en streaming</title>
+    <meta name="description" content="Encuentra en qué plataforma ver cada película: Netflix, Prime Video, Disney+, Max y Apple TV+. Tráilers, fichas y noticias de cine.">
+    <meta property="og:title" content="Busca tu peli">
+    <meta property="og:description" content="Encuentra en qué plataforma ver cada película.">
+    <meta name="theme-color" content="#07090d">
+    <link rel="icon" href="assets/logo/logobuscatupeli.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/layout.js"></script>
+    <script type="module" src="js/inicio.js"></script>
+</head>
+<body>
+    <main>
+        <section class="hero" aria-roledescription="carrusel" aria-label="Películas destacadas" data-hero>
+            <div class="skeleton" style="position:absolute;inset:0;border-radius:0"></div>
+        </section>
+
+        <section class="section container" aria-labelledby="t-plataformas">
+            <div class="section__head">
+                <div>
+                    <h2 class="section__title" id="t-plataformas">¿Dónde quieres verla?</h2>
+                    <p class="section__sub">Filtra el catálogo por tu plataforma de streaming</p>
+                </div>
+            </div>
+            <div class="platforms" data-plataformas></div>
+        </section>
+
+        <div data-filas></div>
+
+        <section class="section container" aria-labelledby="t-noticias">
+            <div class="section__head">
+                <div>
+                    <h2 class="section__title" id="t-noticias">Actualidad del cine</h2>
+                    <p class="section__sub">Estrenos, listas y lo que se está hablando</p>
+                </div>
+                <a class="section__link" href="noticias.html">Todas las noticias <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="news-grid" data-noticias></div>
+        </section>
+
+        <section class="section container">
+            <div class="cta">
+                <div>
+                    <h2>¿Echas en falta alguna película?</h2>
+                    <p>Cuéntanos cuál y te avisamos en cuanto la añadamos al catálogo.</p>
+                </div>
+                <a class="btn btn--primary" href="recomendaciones.html">Recomendar una peli</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

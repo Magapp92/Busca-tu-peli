@@ -1,0 +1,207 @@
+
+
+/* Categorias */
+
+/* Damos propiedades al .Main para seguir el estilo de la página */
+.Main{
+    width: 100%;
+    background-color: var(--bg-color-primary);
+    padding: 15.625rem 0 8rem;
+}
+
+.Main-section{
+    background-color: var(--bg-color-transparency);
+    padding: 6.25rem 0 1rem;
+}
+
+/* Centramos el header del .Main */
+.Main-header{
+    padding: 0 12.5rem;
+}
+
+/* Damos estilo a los textos usando las custom properties del reset */
+.Main-h2{
+    font-family: "title";
+    color: var(--color-primary-text);
+    font-size: 2.5em;
+
+    background-color: transparent;
+}
+
+.Main-p{
+    font-family: "title";
+    color: var(--color-primary-text);
+    font-size: 1.2em;
+
+    margin: var(--margin-main-p);
+    background-color: transparent;
+    padding: var(--padding-main-p);
+    border-bottom: var(--border-main-p);
+}
+
+/* Colocamos las imágenes y el texto con display flex y damos tamaño a la contenedora */
+.Main-article{
+    width: 80%;
+    max-height: 40vh;
+   
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    
+    gap: 3.125rem;
+    margin: 0 auto 9rem;
+    padding: 0 6.25rem 3.125rem;
+}
+
+/* Colocamos los textos de .Main-container con display flex en column */
+.Main-container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 1.875rem;
+    margin: .9375rem 0 0;
+}
+
+.Main-img{
+    width: 15.625rem;
+    min-height: 21.875rem;
+    border: var(--border-imgs);
+}
+
+.Main-h3{
+    font-family: "title";
+    color: var(--color-primary-text);
+    font-size: 1.5em;
+}
+
+.Main-sinopsis{
+    font-family: "text";
+    color: var(--color-primary-text);
+    font-size: 1.5vw;
+}
+
+/* Damos propiedades al botón de más info que nos lleva a la película correspondiente, lo colocamos con position y le damos
+un efecto de scale en hover */
+.Main-button{
+    width: 100%;
+    max-width: 11.25rem;
+    min-height: 4.375rem;
+    background-color: var(--bg-main-color);
+    border-radius: 1.5rem;
+    margin: .9375rem 0 0;
+    
+    font-family: "title";
+    color: var(--color-primary-text);
+    font-size: 1.3em;
+
+    position: relative;
+    transition: transform .5s ease;
+}
+.Main-button:hover{
+    transform: scale(0.9);
+    box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.433);
+}
+
+.Main-a{
+    background-color: transparent;
+    
+    position: absolute;
+    top: 30%;
+    left: 23%;
+}
+
+.Symbol{
+    display: none;
+}
+
+
+/* Modificamos paddings, font size y cambiamos el display de imágenes y texto para portátiles pequeños
+y algunas tablets */
+@media (max-width: 930px){
+    .Main{
+        padding: 25rem 0 5rem;
+    }
+
+    .Main-header{
+        padding: 0 5rem;
+    }
+
+    .Main-section{
+        padding: 2rem;
+    }
+
+    .Main-p{
+        margin: 1.25rem 0 0;
+    }
+
+    .Main-article{
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        gap: .5rem;
+        margin: 15rem auto 9.375rem;
+        padding: 15em 0 ;
+    }
+
+    .Main-sinopsis{
+        font-size: 2.5vw;
+    }
+
+    .Main-button{
+        max-width: 8rem;
+        min-height: 3.5rem;
+        margin: auto;
+
+        font-size: 1rem;
+    }
+
+    .Main-container{
+        gap: 1.25rem;
+        padding: 0 0 2.5em;
+        border-bottom: 3px solid white;
+    }
+}
+
+@media (max-width: 750px){
+    .Main-header{
+        padding: 0 4rem;
+    }
+
+    .Main-p{
+        padding: 0 0 1.25rem;
+    }
+
+}
+
+/* Cambiamos margins, paddings y font size para tablets y móviles */
+@media (max-width: 600px){
+    .Main{
+        padding: 20rem 0 4rem;
+    }
+
+    .Main-header{
+        padding: 0 3rem;
+    }
+
+    .Main-h2{
+        font-size: 2em;
+    }
+
+    .Main-p{
+        font-size: 1em;
+        margin: 1.25rem 0 0 .5rem;
+    }
+
+    .Main-section{
+        padding: 5rem 0 1rem;
+    }
+    
+    .Main-article{
+        margin: 15rem auto 9.375rem;
+    }
+}
+

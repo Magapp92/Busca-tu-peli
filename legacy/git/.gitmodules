@@ -1,0 +1,4 @@
+[submodule "Busca-tu-peli"]
+    path = Busca-tu-peli
+    url = https://github.com/usuario/repo-de-submodulo.git
+

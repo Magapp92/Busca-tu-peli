@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo · Busca tu peli</title>
+    <meta name="description" content="Explora el catálogo por género y plataforma de streaming.">
+    <meta name="theme-color" content="#07090d">
+    <link rel="icon" href="assets/logo/logobuscatupeli.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/layout.js"></script>
+    <script type="module" src="js/catalogo.js"></script>
+</head>
+<body data-solid-header="true">
+    <main class="container">
+        <header class="page-head">
+            <h1 class="page-head__title" data-titulo>Catálogo</h1>
+            <p class="page-head__text">Filtra por género y plataforma para encontrar qué ver esta noche.</p>
+        </header>
+
+        <div class="filters">
+            <div class="filters__row">
+                <span class="filters__label">Plataforma</span>
+                <div class="filters__scroll" data-plataformas role="group" aria-label="Plataformas"></div>
+            </div>
+            <div class="filters__row">
+                <span class="filters__label">Género</span>
+                <div class="filters__scroll" data-generos role="group" aria-label="Géneros"></div>
+            </div>
+        </div>
+
+        <div class="results-bar">
+            <p data-resumen aria-live="polite">Cargando…</p>
+            <div class="section__controls">
+                <button class="btn btn--outline btn--sm" data-limpiar hidden>Limpiar filtros</button>
+                <label class="sr-only" for="orden">Ordenar</label>
+                <select class="select" id="orden" data-orden>
+                    <option value="titulo">Título (A-Z)</option>
+                    <option value="recientes">Más recientes</option>
+                    <option value="antiguas">Más antiguas</option>
+                    <option value="duracion">Más largas</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid" data-grid></div>
+    </main>
+</body>
+</html>

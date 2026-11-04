@@ -1,0 +1,221 @@
+
+/* SECCIÓN DE NOTICIAS */
+
+/*  Damos estilo a .Mani y .Main-section para que sean todas las páginas iguales */
+.Main{
+    width: 100%;
+    background-color: var(--bg-color-primary);
+    padding: 15.625rem 0 8rem;
+}
+
+.Main-section{
+    background-color: var(--bg-color-transparency);
+    padding: 6.25rem 0 1rem;
+}
+
+.Main-header{
+    padding: 0 5rem;
+}
+
+/* Damos estilo a los textos con las custom properties para que sean iguales entre las diferentes páginas */
+.Main-h2{
+    font-family: "title";
+    color: var(--color-primary-text);
+    font-size: 2.5em;
+
+    background-color: transparent;
+}
+
+.Main-p{
+    font-family: "title";
+    color: var(--color-primary-text);
+    font-size: 1.2em;
+
+    margin: 1.25rem 0 0;
+    background-color: transparent;
+    padding: 0 0 0 1.875rem;
+}
+
+.Main-article{
+    width: 90%;
+
+    border-top: 3px solid white;
+    margin: 1.25rem auto 10rem;
+}
+
+.Main-h3{
+    font-family: "title";
+    color: var(--color-primary-text);
+    font-size: 1.8em;
+
+    margin: 4rem 0 2rem;
+}
+
+.Main-content{
+    width: 90vw;
+    margin: 0 auto;
+}
+
+/* Aquí agrupamos parte del texto de la noticia y las imágenes, les damos display flex para colocarlos */
+.Main-intro{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3.125rem;
+
+    margin: 5rem auto 0;
+    padding: 0 7rem;
+}
+
+/* Damos tamaño y estilo a las imágenes */
+.Main-img{
+    width: 17.5rem;
+    min-height: 25rem;
+    object-fit: fill;
+
+    border: var(--border-imgs);
+}
+
+.Main-subtitle{
+    font-family: "text";
+    color: var(--color-primary-text);
+    font-size: 1.4em;
+}
+
+/* Colocamos y damos estilo a la parte de la noticia con la imágen y a la parte inferior */
+.Main-news{
+    width: 90%;
+
+    font-family: "text";
+    color: var(--color-primary-text);
+    font-size: 1.3vw;
+    line-height: 2rem;
+    text-align: justify;
+    flex-shrink: .6;
+
+    margin: 0 auto;
+}
+
+/* Al ser un modificador adquiere el estilo de .Main-news pero le damos una prodiedad diferente
+al grupo anteior, en este cado un padding */
+.Main-news--bottom{
+    padding: .9375rem 0 0;
+}
+
+/* Adaptamos la sección de lista dentro de una de las noticias */
+.Main-ol{
+    font-family: "text";
+    color: var(--color-primary-text);
+    font-size: 1.3vw;
+    line-height: 2.5rem;
+    flex-shrink: .6;
+
+    margin: 1.5rem 0 12.5rem 5rem;
+}
+
+/* Como en el reset teníamos restringido los li con list-style none, ahora debemos indicar que en este
+caso concreto si queremos un list-style */
+.Main-li{
+    list-style: decimal;
+}
+
+.Symbol{
+    display: none;
+}
+
+
+@media (max-width: 930px){
+    .Main{
+        padding: 25rem 0 8rem;
+    }
+
+    .Main-intro{
+        flex-flow: column nowrap;
+        margin: 0;
+        padding: 0;
+    }
+
+    .Main-p{
+        padding: 0 0 0 1rem;
+    }
+
+    .Main-img{
+        width: 18rem;
+        margin: 2.5rem 0 0;
+    }
+
+    .Main-news{
+        margin: auto;
+        flex-shrink: 1;
+
+        font-size: 2.5vw;
+    }
+
+    .Main-news--bottom{
+        padding: 0;
+        font-size: 2.5vw;
+    }
+
+    .Main-ol{
+        font-size: 1.8vw;
+        margin: 1.5rem 0 0 4rem;
+        line-height: 2rem;
+    }
+}
+
+@media (max-width:600px){
+    .Main{
+        padding: 25rem 0 6rem;
+    }
+
+    .Main-section{
+        padding: 2rem 0 1rem;
+    }
+
+    .Main-header{
+        padding: 5rem 0 0;
+    }
+
+    .Main-h2{
+        font-size: 250%;
+        margin: 0 0 0 3.125rem;
+    }
+
+    .Main-article{
+        margin: 5rem auto 0;
+    }
+
+    .Main-p{
+        padding: 0;
+        margin: 1.25rem 0 0 3.75rem;
+    }
+
+    .Main-h3{
+        font-size: 6vw;
+
+        margin: 2rem 0 3rem;
+    }
+
+    .Main-img{
+        width: 70%;
+    }
+
+    .Main-subtitle{
+        font-size: 4vw;
+        margin: 0 1.5rem;
+    }
+
+    .Main-news{
+        width: 100%;
+        font-size: 2.5vw;
+        line-height: 1.5rem;
+    }
+
+    .Main-ol{
+        font-size: 2.4vw;
+        line-height: 1.5rem;
+
+        margin: 1rem 0 8rem 1.5rem;
+    }
+}

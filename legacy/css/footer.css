@@ -1,0 +1,142 @@
+
+/* Footer */
+
+/* Damos estilo al footer con display flex */
+.Footer{
+    width: 100%;
+    max-height: 30vh;
+    background-color: var(--bg-section-color);
+    padding: 2.5rem 3.125rem;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Ponemos la sección de contacto en columna con flex */
+.Footer-contact{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+} 
+
+/* Colocamos los iconos de las redes sociales con un grid */
+.Footer-social{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    gap: .9375rem;
+    margin: 0 0 1.25rem;
+}
+
+.Footer-h4{
+    font-family: "title";
+    font-size: 1.7em;
+    color: var(--color-primary-text);
+    margin: 0 0 1.25rem;
+}
+
+.Footer-svg{
+   max-width: 2.5rem;
+   max-height: 2.5rem;
+}
+
+/* Colocamos el texto del email y su icono con un display flex */
+.Footer-email{
+    font-family: "text";
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--color-primary-text);
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .9375rem;
+}
+
+/* Damos estilo al formulario, al input y al placeholder, también al focus para cuando estemos escribiendo el éste */
+.Footer-form{
+    width: 18.75rem;
+    padding: .5rem;
+    margin: 0 3.125rem 0 0;
+    border-radius: var(--border-radius);
+    border: 3px solid var(--bg-selected-color);
+    
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .625rem;
+
+    position: relative;
+}
+
+.Footer-suscribe{
+    max-width: 1.25rem;
+    max-height: 1.25rem;
+    filter: invert(1);
+}
+
+.Footer-input{
+    width: 70%;
+    min-height: 1.875rem;
+    background-color: transparent;
+    padding: .5rem;
+}
+.Footer-input::placeholder{
+    font-family: "text";
+    color: var(--color-primary-text);
+}
+.Footer-input:focus{
+    outline: none;
+    border-radius: .5rem ;
+}
+
+/* Creamos las media queries para dar responsive a la página */
+/* Para un tamaño de hasta 750px cambiamos el padding haciéndolo menor y disminuimos el ancho del .Footer-form */
+@media (max-width: 750px){
+    .Footer{
+       padding:2.5rem 1.5rem;
+    }
+
+    .Footer-form{
+        max-width: 50%;
+    } 
+}
+
+/* Para tamaños inferiores a 700px convertimos el footer en column con flex y ajustamos la posición del .Footer-form,
+.Footer contact y .Footer-email */
+@media (max-width: 700px){
+    .Footer{
+        width: 100%;
+
+        flex-flow: column-reverse;
+        justify-content: flex-start;
+        align-items: center;
+
+        padding: 15rem 0 3.75rem;
+
+        position: relative;
+    }
+
+    .Footer-form{
+        margin: 0 auto;
+        
+        position: absolute;
+        top: 10%;
+        left: 25%;
+    }
+
+    .Footer-contact{
+        margin: 0 1.25rem 0 0;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .Footer-email{
+        padding: 0 0 1.25rem;
+    }
+
+}
