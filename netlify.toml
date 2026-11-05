@@ -8,6 +8,9 @@
   publish = "frontend"
   command = "npm ci --prefix api"
 
+[build.environment]
+  NODE_VERSION = "22"
+
 [functions]
   directory = "api/functions"
 
