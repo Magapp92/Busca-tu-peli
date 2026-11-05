@@ -13,8 +13,8 @@ const copiar = async () => {
         return
     }
 
-    const origen = await mongoose.createConnection(MONGO_URI, { serverSelectionTimeoutMS: 5000 }).asPromise()
-    const destino = await mongoose.createConnection(MONGO_URI_ATLAS, { serverSelectionTimeoutMS: 10000 }).asPromise()
+    const origen = await mongoose.createConnection(MONGO_URI, { dbName: 'buscatupeli', serverSelectionTimeoutMS: 5000 }).asPromise()
+    const destino = await mongoose.createConnection(MONGO_URI_ATLAS, { dbName: 'buscatupeli', serverSelectionTimeoutMS: 10000 }).asPromise()
 
     try {
         for (const [nombre, schema] of [['Pelicula', peliculaSchema], ['Noticia', noticiaSchema]]) {

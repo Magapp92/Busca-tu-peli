@@ -13,7 +13,8 @@ let conexion = null
 
 const conectar = () => {
     if (!conexion) {
-        conexion = mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 5000 })
+        /* dbName fijo: aunque la cadena de Atlas no lleve /buscatupeli, no se usa la base "test" */
+        conexion = mongoose.connect(process.env.MONGO_URI, { dbName: 'buscatupeli', serverSelectionTimeoutMS: 5000 })
             .catch((error) => {
                 conexion = null
                 throw error
