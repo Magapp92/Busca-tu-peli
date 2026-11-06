@@ -292,15 +292,16 @@
     /* CONFIRMACIÓN DE BORRADO */
 
     /* Modal con Cancelar / Sí, borrar: la promesa se resuelve con true si se confirma */
-    const confirmar = (texto) => new Promise((resolve) => {
+    /* Por defecto pregunta antes de borrar; con opciones sirve para otras confirmaciones (p. ej. enviar un correo) */
+    const confirmar = (texto, { titulo = '¿Seguro que quieres borrarlo?', boton = 'Sí, borrar', detalle = 'Esta acción no se puede deshacer.', peligro = true } = {}) => new Promise((resolve) => {
         let respuesta = false
         abrirModal(`
             <div class="Confirm">
-                <h2>¿Seguro que quieres borrarlo?</h2>
-                <p>${esc(texto)} Esta acción no se puede deshacer.</p>
+                <h2>${esc(titulo)}</h2>
+                <p>${esc(texto)} ${esc(detalle)}</p>
                 <div class="Confirm-actions">
                     <button class="Button Button--outline" data-element="no">Cancelar</button>
-                    <button class="Button Button--danger" data-element="si">Sí, borrar</button>
+                    <button class="Button ${peligro ? 'Button--danger' : 'Button--primary'}" data-element="si">${esc(boton)}</button>
                 </div>
             </div>`, { onClose: () => resolve(respuesta) })
         $('.Modal [data-element="si"]').addEventListener('click', () => { respuesta = true; cerrarModal() })
@@ -430,12 +431,36 @@
     document.addEventListener('change', (e) => {
         const select = e.target.closest('select.StatusSelect')
         if (!select) return
-        api.recomendaciones.modificar(select.dataset.id, { estado: select.value })
-            .then(() => {
-                select.dataset.estado = select.value
-                toast('Estado actualizado')
+        const sugerencia = estado.recomendaciones.find((r) => r._id === select.dataset.id)
+
+        /* Marcarla como añadida envía un correo a quien la sugirió (solo la primera vez): lo confirmamos antes */
+        const avisara = select.value === 'añadida' && !sugerencia?.avisadaEn
+        const confirmacion = avisara
+            ? confirmar(`Se enviará un correo a ${sugerencia.email} avisando de que «${sugerencia.pelicula}» ya está en el catálogo.`, {
+                titulo: '¿Marcar como añadida?', boton: 'Sí, marcar y avisar', detalle: 'Asegúrate de haberla añadido antes.', peligro: false
             })
-            .catch((error) => toast(error.message, 'error'))
+            : Promise.resolve(true)
+
+        confirmacion.then((seguir) => {
+            /* Si cancela, el desplegable vuelve al estado anterior */
+            if (!seguir) {
+                select.value = select.dataset.estado
+                return
+            }
+            api.recomendaciones.modificar(select.dataset.id, { estado: select.value })
+                .then((actualizada) => {
+                    select.dataset.estado = select.value
+                    Object.assign(sugerencia || {}, actualizada)
+                    if (!avisara) return toast('Estado actualizado')
+                    actualizada.avisadaEn
+                        ? toast(`Marcada como añadida · aviso enviado a ${actualizada.email}`)
+                        : toast('Marcada como añadida, pero no se pudo enviar el aviso por correo', 'error')
+                })
+                .catch((error) => {
+                    select.value = select.dataset.estado
+                    toast(error.message, 'error')
+                })
+        })
     })
 
     filtroPeliculas.addEventListener('input', pintarPeliculas)

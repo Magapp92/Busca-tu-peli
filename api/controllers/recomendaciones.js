@@ -2,7 +2,7 @@
 /* Controlador de recomendaciones: el formulario público crea sugerencias de películas
 y el panel las lista, cambia su estado o las borra; todas las respuestas siguen la forma { message, data } */
 const { Recomendacion } = require('../models')
-const { enviarGraciasSugerencia, enviarAvisoSugerencia } = require('../services/correos')
+const { enviarGraciasSugerencia, enviarAvisoSugerencia, enviarSugerenciaAnadida } = require('../services/correos')
 
 /* Listado para el panel, opcionalmente por estado: ?estado=pendiente */
 const getRecomendaciones = async (req, res, next) => {
@@ -110,8 +110,23 @@ const patchRecomendacion = async (req, res, next) => {
             })
         }
 
+        /* Al marcarla como añadida avisamos por correo a quien la sugirió (una sola vez).
+        Si el correo falla, el cambio de estado se guarda igual y el mensaje lo indica */
+        let aviso = ''
+        if (data.estado === 'añadida' && !data.avisadaEn) {
+            try {
+                await enviarSugerenciaAnadida(data)
+                data.avisadaEn = new Date()
+                await data.save()
+                aviso = ` y aviso enviado a ${data.email}`
+            } catch (error) {
+                console.error(`No se pudo avisar de la sugerencia añadida: ${error.message}`)
+                aviso = ', pero no se pudo enviar el aviso por correo'
+            }
+        }
+
         res.status(200).json({
-            message: `Recomendación ${_id} modificada correctamente`,
+            message: `Recomendación marcada como ${data.estado}${aviso}`,
             data
         })
     } catch (error) {

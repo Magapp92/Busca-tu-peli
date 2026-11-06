@@ -165,6 +165,28 @@ const enviarAvisoSugerencia = ({ nombre, email, pelicula }) => enviarCorreo({
 })
 
 
+/* Aviso a quien sugirió una película cuando el equipo la marca como añadida en el panel */
+const enviarSugerenciaAnadida = ({ nombre, email, pelicula }) => {
+    const nombreCorto = nombre.split(' ')[0]
+    const busqueda = `${WEB}/catalogo.html?q=${encodeURIComponent(pelicula.replace(/\(\d{4}\)/, '').trim().slice(0, 60))}`
+    return enviarCorreo({
+        para: email,
+        asunto: `${nombreCorto}, ya puedes ver la película que nos sugeriste`,
+        etiqueta: 'sugerencia-anadida',
+        html: plantilla({
+            preheader: 'La hemos añadido al catálogo',
+            titulo: '¡Ya está en el catálogo!',
+            cuerpo: parrafo(`Hola, ${escapar(nombreCorto)}. Hace un tiempo nos sugeriste <b>${escapar(pelicula.slice(0, 300))}</b> y ya la hemos añadido a Busca tu peli.`)
+                + parrafo('En su ficha tienes el tráiler, el reparto y en qué plataforma puedes verla.')
+                + parrafo('Gracias por ayudarnos a completar el catálogo. Si echas en falta alguna otra, ya sabes dónde encontrarnos.'),
+            boton: { texto: 'Ver la película', url: busqueda },
+            pie: '<div style="margin-bottom:8px">Recibes este correo porque sugeriste esta película en buscatupeli.com.</div>'
+        }),
+        texto: `Hola, ${nombreCorto}. Ya hemos añadido al catálogo la película que nos sugeriste: ${pelicula}. Puedes verla aquí: ${busqueda}`
+    })
+}
+
+
 /* NEWSLETTER SEMANAL */
 
 /* Bloque de una película: póster, título, nota y dónde verla, enlazando a su ficha
@@ -270,5 +292,6 @@ module.exports = {
     enviarConfirmacionSuscripcion,
     enviarGraciasSugerencia,
     enviarAvisoSugerencia,
+    enviarSugerenciaAnadida,
     enviarNewsletter
 }

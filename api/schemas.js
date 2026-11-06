@@ -127,7 +127,9 @@ const recomendacionSchema = new mongoose.Schema(
       },
       pelicula: { type: mongoose.Schema.Types.String, required: [true, 'Indica qué película echaste en falta'], trim: true, maxlength: [300, 'El texto de la película es demasiado largo'] },
       /* El estado solo admite los valores que entiende el panel */
-      estado: { type: mongoose.Schema.Types.String, default: 'pendiente', enum: { values: ['pendiente', 'añadida', 'descartada'], message: 'Estado no válido: {VALUE}' } }
+      estado: { type: mongoose.Schema.Types.String, default: 'pendiente', enum: { values: ['pendiente', 'añadida', 'descartada'], message: 'Estado no válido: {VALUE}' } },
+      /* Cuándo le avisamos por correo de que ya está en el catálogo (solo se avisa una vez) */
+      avisadaEn: { type: mongoose.Schema.Types.Date }
     },
     {
       collection: 'recomendaciones',

@@ -450,4 +450,17 @@
     .PlatformPick-row{
         grid-template-columns: 1fr;
     }
+
+    /* Los botones de la barra (Importar desde TMDB y Nueva película) ocupan todo el ancho
+    repartido entre los dos y bajan de línea si no caben, en vez de salirse de la pantalla */
+    .Toolbar .Section-controls{
+        width: 100%;
+
+        flex-flow: row wrap;
+    }
+    .Toolbar .Section-controls .Button{
+        padding: 0 1rem;
+
+        flex: 1 1 auto;
+    }
 }
