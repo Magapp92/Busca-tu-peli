@@ -20,6 +20,7 @@
     const drawerTitle = document.querySelector('#drawer-title')
     const guardar = document.querySelector('[data-element="guardar"]')
     const cerrarDrawerButtons = document.querySelectorAll('[data-element="cerrar-drawer"]')
+    const logout = document.querySelector('[data-element="logout"]')
 
     /* Datos cargados de la API y lo que se está editando en el drawer: { tipo, id } */
     const estado = { peliculas: [], noticias: [], recomendaciones: [] }
@@ -474,9 +475,18 @@
         })
     }
 
+    /* CERRAR SESIÓN: olvidamos el token de la sesión y volvemos al formulario de clave */
+    logout.addEventListener('click', () => {
+        sesionAdmin.borrar()
+        toast('Sesión cerrada')
+        pedirClave()
+    })
+
     /* ARRANQUE: comprobamos el token guardado antes de cargar los datos */
     api.admin.verificar()
         .then(() => {
+            /* El botón solo tiene sentido si hay sesión (en local sin ADMIN_KEY el panel está abierto) */
+            logout.hidden = !sesionAdmin.leer()
             cargarPeliculas()
             cargarNoticias()
             cargarRecomendaciones()

@@ -60,9 +60,13 @@
 
     <!-- En el main agrupamos las pestañas y las tablas de cada recurso -->
     <main class="Container">
-        <header class="PageHead">
-            <h1 class="PageHead-title">Administración</h1>
-            <p class="PageHead-text">Gestiona el catálogo, las noticias y las sugerencias de los usuarios.</p>
+        <!-- Cabecera del panel con el botón para cerrar la sesión (solo se ve si hay sesión iniciada) -->
+        <header class="PageHead AdminHead">
+            <div>
+                <h1 class="PageHead-title">Administración</h1>
+                <p class="PageHead-text">Gestiona el catálogo, las noticias y las sugerencias de los usuarios.</p>
+            </div>
+            <button class="Button Button--outline" type="button" data-element="logout" title="Cerrar la sesión del panel" hidden>Cerrar sesión</button>
         </header>
 
         <!-- Pestañas: cada una muestra su panel y el número de elementos -->

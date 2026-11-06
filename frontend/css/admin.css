@@ -1,6 +1,22 @@
 
 /* ADMINISTRACIÓN */
 
+/* CABECERA DEL PANEL */
+
+/* Colocamos con flex el título a la izquierda y el botón de cerrar sesión a la derecha */
+.AdminHead{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+/* El botón usa display inline-flex: sin esta regla el atributo hidden no lo ocultaría */
+.AdminHead [hidden]{
+    display: none;
+}
+
 /* PESTAÑAS */
 
 /* Fila de pestañas con una línea inferior; se desplaza en horizontal si no cabe */
