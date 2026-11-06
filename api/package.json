@@ -9,7 +9,8 @@
     "seed": "node scripts/seed",
     "importar": "node scripts/importar",
     "copiar-a-atlas": "node scripts/copiar-a-atlas",
-    "noticias": "node scripts/noticias"
+    "noticias": "node scripts/noticias",
+    "newsletter": "node scripts/newsletter"
   },
   "keywords": [],
   "author": "",

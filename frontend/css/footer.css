@@ -48,10 +48,18 @@
     color: var(--accent);
 }
 
-/* Formulario de novedades: el input y el botón en una fila */
+/* Formulario de novedades: arriba el email y el botón, debajo la casilla de consentimiento */
 .Footer-form{
     margin-top: .8rem;
 
+    display: grid;
+    gap: .7rem;
+
+    position: relative;
+}
+
+/* El input y el botón en una fila */
+.Footer-fields{
     display: flex;
     gap: .4rem;
 }
@@ -61,6 +69,53 @@
 }
 .Footer-form .Button{
     height: 42px;
+}
+
+/* Casilla de consentimiento: texto pequeño con el enlace a la política de privacidad */
+.Footer-consent{
+    align-items: flex-start;
+
+    font-size: .8rem;
+    line-height: 1.4;
+    color: var(--muted);
+}
+.Footer-consent input{
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+
+    flex-shrink: 0;
+}
+.Footer-consent a{
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.Footer-consent a:hover{
+    color: var(--accent);
+}
+
+/* Campo trampa para bots: fuera de la pantalla (no con display none, que algunos bots detectan) */
+.Footer-trap{
+    width: 1px;
+    height: 1px;
+
+    position: absolute;
+    left: -10000px;
+
+    overflow: hidden;
+}
+
+/* Al llegar desde un correo (#newsletter) el bloque se resalta un momento */
+.Footer-newsletter:target{
+    animation: resaltar 2s var(--ease);
+}
+@keyframes resaltar{
+    0%, 40%{ box-shadow: 0 0 0 3px var(--accent); }
+    100%{ box-shadow: 0 0 0 3px transparent; }
+}
+.Footer-newsletter{
+    border-radius: var(--radius);
 }
 
 /* Franja inferior con el copyright, el enlace al panel y los créditos */

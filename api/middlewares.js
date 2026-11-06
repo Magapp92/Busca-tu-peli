@@ -107,6 +107,9 @@ const limiteAdmin = limitador({
 /* Formulario público de recomendaciones: 5 envíos por hora */
 const limiteRecomendaciones = limitador({ windowMs: 60 * 60 * 1000, limit: 5, message: 'Has enviado muchas sugerencias seguidas. Inténtalo dentro de un rato' })
 
+/* Formulario de suscripción del footer: 5 peticiones por hora */
+const limiteSuscripciones = limitador({ windowMs: 60 * 60 * 1000, limit: 5, message: 'Demasiados intentos de suscripción. Inténtalo dentro de un rato' })
+
 /* Exportamos los middlewares para el router y para index.js */
 module.exports = {
     notFound,
@@ -114,5 +117,6 @@ module.exports = {
     verificarToken,
     limiteGeneral,
     limiteAdmin,
-    limiteRecomendaciones
+    limiteRecomendaciones,
+    limiteSuscripciones
 }

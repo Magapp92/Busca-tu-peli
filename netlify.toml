@@ -2,7 +2,7 @@
 #  - El front se sirve tal cual desde frontend/
 #  - La API de Express corre como función (api/functions/api.js)
 #  - Variables en Netlify → Site configuration → Environment variables:
-#    MONGO_URI, ADMIN_KEY, JWT_SECRET y TMDB_TOKEN
+#    MONGO_URI, ADMIN_KEY, JWT_SECRET, TMDB_TOKEN y BREVO_API_KEY
 
 [build]
   publish = "frontend"
@@ -14,7 +14,7 @@
 [functions]
   directory = "api/functions"
 
-# Cada lunes a las 6:00 (UTC) se regeneran las noticias de datos
+# Cada lunes a las 6:00 (UTC) se regeneran las noticias de datos y se envía la newsletter
 [functions."noticias-semanales"]
   schedule = "0 6 * * 1"
 

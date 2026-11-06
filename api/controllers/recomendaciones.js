@@ -2,6 +2,7 @@
 /* Controlador de recomendaciones: el formulario público crea sugerencias de películas
 y el panel las lista, cambia su estado o las borra; todas las respuestas siguen la forma { message, data } */
 const { Recomendacion } = require('../models')
+const { enviarGraciasSugerencia, enviarAvisoSugerencia } = require('../services/correos')
 
 /* Listado para el panel, opcionalmente por estado: ?estado=pendiente */
 const getRecomendaciones = async (req, res, next) => {
@@ -69,6 +70,18 @@ const postRecomendacion = async (req, res, next) => {
         }
 
         const data = await Recomendacion.create({ nombre, email, pelicula })
+
+        /* Correos: el aviso al equipo siempre; el agradecimiento solo una vez al día por email,
+        para que el formulario no sirva para mandar correos repetidos a una dirección ajena.
+        Si fallan no rompemos la respuesta: la sugerencia ya está guardada */
+        const haceUnDia = new Date(Date.now() - 24 * 3600 * 1000)
+        const delMismoEmail = await Recomendacion.countDocuments({ email: data.email, createdAt: { $gte: haceUnDia } })
+        const correos = [enviarAvisoSugerencia(data)]
+        if (delMismoEmail <= 1) correos.push(enviarGraciasSugerencia(data))
+        const resultados = await Promise.allSettled(correos)
+        resultados
+            .filter(( r ) => r.status === 'rejected')
+            .forEach(( r ) => console.error(`Correo de sugerencia no enviado: ${r.reason.message}`))
 
         res.status(201).json({
             message: '¡Gracias! Te avisaremos cuando la añadamos al catálogo',

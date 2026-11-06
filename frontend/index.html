@@ -132,20 +132,33 @@
                 </ul>
             </div>
             <!-- Formulario para suscribirse a las novedades por email -->
-            <div class="Footer-newsletter">
+            <!-- Newsletter: el formulario lo envía footer.js a la API y llega un correo para confirmar la suscripción -->
+            <div class="Footer-newsletter" id="newsletter">
                 <h3>Novedades por email</h3>
-                <p>Te avisamos cuando llegan pelis nuevas al catálogo.</p>
+                <p>Cada lunes, lo más popular de la semana, las mejor valoradas de cada plataforma y las novedades del catálogo.</p>
                 <form class="Footer-form" novalidate>
-                    <label class="u-srOnly" for="newsletter">Email</label>
-                    <input class="Input" id="newsletter" type="email" placeholder="tu@email.com" required>
-                    <button class="Button Button--primary" type="submit">Suscribirme</button>
+                    <div class="Footer-fields">
+                        <label class="u-srOnly" for="newsletter-email">Email</label>
+                        <input class="Input" id="newsletter-email" name="email" type="email" placeholder="tu@email.com" autocomplete="email" required>
+                        <button class="Button Button--primary" type="submit">Suscribirme</button>
+                    </div>
+                    <!-- Consentimiento obligatorio (RGPD) -->
+                    <label class="Check Footer-consent">
+                        <input type="checkbox" name="consentimiento" required>
+                        <span>Acepto recibir la newsletter y la <a href="privacidad.html" title="Leer la política de privacidad">política de privacidad</a></span>
+                    </label>
+                    <!-- Trampa para bots: campo invisible que una persona nunca rellena -->
+                    <div class="Footer-trap" aria-hidden="true">
+                        <label for="newsletter-web">No rellenes este campo</label>
+                        <input id="newsletter-web" name="web" type="text" tabindex="-1" autocomplete="off">
+                    </div>
                 </form>
             </div>
         </div>
         <!-- El año lo rellena footer.js -->
         <div class="Container Footer-bottom">
             <span>© <span data-element="anio"></span> Busca tu peli · info@buscatupeli.com</span>
-            <a href="admin.html" title="Ir al panel de administración">Panel de administración</a>
+            <span><a href="privacidad.html" title="Leer la política de privacidad">Privacidad</a> · <a href="admin.html" title="Ir al panel de administración">Panel de administración</a></span>
         </div>
         <!-- Atribución obligatoria de TMDB y JustWatch -->
         <div class="Container Footer-bottom">

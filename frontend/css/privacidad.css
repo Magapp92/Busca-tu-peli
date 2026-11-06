@@ -1,0 +1,45 @@
+
+/* POLÍTICA DE PRIVACIDAD */
+
+/* Texto legal en una columna de lectura cómoda */
+.Legal{
+    max-width: 760px;
+    padding-bottom: clamp(40px, 6vw, 80px);
+
+    display: grid;
+    gap: 1.8rem;
+}
+
+/* Cada apartado con su título */
+.Legal-section h2{
+    margin-bottom: .6rem;
+
+    font-size: 1.25rem;
+}
+
+/* Párrafos y listas del texto */
+.Legal-section p,
+.Legal-section li{
+    color: #c3ccd6;
+    line-height: 1.7;
+}
+.Legal-section p + p,
+.Legal-section ul + p{
+    margin-top: .8rem;
+}
+
+.Legal-section ul{
+    padding-left: 1.2rem;
+
+    display: grid;
+    gap: .5rem;
+
+    list-style: disc;
+}
+
+/* Enlaces subrayados para que se distingan del texto */
+.Legal-section a{
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

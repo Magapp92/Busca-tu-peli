@@ -141,10 +141,44 @@ const recomendacionSchema = new mongoose.Schema(
     }
 )
 
+/* Suscripción a la newsletter con doble confirmación: queda pendiente hasta que la persona
+pulsa el enlace del correo; entonces pasa a confirmada y se añade a la lista de Brevo */
+const suscripcionSchema = new mongoose.Schema(
+    {
+      _id: { type: mongoose.Schema.Types.ObjectId , auto : true },
+      email: {
+        type: mongoose.Schema.Types.String,
+        required: [true, 'El email es obligatorio'],
+        unique: true,
+        trim: true,
+        lowercase: true,
+        maxlength: [120, 'El email es demasiado largo'],
+        match: [/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/, 'El email no tiene un formato válido']
+      },
+      estado: { type: mongoose.Schema.Types.String, default: 'pendiente', enum: ['pendiente', 'confirmada'] },
+      /* Token del enlace de confirmación y hasta cuándo vale (48 horas) */
+      token: { type: mongoose.Schema.Types.String },
+      caducaToken: { type: mongoose.Schema.Types.Date },
+      /* Prueba del consentimiento (RGPD): cuándo aceptó y cuándo confirmó */
+      consentimientoEn: { type: mongoose.Schema.Types.Date },
+      confirmadaEn: { type: mongoose.Schema.Types.Date }
+    },
+    {
+      collection: 'suscripciones',
+       collation: {
+            locale: 'es',
+            strength: 1
+        },
+        versionKey: false,
+        timestamps: true
+    }
+)
+
 /* Exportamos los schemas para crear los modelos en models.js */
 module.exports = {
     PLATAFORMAS,
     peliculaSchema,
     noticiaSchema,
-    recomendacionSchema
+    recomendacionSchema,
+    suscripcionSchema
 }

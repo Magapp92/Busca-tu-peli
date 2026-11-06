@@ -83,6 +83,9 @@ const api = {
         buscar: (q) => apiFetch('/tmdb/buscar', { query: { q }, admin: true }),
         importar: (tmdbId) => apiFetch(`/tmdb/importar/${idSeguro(tmdbId)}`, { method: 'POST', admin: true })
     },
+    suscripciones: {
+        crear: (body) => apiFetch('/suscripciones', { method: 'POST', body })
+    },
     recomendaciones: {
         listar: (query) => apiFetch('/recomendaciones', { query, admin: true }),
         crear: (body) => apiFetch('/recomendaciones', { method: 'POST', body }),

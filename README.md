@@ -59,9 +59,25 @@ Environment variables*:
 | `ADMIN_KEY` | Clave del panel admin, la que se escribe en su login (obligatoria en producción) |
 | `JWT_SECRET` | Firma los tokens de sesión del panel (obligatoria en producción) |
 | `TMDB_TOKEN` | Importar desde TMDB en el admin y generar las noticias |
+| `BREVO_API_KEY` | Correos: suscripciones, sugerencias y newsletter (permisos All en Transactional email, Email campaigns y Contacts) |
 
 Para subir los datos locales a Atlas: pon la cadena en `api/.env` → `MONGO_URI_ATLAS=...`
 y ejecuta `npm run copiar-a-atlas`.
+
+## Correos (Brevo, plan gratuito: 300 al día)
+
+El dominio `buscatupeli.com` está autenticado en Brevo (DKIM y DMARC en el DNS de Netlify) y los correos
+salen desde `info@buscatupeli.com`.
+
+- **Newsletter**: el formulario del footer pide la suscripción con casilla de consentimiento y llega un
+  correo para confirmarla (doble confirmación). Al confirmar, el email entra en la lista
+  «Suscriptores Busca tu peli» de Brevo. Cada lunes la función `noticias-semanales` regenera las noticias
+  y envía la newsletter (novedades del catálogo, populares de la semana y la mejor de cada plataforma).
+  La baja la gestiona Brevo con el enlace de cada correo.
+- **Sugerencias**: al enviar una, quien la sugiere recibe un agradecimiento con invitación a suscribirse
+  (máximo uno al día por email) y a `info@buscatupeli.com` le llega el aviso; respondiendo, la respuesta
+  va a quien la sugirió.
+- Para ver la newsletter sin enviarla a nadie más: `npm run newsletter -- --prueba tu@correo.com`.
 
 ## Endpoints (`/buscatupeli`)
 
@@ -82,6 +98,7 @@ Lectura pública. Crear, editar, borrar, importar y leer recomendaciones exigen 
 | | GET / PUT / PATCH / DELETE | `/noticias/:_id` |
 | TMDB | GET | `/tmdb/buscar?q=` |
 | | POST | `/tmdb/importar/:tmdbId` |
+| Suscripciones | POST | `/suscripciones` · GET `/suscripciones/confirmar/:token` (enlace del correo) |
 | Recomendaciones | GET (`?estado=`) / POST | `/recomendaciones` |
 | | GET / PATCH / DELETE | `/recomendaciones/:_id` |
 
@@ -95,4 +112,5 @@ y en la colección de Postman [api/_data/buscatupeli.postman_collection.json](ap
 - `pelicula.html?id=` – ficha completa pedida a la API al clicar un póster
 - `noticias.html` – listado; al abrir una noticia se pide su cuerpo por id
 - `recomendaciones.html` – formulario que guarda sugerencias (POST)
+- `privacidad.html` – política de privacidad (newsletter y sugerencias)
 - `admin.html` – CRUD de películas, noticias, sugerencias e importación TMDB (pide la clave de admin)

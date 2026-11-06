@@ -1,7 +1,8 @@
 
 /* Importamos los controllers de cada recurso y los middlewares de error, de token y de límites */
 const express = require('express')
-const { notFound, errorHandler, verificarToken, limiteAdmin, limiteRecomendaciones } = require('../middlewares')
+const { notFound, errorHandler, verificarToken, limiteAdmin, limiteRecomendaciones,
+    limiteSuscripciones } = require('../middlewares')
 const { postLogin } = require('../controllers/login')
 const { getPeliculas, getGeneros, getPeliculaById, getPeliculasByGenero, getPeliculasByPlataforma,
     getRelacionadas, postPelicula, putPelicula, patchPelicula, deletePelicula } = require('../controllers/peliculas')
@@ -10,6 +11,7 @@ const { getNoticias, getNoticiaById, postNoticia, putNoticia, patchNoticia,
 const { getRecomendaciones, getRecomendacionById, postRecomendacion, patchRecomendacion,
     deleteRecomendacion } = require('../controllers/recomendaciones')
 const { getBuscarTmdb, postImportarTmdb } = require('../controllers/tmdb')
+const { postSuscripcion, getConfirmarSuscripcion } = require('../controllers/suscripciones')
 /* Creamos el router que index.js monta en /buscatupeli */
 const router = express.Router()
 
@@ -69,6 +71,13 @@ router.route('/recomendaciones/:_id')
 .get( verificarToken, getRecomendacionById )
 .patch( verificarToken, patchRecomendacion )
 .delete( verificarToken, deleteRecomendacion )
+
+/* Suscripciones a la newsletter: el footer pide la suscripción (con límite) y el enlace del correo la confirma */
+router.route('/suscripciones')
+.post( limiteSuscripciones, postSuscripcion )
+
+router.route('/suscripciones/confirmar/:token')
+.get( getConfirmarSuscripcion )
 
 /* Importación desde TMDB para el panel: buscar e importar exigen token */
 router.route('/tmdb/buscar')
