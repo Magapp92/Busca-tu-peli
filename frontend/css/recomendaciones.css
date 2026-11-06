@@ -1,0 +1,46 @@
+
+/* RECOMENDACIONES */
+
+/* Colocamos con grid el collage de pósters a la izquierda y el formulario a la derecha */
+.Recommend{
+    padding-bottom: clamp(40px, 6vw, 80px);
+
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: clamp(24px, 5vw, 72px);
+}
+
+/* Collage de pósters ligeramente girado */
+.Recommend-collage{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+
+    transform: rotate(-4deg);
+}
+.Recommend-collage img{
+    border-radius: var(--radius);
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+}
+
+/* La columna central del collage baja un poco para dar ritmo */
+.Recommend-collage img:nth-child(3n + 2){
+    transform: translateY(28px);
+}
+
+
+/* MEDIA QUERIES */
+
+/* Hasta 860px el formulario ocupa todo el ancho y ocultamos el collage */
+@media (max-width: 860px){
+    .Recommend{
+        grid-template-columns: 1fr;
+    }
+
+    .Recommend-collage{
+        display: none;
+    }
+}

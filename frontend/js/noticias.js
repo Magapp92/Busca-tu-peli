@@ -1,59 +1,61 @@
 /* Noticias: el listado llega sin cuerpo; al clicar se pide la noticia completa por id y se abre en un modal.
    ?id= en la URL abre directamente esa noticia (enlaces desde inicio) */
-import { api } from './api.js'
-import { $, esc, abrirModal, fechaLarga, estadoError, estadoVacio, toast } from './ui.js'
 
-const cont = $('[data-noticias]')
+// IIFE que agrupa las noticias para no dejar variables globales
+(() => {
 
-const tarjeta = (n, i) => `
-    <button class="news-card${i === 0 ? ' news-card--featured' : ''}" data-id="${n._id}">
-        <div class="news-card__media"><img src="${esc(n.imagen)}" alt="" ${i ? 'loading="lazy"' : ''}></div>
-        <div class="news-card__body">
-            <div class="news-card__meta"><span class="tag tag--accent">${esc(n.categoria)}</span><time datetime="${n.fecha}">${fechaLarga(n.fecha)}</time></div>
-            <h2 class="news-card__title">${esc(n.titulo)}</h2>
-            <p class="news-card__text">${esc(n.entradilla)}</p>
-            <span class="news-card__more">Leer noticia →</span>
-        </div>
-    </button>`
+    /* Creamos las constantes que vamos a utilizar */
+    const noticiasGrid = document.querySelector('[data-element="noticias"]')
+    const idInicial = new URLSearchParams(location.search).get('id')
 
-const abrirNoticia = async (id) => {
-    try {
-        const n = await api.noticias.obtener(id)
-        history.replaceState(null, '', `?id=${id}`)
-        abrirModal(`
-            <article>
-                ${n.imagen ? `<div class="article__hero"><img src="${esc(n.imagen)}" alt=""></div>` : ''}
-                <div class="article__body">
-                    <div class="news-card__meta"><span class="tag tag--accent">${esc(n.categoria)}</span><time datetime="${n.fecha}">${fechaLarga(n.fecha)}</time></div>
-                    <h2>${esc(n.titulo)}</h2>
-                    <p class="article__lead">${esc(n.entradilla)}</p>
-                    ${n.parrafos.map((p) => `<p>${esc(p)}</p>`).join('')}
-                    ${n.lista.length ? `<ol class="article__list">${n.lista.map((li) => `<li>${esc(li)}</li>`).join('')}</ol>` : ''}
-                </div>
-            </article>`, { onClose: () => history.replaceState(null, '', location.pathname) })
-    } catch (error) {
-        toast(error.message, 'error')
-    }
-}
+    /* Tarjeta de noticia: la primera va destacada a todo el ancho */
+    const tarjeta = (n, i) => `
+        <button class="NewsCard${i === 0 ? ' NewsCard--featured' : ''}" data-id="${n._id}">
+            <div class="NewsCard-media"><img src="${esc(n.imagen)}" alt="" ${i ? 'loading="lazy"' : ''}></div>
+            <div class="NewsCard-body">
+                <div class="NewsCard-meta"><span class="Tag Tag--accent">${esc(n.categoria)}</span><time datetime="${n.fecha}">${fechaLarga(n.fecha)}</time></div>
+                <h2 class="NewsCard-title">${esc(n.titulo)}</h2>
+                <p class="NewsCard-text">${esc(n.entradilla)}</p>
+                <span class="NewsCard-more">Leer noticia →</span>
+            </div>
+        </button>`
 
-const iniciar = async () => {
-    try {
-        const noticias = await api.noticias.listar()
-        cont.innerHTML = noticias.length
-            ? noticias.map(tarjeta).join('')
-            : `<div style="grid-column:1/-1">${estadoVacio('Todavía no hay noticias')}</div>`
-    } catch (error) {
-        cont.innerHTML = `<div style="grid-column:1/-1">${estadoError(error)}</div>`
-        return
+    /* Pedimos la noticia completa y la abrimos en el modal; al cerrarlo quitamos ?id= de la URL */
+    const abrirNoticia = (id) => {
+        api.noticias.obtener(id)
+            .then((n) => {
+                history.replaceState(null, '', `?id=${id}`)
+                abrirModal(`
+                    <article class="Article">
+                        ${n.imagen ? `<div class="Article-hero"><img src="${esc(n.imagen)}" alt=""></div>` : ''}
+                        <div class="Article-body">
+                            <div class="NewsCard-meta"><span class="Tag Tag--accent">${esc(n.categoria)}</span><time datetime="${n.fecha}">${fechaLarga(n.fecha)}</time></div>
+                            <h2>${esc(n.titulo)}</h2>
+                            <p class="Article-lead">${esc(n.entradilla)}</p>
+                            ${n.parrafos.map((p) => `<p>${esc(p)}</p>`).join('')}
+                            ${n.lista.length ? `<ol class="Article-list">${n.lista.map((li) => `<li>${esc(li)}</li>`).join('')}</ol>` : ''}
+                        </div>
+                    </article>`, { onClose: () => history.replaceState(null, '', location.pathname) })
+            })
+            .catch((error) => toast(error.message, 'error'))
     }
 
-    cont.addEventListener('click', (e) => {
-        const card = e.target.closest('[data-id]')
-        if (card) abrirNoticia(card.dataset.id)
-    })
+    /* Pintamos el listado y, si todo va bien, activamos los clics y abrimos la noticia de la URL */
+    api.noticias.listar()
+        .then((noticias) => {
+            noticiasGrid.innerHTML = noticias.length
+                ? noticias.map(tarjeta).join('')
+                : `<div style="grid-column:1/-1">${estadoVacio('Todavía no hay noticias')}</div>`
 
-    const id = new URLSearchParams(location.search).get('id')
-    if (id) abrirNoticia(id)
-}
+            noticiasGrid.addEventListener('click', (e) => {
+                const card = e.target.closest('[data-id]')
+                if (card) abrirNoticia(card.dataset.id)
+            })
 
-iniciar()
+            if (idInicial) abrirNoticia(idInicial)
+        })
+        .catch((error) => {
+            noticiasGrid.innerHTML = `<div style="grid-column:1/-1">${estadoError(error)}</div>`
+        })
+
+})()

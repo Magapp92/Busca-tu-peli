@@ -1,0 +1,432 @@
+
+/* ADMINISTRACIÓN */
+
+/* PESTAÑAS */
+
+/* Fila de pestañas con una línea inferior; se desplaza en horizontal si no cabe */
+.Tabs{
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.4rem;
+
+    display: flex;
+    gap: .4rem;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+/* Damos estilo a cada pestaña; su borde inferior tapa la línea de .Tabs */
+.Tabs-tab{
+    padding: .8rem 1.1rem;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+.Tabs-tab:hover{
+    color: var(--text);
+}
+
+/* Pestaña seleccionada con la línea turquesa */
+.Tabs-tab.isActive{
+    border-bottom-color: var(--accent);
+
+    color: var(--text);
+}
+
+/* Contador de elementos de cada pestaña */
+.Tabs-count{
+    padding: .05rem .45rem;
+    border-radius: 999px;
+    background: var(--surface-3);
+
+    font-size: .72rem;
+    color: var(--muted);
+}
+
+
+/* BARRA DE HERRAMIENTAS Y TABLAS */
+
+/* Barra con el filtro a la izquierda y los botones a la derecha */
+.Toolbar{
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: .7rem;
+}
+
+/* El buscador del Header reutilizado como filtro de la tabla */
+.Toolbar .Search-field{
+    width: min(340px, 100%);
+}
+
+/* Contenedora de la tabla con scroll horizontal en pantallas estrechas */
+.TableWrap{
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+
+    overflow-x: auto;
+}
+
+.Table{
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+
+    font-size: .9rem;
+}
+
+/* Cabecera de la tabla en mayúsculas pequeñas */
+.Table th{
+    padding: .85rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+
+    text-align: left;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--faint);
+    font-weight: 600;
+}
+
+.Table td{
+    padding: .7rem 1rem;
+    border-bottom: 1px solid var(--border);
+
+    vertical-align: middle;
+}
+
+/* La última fila no lleva línea inferior */
+.Table tr:last-child td{
+    border-bottom: 0;
+}
+
+/* Fila resaltada al pasar el ratón */
+.Table tbody tr:hover{
+    background: rgba(255, 255, 255, .02);
+}
+
+/* Miniatura del póster (o de la imagen de la noticia, más ancha) */
+.Table-thumb{
+    width: 42px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 6px;
+    background: var(--surface-3);
+}
+.Table-thumb--wide{
+    width: 72px;
+    aspect-ratio: 16/9;
+}
+
+.Table-title{
+    font-weight: 600;
+}
+
+.Table-subtitle{
+    font-size: .8rem;
+    color: var(--muted);
+}
+
+/* Botones de editar y borrar alineados a la derecha */
+.Table-actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: .4rem;
+}
+
+/* Logos de las plataformas de cada película */
+.Table-logos{
+    display: flex;
+    gap: .3rem;
+}
+.Table-logos img{
+    width: 24px;
+    height: 24px;
+}
+
+
+/* INTERRUPTOR Y ESTADO */
+
+/* Interruptor para marcar una película como destacada */
+.Switch{
+    width: 40px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--surface-3);
+    border: 1px solid var(--border-strong);
+
+    position: relative;
+
+    transition: background .2s;
+}
+
+/* Círculo del interruptor */
+.Switch::after{
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--muted);
+
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    transition: transform .2s var(--ease), background .2s;
+}
+
+/* Interruptor activado: turquesa y con el círculo a la derecha */
+.Switch[aria-checked="true"]{
+    background: var(--accent-soft);
+    border-color: var(--accent);
+}
+.Switch[aria-checked="true"]::after{
+    background: var(--accent);
+
+    transform: translateX(18px);
+}
+
+/* Desplegable del estado de cada sugerencia, con un color por estado */
+.StatusSelect{
+    height: 32px;
+    padding-left: .8rem;
+
+    font-size: .8rem;
+}
+.StatusSelect[data-estado="pendiente"]{
+    color: var(--warning);
+}
+.StatusSelect[data-estado="añadida"]{
+    color: var(--success);
+}
+.StatusSelect[data-estado="descartada"]{
+    color: var(--muted);
+}
+
+
+/* PANEL LATERAL DEL FORMULARIO */
+
+/* El Drawer cubre la pantalla pero no recibe clics hasta que se abre */
+.Drawer{
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+
+    pointer-events: none;
+}
+
+/* Fondo oscuro detrás del panel */
+.Drawer-scrim{
+    background: rgba(0, 0, 0, .6);
+
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+    transition: opacity .25s;
+}
+
+/* Panel que entra desde la derecha con cabecera, cuerpo y pie */
+.Drawer-panel{
+    width: min(680px, 100%);
+    background: var(--surface);
+    border-left: 1px solid var(--border-strong);
+
+    display: flex;
+    flex-flow: column nowrap;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(100%);
+
+    transition: transform .3s var(--ease);
+}
+
+/* Drawer abierto: recibe clics, se ve el fondo y el panel entra */
+.Drawer.isOpen{
+    pointer-events: auto;
+}
+.Drawer.isOpen .Drawer-scrim{
+    opacity: 1;
+}
+.Drawer.isOpen .Drawer-panel{
+    transform: none;
+}
+
+.Drawer-head{
+    padding: 1.1rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Drawer-head h2{
+    font-size: 1.25rem;
+}
+
+/* El cuerpo del panel hace scroll si el formulario es largo */
+.Drawer-body{
+    padding: 1.4rem;
+
+    flex: 1;
+
+    overflow-y: auto;
+}
+
+.Drawer-footer{
+    padding: 1rem 1.4rem;
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    justify-content: flex-end;
+    gap: .6rem;
+}
+
+/* Selector de plataformas: casilla con logo y URL de cada una */
+.PlatformPick{
+    display: grid;
+    gap: .5rem;
+}
+
+.PlatformPick-row{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    gap: .6rem;
+}
+.PlatformPick-row .Check img{
+    width: 22px;
+    height: 22px;
+}
+.PlatformPick-row .Input{
+    min-height: 40px;
+}
+
+/* La URL se apaga si la plataforma no está marcada */
+.PlatformPick-row .Input:disabled{
+    opacity: .4;
+}
+
+
+/* IMPORTADOR DE TMDB */
+
+.TmdbImport{
+    padding: clamp(1.2rem, 3vw, 2rem);
+}
+.TmdbImport h2{
+    margin-bottom: .3rem;
+    padding-right: 3rem;
+
+    font-size: 1.4rem;
+}
+
+/* Buscador del importador: input y botón en una fila */
+.TmdbImport-form{
+    margin: 1.2rem 0;
+
+    display: flex;
+    gap: .6rem;
+}
+.TmdbImport-form .Input{
+    min-height: 46px;
+}
+
+.TmdbImport-list{
+    display: grid;
+    gap: .5rem;
+}
+
+/* Cada resultado: póster, título y botón de añadir */
+.TmdbImport-item{
+    padding: .5rem;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+}
+
+/* Póster del resultado o hueco cuando TMDB no tiene imagen */
+.TmdbImport-item img, .TmdbImport-noImage{
+    width: 46px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 6px;
+
+    flex-shrink: 0;
+}
+.TmdbImport-noImage{
+    background: var(--surface-3);
+
+    display: grid;
+    place-items: center;
+
+    font-size: .6rem;
+    text-align: center;
+    color: var(--faint);
+}
+
+.TmdbImport-info{
+    min-width: 0;
+
+    flex: 1;
+}
+.TmdbImport-info strong{
+    display: block;
+}
+.TmdbImport-info span{
+    font-size: .82rem;
+    color: var(--muted);
+}
+
+
+/* DIÁLOGO DE CONFIRMACIÓN */
+
+.Confirm{
+    width: min(440px, 100%);
+    padding: 1.6rem;
+}
+.Confirm h2{
+    margin-bottom: .5rem;
+
+    font-size: 1.25rem;
+}
+.Confirm p{
+    margin-bottom: 1.4rem;
+
+    color: var(--muted);
+}
+
+/* Botones de cancelar y confirmar a la derecha */
+.Confirm-actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: .6rem;
+}
+
+
+/* MEDIA QUERIES */
+
+/* Hasta 520px la casilla y la URL de cada plataforma van una debajo de otra */
+@media (max-width: 520px){
+    .PlatformPick-row{
+        grid-template-columns: 1fr;
+    }
+}

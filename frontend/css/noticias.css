@@ -1,0 +1,72 @@
+
+/* NOTICIAS */
+
+/* NOTICIA COMPLETA (SE ABRE EN EL MODAL) */
+
+/* Imagen de cabecera de la noticia en formato panorámico */
+.Article-hero{
+    aspect-ratio: 21 / 9;
+
+    overflow: hidden;
+}
+.Article-hero img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Cuerpo de la noticia centrado y con un ancho cómodo de lectura */
+.Article-body{
+    max-width: 760px;
+    padding: clamp(1.3rem, 4vw, 2.8rem);
+    margin-inline: auto;
+}
+.Article-body h2{
+    margin: .8rem 0;
+
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    text-wrap: balance;
+}
+
+/* Entradilla destacada */
+.Article-lead{
+    margin-bottom: 1.4rem;
+
+    font-size: 1.1rem;
+    color: #cbd3dc;
+    font-weight: 500;
+}
+.Article-body p{
+    margin-bottom: 1rem;
+
+    color: #c3ccd6;
+}
+
+/* Lista numerada en tarjetas (01, 02…) con un contador de CSS */
+.Article-list{
+    margin-top: 1.2rem;
+    counter-reset: n;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: .5rem;
+}
+.Article-list li{
+    padding: .6rem .8rem;
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    counter-increment: n;
+
+    display: flex;
+    align-items: baseline;
+    gap: .7rem;
+
+    font-size: .92rem;
+}
+.Article-list li::before{
+    content: counter(n, decimal-leading-zero);
+
+    color: var(--accent);
+    font-weight: 700;
+    font-size: .8rem;
+}

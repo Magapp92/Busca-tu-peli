@@ -7,71 +7,117 @@
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#07090d">
     <link rel="icon" href="assets/logo/logobuscatupeli.svg">
+    <!-- Tipografías: Outfit para los títulos e Inter para los textos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <script type="module" src="js/layout.js"></script>
-    <script type="module" src="js/admin.js"></script>
+    <!-- Estilos: reset y piezas comunes, header, footer y los propios de esta página -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- Scripts: cliente de la API, piezas comunes, header, footer y el de esta página -->
+    <script src="js/api.js" defer></script>
+    <script src="js/ui.js" defer></script>
+    <script src="js/header.js" defer></script>
+    <script src="js/footer.js" defer></script>
+    <script src="js/admin.js" defer></script>
 </head>
 <body data-solid-header="true">
-    <main class="container">
-        <header class="page-head">
-            <h1 class="page-head__title">Administración</h1>
-            <p class="page-head__text">Gestiona el catálogo, las noticias y las sugerencias de los usuarios.</p>
+
+    <!-- En el header agrupamos el logo, el menú de navegación, el buscador y el botón del menú para móvil -->
+    <header class="Header" data-element="header">
+        <div class="Container Header-inner">
+            <!-- El logo siempre nos lleva a la página de inicio -->
+            <a class="Header-logo" href="index.html" aria-label="Busca tu peli, inicio" title="Ir a la página de inicio">
+                <img src="assets/logo/logobuscatupeli.svg" alt="Busca tu peli" title="Logo de Busca tu peli" width="152" height="38">
+            </a>
+            <!-- Menú principal: el enlace de la página en la que estamos lleva la clase isCurrent -->
+            <nav class="Nav" id="nav" aria-label="Principal">
+                <a class="Nav-link" href="index.html" title="Ir a la página de inicio">Inicio</a>
+                <a class="Nav-link" href="catalogo.html" title="Ir al catálogo de películas">Catálogo</a>
+                <a class="Nav-link" href="noticias.html" title="Ir a las noticias de cine">Noticias</a>
+                <a class="Nav-link" href="recomendaciones.html" title="Ir al formulario para recomendar una película">Recomendar</a>
+            </nav>
+            <!-- Buscador: al escribir muestra sugerencias de películas pedidas a la API -->
+            <div class="Search" role="search">
+                <label class="Search-field">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <span class="u-srOnly">Buscar películas</span>
+                    <input class="Search-input" type="search" placeholder="Título, actor o director…" autocomplete="off"
+                        aria-controls="search-results" aria-expanded="false" aria-autocomplete="list">
+                    <kbd class="Search-kbd">/</kbd>
+                </label>
+                <div class="Search-results" id="search-results" role="listbox"></div>
+            </div>
+            <!-- Botón hamburguesa que abre y cierra el menú en pantallas pequeñas -->
+            <button class="IconButton Header-menuButton" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        </div>
+    </header>
+
+    <!-- En el main agrupamos las pestañas y las tablas de cada recurso -->
+    <main class="Container">
+        <header class="PageHead">
+            <h1 class="PageHead-title">Administración</h1>
+            <p class="PageHead-text">Gestiona el catálogo, las noticias y las sugerencias de los usuarios.</p>
         </header>
 
-        <div class="tabs" role="tablist">
-            <button class="tab is-active" role="tab" aria-selected="true" data-tab="peliculas">Películas <span class="tab__count" data-count="peliculas">–</span></button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="noticias">Noticias <span class="tab__count" data-count="noticias">–</span></button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="recomendaciones">Sugerencias <span class="tab__count" data-count="recomendaciones">–</span></button>
+        <!-- Pestañas: cada una muestra su panel y el número de elementos -->
+        <div class="Tabs" role="tablist">
+            <button class="Tabs-tab isActive" role="tab" aria-selected="true" data-tab="peliculas">Películas <span class="Tabs-count" data-count="peliculas">–</span></button>
+            <button class="Tabs-tab" role="tab" aria-selected="false" data-tab="noticias">Noticias <span class="Tabs-count" data-count="noticias">–</span></button>
+            <button class="Tabs-tab" role="tab" aria-selected="false" data-tab="recomendaciones">Sugerencias <span class="Tabs-count" data-count="recomendaciones">–</span></button>
         </div>
 
+        <!-- Panel de películas: filtro, importación desde TMDB, alta y tabla -->
         <section data-panel="peliculas">
-            <div class="toolbar">
-                <label class="search__field">
+            <div class="Toolbar">
+                <label class="Search-field">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                    <span class="sr-only">Filtrar películas</span>
-                    <input class="search__input" type="search" placeholder="Filtrar por título…" data-filtro-peliculas>
+                    <span class="u-srOnly">Filtrar películas</span>
+                    <input class="Search-input" type="search" placeholder="Filtrar por título…" data-element="filtro-peliculas">
                 </label>
-                <div class="section__controls">
-                    <button class="btn btn--outline" data-importar-tmdb>Importar desde TMDB</button>
-                    <button class="btn btn--primary" data-nueva="peliculas">+ Nueva película</button>
+                <div class="Section-controls">
+                    <button class="Button Button--outline" data-element="importar-tmdb">Importar desde TMDB</button>
+                    <button class="Button Button--primary" data-nueva="peliculas">+ Nueva película</button>
                 </div>
             </div>
-            <div class="table-wrap">
-                <table class="table">
+            <div class="TableWrap">
+                <table class="Table">
                     <thead><tr><th></th><th>Título</th><th>Géneros</th><th>Dónde ver</th><th>Destacada</th><th></th></tr></thead>
                     <tbody data-tabla="peliculas"></tbody>
                 </table>
             </div>
         </section>
 
+        <!-- Panel de noticias -->
         <section data-panel="noticias" hidden>
-            <div class="toolbar">
+            <div class="Toolbar">
                 <span></span>
-                <button class="btn btn--primary" data-nueva="noticias">+ Nueva noticia</button>
+                <button class="Button Button--primary" data-nueva="noticias">+ Nueva noticia</button>
             </div>
-            <div class="table-wrap">
-                <table class="table">
+            <div class="TableWrap">
+                <table class="Table">
                     <thead><tr><th></th><th>Título</th><th>Categoría</th><th>Fecha</th><th></th></tr></thead>
                     <tbody data-tabla="noticias"></tbody>
                 </table>
             </div>
         </section>
 
+        <!-- Panel de sugerencias de los usuarios, filtrable por estado -->
         <section data-panel="recomendaciones" hidden>
-            <div class="toolbar">
-                <label class="sr-only" for="filtro-estado">Estado</label>
-                <select class="select" id="filtro-estado" data-filtro-estado>
+            <div class="Toolbar">
+                <label class="u-srOnly" for="filtro-estado">Estado</label>
+                <select class="Select" id="filtro-estado" data-element="filtro-estado">
                     <option value="">Todos los estados</option>
                     <option value="pendiente">Pendientes</option>
                     <option value="añadida">Añadidas</option>
                     <option value="descartada">Descartadas</option>
                 </select>
             </div>
-            <div class="table-wrap">
-                <table class="table">
+            <div class="TableWrap">
+                <table class="Table">
                     <thead><tr><th>Película sugerida</th><th>Usuario</th><th>Fecha</th><th>Estado</th><th></th></tr></thead>
                     <tbody data-tabla="recomendaciones"></tbody>
                 </table>
@@ -79,21 +125,72 @@
         </section>
     </main>
 
-    <div class="drawer" data-drawer aria-hidden="true">
-        <div class="drawer__scrim" data-cerrar-drawer></div>
-        <form class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title" novalidate data-drawer-form>
-            <div class="drawer__head">
+    <!-- Panel lateral con el formulario de alta y edición: el contenido lo pinta admin.js -->
+    <div class="Drawer" data-element="drawer" aria-hidden="true">
+        <div class="Drawer-scrim" data-element="cerrar-drawer"></div>
+        <form class="Drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title" novalidate data-element="drawer-form">
+            <div class="Drawer-head">
                 <h2 id="drawer-title">Película</h2>
-                <button type="button" class="icon-btn" aria-label="Cerrar" data-cerrar-drawer>
+                <button type="button" class="IconButton" aria-label="Cerrar" data-element="cerrar-drawer">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
                 </button>
             </div>
-            <div class="drawer__body" data-drawer-body></div>
-            <div class="drawer__foot">
-                <button type="button" class="btn btn--outline" data-cerrar-drawer>Cancelar</button>
-                <button type="submit" class="btn btn--primary" data-guardar>Guardar</button>
+            <div class="Drawer-body" data-element="drawer-body"></div>
+            <div class="Drawer-footer">
+                <button type="button" class="Button Button--outline" data-element="cerrar-drawer">Cancelar</button>
+                <button type="submit" class="Button Button--primary" data-element="guardar">Guardar</button>
             </div>
         </form>
     </div>
+
+    <!-- En el footer agrupamos la marca, los enlaces, las plataformas, el formulario de novedades y los créditos -->
+    <footer class="Footer">
+        <div class="Container Footer-inner">
+            <div class="Footer-brand">
+                <img src="assets/logo/logobuscatupeli.svg" alt="Busca tu peli" title="Logo de Busca tu peli" width="136" height="34">
+                <p>Encuentra en qué plataforma ver cada película, sin saltar de app en app.</p>
+            </div>
+            <!-- Enlaces a las secciones de la web -->
+            <div class="Footer-column">
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="index.html" title="Ir a la página de inicio">Inicio</a></li>
+                    <li><a href="catalogo.html" title="Ir al catálogo de películas">Catálogo</a></li>
+                    <li><a href="noticias.html" title="Ir a las noticias de cine">Noticias</a></li>
+                    <li><a href="recomendaciones.html" title="Ir al formulario para recomendar una película">Recomendar</a></li>
+                </ul>
+            </div>
+            <!-- Enlaces al catálogo filtrado por cada plataforma -->
+            <div class="Footer-column">
+                <h3>Plataformas</h3>
+                <ul>
+                    <li><a href="catalogo.html?plataforma=netflix" title="Ver las películas de Netflix">Netflix</a></li>
+                    <li><a href="catalogo.html?plataforma=prime" title="Ver las películas de Prime Video">Prime Video</a></li>
+                    <li><a href="catalogo.html?plataforma=disney" title="Ver las películas de Disney+">Disney+</a></li>
+                    <li><a href="catalogo.html?plataforma=max" title="Ver las películas de Max">Max</a></li>
+                    <li><a href="catalogo.html?plataforma=appletv" title="Ver las películas de Apple TV+">Apple TV+</a></li>
+                </ul>
+            </div>
+            <!-- Formulario para suscribirse a las novedades por email -->
+            <div class="Footer-newsletter">
+                <h3>Novedades por email</h3>
+                <p>Te avisamos cuando llegan pelis nuevas al catálogo.</p>
+                <form class="Footer-form" novalidate>
+                    <label class="u-srOnly" for="newsletter">Email</label>
+                    <input class="Input" id="newsletter" type="email" placeholder="tu@email.com" required>
+                    <button class="Button Button--primary" type="submit">Suscribirme</button>
+                </form>
+            </div>
+        </div>
+        <!-- El año lo rellena footer.js -->
+        <div class="Container Footer-bottom">
+            <span>© <span data-element="anio"></span> Busca tu peli · info@buscatupeli.com</span>
+            <a href="admin.html" title="Ir al panel de administración">Panel de administración</a>
+        </div>
+        <!-- Atribución obligatoria de TMDB y JustWatch -->
+        <div class="Container Footer-bottom">
+            <span>Datos e imágenes de <a href="https://www.themoviedb.org" target="_blank" rel="noopener" title="Ir a la web de TMDB">TMDB</a> · Disponibilidad por <a href="https://www.justwatch.com/es" target="_blank" rel="noopener" title="Ir a la web de JustWatch">JustWatch</a>. Este producto usa la API de TMDB pero no está avalado ni certificado por TMDB.</span>
+        </div>
+    </footer>
 </body>
 </html>

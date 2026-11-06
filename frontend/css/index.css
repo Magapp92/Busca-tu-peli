@@ -1,0 +1,347 @@
+
+/* INICIO */
+
+/* CARRUSEL DE NOVEDADES */
+
+/* Damos estilo al carrusel. touch-action pan-y: el gesto horizontal es del carrusel (deslizar)
+   y el vertical sigue haciendo scroll en la página */
+.Hero{
+    height: min(88vh, 820px);
+    min-height: 520px;
+    background: var(--surface);
+
+    position: relative;
+
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+/* Las diapositivas se superponen y solo se ve la activa, con un fundido */
+.Hero-slide{
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .9s var(--ease), visibility .9s;
+}
+.Hero-slide.isActive{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Imagen de fondo con un zoom lento que dura lo mismo que cada diapositiva */
+.Hero-background{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+
+    position: absolute;
+    inset: 0;
+    transform: scale(1.06);
+
+    transition: transform var(--hero-ms, 3500ms) linear;
+}
+.Hero-slide.isActive .Hero-background{
+    transform: scale(1);
+}
+
+/* Degradados oscuros a la izquierda y abajo para que se lea el texto */
+.Hero-slide::after{
+    content: '';
+    background:
+        linear-gradient(90deg, rgba(7, 9, 13, .96) 0%, rgba(7, 9, 13, .7) 38%, rgba(7, 9, 13, 0) 70%),
+        linear-gradient(0deg, var(--bg) 0%, rgba(7, 9, 13, 0) 40%);
+
+    position: absolute;
+    inset: 0;
+}
+
+/* Colocamos el texto de la diapositiva abajo, por encima de la imagen */
+.Hero-content{
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: clamp(64px, 12vh, 120px);
+}
+
+.Hero-inner{
+    max-width: 620px;
+}
+
+/* Logos de las plataformas y etiqueta "Novedad" */
+.Hero-eyebrow{
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: .6rem;
+}
+
+.Hero-title{
+    margin-bottom: .9rem;
+
+    font-size: clamp(2.3rem, 6vw, 4.6rem);
+    font-weight: 800;
+    text-wrap: balance;
+}
+
+/* Año, duración y géneros separados por puntos */
+.Hero-meta{
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    gap: .4rem 1rem;
+
+    color: var(--muted);
+    font-size: .95rem;
+}
+.Hero-meta span + span::before{
+    content: '•';
+    margin-right: 1rem;
+
+    color: var(--faint);
+}
+
+/* La sinopsis se corta a tres líneas */
+.Hero-text{
+    margin-bottom: 1.8rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    color: #cbd3dc;
+    font-size: 1.02rem;
+
+    overflow: hidden;
+}
+
+/* Botones "Ver tráiler" y "Más información" */
+.Hero-actions{
+    display: flex;
+    flex-flow: row wrap;
+    gap: .8rem;
+}
+
+.Hero-platform{
+    width: 30px;
+    height: 30px;
+}
+
+/* Indicadores de diapositiva en la esquina inferior derecha */
+.Hero-dots{
+    display: flex;
+    gap: .5rem;
+
+    position: absolute;
+    z-index: 3;
+    right: var(--gutter);
+    bottom: calc(clamp(64px, 12vh, 120px) - 10px);
+}
+
+/* La barra visible mide 4px, pero la zona pulsable es de 24px de alto para el dedo */
+.Hero-dot{
+    width: 34px;
+    height: 24px;
+    padding: 10px 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, .25);
+    background-clip: content-box;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* Barra de progreso turquesa que se llena mientras dura la diapositiva */
+.Hero-dot::after{
+    content: '';
+    border-radius: 4px;
+    background: var(--accent);
+
+    position: absolute;
+    inset: 10px 0;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+.Hero-dot.isActive::after{
+    animation: progreso var(--hero-ms, 3500ms) linear forwards;
+}
+
+/* Si el carrusel está en pausa, la barra también se detiene */
+.Hero.isPaused .Hero-dot.isActive::after{
+    animation-play-state: paused;
+}
+
+@keyframes progreso{
+    to{
+        transform: scaleX(1);
+    }
+}
+
+
+/* PLATAFORMAS */
+
+/* Rejilla de cinco tarjetas, una por plataforma */
+.Platforms{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(8px, 1.2vw, 16px);
+}
+
+/* Damos estilo a la tarjeta de la plataforma con su logo y el número de películas */
+.PlatformCard{
+    padding: 1rem 1.1rem;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+
+    position: relative;
+    isolation: isolate;
+
+    overflow: hidden;
+    transition: transform .25s var(--ease), border-color .25s;
+}
+
+/* Brillo con el color de la marca que aparece al pasar el ratón */
+.PlatformCard::before{
+    content: '';
+    background: radial-gradient(120% 120% at 0% 0%, var(--brand, var(--accent)), transparent 60%);
+
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    opacity: .0;
+    transition: opacity .3s;
+}
+.PlatformCard:hover{
+    border-color: var(--border-strong);
+
+    transform: translateY(-3px);
+}
+.PlatformCard:hover::before{
+    opacity: .28;
+}
+.PlatformCard img{
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+}
+.PlatformCard strong{
+    display: block;
+
+    font-family: var(--font-title);
+    font-size: 1rem;
+}
+.PlatformCard span{
+    font-size: .8rem;
+    color: var(--muted);
+}
+
+
+/* LLAMADA A LA ACCIÓN */
+
+/* Damos estilo al bloque que invita a recomendar una película, con un halo turquesa */
+.Cta{
+    padding: clamp(1.6rem, 5vw, 3.6rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(7, 197, 214, .25);
+    background:
+        radial-gradient(80% 140% at 100% 0%, rgba(7, 197, 214, .28), transparent 60%),
+        linear-gradient(135deg, var(--surface-2), var(--surface));
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+
+    position: relative;
+
+    overflow: hidden;
+}
+.Cta h2{
+    max-width: 560px;
+
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+}
+.Cta p{
+    margin-top: .4rem;
+
+    color: var(--muted);
+}
+
+
+/* MEDIA QUERIES */
+
+/* Hasta 1000px las plataformas van de tres en tres */
+@media (max-width: 1000px){
+    .Platforms{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Hasta 700px el carrusel es más bajo, el degradado va de abajo arriba y los indicadores pasan a la izquierda */
+@media (max-width: 700px){
+    .Hero{
+        height: 78vh;
+    }
+
+    .Hero-slide::after{
+        background: linear-gradient(0deg, var(--bg) 8%, rgba(7, 9, 13, .75) 50%, rgba(7, 9, 13, .2) 100%);
+    }
+
+    .Hero-dots{
+        left: var(--gutter);
+        right: auto;
+        bottom: 18px;
+    }
+
+    /* Año · duración · géneros en una sola línea: si no caben, los géneros terminan en "…" */
+    .Hero-meta{
+        flex-flow: row nowrap;
+
+        white-space: nowrap;
+    }
+
+    .Hero-meta span:last-child{
+        min-width: 0;
+
+        text-overflow: ellipsis;
+
+        overflow: hidden;
+    }
+
+    .Hero-content{
+        bottom: 64px;
+    }
+}
+
+/* Hasta 560px las plataformas van de dos en dos y las tarjetas son más compactas */
+@media (max-width: 560px){
+    .Platforms{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .PlatformCard{
+        padding: .8rem;
+
+        gap: .6rem;
+    }
+
+    .PlatformCard img{
+        width: 32px;
+        height: 32px;
+    }
+}

@@ -8,14 +8,16 @@ const SERVIDOR_DEV = location.protocol === 'file:' || ['5500', '5501', '5173', '
 const BASE_URL = window.BUSCATUPELI_API || (SERVIDOR_DEV ? 'http://localhost:3100/buscatupeli' : '/buscatupeli')
 
 /* Clave del panel admin: se guarda solo durante la sesión del navegador */
-const CLAVE = 'buscatupeli-admin'
-export const claveAdmin = {
-    leer: () => { try { return sessionStorage.getItem(CLAVE) || '' } catch { return '' } },
-    guardar: (v) => { try { sessionStorage.setItem(CLAVE, v) } catch { /* sin almacenamiento */ } },
-    borrar: () => { try { sessionStorage.removeItem(CLAVE) } catch { /* sin almacenamiento */ } }
+const CLAVE_ADMIN = 'buscatupeli-admin'
+
+const claveAdmin = {
+    leer: () => { try { return sessionStorage.getItem(CLAVE_ADMIN) || '' } catch { return '' } },
+    guardar: (valor) => { try { sessionStorage.setItem(CLAVE_ADMIN, valor) } catch { /* sin almacenamiento */ } },
+    borrar: () => { try { sessionStorage.removeItem(CLAVE_ADMIN) } catch { /* sin almacenamiento */ } }
 }
 
-export const apiFetch = async (path, { method = 'GET', body, query, clave } = {}) => {
+/* Hace la petición y devuelve una promesa con data; si la API responde error, la promesa se rechaza con su message */
+const apiFetch = (path, { method = 'GET', body, query, clave } = {}) => {
     const url = new URL(BASE_URL + path, location.origin)
     if (query) {
         Object.entries(query).forEach(([k, v]) => {
@@ -23,33 +25,33 @@ export const apiFetch = async (path, { method = 'GET', body, query, clave } = {}
         })
     }
 
-    let res
-    try {
-        const headers = { 'Content-Type': 'application/json' }
-        const admin = clave ?? claveAdmin.leer()
-        if (admin) headers['x-admin-key'] = admin
-        res = await fetch(url, {
-            method,
-            headers,
-            body: body ? JSON.stringify(body) : undefined
+    /* Mandamos la clave de admin si la hay (la de la sesión o la que nos pasen) */
+    const headers = { 'Content-Type': 'application/json' }
+    const admin = clave ?? claveAdmin.leer()
+    if (admin) headers['x-admin-key'] = admin
+
+    return fetch(url, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined
+    })
+        .catch(() => {
+            throw new Error('No se pudo conectar con el servidor. ¿Está la API arrancada?')
         })
-    } catch {
-        throw new Error('No se pudo conectar con el servidor. ¿Está la API arrancada?')
-    }
-
-    const payload = await res.json().catch(() => ({}))
-
-    if (!res.ok) {
-        const error = new Error(payload.message || `Error ${res.status}`)
-        error.status = res.status
-        throw error
-    }
-
-    return payload.data
+        .then((res) => res.json()
+            .catch(() => ({}))
+            .then((payload) => {
+                if (!res.ok) {
+                    const error = new Error(payload.message || `Error ${res.status}`)
+                    error.status = res.status
+                    throw error
+                }
+                return payload.data
+            }))
 }
 
 /* Atajos por recurso para que las páginas lean como frases */
-export const api = {
+const api = {
     peliculas: {
         listar: (query) => apiFetch('/peliculas', { query }),
         generos: () => apiFetch('/peliculas/generos'),

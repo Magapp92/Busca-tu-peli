@@ -1,0 +1,425 @@
+
+/* FICHA DE PELÍCULA */
+
+/* CABECERA DE LA FICHA */
+
+/* Dejamos espacio arriba para el Header fijo; isolation para que el fondo quede detrás del contenido */
+.Movie{
+    padding-top: calc(var(--header-h) + clamp(24px, 6vw, 80px));
+
+    position: relative;
+    isolation: isolate;
+}
+
+/* Imagen de fondo de la película detrás de la cabecera */
+.Movie-backdrop{
+    height: min(78vh, 720px);
+
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: -1;
+
+    overflow: hidden;
+}
+.Movie-backdrop img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+/* Si no hay imagen apaisada usamos el póster desenfocado */
+.Movie-backdrop.isBlurred img{
+    filter: blur(28px) saturate(1.3);
+
+    transform: scale(1.2);
+
+    opacity: .55;
+}
+
+/* Degradados que funden el fondo con la página para que se lea el texto */
+.Movie-backdrop::after{
+    content: '';
+    background: linear-gradient(0deg, var(--bg) 2%, rgba(7, 9, 13, .7) 50%, rgba(7, 9, 13, .45) 100%),
+        linear-gradient(90deg, rgba(7, 9, 13, .85), transparent 70%);
+
+    position: absolute;
+    inset: 0;
+}
+
+/* Póster y, debajo, "Dónde ver" a la izquierda; el texto ocupa la columna derecha */
+.Movie-layout{
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "poster info" "where info";
+    align-items: start;
+    gap: 1.2rem clamp(24px, 4vw, 56px);
+}
+
+/* Damos estilo al póster con sombra y bordes redondeados */
+.Movie-poster{
+    border-radius: var(--radius-lg);
+    aspect-ratio: 2 / 3;
+    background: var(--surface-2);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9), 0 0 0 1px var(--border);
+
+    grid-area: poster;
+
+    overflow: hidden;
+}
+.Movie-poster img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Movie-info{
+    grid-area: info;
+}
+
+.Movie-layout .WhereToWatch{
+    grid-area: where;
+}
+
+/* En la columna del póster las plataformas van una debajo de otra */
+.Movie-layout .WhereToWatch-list{
+    flex-flow: column wrap;
+    gap: .55rem;
+}
+
+/* Migas de pan: Inicio / Género */
+.Movie-crumbs{
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    gap: .5rem;
+
+    font-size: .85rem;
+    color: var(--muted);
+}
+.Movie-crumbs a:hover{
+    color: var(--accent);
+}
+
+.Movie-title{
+    font-size: clamp(2.1rem, 5vw, 3.8rem);
+    font-weight: 800;
+    text-wrap: balance;
+}
+
+.Movie-originalTitle{
+    margin-top: .35rem;
+
+    color: var(--muted);
+    font-size: .98rem;
+}
+
+/* Etiquetas de año, duración, país y géneros */
+.Movie-meta{
+    margin: 1.2rem 0;
+
+    display: flex;
+    flex-flow: row wrap;
+    gap: .5rem;
+}
+
+/* En la ficha las etiquetas son un poco más grandes */
+.Movie-meta .Tag{
+    height: 30px;
+    padding: 0 .8rem;
+
+    font-size: .82rem;
+}
+
+.Movie-synopsis{
+    max-width: 760px;
+    margin-bottom: 1.8rem;
+
+    font-size: 1.05rem;
+    color: #cbd3dc;
+}
+
+/* Botones "Ver tráiler" y "Más de…" */
+.Movie-actions{
+    margin-bottom: 2rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    gap: .8rem;
+}
+
+
+/* DÓNDE VER */
+
+/* Recuadro con las plataformas donde ver la película */
+.WhereToWatch{
+    max-width: 760px;
+    padding: 1.2rem 1.3rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.WhereToWatch-title{
+    margin-bottom: .8rem;
+
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--faint);
+    font-weight: 600;
+}
+
+.WhereToWatch-list{
+    display: flex;
+    flex-flow: row wrap;
+    gap: .7rem;
+}
+
+/* Tarjeta de cada plataforma, que se eleva al pasar el ratón */
+.Provider{
+    padding: .55rem 1rem .55rem .55rem;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+
+    transition: border-color .2s, transform .2s var(--ease);
+}
+.Provider:hover{
+    border-color: var(--accent);
+
+    transform: translateY(-2px);
+}
+.Provider img{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .35);
+    padding: 4px;
+}
+.Provider strong{
+    display: block;
+
+    font-size: .95rem;
+}
+.Provider span{
+    font-size: .78rem;
+    color: var(--accent);
+}
+
+
+/* REPARTO, FICHA TÉCNICA Y TRÁILER */
+
+/* Izquierda: reparto y, debajo, el tráiler. Derecha: la ficha técnica ocupa la altura de ambos */
+.Details{
+    margin-top: clamp(32px, 5vw, 64px);
+
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "reparto ficha" "trailer ficha";
+    gap: clamp(20px, 3vw, 40px) clamp(24px, 4vw, 56px);
+}
+
+.Details-cast{
+    grid-area: reparto;
+}
+
+.Details-facts{
+    display: flex;
+    flex-flow: column nowrap;
+    grid-area: ficha;
+}
+
+/* Tabla de datos con líneas finas entre celdas (el gap deja ver el fondo del borde) */
+.Facts{
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+
+    overflow: hidden;
+}
+
+/* Dentro de la ficha técnica los datos van uno por fila y llenan toda la altura */
+.Details-facts .Facts{
+    flex: 1;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+}
+
+.Facts-item{
+    background: var(--surface);
+    padding: 1rem 1.1rem;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+.Facts-item dt{
+    margin-bottom: .25rem;
+
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--faint);
+    font-weight: 600;
+}
+.Facts-item dd{
+    font-size: .95rem;
+}
+
+/* Dato que ocupa las dos columnas */
+.Facts-item--wide{
+    grid-column: 1 / -1;
+}
+
+/* Reparto en píldoras con las iniciales de cada actor */
+.Cast{
+    display: flex;
+    flex-flow: row wrap;
+    gap: .5rem;
+}
+
+.Cast-item{
+    padding: .35rem .9rem .35rem .35rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+
+    font-size: .9rem;
+}
+
+.Cast-avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+
+    display: grid;
+    place-items: center;
+
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Títulos de los bloques Reparto, Ficha técnica y Tráiler */
+.BlockTitle{
+    margin-bottom: .9rem;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.Trailer{
+    grid-area: trailer;
+}
+
+/* Marco 16:9 del tráiler */
+.Trailer-frame{
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    background: #000;
+    border: 1px solid var(--border);
+
+    position: relative;
+
+    overflow: hidden;
+}
+.Trailer-frame iframe{
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Portada del tráiler con el botón de reproducir: el vídeo solo se carga al pulsar */
+.Trailer-facade{
+    width: 100%;
+
+    display: grid;
+    place-items: center;
+
+    position: absolute;
+    inset: 0;
+}
+.Trailer-facade img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    position: absolute;
+    inset: 0;
+
+    opacity: .7;
+    transition: opacity .3s;
+}
+.Trailer-facade:hover img{
+    opacity: .9;
+}
+
+/* Botón redondo turquesa de reproducir */
+.Trailer-play{
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 10px rgba(7, 197, 214, .2);
+
+    display: grid;
+    place-items: center;
+
+    color: #001417;
+
+    position: relative;
+
+    transition: transform .25s var(--ease);
+}
+.Trailer-facade:hover .Trailer-play{
+    transform: scale(1.08);
+}
+.Trailer-play svg{
+    width: 30px;
+    height: 30px;
+    margin-left: 4px;
+}
+
+
+/* MEDIA QUERIES */
+
+/* Hasta 860px todo va en una columna: póster, texto y "Dónde ver"; después reparto, tráiler y ficha */
+@media (max-width: 860px){
+    .Movie-layout{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "poster" "info" "where";
+        gap: clamp(24px, 4vw, 56px);
+    }
+
+    .Movie-poster{
+        width: min(220px, 55vw);
+    }
+
+    .Details{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "reparto" "trailer" "ficha";
+    }
+
+    .Details-facts .Facts{
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+    }
+}

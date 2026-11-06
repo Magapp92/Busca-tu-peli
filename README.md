@@ -4,7 +4,7 @@ Buscador de películas por plataforma de streaming (Netflix, Prime Video, Disney
 
 ```
 api/        API REST · Express 5 + Mongoose (MongoDB)
-frontend/   Web · HTML + CSS + JavaScript (módulos ES), sin framework
+frontend/   Web · HTML + CSS (SUIT, un archivo por página) + JavaScript, sin framework
 legacy/     Versión original (HTML estático + peliculas.json), solo de referencia
 ```
 

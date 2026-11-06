@@ -1,0 +1,303 @@
+
+/* HEADER */
+
+/* Damos estilo al Header con position fixed para que no se desplace con el scroll,
+   un z-index para que quede por encima del resto y un degradado que se funde con la página */
+.Header{
+    height: var(--header-h);
+    border-bottom: 1px solid transparent;
+    background: linear-gradient(to bottom, rgba(7, 9, 13, .85), rgba(7, 9, 13, 0));
+
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+
+    transition: background .3s, border-color .3s, backdrop-filter .3s;
+}
+
+/* Al hacer scroll (o en las páginas internas) el Header pasa a fondo sólido con desenfoque */
+.Header.isSolid{
+    background: rgba(7, 9, 13, .82);
+    backdrop-filter: saturate(160%) blur(16px);
+    border-bottom-color: var(--border);
+}
+
+/* Colocamos con flex el logo, el menú y el buscador en una fila */
+.Header-inner{
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.Header-logo img{
+    width: auto;
+    height: 38px;
+}
+
+/* El botón del menú solo se muestra en pantallas pequeñas */
+.Header-menuButton{
+    display: none;
+}
+
+
+/* MENÚ DE NAVEGACIÓN */
+
+.Nav{
+    display: flex;
+    gap: .3rem;
+}
+
+/* Damos estilo a los enlaces del menú con un fondo suave al pasar el ratón */
+.Nav-link{
+    padding: .5rem .85rem;
+    border-radius: 999px;
+
+    font-size: .93rem;
+    font-weight: 500;
+    color: var(--muted);
+
+    position: relative;
+
+    transition: color .2s, background .2s;
+}
+.Nav-link:hover{
+    background: rgba(255, 255, 255, .06);
+
+    color: var(--text);
+}
+
+/* El enlace de la página actual va en blanco con una rayita turquesa debajo */
+.Nav-link.isCurrent{
+    color: var(--text);
+}
+.Nav-link.isCurrent::after{
+    content: '';
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+
+/* BUSCADOR CON SUGERENCIAS */
+
+/* El buscador se empuja a la derecha del Header */
+.Search{
+    width: min(380px, 100%);
+    margin-left: auto;
+
+    position: relative;
+}
+
+/* Caja del buscador con el icono de la lupa, el input y el atajo de teclado */
+.Search-field{
+    height: 44px;
+    padding: 0 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    transition: border-color .2s, background .2s;
+}
+
+/* Al escribir, la caja se ilumina con el borde turquesa */
+.Search-field:focus-within{
+    background: rgba(255, 255, 255, .12);
+    border-color: var(--accent);
+}
+.Search-field svg{
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+    color: var(--muted);
+}
+
+.Search-input{
+    min-width: 0;
+    background: none;
+    border: 0;
+    outline: 0;
+
+    flex: 1;
+
+    font-size: .93rem;
+}
+.Search-input::placeholder{
+    color: var(--faint);
+}
+
+/* Tecla "/" que indica el atajo para enfocar el buscador */
+.Search-kbd{
+    padding: 0 .35rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 5px;
+
+    font-size: .7rem;
+    color: var(--faint);
+    line-height: 1.5;
+}
+
+/* Lista desplegable de sugerencias, oculta hasta que hay resultados */
+.Search-results{
+    max-height: 70vh;
+    padding: .4rem;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+
+    overflow-y: auto;
+}
+.Search-results.isOpen{
+    display: block;
+
+    animation: pop .18s var(--ease);
+}
+
+/* Cada sugerencia: póster pequeño, título y datos */
+.Search-item{
+    padding: .45rem .55rem;
+    border-radius: var(--radius-sm);
+
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+
+    cursor: pointer;
+}
+
+/* Sugerencia bajo el ratón o elegida con las flechas del teclado */
+.Search-item:hover, .Search-item.isActive{
+    background: var(--surface-3);
+}
+.Search-item img{
+    width: 38px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.Search-item strong{
+    display: block;
+
+    font-size: .92rem;
+    font-weight: 600;
+}
+.Search-item span{
+    font-size: .8rem;
+    color: var(--muted);
+}
+
+/* Mensaje cuando no hay resultados */
+.Search-empty{
+    padding: .9rem;
+
+    font-size: .88rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Enlace al catálogo con todos los resultados */
+.Search-all{
+    padding: .6rem;
+    border-top: 1px solid var(--border);
+    margin-top: .3rem;
+
+    display: block;
+
+    text-align: center;
+    font-size: .85rem;
+    color: var(--accent);
+}
+
+
+/* MEDIA QUERIES */
+
+/* Hasta 900px el menú pasa a ser desplegable con el botón hamburguesa y el buscador ocupa el hueco libre */
+@media (max-width: 900px){
+    .Header-inner{
+        gap: .8rem;
+    }
+
+    .Header-logo img{
+        height: 32px;
+    }
+
+    .Header-menuButton{
+        display: grid;
+        order: 3;
+    }
+
+    .Search{
+        width: auto;
+
+        flex: 1;
+    }
+
+    .Search-kbd{
+        display: none;
+    }
+
+    /* El menú se coloca debajo del Header, oculto hasta que se abre */
+    .Nav{
+        padding: .6rem var(--gutter) 1.2rem;
+        background: rgba(7, 9, 13, .97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+
+        flex-flow: column nowrap;
+        gap: 0;
+
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        transform: translateY(-12px);
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .2s, transform .2s var(--ease);
+    }
+
+    .Nav.isOpen{
+        transform: none;
+
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .Nav-link{
+        padding: .85rem .4rem;
+        border-radius: 0;
+        border-bottom: 1px solid var(--border);
+
+        font-size: 1.05rem;
+    }
+
+    .Nav-link.isCurrent::after{
+        display: none;
+    }
+
+    .Nav-link.isCurrent{
+        color: var(--accent);
+    }
+}

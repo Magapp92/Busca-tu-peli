@@ -1,0 +1,96 @@
+
+/* CATÁLOGO */
+
+/* Barra de filtros que se queda pegada bajo el Header al hacer scroll */
+.Filters{
+    padding-block: .9rem;
+    margin-bottom: 1.2rem;
+    background: rgba(7, 9, 13, .88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: var(--header-h);
+    z-index: 20;
+}
+
+/* Cada fila de filtros: etiqueta y chips */
+.Filters-row{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: .6rem;
+}
+
+/* Separación entre la fila de plataformas y la de géneros */
+.Filters-row + .Filters-row{
+    margin-top: .7rem;
+}
+
+/* Los chips se desplazan en horizontal sin mostrar la barra de scroll */
+.Filters-scroll{
+    min-width: 0;
+
+    display: flex;
+    gap: .5rem;
+    flex: 1;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.Filters-scroll::-webkit-scrollbar{
+    display: none;
+}
+.Filters-scroll .Chip{
+    flex-shrink: 0;
+}
+
+/* Etiqueta "Plataforma" / "Género" en mayúsculas pequeñas */
+.Filters-label{
+    min-width: 92px;
+
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+/* Barra con el número de resultados, el botón de limpiar y el orden */
+.ResultsBar{
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    color: var(--muted);
+    font-size: .92rem;
+}
+.ResultsBar strong{
+    color: var(--text);
+}
+
+/* Rejilla de pósters que se adapta al ancho disponible */
+.MovieGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(160px, 42vw), 1fr));
+    gap: clamp(12px, 1.4vw, 20px);
+}
+
+
+/* MEDIA QUERIES */
+
+/* Hasta 700px ocultamos las etiquetas y la barra de filtros ocupa todo el ancho */
+@media (max-width: 700px){
+    .Filters-label{
+        display: none;
+    }
+
+    .Filters{
+        padding-inline: var(--gutter);
+        margin-inline: calc(var(--gutter) * -1);
+    }
+}

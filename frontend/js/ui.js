@@ -1,6 +1,8 @@
-/* Piezas de interfaz reutilizables: tarjetas, iconos, estados, modal y toasts */
+/* Piezas de interfaz reutilizables: tarjetas, iconos, estados, modal y toasts.
+   Se carga antes que el script de cada página y sus constantes quedan disponibles para todas */
 
-export const PLATAFORMAS = {
+/* Plataformas con su nombre, logo y color de marca */
+const PLATAFORMAS = {
     netflix: { nombre: 'Netflix', logo: 'assets/svg/netflix.svg', color: '#e50914' },
     prime: { nombre: 'Prime Video', logo: 'assets/svg/amazonPrime.svg', color: '#29b6f6' },
     disney: { nombre: 'Disney+', logo: 'assets/svg/disney.svg', color: '#194bf8' },
@@ -9,25 +11,28 @@ export const PLATAFORMAS = {
 }
 
 /* Escapa texto antes de meterlo en plantillas HTML */
-export const esc = (valor = '') => String(valor)
+const esc = (valor = '') => String(valor)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 
-export const $ = (sel, ctx = document) => ctx.querySelector(sel)
-export const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)]
+/* Atajos para seleccionar uno o varios elementos */
+const $ = (selector, contexto = document) => contexto.querySelector(selector)
+const $$ = (selector, contexto = document) => [...contexto.querySelectorAll(selector)]
 
-export const urlPelicula = (p) => `pelicula.html?id=${p._id}`
+const urlPelicula = (p) => `pelicula.html?id=${p._id}`
 
-export const duracion = (min) => {
+/* Convierte minutos en "2 h 13 min" */
+const duracion = (min) => {
     if (!min) return ''
     const h = Math.floor(min / 60)
     const m = min % 60
     return h ? `${h} h ${m ? `${m} min` : ''}`.trim() : `${m} min`
 }
 
-export const fechaLarga = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
+const fechaLarga = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
 
-export const ICON = {
+/* Iconos SVG que se usan en las plantillas */
+const ICON = {
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.8-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14Z"/></svg>',
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
@@ -45,32 +50,34 @@ export const ICON = {
 }
 
 /* Tarjeta de póster: al clicar abre la ficha, que pide la película por id a la API */
-export const cardPelicula = (p) => `
-    <a class="card" href="${urlPelicula(p)}" aria-label="${esc(p.titulo)} (${esc(p.anio)})">
-        <img class="card__img" src="${esc(p.poster)}" alt="" loading="lazy">
-        <div class="card__platforms">
+const cardPelicula = (p) => `
+    <a class="MovieCard" href="${urlPelicula(p)}" aria-label="${esc(p.titulo)} (${esc(p.anio)})">
+        <img class="MovieCard-image" src="${esc(p.poster)}" alt="" loading="lazy">
+        <div class="MovieCard-platforms">
             ${(p.plataformas || []).map((pl) => PLATAFORMAS[pl.clave]
                 ? `<img src="${PLATAFORMAS[pl.clave].logo}" alt="${PLATAFORMAS[pl.clave].nombre}" title="${PLATAFORMAS[pl.clave].nombre}">`
                 : '').join('')}
         </div>
-        <div class="card__overlay">
-            <h3 class="card__title">${esc(p.titulo)}</h3>
-            <p class="card__meta">${esc(p.anio)} · ${esc((p.generos || []).slice(0, 2).join(', '))}</p>
+        <div class="MovieCard-overlay">
+            <h3 class="MovieCard-title">${esc(p.titulo)}</h3>
+            <p class="MovieCard-meta">${esc(p.anio)} · ${esc((p.generos || []).slice(0, 2).join(', '))}</p>
         </div>
     </a>`
 
-export const skeletonCards = (n = 8) => Array.from({ length: n }, () => '<div class="skeleton skeleton--card"></div>').join('')
+/* Tarjetas grises mientras llegan los datos */
+const skeletonCards = (n = 8) => Array.from({ length: n }, () => '<div class="Skeleton Skeleton--card"></div>').join('')
 
-export const estadoVacio = (titulo, texto = '') => `
-    <div class="state">${ICON.film}<strong>${esc(titulo)}</strong>${texto ? `<p>${esc(texto)}</p>` : ''}</div>`
+/* Estados de vacío y de error con su icono */
+const estadoVacio = (titulo, texto = '') => `
+    <div class="State">${ICON.film}<strong>${esc(titulo)}</strong>${texto ? `<p>${esc(texto)}</p>` : ''}</div>`
 
-export const estadoError = (error) => `
-    <div class="state state--error">${ICON.alert}<strong>Algo ha fallado</strong><p>${esc(error.message)}</p>
-    <button class="btn btn--outline btn--sm" onclick="location.reload()">Reintentar</button></div>`
+const estadoError = (error) => `
+    <div class="State State--error">${ICON.alert}<strong>Algo ha fallado</strong><p>${esc(error.message)}</p>
+    <button class="Button Button--outline Button--small" onclick="location.reload()">Reintentar</button></div>`
 
 /* Fila horizontal con flechas que se desactivan en los extremos */
-export const activarFila = (seccion) => {
-    const track = $('.row__track', seccion)
+const activarFila = (seccion) => {
+    const track = $('.Row-track', seccion)
     const prev = $('[data-dir="prev"]', seccion)
     const next = $('[data-dir="next"]', seccion)
     if (!track || !prev || !next) return
@@ -88,68 +95,73 @@ export const activarFila = (seccion) => {
     actualizar()
 }
 
-/* ---------- Modal genérico ---------- */
-let modalEl = null
-let focoPrevio = null
+/* MODAL GENÉRICO */
+
+/* El modal se crea una sola vez y se reutiliza; guardamos el foco previo para devolverlo al cerrar */
+let modalCreado = null
+let focoAntesDelModal = null
 
 const asegurarModal = () => {
-    if (modalEl) return modalEl
-    modalEl = document.createElement('div')
-    modalEl.className = 'modal'
-    modalEl.setAttribute('role', 'dialog')
-    modalEl.setAttribute('aria-modal', 'true')
-    modalEl.innerHTML = `<div class="modal__box"><button class="icon-btn modal__close" aria-label="Cerrar">${ICON.close}</button><div class="modal__content"></div></div>`
-    document.body.append(modalEl)
-    modalEl.addEventListener('click', (e) => { if (e.target === modalEl || e.target.closest('.modal__close')) cerrarModal() })
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modalEl.classList.contains('is-open')) cerrarModal() })
-    return modalEl
+    if (modalCreado) return modalCreado
+    modalCreado = document.createElement('div')
+    modalCreado.className = 'Modal'
+    modalCreado.setAttribute('role', 'dialog')
+    modalCreado.setAttribute('aria-modal', 'true')
+    modalCreado.innerHTML = `<div class="Modal-box"><button class="IconButton Modal-close" aria-label="Cerrar">${ICON.close}</button><div class="Modal-content"></div></div>`
+    document.body.append(modalCreado)
+    modalCreado.addEventListener('click', (e) => { if (e.target === modalCreado || e.target.closest('.Modal-close')) cerrarModal() })
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modalCreado.classList.contains('isOpen')) cerrarModal() })
+    return modalCreado
 }
 
-export const abrirModal = (html, { video = false, onClose } = {}) => {
+const abrirModal = (html, { video = false, onClose } = {}) => {
     const m = asegurarModal()
-    focoPrevio = document.activeElement
-    $('.modal__box', m).classList.toggle('modal__box--video', video)
-    $('.modal__content', m).innerHTML = html
+    focoAntesDelModal = document.activeElement
+    $('.Modal-box', m).classList.toggle('Modal-box--video', video)
+    $('.Modal-content', m).innerHTML = html
     m._onClose = onClose
-    m.classList.add('is-open')
+    m.classList.add('isOpen')
     document.body.style.overflow = 'hidden'
-    $('.modal__close', m).focus()
+    $('.Modal-close', m).focus()
 }
 
-export const cerrarModal = () => {
-    if (!modalEl) return
-    modalEl.classList.remove('is-open')
+const cerrarModal = () => {
+    if (!modalCreado) return
+    modalCreado.classList.remove('isOpen')
     document.body.style.overflow = ''
     /* Vaciamos tras la animación para cortar el vídeo */
-    setTimeout(() => { $('.modal__content', modalEl).innerHTML = '' }, 250)
-    modalEl._onClose?.()
-    focoPrevio?.focus?.()
+    setTimeout(() => { $('.Modal-content', modalCreado).innerHTML = '' }, 250)
+    modalCreado._onClose?.()
+    focoAntesDelModal?.focus?.()
 }
 
-export const abrirTrailer = (url, titulo = 'Tráiler') => {
+/* Abre el tráiler de YouTube en el modal con reproducción automática */
+const abrirTrailer = (url, titulo = 'Tráiler') => {
     if (!url) return toast('Esta película no tiene tráiler disponible', 'error')
     const src = `${url}${url.includes('?') ? '&' : '?'}autoplay=1&rel=0`
-    abrirModal(`<div class="video"><iframe src="${esc(src)}" title="${esc(titulo)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`, { video: true })
+    abrirModal(`<div class="Video"><iframe src="${esc(src)}" title="${esc(titulo)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`, { video: true })
 }
 
-/* ---------- Toasts ---------- */
-export const toast = (mensaje, tipo = 'ok') => {
-    let cont = $('.toasts')
-    if (!cont) {
-        cont = document.createElement('div')
-        cont.className = 'toasts'
-        cont.setAttribute('aria-live', 'polite')
-        document.body.append(cont)
+/* TOASTS */
+
+/* Aviso breve abajo de la pantalla que desaparece a los 4 segundos */
+const toast = (mensaje, tipo = 'ok') => {
+    let contenedor = $('.Toasts')
+    if (!contenedor) {
+        contenedor = document.createElement('div')
+        contenedor.className = 'Toasts'
+        contenedor.setAttribute('aria-live', 'polite')
+        document.body.append(contenedor)
     }
-    const t = document.createElement('div')
-    t.className = `toast${tipo === 'error' ? ' toast--error' : ''}`
-    t.textContent = mensaje
-    cont.append(t)
-    setTimeout(() => t.remove(), 4000)
+    const aviso = document.createElement('div')
+    aviso.className = `Toast${tipo === 'error' ? ' Toast--error' : ''}`
+    aviso.textContent = mensaje
+    contenedor.append(aviso)
+    setTimeout(() => aviso.remove(), 4000)
 }
 
 /* Mini debounce para el buscador */
-export const debounce = (fn, ms = 250) => {
+const debounce = (fn, ms = 250) => {
     let id
     return (...args) => { clearTimeout(id); id = setTimeout(() => fn(...args), ms) }
 }

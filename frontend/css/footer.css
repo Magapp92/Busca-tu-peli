@@ -1,0 +1,95 @@
+
+/* FOOTER */
+
+/* Damos estilo al Footer separándolo del contenido con un borde superior */
+.Footer{
+    margin-top: clamp(40px, 6vw, 80px);
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+/* Colocamos con grid las cuatro columnas: marca, explorar, plataformas y novedades */
+.Footer-inner{
+    padding-block: clamp(32px, 5vw, 56px);
+
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+    gap: 2rem;
+}
+
+.Footer-brand img{
+    width: auto;
+    height: 34px;
+    margin-bottom: .9rem;
+}
+
+/* Textos y enlaces del Footer en gris */
+.Footer-brand p, .Footer-column a, .Footer-newsletter p{
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+/* Títulos de las columnas en mayúsculas pequeñas */
+.Footer-column h3, .Footer-newsletter h3{
+    margin-bottom: .9rem;
+
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--faint);
+    font-family: var(--font-text);
+}
+
+.Footer-column ul{
+    display: grid;
+    gap: .45rem;
+}
+.Footer-column a:hover{
+    color: var(--accent);
+}
+
+/* Formulario de novedades: el input y el botón en una fila */
+.Footer-form{
+    margin-top: .8rem;
+
+    display: flex;
+    gap: .4rem;
+}
+.Footer-form .Input{
+    min-height: 42px;
+    border-radius: 999px;
+}
+.Footer-form .Button{
+    height: 42px;
+}
+
+/* Franja inferior con el copyright, el enlace al panel y los créditos */
+.Footer-bottom{
+    border-top: 1px solid var(--border);
+    padding-block: 1.1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: .5rem;
+
+    font-size: .82rem;
+    color: var(--faint);
+}
+
+
+/* MEDIA QUERIES */
+
+/* Hasta 900px las columnas pasan a ser dos */
+@media (max-width: 900px){
+    .Footer-inner{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Hasta 520px todo va en una columna */
+@media (max-width: 520px){
+    .Footer-inner{
+        grid-template-columns: 1fr;
+    }
+}
