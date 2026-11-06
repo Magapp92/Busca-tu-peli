@@ -4,7 +4,15 @@ import {
     abrirTrailer, urlPelicula, duracion, fechaLarga, estadoError
 } from './ui.js'
 
-const HERO_MS = 7000
+const HERO_MS = 3500
+const HERO_PELIS = 6
+
+/* Fondos de TMDB: el navegador elige el tamaño según la pantalla (hasta el original en 4K) */
+const fuenteFondo = (url) => {
+    if (!/image\.tmdb\.org\/t\/p\/w\d+\//.test(url)) return `src="${esc(url)}"`
+    const tam = (t) => esc(url.replace(/\/t\/p\/w\d+\//, `/t/p/${t}/`))
+    return `src="${tam('w1280')}" srcset="${tam('w780')} 780w, ${tam('w1280')} 1280w, ${tam('original')} 3840w" sizes="100vw"`
+}
 const FILAS = [
     { titulo: 'Añadidas recientemente', sub: 'Lo último que ha llegado al catálogo', query: { orden: 'recientes', limite: 12 }, link: 'catalogo.html?orden=recientes' },
     { titulo: 'Acción', query: { genero: 'Acción' }, link: 'catalogo.html?genero=Acción' },
@@ -20,12 +28,12 @@ const pintarHero = (pelis) => {
     hero.style.setProperty('--hero-ms', `${HERO_MS}ms`)
     hero.innerHTML = pelis.map((p, i) => `
         <article class="hero__slide${i === 0 ? ' is-active' : ''}" aria-roledescription="diapositiva" aria-label="${i + 1} de ${pelis.length}" ${i ? 'aria-hidden="true"' : ''}>
-            <img class="hero__bg" src="${esc(p.backdrop || p.poster)}" alt="" ${i ? 'loading="lazy"' : 'fetchpriority="high"'}>
+            <img class="hero__bg" ${fuenteFondo(p.backdrop || p.poster)} alt="" ${i ? 'loading="lazy"' : 'fetchpriority="high"'}>
             <div class="hero__content container">
                 <div class="hero__inner">
                     <div class="hero__eyebrow">
                         ${(p.plataformas || []).map((pl) => PLATAFORMAS[pl.clave] ? `<img class="hero__platform" src="${PLATAFORMAS[pl.clave].logo}" alt="${PLATAFORMAS[pl.clave].nombre}">` : '').join('')}
-                        <span class="tag tag--accent">Destacada</span>
+                        <span class="tag tag--accent">Novedad</span>
                     </div>
                     <h2 class="hero__title">${esc(p.titulo)}</h2>
                     <p class="hero__meta"><span>${esc(p.anio)}</span><span>${duracion(p.duracionMin)}</span><span>${esc(p.generos.slice(0, 3).join(', '))}</span></p>
@@ -37,7 +45,7 @@ const pintarHero = (pelis) => {
                 </div>
             </div>
         </article>`).join('') + `
-        <div class="hero__dots" role="tablist" aria-label="Elegir destacada">
+        <div class="hero__dots" role="tablist" aria-label="Elegir película">
             ${pelis.map((p, i) => `<button class="hero__dot${i === 0 ? ' is-active' : ''}" role="tab" aria-label="${esc(p.titulo)}" aria-selected="${i === 0}"></button>`).join('')}
         </div>`
 
@@ -62,8 +70,19 @@ const pintarHero = (pelis) => {
     const arrancar = () => { clearInterval(timer); timer = setInterval(() => ir(actual + 1), HERO_MS) }
 
     dots.forEach((d, i) => d.addEventListener('click', () => { ir(i); arrancar() }))
-    hero.addEventListener('mouseenter', () => { clearInterval(timer); hero.classList.add('is-paused') })
-    hero.addEventListener('mouseleave', () => { hero.classList.remove('is-paused'); arrancar() })
+    /* Pausa al pasar el ratón; en pantallas táctiles no (el toque no tiene "salir" y quedaría parado) */
+    hero.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { clearInterval(timer); hero.classList.add('is-paused') } })
+    hero.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hero.classList.remove('is-paused'); arrancar() } })
+
+    /* Deslizar con el dedo para cambiar de película */
+    let inicioX = null
+    hero.addEventListener('touchstart', (e) => { inicioX = e.touches[0].clientX }, { passive: true })
+    hero.addEventListener('touchend', (e) => {
+        if (inicioX === null) return
+        const dx = e.changedTouches[0].clientX - inicioX
+        inicioX = null
+        if (Math.abs(dx) > 50) { ir(actual + (dx < 0 ? 1 : -1)); arrancar() }
+    })
     hero.addEventListener('click', (e) => {
         const b = e.target.closest('[data-trailer]')
         if (b) abrirTrailer(b.dataset.trailer, b.dataset.titulo)
@@ -130,13 +149,14 @@ const iniciar = async () => {
     crearFilas()
 
     try {
-        const [destacadas, todas, noticias] = await Promise.all([
-            api.peliculas.listar({ destacada: true, orden: 'recientes' }),
+        const [recientes, todas, noticias] = await Promise.all([
+            api.peliculas.listar({ orden: 'recientes', limite: 12 }),
             api.peliculas.listar(),
             api.noticias.listar({ limite: 3 })
         ])
 
-        pintarHero(destacadas.length ? destacadas : todas.slice(0, 5))
+        /* Las mismas que "Añadidas recientemente", solo las que tienen imagen apaisada */
+        pintarHero(recientes.filter((p) => p.backdrop).slice(0, HERO_PELIS))
 
         const conteo = {}
         todas.forEach((p) => p.plataformas.forEach((pl) => { conteo[pl.clave] = (conteo[pl.clave] || 0) + 1 }))

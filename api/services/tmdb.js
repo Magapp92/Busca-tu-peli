@@ -64,13 +64,22 @@ const elegirTrailer = (videos = []) => {
     return v ? `https://www.youtube.com/embed/${v.key}` : ''
 }
 
+/* Fondo apaisado sin texto (el carrusel pone su propio título encima): el más votado y, a igualdad, el más grande */
+const elegirFondo = (d) => {
+    const sinTexto = (d.images?.backdrops || []).filter((b) => !b.iso_639_1)
+    const mejor = sinTexto.sort((a, b) => b.vote_average - a.vote_average || b.width - a.width)[0]
+    const ruta = mejor?.file_path || d.backdrop_path
+    return ruta ? `${IMG}/w1280${ruta}` : ''
+}
+
 /* Ficha completa de TMDB convertida a nuestro esquema */
 const obtenerPelicula = async (tmdbId) => {
     const mapa = await proveedores()
     const d = await tmdb(`/movie/${tmdbId}`, {
         language: IDIOMA,
-        append_to_response: 'credits,videos,watch/providers',
-        include_video_language: 'es,en'
+        append_to_response: 'credits,videos,watch/providers,images',
+        include_video_language: 'es,en',
+        include_image_language: 'null'
     })
 
     let sinopsis = d.overview
@@ -86,7 +95,7 @@ const obtenerPelicula = async (tmdbId) => {
         tituloOriginal: d.original_title,
         sinopsis,
         poster: d.poster_path ? `${IMG}/w500${d.poster_path}` : '',
-        backdrop: d.backdrop_path ? `${IMG}/w1280${d.backdrop_path}` : '',
+        backdrop: elegirFondo(d),
         trailer: elegirTrailer(d.videos?.results),
         anio: d.release_date ? Number(d.release_date.slice(0, 4)) : undefined,
         duracionMin: d.runtime || undefined,
