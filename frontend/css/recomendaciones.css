@@ -35,6 +35,21 @@
 /* MEDIA QUERIES */
 
 /* Hasta 860px el formulario ocupa todo el ancho y ocultamos el collage */
+/* Aviso del formulario sobre la edad y la política de privacidad */
+.Recommend-note{
+    font-size: .82rem;
+    line-height: 1.5;
+    color: var(--muted);
+}
+.Recommend-note a{
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.Recommend-note a:hover{
+    color: var(--accent);
+}
+
 /* Campo trampa para bots: fuera de la pantalla (no con display none, que algunos bots detectan) */
 .Recommend-trap{
     width: 1px;

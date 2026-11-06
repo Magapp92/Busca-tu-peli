@@ -26,13 +26,13 @@
   force = true
 
 # Cabeceras de seguridad para todas las páginas
-#  - CSP: solo se cargan recursos de la web, fuentes de Google, imágenes de TMDB y vídeos de YouTube
+#  - CSP: solo se cargan recursos de la web (incluidas las fuentes), imágenes de TMDB y vídeos de YouTube
 #    (la misma política que pone Express en local, en api/app.js)
 #  - frame-ancestors / X-Frame-Options: nadie puede meter la web en un iframe (clickjacking)
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://image.tmdb.org https://i.ytimg.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://image.tmdb.org https://i.ytimg.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"

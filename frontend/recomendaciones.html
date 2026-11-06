@@ -7,10 +7,10 @@
     <meta name="description" content="¿Echas en falta alguna película? Cuéntanos cuál y te avisamos cuando la añadamos.">
     <meta name="theme-color" content="#07090d">
     <link rel="icon" href="assets/logo/logobuscatupeli.svg">
-    <!-- Tipografías: Outfit para los títulos e Inter para los textos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Tipografías: Outfit para los títulos e Inter para los textos, servidas desde la web (ver css/reset.css).
+         Precargamos las del alfabeto latino para que el texto no cambie de fuente al cargar -->
+    <link rel="preload" href="assets/fuentes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fuentes/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Estilos: reset y piezas comunes, header, footer y los propios de esta página -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/componentes.css">
@@ -99,6 +99,8 @@
                     </div>
                     <!-- Aquí aparece el mensaje de éxito o de error tras enviar -->
                     <div data-element="mensaje"></div>
+                    <!-- Aviso legal del formulario: edad mínima y enlace a la política de privacidad -->
+                    <p class="Recommend-note">Al enviarla confirmas que tienes más de 14 años y aceptas la <a href="privacidad.html" title="Leer la política de privacidad">política de privacidad</a>. Te escribiremos solo para agradecértela y avisarte si la añadimos.</p>
                     <button class="Button Button--primary" type="submit">Enviar sugerencia</button>
                 </form>
             </div>
@@ -147,7 +149,7 @@
                     <!-- Consentimiento obligatorio (RGPD) -->
                     <label class="Check Footer-consent">
                         <input type="checkbox" name="consentimiento" required>
-                        <span>Acepto recibir la newsletter y la <a href="privacidad.html" title="Leer la política de privacidad">política de privacidad</a></span>
+                        <span>Tengo más de 14 años y acepto recibir la newsletter y la <a href="privacidad.html" title="Leer la política de privacidad">política de privacidad</a></span>
                     </label>
                     <!-- Trampa para bots: campo invisible que una persona nunca rellena -->
                     <div class="Footer-trap" aria-hidden="true">

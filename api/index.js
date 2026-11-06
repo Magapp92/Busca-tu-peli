@@ -27,12 +27,12 @@ const ORIGENES = [
 ]
 
 /* Política de seguridad de contenidos: solo se cargan recursos de la propia web y de los servicios que usa
-(fuentes de Google, imágenes de TMDB y miniaturas y vídeos de YouTube). La misma que netlify.toml para las páginas */
+(imágenes de TMDB y miniaturas y vídeos de YouTube; las fuentes se sirven desde la propia web). La misma que netlify.toml para las páginas */
 const CSP = {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'"],
-    styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-    fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    fontSrc: ["'self'"],
     imgSrc: ["'self'", 'data:', 'https://image.tmdb.org', 'https://i.ytimg.com'],
     frameSrc: ['https://www.youtube.com', 'https://www.youtube-nocookie.com'],
     connectSrc: ["'self'"],

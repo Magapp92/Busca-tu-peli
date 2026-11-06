@@ -7,10 +7,10 @@
     <meta name="description" content="Qué datos guarda Busca tu peli, para qué los usa y cómo ejercer tus derechos.">
     <meta name="theme-color" content="#07090d">
     <link rel="icon" href="assets/logo/logobuscatupeli.svg">
-    <!-- Tipografías: Outfit para los títulos e Inter para los textos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Tipografías: Outfit para los títulos e Inter para los textos, servidas desde la web (ver css/reset.css).
+         Precargamos las del alfabeto latino para que el texto no cambie de fuente al cargar -->
+    <link rel="preload" href="assets/fuentes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fuentes/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Estilos: reset y piezas comunes, header, footer y los propios de esta página -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/componentes.css">
@@ -60,14 +60,15 @@
     <main class="Container">
         <header class="PageHead">
             <h1 class="PageHead-title">Política de privacidad</h1>
-            <p class="PageHead-text">Qué datos guardamos, para qué los usamos y cómo puedes pedir que los borremos.</p>
+            <p class="PageHead-text">Qué datos guardamos, para qué los usamos y cómo puedes pedir que los borremos. Última actualización: 7 de noviembre de 2026.</p>
         </header>
 
         <!-- Cada apartado es una sección con su título -->
         <article class="Legal">
             <section class="Legal-section">
                 <h2>Quién es el responsable</h2>
-                <p>Busca tu peli (buscatupeli.com). Para cualquier cuestión sobre tus datos puedes escribirnos a <a href="mailto:info@buscatupeli.com" title="Escribir a Busca tu peli">info@buscatupeli.com</a>.</p>
+                <p>La responsable de los datos es <strong>Magaly Puente</strong>. Para cualquier cuestión sobre tus datos puedes escribir a <a href="mailto:info@buscatupeli.com" title="Escribir a Busca tu peli">info@buscatupeli.com</a>.</p>
+                <p>Busca tu peli (buscatupeli.com) es un proyecto académico y de portfolio, sin fines comerciales: no vende nada, no tiene publicidad y no obtiene ingresos.</p>
             </section>
 
             <section class="Legal-section">
@@ -82,15 +83,17 @@
             <section class="Legal-section">
                 <h2>Por qué podemos tratarlos</h2>
                 <p>Por tu consentimiento: lo das al marcar la casilla y confirmar la suscripción, o al enviar el formulario de sugerencias. Puedes retirarlo cuando quieras.</p>
+                <p>Para suscribirte a la newsletter o enviar una sugerencia tienes que tener <strong>más de 14 años</strong>, que es la edad mínima para dar el consentimiento en España.</p>
             </section>
 
             <section class="Legal-section">
                 <h2>Quién nos ayuda a tratarlos</h2>
                 <ul>
                     <li><strong>Brevo</strong> (empresa de la Unión Europea): envía los correos y guarda la lista de suscriptores.</li>
-                    <li><strong>MongoDB Atlas</strong>: guarda la base de datos de la web.</li>
-                    <li><strong>Netlify</strong>: aloja la web.</li>
+                    <li><strong>MongoDB Atlas</strong> (MongoDB, Inc., Estados Unidos): guarda la base de datos de la web.</li>
+                    <li><strong>Netlify</strong> (Netlify, Inc., Estados Unidos): aloja la web.</li>
                 </ul>
+                <p>MongoDB y Netlify son empresas de Estados Unidos, así que tus datos pueden tratarse fuera de la Unión Europea. Estas transferencias se apoyan en las garantías que exige el RGPD: el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo de la Comisión Europea, según indica cada proveedor en sus condiciones.</p>
             </section>
 
             <section class="Legal-section">
@@ -105,7 +108,12 @@
 
             <section class="Legal-section">
                 <h2>Cookies</h2>
-                <p>Busca tu peli no usa cookies propias de seguimiento ni de publicidad. El panel de administración guarda la sesión solo mientras el navegador está abierto. Al reproducir un tráiler, YouTube puede usar sus propias cookies.</p>
+                <p>Busca tu peli no usa cookies, ni propias ni de terceros, para seguimiento o publicidad, y por eso no te pide aceptarlas.</p>
+                <ul>
+                    <li>El panel de administración guarda la sesión en tu navegador solo mientras está abierto (almacenamiento técnico, imprescindible para entrar).</li>
+                    <li>Las tipografías se sirven desde la propia web, sin conectar con Google.</li>
+                    <li>Los tráileres se cargan solo cuando pulsas para verlos, desde <strong>youtube-nocookie.com</strong>, el modo de privacidad de YouTube. Al reproducirlos, YouTube puede aplicar sus propias condiciones.</li>
+                </ul>
             </section>
         </article>
     </main>
@@ -152,7 +160,7 @@
                     <!-- Consentimiento obligatorio (RGPD) -->
                     <label class="Check Footer-consent">
                         <input type="checkbox" name="consentimiento" required>
-                        <span>Acepto recibir la newsletter y la <a href="privacidad.html" title="Leer la política de privacidad">política de privacidad</a></span>
+                        <span>Tengo más de 14 años y acepto recibir la newsletter y la <a href="privacidad.html" title="Leer la política de privacidad">política de privacidad</a></span>
                     </label>
                     <!-- Trampa para bots: campo invisible que una persona nunca rellena -->
                     <div class="Footer-trap" aria-hidden="true">

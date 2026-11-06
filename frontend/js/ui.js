@@ -85,8 +85,11 @@ document.addEventListener('click', (e) => {
 /* Solo incrustamos vídeos de YouTube: cualquier otra dirección (p. ej. javascript:) se descarta */
 const URL_YOUTUBE = /^https:\/\/www\.youtube(-nocookie)?\.com\/embed\/[\w-]+(\?[\w=&%.-]*)?$/
 
-/* Dirección del tráiler con autoplay, respetando si ya trae parámetros (?si=…); vacía si no es de YouTube */
-const urlTrailer = (url = '') => (URL_YOUTUBE.test(url) ? `${url}${url.includes('?') ? '&' : '?'}autoplay=1&rel=0` : '')
+/* Dirección del tráiler con autoplay, respetando si ya trae parámetros (?si=…); vacía si no es de YouTube.
+   Se incrusta desde youtube-nocookie.com, el modo de privacidad de YouTube: no guarda cookies hasta reproducir */
+const urlTrailer = (url = '') => (URL_YOUTUBE.test(url)
+    ? `${url.replace('://www.youtube.com/', '://www.youtube-nocookie.com/')}${url.includes('?') ? '&' : '?'}autoplay=1&rel=0`
+    : '')
 
 /* Enlaces externos solo por https; si no, el enlace no lleva a ningún sitio */
 const urlEnlace = (url = '') => (/^https:\/\//.test(url) ? url : '#')
