@@ -2,7 +2,7 @@
 #  - El front se sirve tal cual desde frontend/
 #  - La API de Express corre como función (api/functions/api.js)
 #  - Variables en Netlify → Site configuration → Environment variables:
-#    MONGO_URI, ADMIN_KEY y TMDB_TOKEN
+#    MONGO_URI, ADMIN_KEY, JWT_SECRET y TMDB_TOKEN
 
 [build]
   publish = "frontend"

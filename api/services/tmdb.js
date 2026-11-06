@@ -1,5 +1,6 @@
+
 /* Cliente de TMDB (themoviedb.org) y conversión de sus datos a nuestro esquema de película.
-   La disponibilidad en plataformas ("watch providers") la proporciona JustWatch a través de TMDB */
+La disponibilidad en plataformas ("watch providers") la proporciona JustWatch a través de TMDB */
 const { Pelicula } = require('../models')
 
 const API = 'https://api.themoviedb.org/3'
@@ -176,6 +177,7 @@ const existente = (p) => Pelicula.findOne({
     ]
 })
 
+/* Exportamos las funciones para los controllers, los scripts y el servicio de noticias */
 module.exports = {
     obtenerPelicula,
     obtenerValoracion,

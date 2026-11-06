@@ -1,117 +1,147 @@
+/* Schemas de las 3 colecciones. Los required, enum y validate evitan guardar documentos incompletos
+o con valores que el front no sabe pintar (plataforma, estado de la recomendación o direcciones peligrosas) */
 const mongoose = require('mongoose')
-
-const { String, Number, Boolean, Date, ObjectId } = mongoose.Schema.Types
 
 /* Claves de plataforma que el front sabe pintar (logo, color y nombre) */
 const PLATAFORMAS = ['netflix', 'prime', 'disney', 'max', 'appletv']
 
 /* URLs permitidas: solo https o rutas de la propia web (assets/...). Así nunca se guarda un "javascript:" */
 const URL_SEGURA = /^(https:\/\/[^\s"'<>]+|assets\/[^\s"'<>:]+)$/
-const urlSegura = (campo) => ({
-    validator: (v) => !v || URL_SEGURA.test(v),
+const urlSegura = ( campo ) => ({
+    validator: ( valor ) => !valor || URL_SEGURA.test(valor),
     message: `${campo}: solo se admiten direcciones https o rutas de assets/`
 })
 
 /* El tráiler se incrusta en un iframe: solo vídeos de YouTube */
 const URL_TRAILER = /^https:\/\/www\.youtube(-nocookie)?\.com\/embed\/[\w-]+(\?[\w=&%.-]*)?$/
 const urlTrailer = {
-    validator: (v) => !v || URL_TRAILER.test(v),
+    validator: ( valor ) => !valor || URL_TRAILER.test(valor),
     message: 'El tráiler debe ser un enlace de YouTube con el formato https://www.youtube.com/embed/...'
 }
 
-const opciones = (collection) => ({
-    collection,
-    /* Collation en español: búsquedas sin distinguir mayúsculas ni tildes */
-    collation: { locale: 'es', strength: 1 },
-    versionKey: false,
-    timestamps: true
-})
-
+/* Película del catálogo con su ficha, dónde verla y su valoración en TMDB */
 const peliculaSchema = new mongoose.Schema(
     {
-        _id: { type: ObjectId, auto: true },
-        /* Id en TMDB de las películas importadas: evita duplicados al reimportar */
-        tmdbId: { type: Number, unique: true, sparse: true },
-        titulo: { type: String, required: [true, 'El título es obligatorio'], trim: true, maxlength: 200 },
-        tituloOriginal: { type: String, trim: true, maxlength: 200 },
-        sinopsis: { type: String, required: [true, 'La sinopsis es obligatoria'], maxlength: 5000 },
-        poster: { type: String, required: [true, 'El póster es obligatorio'], validate: urlSegura('Póster') },
-        /* Imagen horizontal para el hero y el fondo de la ficha */
-        backdrop: { type: String, default: '', validate: urlSegura('Imagen apaisada') },
-        trailer: { type: String, default: '', validate: urlTrailer },
-        anio: { type: Number, min: 1888, max: 2100 },
-        duracionMin: { type: Number, min: 0 },
-        pais: { type: String },
-        direccion: [{ type: String }],
-        guion: [{ type: String }],
-        reparto: [{ type: String }],
-        companias: [{ type: String }],
-        generos: [{ type: String }],
-        plataformas: [
-            {
-                _id: false,
-                clave: { type: String, required: true, enum: { values: PLATAFORMAS, message: 'Plataforma no válida: {VALUE}' } },
-                url: { type: String, required: true, validate: urlSegura('Enlace de la plataforma') }
-            }
-        ],
-        destacada: { type: Boolean, default: false },
-        /* Datos de TMDB que se refrescan cada semana: nota media (0-10), nº de votos y popularidad */
-        valoracion: { type: Number, min: 0, max: 10 },
-        votos: { type: Number, min: 0 },
-        popularidad: { type: Number, min: 0 }
+      _id: { type: mongoose.Schema.Types.ObjectId , auto : true },
+      /* Id en TMDB de las películas importadas: evita duplicados al reimportar */
+      tmdbId: { type: mongoose.Schema.Types.Number, unique: true, sparse: true },
+      /* Datos que se ven en la tarjeta y en la ficha */
+      titulo: { type: mongoose.Schema.Types.String, required: [true, 'El título es obligatorio'], trim: true, maxlength: 200 },
+      tituloOriginal: { type: mongoose.Schema.Types.String, trim: true, maxlength: 200 },
+      sinopsis: { type: mongoose.Schema.Types.String, required: [true, 'La sinopsis es obligatoria'], maxlength: 5000 },
+      poster: { type: mongoose.Schema.Types.String, required: [true, 'El póster es obligatorio'], validate: urlSegura('Póster') },
+      /* Imagen horizontal para el carrusel y el fondo de la ficha */
+      backdrop: { type: mongoose.Schema.Types.String, default: '', validate: urlSegura('Imagen apaisada') },
+      trailer: { type: mongoose.Schema.Types.String, default: '', validate: urlTrailer },
+      anio: { type: mongoose.Schema.Types.Number, min: 1888, max: 2100 },
+      duracionMin: { type: mongoose.Schema.Types.Number, min: 0 },
+      pais: { type: mongoose.Schema.Types.String },
+      /* Ficha técnica */
+      direccion: [{ type: mongoose.Schema.Types.String }],
+      guion: [{ type: mongoose.Schema.Types.String }],
+      reparto: [{ type: mongoose.Schema.Types.String }],
+      companias: [{ type: mongoose.Schema.Types.String }],
+      generos: [{ type: mongoose.Schema.Types.String }],
+      /* Dónde verla: la clave solo puede ser una plataforma que el front sabe pintar */
+      plataformas: [
+        {
+        _id: false,
+        clave: { type: mongoose.Schema.Types.String, required: true, enum: { values: PLATAFORMAS, message: 'Plataforma no válida: {VALUE}' } },
+        url: { type: mongoose.Schema.Types.String, required: true, validate: urlSegura('Enlace de la plataforma') }
+        }
+      ],
+      destacada: { type: mongoose.Schema.Types.Boolean, default: false },
+      /* Datos de TMDB que se refrescan cada semana: nota media (0-10), nº de votos y popularidad */
+      valoracion: { type: mongoose.Schema.Types.Number, min: 0, max: 10 },
+      votos: { type: mongoose.Schema.Types.Number, min: 0 },
+      popularidad: { type: mongoose.Schema.Types.Number, min: 0 }
     },
-    opciones('peliculas')
+    {
+      collection: 'peliculas',
+      /* Collation en español: las búsquedas no distinguen mayúsculas ni tildes */
+       collation: {
+            locale: 'es',
+            strength: 1
+        },
+        versionKey: false,
+        /* createdAt y updatedAt: el panel ordena por fecha de alta */
+        timestamps: true
+    }
 )
 
+/* Noticia con su cuerpo y, en las generadas con datos, el ranking de películas */
 const noticiaSchema = new mongoose.Schema(
     {
-        _id: { type: ObjectId, auto: true },
-        titulo: { type: String, required: [true, 'El título es obligatorio'], trim: true, maxlength: 200 },
-        entradilla: { type: String, required: [true, 'La entradilla es obligatoria'], maxlength: 1000 },
-        imagen: { type: String, default: '', validate: urlSegura('Imagen') },
-        categoria: { type: String, default: 'General', maxlength: 60 },
-        fecha: { type: Date, default: () => new globalThis.Date() },
-        parrafos: [{ type: String }],
-        lista: [{ type: String }],
-        /* Noticias generadas con datos (npm run noticias y la función semanal):
-           la clave identifica cada una para actualizarla en lugar de duplicarla */
-        clave: { type: String, unique: true, sparse: true },
-        ranking: [
-            {
-                _id: false,
-                posicion: { type: Number },
-                titulo: { type: String },
-                anio: { type: Number },
-                poster: { type: String, validate: urlSegura('Póster') },
-                valoracion: { type: Number },
-                votos: { type: Number },
-                plataformas: [{ type: String }],
-                /* Solo si la película está en el catálogo: enlaza con su ficha */
-                pelicula: { type: ObjectId, ref: 'Pelicula' }
-            }
-        ]
+      _id: { type: mongoose.Schema.Types.ObjectId , auto : true },
+      /* Datos que se ven en la tarjeta de la noticia */
+      titulo: { type: mongoose.Schema.Types.String, required: [true, 'El título es obligatorio'], trim: true, maxlength: 200 },
+      entradilla: { type: mongoose.Schema.Types.String, required: [true, 'La entradilla es obligatoria'], maxlength: 1000 },
+      imagen: { type: mongoose.Schema.Types.String, default: '', validate: urlSegura('Imagen') },
+      categoria: { type: mongoose.Schema.Types.String, default: 'General', maxlength: 60 },
+      fecha: { type: mongoose.Schema.Types.Date, default: Date.now },
+      /* Cuerpo de la noticia que se ve al abrirla */
+      parrafos: [{ type: mongoose.Schema.Types.String }],
+      lista: [{ type: mongoose.Schema.Types.String }],
+      /* Noticias generadas con datos (npm run noticias y la función semanal):
+      la clave identifica cada una para actualizarla en lugar de duplicarla */
+      clave: { type: mongoose.Schema.Types.String, unique: true, sparse: true },
+      ranking: [
+        {
+        _id: false,
+        posicion: { type: mongoose.Schema.Types.Number },
+        titulo: { type: mongoose.Schema.Types.String },
+        anio: { type: mongoose.Schema.Types.Number },
+        poster: { type: mongoose.Schema.Types.String, validate: urlSegura('Póster') },
+        valoracion: { type: mongoose.Schema.Types.Number },
+        votos: { type: mongoose.Schema.Types.Number },
+        plataformas: [{ type: mongoose.Schema.Types.String }],
+        /* Solo si la película está en el catálogo: enlaza con su ficha */
+        pelicula: { type: mongoose.Schema.Types.ObjectId, ref: 'Pelicula' }
+        }
+      ]
     },
-    opciones('noticias')
+    {
+      collection: 'noticias',
+       collation: {
+            locale: 'es',
+            strength: 1
+        },
+        versionKey: false,
+        timestamps: true
+    }
 )
 
+/* Sugerencia de película que deja un usuario en el formulario de recomendaciones */
 const recomendacionSchema = new mongoose.Schema(
     {
-        _id: { type: ObjectId, auto: true },
-        nombre: { type: String, required: [true, 'El nombre es obligatorio'], trim: true, maxlength: [80, 'El nombre es demasiado largo'] },
-        email: {
-            type: String,
-            required: [true, 'El email es obligatorio'],
-            trim: true,
-            lowercase: true,
-            maxlength: [120, 'El email es demasiado largo'],
-            match: [/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/, 'El email no tiene un formato válido']
-        },
-        pelicula: { type: String, required: [true, 'Indica qué película echaste en falta'], trim: true, maxlength: [300, 'El texto de la película es demasiado largo'] },
-        estado: { type: String, default: 'pendiente', enum: { values: ['pendiente', 'añadida', 'descartada'], message: 'Estado no válido: {VALUE}' } }
+      _id: { type: mongoose.Schema.Types.ObjectId , auto : true },
+      /* Datos del usuario: nombre y email obligatorios, con un largo máximo */
+      nombre: { type: mongoose.Schema.Types.String, required: [true, 'El nombre es obligatorio'], trim: true, maxlength: [80, 'El nombre es demasiado largo'] },
+      email: {
+        type: mongoose.Schema.Types.String,
+        required: [true, 'El email es obligatorio'],
+        trim: true,
+        lowercase: true,
+        maxlength: [120, 'El email es demasiado largo'],
+        match: [/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/, 'El email no tiene un formato válido']
+      },
+      pelicula: { type: mongoose.Schema.Types.String, required: [true, 'Indica qué película echaste en falta'], trim: true, maxlength: [300, 'El texto de la película es demasiado largo'] },
+      /* El estado solo admite los valores que entiende el panel */
+      estado: { type: mongoose.Schema.Types.String, default: 'pendiente', enum: { values: ['pendiente', 'añadida', 'descartada'], message: 'Estado no válido: {VALUE}' } }
     },
-    opciones('recomendaciones')
+    {
+      collection: 'recomendaciones',
+       collation: {
+            locale: 'es',
+            strength: 1
+        },
+        versionKey: false,
+        /* createdAt: el panel muestra y ordena las sugerencias por fecha */
+        timestamps: true
+    }
 )
 
+/* Exportamos los schemas para crear los modelos en models.js */
 module.exports = {
     PLATAFORMAS,
     peliculaSchema,

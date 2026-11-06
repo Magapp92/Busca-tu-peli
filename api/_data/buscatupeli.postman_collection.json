@@ -1,0 +1,363 @@
+{
+  "info": {
+    "name": "Busca tu peli API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3100"
+    },
+    {
+      "key": "peliculaId",
+      "value": "6aeb6011968d4c8e556cc227"
+    },
+    {
+      "key": "noticiaId",
+      "value": "6aee1c582b045ca4f08b0f48"
+    },
+    {
+      "key": "recomendacionId",
+      "value": "PEGA_AQUI_UN_ID_DE_RECOMENDACION"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login del panel (la clave es la ADMIN_KEY del .env)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/buscatupeli/login",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clave\": \"TU_ADMIN_KEY\"\n}"
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Guardamos el token para las peticiones que crean, modifican o borran",
+                  "pm.collectionVariables.set(\"token\", pm.response.json().data.token)"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Comprobar que el token sigue siendo válido",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/admin/verificar",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Películas",
+      "item": [
+        {
+          "name": "Listado con filtros combinables (q, genero, plataforma, anio, destacada, orden, limite)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/peliculas?genero=acción&orden=recientes",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Géneros existentes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/generos",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Películas de un género",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/genero/Drama",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Películas de una plataforma (netflix, prime, disney, max, appletv)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/plataforma/netflix",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Película por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Películas relacionadas",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}/relacionadas",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Crear película",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/buscatupeli/peliculas",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Oppenheimer\",\n  \"sinopsis\": \"La historia de J. Robert Oppenheimer y la bomba atómica.\",\n  \"poster\": \"https://image.tmdb.org/t/p/w500/ncKCQVXgk4BcQV6XbvesgZ2zLvZ.jpg\",\n  \"anio\": 2023,\n  \"duracionMin\": 180,\n  \"generos\": [\"Drama\", \"Historia\"],\n  \"plataformas\": [{ \"clave\": \"prime\", \"url\": \"https://www.primevideo.com\" }]\n}"
+            }
+          }
+        },
+        {
+          "name": "Reemplazar película (PUT)",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Come, Reza, Ama\",\n  \"sinopsis\": \"Nueva sinopsis\",\n  \"poster\": \"assets/plataformas/prime/Romance/ComeRezaAma.webp\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Modificar campos (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destacada\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Borrar película",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Noticias",
+      "item": [
+        {
+          "name": "Listado (sin el cuerpo)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/noticias?limite=3",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Noticia completa",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/noticias/{{noticiaId}}",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Crear noticia",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/buscatupeli/noticias",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Estrenos de la semana\",\n  \"entradilla\": \"Las películas que llegan esta semana a las plataformas.\",\n  \"categoria\": \"Estrenos\",\n  \"parrafos\": [\"Primer párrafo de la noticia.\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Modificar campos (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/buscatupeli/noticias/{{noticiaId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoria\": \"Ranking\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Borrar noticia",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/buscatupeli/noticias/{{noticiaId}}",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recomendaciones",
+      "item": [
+        {
+          "name": "Enviar una recomendación (formulario público, máximo 5 por hora)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/buscatupeli/recomendaciones",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ana García\",\n  \"email\": \"ana@email.com\",\n  \"pelicula\": \"Oppenheimer\"\n}"
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Recomendaciones por estado (pendiente | añadida | descartada)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/recomendaciones?estado=pendiente",
+            "header": []
+          }
+        },
+        {
+          "name": "Cambiar estado",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/buscatupeli/recomendaciones/{{recomendacionId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"añadida\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Borrar recomendación",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/buscatupeli/recomendaciones/{{recomendacionId}}",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "TMDB",
+      "item": [
+        {
+          "name": "Buscar en TMDB (marca las que ya están en el catálogo)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/tmdb/buscar?q=oppenheimer",
+            "header": []
+          }
+        },
+        {
+          "name": "Importar una película de TMDB por su id",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/buscatupeli/tmdb/importar/872585",
+            "header": []
+          }
+        }
+      ]
+    }
+  ]
+}

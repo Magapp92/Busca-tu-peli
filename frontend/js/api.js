@@ -7,17 +7,17 @@
 const SERVIDOR_DEV = location.protocol === 'file:' || ['5500', '5501', '5173', '8080'].includes(location.port)
 const BASE_URL = window.BUSCATUPELI_API || (SERVIDOR_DEV ? 'http://localhost:3100/buscatupeli' : '/buscatupeli')
 
-/* Clave del panel admin: se guarda solo durante la sesión del navegador */
-const CLAVE_ADMIN = 'buscatupeli-admin'
+/* Token de sesión del panel (lo da POST /login y caduca a las 8 h): se guarda solo durante la sesión del navegador */
+const SESION_ADMIN = 'buscatupeli-token'
 
-const claveAdmin = {
-    leer: () => { try { return sessionStorage.getItem(CLAVE_ADMIN) || '' } catch { return '' } },
-    guardar: (valor) => { try { sessionStorage.setItem(CLAVE_ADMIN, valor) } catch { /* sin almacenamiento */ } },
-    borrar: () => { try { sessionStorage.removeItem(CLAVE_ADMIN) } catch { /* sin almacenamiento */ } }
+const sesionAdmin = {
+    leer: () => { try { return sessionStorage.getItem(SESION_ADMIN) || '' } catch { return '' } },
+    guardar: (token) => { try { sessionStorage.setItem(SESION_ADMIN, token) } catch { /* sin almacenamiento */ } },
+    borrar: () => { try { sessionStorage.removeItem(SESION_ADMIN) } catch { /* sin almacenamiento */ } }
 }
 
 /* Hace la petición y devuelve una promesa con data; si la API responde error, la promesa se rechaza con su message */
-const apiFetch = (path, { method = 'GET', body, query, admin = false, clave } = {}) => {
+const apiFetch = (path, { method = 'GET', body, query, admin = false } = {}) => {
     const url = new URL(BASE_URL + path, location.origin)
     if (query) {
         Object.entries(query).forEach(([k, v]) => {
@@ -25,10 +25,10 @@ const apiFetch = (path, { method = 'GET', body, query, admin = false, clave } = 
         })
     }
 
-    /* La clave de admin solo viaja en las peticiones de administración, nunca en las públicas */
+    /* El token del panel solo viaja en las peticiones de administración, nunca en las públicas */
     const headers = { 'Content-Type': 'application/json' }
-    const claveEnviada = admin ? (clave ?? claveAdmin.leer()) : ''
-    if (claveEnviada) headers['x-admin-key'] = claveEnviada
+    const token = admin ? sesionAdmin.leer() : ''
+    if (token) headers.Authorization = `Bearer ${token}`
 
     return fetch(url, {
         method,
@@ -42,6 +42,8 @@ const apiFetch = (path, { method = 'GET', body, query, admin = false, clave } = 
             .catch(() => ({}))
             .then((payload) => {
                 if (!res.ok) {
+                    /* Si el token del panel ha caducado o no vale, lo olvidamos: al recargar se pedirá la clave */
+                    if (admin && res.status === 401) sesionAdmin.borrar()
                     const error = new Error(payload.message || `Error ${res.status}`)
                     error.status = res.status
                     throw error
@@ -73,7 +75,9 @@ const api = {
         borrar: (id) => apiFetch(`/noticias/${idSeguro(id)}`, { method: 'DELETE', admin: true })
     },
     admin: {
-        verificar: (clave) => apiFetch('/admin/verificar', { clave, admin: true })
+        /* El login no lleva token: con la clave correcta devuelve uno nuevo */
+        login: (clave) => apiFetch('/login', { method: 'POST', body: { clave } }),
+        verificar: () => apiFetch('/admin/verificar', { admin: true })
     },
     tmdb: {
         buscar: (q) => apiFetch('/tmdb/buscar', { query: { q }, admin: true }),

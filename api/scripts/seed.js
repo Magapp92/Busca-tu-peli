@@ -1,9 +1,10 @@
+
 /* Carga inicial: vacía películas y noticias y las rellena con _data/*.json (npm run seed) */
 require('dotenv').config()
 const mongoose = require('mongoose')
-const { Pelicula, Noticia } = require('./models')
-const peliculas = require('./_data/peliculas.json')
-const noticias = require('./_data/noticias.json')
+const { Pelicula, Noticia } = require('../models')
+const peliculas = require('../_data/peliculas.json')
+const noticias = require('../_data/noticias.json')
 
 const sembrar = async () => {
     try {

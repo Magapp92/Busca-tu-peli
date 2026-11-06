@@ -6,24 +6,28 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon index",
-    "seed": "node seed",
-    "importar": "node importar",
-    "copiar-a-atlas": "node copiar-a-atlas",
-    "noticias": "node noticias"
+    "seed": "node scripts/seed",
+    "importar": "node scripts/importar",
+    "copiar-a-atlas": "node scripts/copiar-a-atlas",
+    "noticias": "node scripts/noticias"
   },
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prettier": "3.8.4"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-rate-limit": "^7.5.1",
     "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.1",
     "morgan": "^1.11.0",
     "serverless-http": "^4.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.14"
   }
 }

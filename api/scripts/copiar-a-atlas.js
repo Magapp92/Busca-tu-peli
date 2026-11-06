@@ -1,8 +1,9 @@
+
 /* Copia películas y noticias de la base local (MONGO_URI) a Atlas (MONGO_URI_ATLAS).
-   Uso: npm run copiar-a-atlas  ·  Sustituye lo que haya en Atlas en esas dos colecciones */
+Uso: npm run copiar-a-atlas  ·  Sustituye lo que haya en Atlas en esas dos colecciones */
 require('dotenv').config({ quiet: true })
 const mongoose = require('mongoose')
-const { peliculaSchema, noticiaSchema } = require('./schemas')
+const { peliculaSchema, noticiaSchema } = require('../schemas')
 
 const { MONGO_URI, MONGO_URI_ATLAS } = process.env
 

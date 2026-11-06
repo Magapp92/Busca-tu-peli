@@ -443,7 +443,8 @@
 
     /* ACCESO CON CLAVE DE ADMINISTRADOR */
 
-    /* Sustituimos el panel por el formulario de clave; si es correcta se guarda en la sesión y recargamos */
+    /* Sustituimos el panel por el formulario de clave; si es correcta la API devuelve un token (8 h),
+       lo guardamos en la sesión y recargamos */
     const pedirClave = (mensaje = '') => {
         $('main').innerHTML = `
             <div class="PageHead" style="max-width:440px;margin-inline:auto">
@@ -464,16 +465,16 @@
             e.preventDefault()
             const clave = claveInput.value.trim()
             if (!clave) return pedirClave('Escribe la clave')
-            api.admin.verificar(clave)
-                .then(() => {
-                    claveAdmin.guardar(clave)
+            api.admin.login(clave)
+                .then(({ token }) => {
+                    sesionAdmin.guardar(token)
                     location.reload()
                 })
                 .catch((error) => pedirClave(error.status === 401 ? 'Clave incorrecta' : error.message))
         })
     }
 
-    /* ARRANQUE: comprobamos la clave guardada antes de cargar los datos */
+    /* ARRANQUE: comprobamos el token guardado antes de cargar los datos */
     api.admin.verificar()
         .then(() => {
             cargarPeliculas()
@@ -481,7 +482,7 @@
             cargarRecomendaciones()
         })
         .catch((error) => {
-            claveAdmin.borrar()
+            sesionAdmin.borrar()
             pedirClave(error.status === 401 ? '' : error.message)
         })
 

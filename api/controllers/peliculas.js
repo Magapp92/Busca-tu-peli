@@ -1,15 +1,19 @@
+
+/* Controlador de películas: listados y filtros para el catálogo y la portada, ficha y relacionadas,
+y alta, edición y borrado desde el panel; todas las respuestas siguen la forma { message, data } */
 const { Pelicula } = require('../models')
 
 /* Regex que ignora mayúsculas y tildes: 'accion' encuentra 'Acción' */
-const regexFlexible = (texto) => {
+const regexFlexible = ( texto ) => {
     const tildes = { a: '[aá]', e: '[eé]', i: '[ií]', o: '[oó]', u: '[uúü]', n: '[nñ]' }
     const escapado = texto.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const patron = escapado
         .normalize('NFD').replace(/[̀-ͯ]/g, '')
-        .replace(/[aeioun]/gi, (l) => tildes[l.toLowerCase()])
+        .replace(/[aeioun]/gi, ( letra ) => tildes[letra.toLowerCase()])
     return new RegExp(patron, 'i')
 }
 
+/* Órdenes que entiende el catálogo */
 const ORDENES = {
     recientes: { anio: -1, titulo: 1 },
     antiguas: { anio: 1, titulo: 1 },
@@ -18,11 +22,12 @@ const ORDENES = {
 }
 
 /* Un parámetro de la URL como texto: si llega repetido (?genero=a&genero=b) nos quedamos con el primero */
-const texto = (v, max = 100) => (Array.isArray(v) ? v[0] : v)?.toString().trim().slice(0, max) || ''
+const texto = ( valor, max = 100 ) => (Array.isArray(valor) ? valor[0] : valor)?.toString().trim().slice(0, max) || ''
 
-/* Listado con filtros opcionales por query: ?q=&genero=&plataforma=&anio=&destacada=&orden=&limite= */
+/* Listado con filtros combinables por query para el catálogo: ?q=&genero=&plataforma=&anio=&destacada=&orden=&limite= */
 const getPeliculas = async (req, res, next) => {
     try {
+        /* Recogemos los filtros de la URL, todos como texto y con un largo máximo */
         const q = texto(req.query.q)
         const genero = texto(req.query.genero, 40)
         const plataforma = texto(req.query.plataforma, 20)
@@ -30,6 +35,7 @@ const getPeliculas = async (req, res, next) => {
         const { anio, destacada, limite } = req.query
         const filtro = {}
 
+        /* La búsqueda mira el título, el título original, el reparto y la dirección */
         if (q) {
             const re = regexFlexible(q)
             filtro.$or = [{ titulo: re }, { tituloOriginal: re }, { reparto: re }, { direccion: re }]
@@ -55,10 +61,11 @@ const getPeliculas = async (req, res, next) => {
     }
 }
 
-/* Géneros distintos que existen en la colección, para los filtros del front */
+/* Géneros distintos que existen en la colección, para los filtros del catálogo */
 const getGeneros = async (req, res, next) => {
     try {
-        const data = (await Pelicula.distinct('generos')).sort((a, b) => a.localeCompare(b, 'es'))
+        /* Pedimos a Mongo los géneros sin repetir y los ordenamos alfabéticamente en español */
+        const data = (await Pelicula.distinct('generos')).sort(( a, b ) => a.localeCompare(b, 'es'))
 
         res.status(200).json({
             message: 'Mostrando géneros',
@@ -69,11 +76,47 @@ const getGeneros = async (req, res, next) => {
     }
 }
 
+/* Buscamos las películas del género que llega en la URL (la collation ignora mayúsculas y tildes) */
+const getPeliculasByGenero = async (req, res, next) => {
+    try {
+        /* Recogemos el género de la URL */
+        const { genero } = req.params
+
+        const data = await Pelicula.find({ generos: genero }).sort(ORDENES.titulo)
+
+        res.status(200).json({
+            message: `Mostrando las películas de ${genero}`,
+            data
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+/* Buscamos las películas disponibles en la plataforma que llega en la URL (netflix, prime, disney, max, appletv) */
+const getPeliculasByPlataforma = async (req, res, next) => {
+    try {
+        /* Recogemos la plataforma de la URL */
+        const { plataforma } = req.params
+
+        const data = await Pelicula.find({ 'plataformas.clave': plataforma }).sort(ORDENES.titulo)
+
+        res.status(200).json({
+            message: `Mostrando las películas de ${plataforma}`,
+            data
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+/* Ficha de una película: la pide pelicula.html al pulsar un póster */
 const getPeliculaById = async (req, res, next) => {
     try {
         const { _id } = req.params
 
         const data = await Pelicula.findById(_id)
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la película con id ${_id}`,
@@ -95,7 +138,9 @@ const getRelacionadas = async (req, res, next) => {
     try {
         const { _id } = req.params
 
+        /* Solo necesitamos los géneros de la película para buscar las parecidas */
         const pelicula = await Pelicula.findById(_id, { generos: 1 })
+        /* 404 si el id no existe */
         if (!pelicula) {
             return res.status(404).json({
                 message: `No existe la película con id ${_id}`,
@@ -116,9 +161,12 @@ const getRelacionadas = async (req, res, next) => {
     }
 }
 
+/* Crea una película con los datos del formulario del panel */
 const postPelicula = async (req, res, next) => {
     try {
-        const data = await Pelicula.create(req.body)
+        const { body } = req
+
+        const data = await Pelicula.create(body)
 
         res.status(201).json({
             message: 'Película creada correctamente',
@@ -129,15 +177,18 @@ const postPelicula = async (req, res, next) => {
     }
 }
 
-/* PUT reemplaza el documento completo */
+/* PUT reemplaza el documento completo con lo que llega del formulario del panel */
 const putPelicula = async (req, res, next) => {
     try {
+        /* Recogemos el id de la URL y los datos nuevos del formulario */
         const { _id } = req.params
+        const { body } = req
 
-        const data = await Pelicula.findOneAndReplace({ _id }, req.body, {
+        const data = await Pelicula.findOneAndReplace({ _id }, body, {
             returnDocument: 'after',
             runValidators: true
         })
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la película con id ${_id}`,
@@ -154,15 +205,17 @@ const putPelicula = async (req, res, next) => {
     }
 }
 
-/* PATCH modifica solo los campos que llegan */
+/* PATCH modifica solo los campos que llegan (p. ej. destacada desde el interruptor del panel) */
 const patchPelicula = async (req, res, next) => {
     try {
         const { _id } = req.params
+        const { body } = req
 
-        const data = await Pelicula.findByIdAndUpdate(_id, { $set: req.body }, {
+        const data = await Pelicula.findByIdAndUpdate(_id, { $set: body }, {
             returnDocument: 'after',
             runValidators: true
         })
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la película con id ${_id}`,
@@ -179,11 +232,13 @@ const patchPelicula = async (req, res, next) => {
     }
 }
 
+/* Borra la película del catálogo */
 const deletePelicula = async (req, res, next) => {
     try {
         const { _id } = req.params
 
         const data = await Pelicula.findByIdAndDelete(_id)
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la película con id ${_id}`,
@@ -200,13 +255,17 @@ const deletePelicula = async (req, res, next) => {
     }
 }
 
+
+/* Exportamos los controllers para el router */
 module.exports = {
-    getPeliculas,
-    getGeneros,
-    getPeliculaById,
-    getRelacionadas,
-    postPelicula,
-    putPelicula,
-    patchPelicula,
-    deletePelicula
+getPeliculas,
+getGeneros,
+getPeliculasByGenero,
+getPeliculasByPlataforma,
+getPeliculaById,
+getRelacionadas,
+postPelicula,
+putPelicula,
+patchPelicula,
+deletePelicula
 }

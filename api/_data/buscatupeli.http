@@ -1,26 +1,59 @@
-@base = http://localhost:3100/buscatupeli
-@id = PEGA_AQUI_UN_ID
+### ==================== VARIABLES ====================
+### Ids de los datos de ejemplo: la película "Come, Reza, Ama" y la noticia de Netflix (base local).
+### Ejecuta primero "Login del panel": su token se guarda en @token y lo usan las peticiones que escriben.
+### En local, si .env no tiene ADMIN_KEY, las rutas del panel no piden token.
+### Las de eliminar borran datos de ejemplo; para recuperarlos ejecuta npm run seed.
+@baseUrl = http://localhost:3100
 
-### Películas (filtros opcionales: q, genero, plataforma, anio, destacada, orden, limite)
-GET {{base}}/peliculas?genero=acción&orden=recientes
+@peliculaId = 6aeb6011968d4c8e556cc227
+@noticiaId = 6aee1c582b045ca4f08b0f48
+@recomendacionId = PEGA_AQUI_UN_ID_DE_RECOMENDACION
+@token = {{loginAdmin.response.body.data.token}}
+
+### ==================== AUTH ====================
+
+### Login del panel (la clave es la ADMIN_KEY del .env)
+# @name loginAdmin
+POST {{baseUrl}}/buscatupeli/login
+Content-Type: application/json
+
+{
+  "clave": "TU_ADMIN_KEY"
+}
+
+### Comprobar que el token sigue siendo válido
+GET {{baseUrl}}/buscatupeli/admin/verificar
+Authorization: Bearer {{token}}
+
+### ==================== PELÍCULAS ====================
+
+### Listado con filtros combinables (q, genero, plataforma, anio, destacada, orden, limite)
+GET {{baseUrl}}/buscatupeli/peliculas?genero=acción&orden=recientes
 
 ### Géneros existentes
-GET {{base}}/peliculas/generos
+GET {{baseUrl}}/buscatupeli/peliculas/generos
+
+### Películas de un género
+GET {{baseUrl}}/buscatupeli/peliculas/genero/Drama
+
+### Películas de una plataforma (netflix, prime, disney, max, appletv)
+GET {{baseUrl}}/buscatupeli/peliculas/plataforma/netflix
 
 ### Película por id
-GET {{base}}/peliculas/{{id}}
+GET {{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}
 
-### Relacionadas
-GET {{base}}/peliculas/{{id}}/relacionadas
+### Películas relacionadas
+GET {{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}/relacionadas
 
 ### Crear película
-POST {{base}}/peliculas
+POST {{baseUrl}}/buscatupeli/peliculas
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "titulo": "Oppenheimer",
   "sinopsis": "La historia de J. Robert Oppenheimer y la bomba atómica.",
-  "poster": "https://ejemplo.com/oppenheimer.webp",
+  "poster": "https://image.tmdb.org/t/p/w500/ncKCQVXgk4BcQV6XbvesgZ2zLvZ.jpg",
   "anio": 2023,
   "duracionMin": 180,
   "generos": ["Drama", "Historia"],
@@ -28,37 +61,97 @@ Content-Type: application/json
 }
 
 ### Reemplazar película (PUT)
-PUT {{base}}/peliculas/{{id}}
+PUT {{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
-{ "titulo": "Oppenheimer", "sinopsis": "Nueva sinopsis", "poster": "https://ejemplo.com/o.webp" }
+{
+  "titulo": "Come, Reza, Ama",
+  "sinopsis": "Nueva sinopsis",
+  "poster": "assets/plataformas/prime/Romance/ComeRezaAma.webp"
+}
 
 ### Modificar campos (PATCH)
-PATCH {{base}}/peliculas/{{id}}
+PATCH {{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
-{ "destacada": true }
+{
+  "destacada": true
+}
 
 ### Borrar película
-DELETE {{base}}/peliculas/{{id}}
+DELETE {{baseUrl}}/buscatupeli/peliculas/{{peliculaId}}
+Authorization: Bearer {{token}}
 
-### Noticias
-GET {{base}}/noticias
+### ==================== NOTICIAS ====================
+
+### Listado (sin el cuerpo)
+GET {{baseUrl}}/buscatupeli/noticias?limite=3
 
 ### Noticia completa
-GET {{base}}/noticias/{{id}}
+GET {{baseUrl}}/buscatupeli/noticias/{{noticiaId}}
 
-### Recomendación desde el formulario
-POST {{base}}/recomendaciones
+### Crear noticia
+POST {{baseUrl}}/buscatupeli/noticias
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "titulo": "Estrenos de la semana",
+  "entradilla": "Las películas que llegan esta semana a las plataformas.",
+  "categoria": "Estrenos",
+  "parrafos": ["Primer párrafo de la noticia."]
+}
+
+### Modificar campos (PATCH)
+PATCH {{baseUrl}}/buscatupeli/noticias/{{noticiaId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "categoria": "Ranking"
+}
+
+### Borrar noticia
+DELETE {{baseUrl}}/buscatupeli/noticias/{{noticiaId}}
+Authorization: Bearer {{token}}
+
+### ==================== RECOMENDACIONES ====================
+
+### Enviar una recomendación (formulario público, máximo 5 por hora)
+POST {{baseUrl}}/buscatupeli/recomendaciones
 Content-Type: application/json
 
-{ "nombre": "Ana García", "email": "ana@email.com", "pelicula": "Oppenheimer" }
+{
+  "nombre": "Ana García",
+  "email": "ana@email.com",
+  "pelicula": "Oppenheimer"
+}
 
 ### Recomendaciones por estado (pendiente | añadida | descartada)
-GET {{base}}/recomendaciones?estado=pendiente
+GET {{baseUrl}}/buscatupeli/recomendaciones?estado=pendiente
+Authorization: Bearer {{token}}
 
 ### Cambiar estado
-PATCH {{base}}/recomendaciones/{{id}}
+PATCH {{baseUrl}}/buscatupeli/recomendaciones/{{recomendacionId}}
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
-{ "estado": "añadida" }
+{
+  "estado": "añadida"
+}
+
+### Borrar recomendación
+DELETE {{baseUrl}}/buscatupeli/recomendaciones/{{recomendacionId}}
+Authorization: Bearer {{token}}
+
+### ==================== TMDB ====================
+
+### Buscar en TMDB (marca las que ya están en el catálogo)
+GET {{baseUrl}}/buscatupeli/tmdb/buscar?q=oppenheimer
+Authorization: Bearer {{token}}
+
+### Importar una película de TMDB por su id
+POST {{baseUrl}}/buscatupeli/tmdb/importar/872585
+Authorization: Bearer {{token}}

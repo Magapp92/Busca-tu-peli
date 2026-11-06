@@ -1,11 +1,16 @@
+
+/* Controlador de recomendaciones: el formulario público crea sugerencias de películas
+y el panel las lista, cambia su estado o las borra; todas las respuestas siguen la forma { message, data } */
 const { Recomendacion } = require('../models')
 
-/* Listado para el panel admin, opcionalmente por estado: ?estado=pendiente */
+/* Listado para el panel, opcionalmente por estado: ?estado=pendiente */
 const getRecomendaciones = async (req, res, next) => {
     try {
+        /* Recogemos el estado de la URL; si llega repetido nos quedamos con el primero */
         const estado = Array.isArray(req.query.estado) ? req.query.estado[0] : req.query.estado
         const filtro = estado ? { estado: String(estado) } : {}
 
+        /* Las más recientes primero */
         const data = await Recomendacion.find(filtro).sort({ createdAt: -1 })
 
         res.status(200).json({
@@ -17,11 +22,13 @@ const getRecomendaciones = async (req, res, next) => {
     }
 }
 
+/* Una recomendación concreta por su _id */
 const getRecomendacionById = async (req, res, next) => {
     try {
         const { _id } = req.params
 
         const data = await Recomendacion.findById(_id)
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la recomendación con id ${_id}`,
@@ -41,17 +48,24 @@ const getRecomendacionById = async (req, res, next) => {
 /* El formulario público solo puede mandar nombre, email y película: el estado lo decide el admin */
 const postRecomendacion = async (req, res, next) => {
     try {
+        /* Recogemos lo que envía el formulario de recomendaciones */
         const { nombre, email, pelicula, web } = req.body || {}
 
         /* Trampa para bots: "web" es un campo oculto que una persona nunca rellena.
-           Respondemos como si todo fuera bien para que el bot no sepa que lo hemos detectado */
+        Respondemos como si todo fuera bien para que el bot no sepa que lo hemos detectado */
         if (web) {
-            return res.status(201).json({ message: '¡Gracias! Te avisaremos cuando la añadamos al catálogo', data: null })
+            return res.status(201).json({
+                message: '¡Gracias! Te avisaremos cuando la añadamos al catálogo',
+                data: null
+            })
         }
 
         /* Solo aceptamos texto: un objeto en lugar de un texto se rechaza */
-        if ([nombre, email, pelicula].some((v) => v !== undefined && typeof v !== 'string')) {
-            return res.status(400).json({ message: 'Datos no válidos', data: null })
+        if ([nombre, email, pelicula].some(( valor ) => valor !== undefined && typeof valor !== 'string')) {
+            return res.status(400).json({
+                message: 'Datos no válidos',
+                data: null
+            })
         }
 
         const data = await Recomendacion.create({ nombre, email, pelicula })
@@ -65,16 +79,17 @@ const postRecomendacion = async (req, res, next) => {
     }
 }
 
+/* Desde el panel solo se cambia el estado (pendiente, añadida o descartada): el nombre y el email no se tocan */
 const patchRecomendacion = async (req, res, next) => {
     try {
         const { _id } = req.params
-
-        /* Desde el admin solo se cambia el estado: el nombre y el email del usuario no se tocan */
         const { estado } = req.body || {}
+
         const data = await Recomendacion.findByIdAndUpdate(_id, { $set: { estado } }, {
             returnDocument: 'after',
             runValidators: true
         })
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la recomendación con id ${_id}`,
@@ -91,11 +106,13 @@ const patchRecomendacion = async (req, res, next) => {
     }
 }
 
+/* Borra la recomendación */
 const deleteRecomendacion = async (req, res, next) => {
     try {
         const { _id } = req.params
 
         const data = await Recomendacion.findByIdAndDelete(_id)
+        /* 404 si el id no existe */
         if (!data) {
             return res.status(404).json({
                 message: `No existe la recomendación con id ${_id}`,
@@ -112,10 +129,12 @@ const deleteRecomendacion = async (req, res, next) => {
     }
 }
 
+
+/* Exportamos los controllers para el router */
 module.exports = {
-    getRecomendaciones,
-    getRecomendacionById,
-    postRecomendacion,
-    patchRecomendacion,
-    deleteRecomendacion
+getRecomendaciones,
+getRecomendacionById,
+postRecomendacion,
+patchRecomendacion,
+deleteRecomendacion
 }

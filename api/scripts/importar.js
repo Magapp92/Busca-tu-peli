@@ -1,10 +1,11 @@
+
 /* Importación masiva desde TMDB (npm run importar):
-   las 30 películas más populares de cada plataforma en España.
-   Las nuevas se crean; las que ya estaban solo actualizan sus plataformas. Se puede repetir sin duplicar */
+las 30 películas más populares de cada plataforma en España.
+Las nuevas se crean; las que ya estaban solo actualizan sus plataformas. Se puede repetir sin duplicar */
 require('dotenv').config()
 const mongoose = require('mongoose')
-const { Pelicula } = require('./models')
-const { descubrir, obtenerPelicula, existente } = require('./services/tmdb')
+const { Pelicula } = require('../models')
+const { descubrir, obtenerPelicula, existente } = require('../services/tmdb')
 
 const CLAVES = ['netflix', 'prime', 'disney', 'max', 'appletv']
 const POR_PLATAFORMA = Number(process.argv[2]) || 30

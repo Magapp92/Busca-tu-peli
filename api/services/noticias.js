@@ -1,5 +1,6 @@
+
 /* Noticias generadas con datos de TMDB: las más populares de la semana y las mejor valoradas de cada plataforma.
-   Las usan el script `npm run noticias` y la función programada de Netlify (cada lunes) */
+Las usan el script `npm run noticias` y la función programada de Netlify (cada lunes) */
 const { Pelicula, Noticia } = require('../models')
 const { obtenerValoracion, tendencias, buscar } = require('./tmdb')
 
@@ -13,7 +14,7 @@ const nota = (n) => n.toLocaleString('es-ES', { minimumFractionDigits: 1, maximu
 const fechaCorta = (d) => d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })
 
 /* Las películas del catálogo original no tienen id de TMDB: lo buscamos por título y año
-   y solo lo guardamos si coincide exactamente (título original o en español, año ±1) */
+y solo lo guardamos si coincide exactamente (título original o en español, año ±1) */
 const normalizar = (s = '') => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '')
 
 const enlazarConTmdb = async () => {
@@ -142,6 +143,7 @@ const generarNoticias = async () => {
     return { valoraciones, noticias: todas.map((n) => `${n.titulo} (${n.ranking.length})`) }
 }
 
+/* Exportamos el generador para el script npm run noticias y la función semanal */
 module.exports = {
     generarNoticias
 }

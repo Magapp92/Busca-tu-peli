@@ -1,14 +1,16 @@
-/* Función de Netlify: la misma API de Express envuelta con serverless-http.
-   netlify.toml redirige /buscatupeli/* aquí; quitamos el prefijo interno de la función por si llega */
-const serverless = require('serverless-http')
-const { crearApp } = require('../app')
 
-/* En producción las escrituras exigen ADMIN_KEY aunque no esté definida (ver middlewares.js) */
+/* Función de Netlify: la misma API de Express (index.js) envuelta con serverless-http.
+netlify.toml redirige /buscatupeli/* aquí; quitamos el prefijo interno de la función por si llega */
+const serverless = require('serverless-http')
+
+/* En producción las escrituras exigen ADMIN_KEY y JWT_SECRET aunque no estén definidas (ver middlewares.js) */
 process.env.EN_PRODUCCION = 'true'
 
-const manejador = serverless(crearApp())
+const { app } = require('../index')
 
-exports.handler = async (event, context) => {
+const manejador = serverless(app)
+
+exports.handler = async ( event, context ) => {
     event.path = event.path.replace(/^\/\.netlify\/functions\/api/, '') || '/'
     /* Mantiene viva la conexión a Mongo entre peticiones sin bloquear la respuesta */
     context.callbackWaitsForEmptyEventLoop = false
