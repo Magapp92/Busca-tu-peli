@@ -14,6 +14,10 @@
 [functions]
   directory = "api/functions"
 
+# Cada lunes a las 6:00 (UTC) se regeneran las noticias de datos
+[functions."noticias-semanales"]
+  schedule = "0 6 * * 1"
+
 # /buscatupeli/* → la función de la API (misma URL que en local)
 [[redirects]]
   from = "/buscatupeli/*"

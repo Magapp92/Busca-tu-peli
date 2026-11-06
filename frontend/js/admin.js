@@ -225,6 +225,8 @@
 
         datos
             .then((d) => {
+                /* Guardamos el documento original para conservar al guardar los campos que no están en el formulario */
+                edicion.original = d
                 drawerBody.innerHTML = tipo === 'peliculas' ? formPelicula(d) : formNoticia(d)
                 drawer.classList.add('isOpen')
                 drawer.setAttribute('aria-hidden', 'false')
@@ -265,12 +267,13 @@
             return toast('Rellena los campos obligatorios', 'error')
         }
 
-        const { tipo, id } = edicion
+        const { tipo, id, original = {} } = edicion
         const recurso = api[tipo]
         const body = tipo === 'peliculas' ? leerPelicula(drawerForm) : leerNoticia(drawerForm)
-        /* El PUT reemplaza el documento: conservamos el id de TMDB para no duplicar al reimportar */
-        const tmdbId = tipo === 'peliculas' && id && estado.peliculas.find((p) => p._id === id)?.tmdbId
-        if (tmdbId) body.tmdbId = tmdbId
+        /* El PUT reemplaza el documento: conservamos los datos que no se editan en el formulario
+           (id y valoración de TMDB en películas; clave y ranking en las noticias generadas) */
+        const conservar = tipo === 'peliculas' ? ['tmdbId', 'valoracion', 'votos', 'popularidad'] : ['clave', 'ranking']
+        if (id) conservar.forEach((campo) => { if (original[campo] !== undefined) body[campo] = original[campo] })
 
         guardar.disabled = true
         const peticion = id ? recurso.reemplazar(id, body) : recurso.crear(body)

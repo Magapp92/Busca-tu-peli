@@ -40,7 +40,11 @@ const peliculaSchema = new mongoose.Schema(
                 url: { type: String, required: true }
             }
         ],
-        destacada: { type: Boolean, default: false }
+        destacada: { type: Boolean, default: false },
+        /* Datos de TMDB que se refrescan cada semana: nota media (0-10), nº de votos y popularidad */
+        valoracion: { type: Number, min: 0, max: 10 },
+        votos: { type: Number, min: 0 },
+        popularidad: { type: Number, min: 0 }
     },
     opciones('peliculas')
 )
@@ -54,7 +58,24 @@ const noticiaSchema = new mongoose.Schema(
         categoria: { type: String, default: 'General' },
         fecha: { type: Date, default: () => new globalThis.Date() },
         parrafos: [{ type: String }],
-        lista: [{ type: String }]
+        lista: [{ type: String }],
+        /* Noticias generadas con datos (npm run noticias y la función semanal):
+           la clave identifica cada una para actualizarla en lugar de duplicarla */
+        clave: { type: String, unique: true, sparse: true },
+        ranking: [
+            {
+                _id: false,
+                posicion: { type: Number },
+                titulo: { type: String },
+                anio: { type: Number },
+                poster: { type: String },
+                valoracion: { type: Number },
+                votos: { type: Number },
+                plataformas: [{ type: String }],
+                /* Solo si la película está en el catálogo: enlaza con su ficha */
+                pelicula: { type: ObjectId, ref: 'Pelicula' }
+            }
+        ]
     },
     opciones('noticias')
 )

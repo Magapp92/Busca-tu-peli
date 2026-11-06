@@ -1,6 +1,136 @@
 
 /* NOTICIAS */
 
+/* LISTADO SIN HUECOS */
+
+/* Usamos una rejilla de 6 columnas: cada tarjeta ocupa 2 (tres por fila) y la destacada las 6 */
+.NewsGrid--page{
+    grid-template-columns: repeat(6, 1fr);
+}
+.NewsGrid--page .NewsCard{
+    grid-column: span 2;
+}
+.NewsGrid--page .NewsCard--featured{
+    grid-column: 1 / -1;
+}
+
+/* Si la última fila tiene dos tarjetas (posiciones 3n+2 y 3n+3, la última del listado), cada una ocupa media fila */
+.NewsGrid--page .NewsCard:nth-child(3n+2):nth-last-child(2),
+.NewsGrid--page .NewsCard:nth-child(3n+3):last-child{
+    grid-column: span 3;
+}
+
+/* Al ser más anchas, su imagen es más panorámica para que no quede más alta que la de las demás */
+.NewsGrid--page .NewsCard:nth-child(3n+2):nth-last-child(2) .NewsCard-media,
+.NewsGrid--page .NewsCard:nth-child(3n+3):last-child .NewsCard-media{
+    aspect-ratio: 21 / 9;
+}
+
+/* Si la última fila tiene una sola tarjeta, ocupa la fila entera con la imagen a la izquierda (como la destacada) */
+.NewsGrid--page .NewsCard:nth-child(3n+2):last-child{
+    flex-flow: row nowrap;
+    grid-column: 1 / -1;
+}
+.NewsGrid--page .NewsCard:nth-child(3n+2):last-child .NewsCard-media{
+    min-height: 280px;
+    aspect-ratio: auto;
+
+    flex: 1.3;
+}
+.NewsGrid--page .NewsCard:nth-child(3n+2):last-child .NewsCard-body{
+    padding: clamp(1.4rem, 3vw, 2.6rem);
+
+    flex: 1;
+    justify-content: center;
+}
+
+
+/* RANKING DE LA NOTICIA */
+
+/* Lista numerada de películas con póster, nota y plataformas */
+.Ranking{
+    margin: 1.4rem 0 1.6rem;
+
+    display: grid;
+    gap: .5rem;
+}
+
+/* Cada película es una fila: posición, póster, título y nota, y logos de las plataformas */
+.Ranking-item{
+    padding: .55rem .9rem .55rem .7rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+
+    display: grid;
+    grid-template-columns: 2rem 46px 1fr auto;
+    align-items: center;
+    gap: .9rem;
+
+    transition: border-color .2s, transform .2s var(--ease);
+}
+
+/* Las que están en el catálogo enlazan con su ficha */
+a.Ranking-item:hover{
+    border-color: var(--accent);
+
+    transform: translateY(-2px);
+}
+
+.Ranking-position{
+    font-family: var(--font-title);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-align: center;
+}
+
+.Ranking-poster{
+    width: 46px;
+    border-radius: 6px;
+    background: var(--surface-3);
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.Ranking-info{
+    min-width: 0;
+
+    display: grid;
+    gap: .15rem;
+}
+
+.Ranking-title{
+    font-size: .98rem;
+    line-height: 1.3;
+}
+.Ranking-title span{
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.Ranking-score{
+    font-size: .82rem;
+    color: var(--warning);
+}
+
+/* Logos de las plataformas donde está disponible */
+.Ranking-platforms{
+    display: flex;
+    gap: .3rem;
+}
+.Ranking-platforms img{
+    width: 26px;
+    height: 26px;
+}
+
+/* Aviso para las películas que todavía no están en el catálogo */
+.Ranking-missing{
+    font-size: .78rem;
+    color: var(--faint);
+    text-align: right;
+}
+
 /* NOTICIA COMPLETA (SE ABRE EN EL MODAL) */
 
 /* Imagen de cabecera de la noticia en formato panorámico */
@@ -69,4 +199,101 @@
     color: var(--accent);
     font-weight: 700;
     font-size: .8rem;
+}
+
+/* Hasta 1000px dos tarjetas por fila: cada una ocupa 3 de las 6 columnas */
+@media (max-width: 1000px){
+    .NewsGrid--page .NewsCard,
+    .NewsGrid--page .NewsCard:nth-child(3n+2):last-child,
+    .NewsGrid--page .NewsCard:nth-child(3n+2):nth-last-child(2),
+    .NewsGrid--page .NewsCard:nth-child(3n+3):last-child{
+        grid-column: span 3;
+    }
+
+    /* Con dos por fila todas las tarjetas tienen el mismo ancho: recuperamos la imagen 16:9 */
+    .NewsGrid--page .NewsCard:nth-child(3n+2):nth-last-child(2) .NewsCard-media,
+    .NewsGrid--page .NewsCard:nth-child(3n+3):last-child .NewsCard-media{
+        aspect-ratio: 16 / 9;
+    }
+
+    /* Con dos por fila, la tarjeta 3n+2 que queda última ya no va sola: vuelve al formato vertical */
+    .NewsGrid--page .NewsCard:nth-child(3n+2):last-child{
+        flex-flow: column nowrap;
+    }
+    .NewsGrid--page .NewsCard:nth-child(3n+2):last-child .NewsCard-media{
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+
+        flex: none;
+    }
+    .NewsGrid--page .NewsCard:nth-child(3n+2):last-child .NewsCard-body{
+        padding: 1.2rem 1.3rem 1.4rem;
+
+        justify-content: flex-start;
+    }
+
+    /* Si la última fila tiene una sola tarjeta (empiezan en la posición 2), ocupa la fila entera con la imagen a la izquierda */
+    .NewsGrid--page .NewsCard:nth-child(2n):last-child,
+    .NewsGrid--page .NewsCard--featured{
+        grid-column: 1 / -1;
+    }
+    .NewsGrid--page .NewsCard:nth-child(2n):last-child{
+        flex-flow: row nowrap;
+    }
+    .NewsGrid--page .NewsCard:nth-child(2n):last-child .NewsCard-media{
+        min-height: 240px;
+        aspect-ratio: auto;
+
+        flex: 1.3;
+    }
+    .NewsGrid--page .NewsCard:nth-child(2n):last-child .NewsCard-body{
+        padding: clamp(1.4rem, 3vw, 2.6rem);
+
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+/* Hasta 680px una tarjeta por fila */
+@media (max-width: 680px){
+    /* En móvil todas las tarjetas van en vertical, también la última si va sola */
+    .NewsGrid--page .NewsCard:nth-child(n):last-child{
+        flex-flow: column nowrap;
+    }
+    .NewsGrid--page .NewsCard:nth-child(n):last-child .NewsCard-media{
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+
+        flex: none;
+    }
+
+    .NewsGrid--page .NewsCard,
+    .NewsGrid--page .NewsCard:nth-child(3n+2):last-child,
+    .NewsGrid--page .NewsCard:nth-child(3n+2):nth-last-child(2),
+    .NewsGrid--page .NewsCard:nth-child(3n+3):last-child{
+        grid-column: 1 / -1;
+    }
+}
+
+/* Hasta 520px los logos de las plataformas bajan debajo del título en el ranking */
+@media (max-width: 520px){
+    .Ranking-item{
+        grid-template-columns: 1.6rem 40px 1fr;
+        gap: .2rem .7rem;
+    }
+
+    .Ranking-poster{
+        width: 40px;
+        grid-row: span 2;
+    }
+
+    .Ranking-position{
+        grid-row: span 2;
+    }
+
+    .Ranking-platforms,
+    .Ranking-missing{
+        grid-column: 3;
+        text-align: left;
+    }
 }

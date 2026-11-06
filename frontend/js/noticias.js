@@ -20,6 +20,32 @@
             </div>
         </button>`
 
+    /* Nota de TMDB con un decimal y votos con separador de miles */
+    const textoNota = (r) => r.votos
+        ? `★ ${r.valoracion.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} · ${r.votos.toLocaleString('es-ES')} votos`
+        : 'Sin votos todavía'
+
+    /* Fila del ranking: si la película está en el catálogo enlaza con su ficha y muestra dónde verla */
+    const filaRanking = (r) => {
+        const logos = r.plataformas
+            .map((clave) => PLATAFORMAS[clave] ? `<img src="${PLATAFORMAS[clave].logo}" alt="${PLATAFORMAS[clave].nombre}" title="${PLATAFORMAS[clave].nombre}">` : '')
+            .join('')
+        const contenido = `
+            <span class="Ranking-position">${r.posicion}</span>
+            <img class="Ranking-poster" src="${esc(r.poster)}" alt="" loading="lazy">
+            <span class="Ranking-info">
+                <strong class="Ranking-title">${esc(r.titulo)}${r.anio ? ` <span>(${r.anio})</span>` : ''}</strong>
+                <span class="Ranking-score">${textoNota(r)}</span>
+            </span>
+            ${r.pelicula
+                ? `<span class="Ranking-platforms">${logos}</span>`
+                : '<span class="Ranking-missing">No está en el catálogo</span>'}`
+
+        return `<li>${r.pelicula
+            ? `<a class="Ranking-item" href="pelicula.html?id=${r.pelicula}" title="Ver la ficha de ${esc(r.titulo)}">${contenido}</a>`
+            : `<div class="Ranking-item">${contenido}</div>`}</li>`
+    }
+
     /* Pedimos la noticia completa y la abrimos en el modal; al cerrarlo quitamos ?id= de la URL */
     const abrirNoticia = (id) => {
         api.noticias.obtener(id)
@@ -33,6 +59,7 @@
                             <h2>${esc(n.titulo)}</h2>
                             <p class="Article-lead">${esc(n.entradilla)}</p>
                             ${n.parrafos.map((p) => `<p>${esc(p)}</p>`).join('')}
+                            ${n.ranking?.length ? `<ol class="Ranking">${n.ranking.map(filaRanking).join('')}</ol>` : ''}
                             ${n.lista.length ? `<ol class="Article-list">${n.lista.map((li) => `<li>${esc(li)}</li>`).join('')}</ol>` : ''}
                         </div>
                     </article>`, { onClose: () => history.replaceState(null, '', location.pathname) })

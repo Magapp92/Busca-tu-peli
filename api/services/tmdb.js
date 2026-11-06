@@ -108,8 +108,32 @@ const obtenerPelicula = async (tmdbId) => {
         generos: [...new Set((d.genres || []).map((g) => (g.name === 'Bélica' ? 'Guerra' : g.name)))],
         plataformas: [...new Set(disponibles.map((p) => claveDeProveedor(mapa, p.provider_id)).filter(Boolean))]
             .map((clave) => ({ clave, url: PLATAFORMAS[clave].url })),
-        destacada: false
+        destacada: false,
+        ...valoracionDe(d)
     }
+}
+
+/* Nota media (redondeada a un decimal), votos y popularidad de una ficha de TMDB */
+const valoracionDe = (d) => ({
+    valoracion: Math.round((d.vote_average || 0) * 10) / 10,
+    votos: d.vote_count || 0,
+    popularidad: Math.round((d.popularity || 0) * 10) / 10
+})
+
+/* Solo la valoración de una película (para refrescarla sin descargar la ficha entera) */
+const obtenerValoracion = async (tmdbId) => valoracionDe(await tmdb(`/movie/${tmdbId}`))
+
+/* Películas en tendencia esta semana en TMDB (popularidad por actividad en TMDB, no visualizaciones) */
+const tendencias = async () => {
+    const r = await tmdb('/trending/movie/week', { language: IDIOMA })
+    return r.results.map((m) => ({
+        tmdbId: m.id,
+        titulo: m.title,
+        anio: m.release_date ? Number(m.release_date.slice(0, 4)) : undefined,
+        poster: m.poster_path ? `${IMG}/w185${m.poster_path}` : '',
+        backdrop: m.backdrop_path ? `${IMG}/w1280${m.backdrop_path}` : '',
+        ...valoracionDe(m)
+    }))
 }
 
 /* Ids de las películas más populares de una plataforma en España */
@@ -154,6 +178,8 @@ const existente = (p) => Pelicula.findOne({
 
 module.exports = {
     obtenerPelicula,
+    obtenerValoracion,
+    tendencias,
     descubrir,
     buscar,
     existente

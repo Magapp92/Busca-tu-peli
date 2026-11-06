@@ -60,10 +60,11 @@
     <main class="Container">
         <header class="PageHead">
             <h1 class="PageHead-title">Noticias</h1>
-            <p class="PageHead-text">Ponte al día con nuestra selección: toda la actualidad del cine.</p>
+            <p class="PageHead-text">Lo más popular de la semana y las películas mejor valoradas de cada plataforma, con datos de TMDB actualizados cada lunes.</p>
         </header>
-        <!-- Las noticias las pinta noticias.js; al pulsar una se abre completa en un modal -->
-        <div class="NewsGrid" data-element="noticias">
+        <!-- Las noticias las pinta noticias.js; al pulsar una se abre completa en un modal.
+             NewsGrid--page reparte las tarjetas para que la última fila no deje huecos -->
+        <div class="NewsGrid NewsGrid--page" data-element="noticias">
             <div class="Skeleton NewsCard--featured" style="height:340px"></div>
         </div>
     </main>

@@ -5,7 +5,7 @@ const getNoticias = async (req, res, next) => {
     try {
         const { limite } = req.query
 
-        let consulta = Noticia.find({}, { parrafos: 0, lista: 0 }).sort({ fecha: -1 })
+        let consulta = Noticia.find({}, { parrafos: 0, lista: 0, ranking: 0 }).sort({ fecha: -1 })
         if (limite) consulta = consulta.limit(Number(limite))
 
         const data = await consulta

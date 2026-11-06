@@ -8,7 +8,8 @@
     "dev": "nodemon index",
     "seed": "node seed",
     "importar": "node importar",
-    "copiar-a-atlas": "node copiar-a-atlas"
+    "copiar-a-atlas": "node copiar-a-atlas",
+    "noticias": "node noticias"
   },
   "license": "ISC",
   "type": "commonjs",
