@@ -35,6 +35,17 @@
 /* MEDIA QUERIES */
 
 /* Hasta 860px el formulario ocupa todo el ancho y ocultamos el collage */
+/* Campo trampa para bots: fuera de la pantalla (no con display none, que algunos bots detectan) */
+.Recommend-trap{
+    width: 1px;
+    height: 1px;
+
+    position: absolute;
+    left: -10000px;
+
+    overflow: hidden;
+}
+
 @media (max-width: 860px){
     .Recommend{
         grid-template-columns: 1fr;

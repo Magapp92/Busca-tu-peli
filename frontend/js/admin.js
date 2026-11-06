@@ -306,11 +306,6 @@
         $('.Modal [data-element="no"]').addEventListener('click', cerrarModal)
     })
 
-    /* El modal es estrecho para la confirmación */
-    const estiloConfirm = document.createElement('style')
-    estiloConfirm.textContent = '.Modal-box:has(.Confirm){width:min(440px,100%)}'
-    document.head.append(estiloConfirm)
-
 
     /* IMPORTAR DESDE TMDB */
 

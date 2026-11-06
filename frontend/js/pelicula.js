@@ -55,7 +55,7 @@
                         <div class="WhereToWatch-list">
                             ${p.plataformas.length ? p.plataformas.map((pl) => {
                                 const info = PLATAFORMAS[pl.clave] || { nombre: pl.clave, logo: '' }
-                                return `<a class="Provider" href="${esc(pl.url)}" target="_blank" rel="noopener noreferrer">
+                                return `<a class="Provider" href="${esc(urlEnlace(pl.url))}" target="_blank" rel="noopener noreferrer">
                                     <img src="${info.logo}" alt=""><div><strong>${esc(info.nombre)}</strong><span>Suscripción · Ver ahora ↗</span></div>
                                 </a>`
                             }).join('') : '<p class="Section-subtitle">Ahora mismo no está disponible en ninguna plataforma.</p>'}
@@ -109,7 +109,7 @@
 
         /* El iframe de YouTube solo se carga al pulsar: la ficha abre más rápido */
         $('[data-element="cargar-trailer"]')?.addEventListener('click', (e) => {
-            e.currentTarget.parentElement.innerHTML = `<iframe src="${esc(p.trailer)}?autoplay=1&rel=0" title="Tráiler de ${esc(p.titulo)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
+            e.currentTarget.parentElement.innerHTML = `<iframe src="${esc(urlTrailer(p.trailer))}" title="Tráiler de ${esc(p.titulo)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
         })
     }
 

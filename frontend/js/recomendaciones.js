@@ -43,6 +43,8 @@
         boton.disabled = true
         boton.textContent = 'Enviando…'
         const body = Object.fromEntries(campos.map((c) => [c.name, c.value.trim()]))
+        /* Campo trampa para bots: si viene relleno, la API descarta el envío */
+        body.web = form.elements.web.value
 
         api.recomendaciones.crear(body)
             .then(() => {

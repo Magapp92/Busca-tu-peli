@@ -77,6 +77,11 @@
             <!-- Formulario: recomendaciones.js valida los campos y lo envía a la API -->
             <div class="FormCard">
                 <form class="Form" novalidate data-element="form">
+                    <!-- Trampa para bots: campo invisible que una persona nunca rellena; si llega relleno, la API descarta el envío -->
+                    <div class="Recommend-trap" aria-hidden="true">
+                        <label for="web">No rellenes este campo</label>
+                        <input id="web" name="web" type="text" tabindex="-1" autocomplete="off">
+                    </div>
                     <div class="Field">
                         <label for="nombre">Nombre completo</label>
                         <input class="Input" id="nombre" name="nombre" autocomplete="name" placeholder="Ana García" required>

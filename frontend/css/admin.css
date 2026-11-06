@@ -399,6 +399,11 @@
 
 /* DIÁLOGO DE CONFIRMACIÓN */
 
+/* El modal se estrecha cuando contiene una confirmación */
+.Modal-box:has(.Confirm){
+    width: min(440px, 100%);
+}
+
 .Confirm{
     width: min(440px, 100%);
     padding: 1.6rem;

@@ -73,7 +73,23 @@ const estadoVacio = (titulo, texto = '') => `
 
 const estadoError = (error) => `
     <div class="State State--error">${ICON.alert}<strong>Algo ha fallado</strong><p>${esc(error.message)}</p>
-    <button class="Button Button--outline Button--small" onclick="location.reload()">Reintentar</button></div>`
+    <button class="Button Button--outline Button--small" data-element="reintentar">Reintentar</button></div>`
+
+/* El botón Reintentar recarga la página (sin onclick en el HTML: la política de seguridad no permite scripts en línea) */
+document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-element="reintentar"]')) location.reload()
+})
+
+/* ENLACES SEGUROS */
+
+/* Solo incrustamos vídeos de YouTube: cualquier otra dirección (p. ej. javascript:) se descarta */
+const URL_YOUTUBE = /^https:\/\/www\.youtube(-nocookie)?\.com\/embed\/[\w-]+(\?[\w=&%.-]*)?$/
+
+/* Dirección del tráiler con autoplay, respetando si ya trae parámetros (?si=…); vacía si no es de YouTube */
+const urlTrailer = (url = '') => (URL_YOUTUBE.test(url) ? `${url}${url.includes('?') ? '&' : '?'}autoplay=1&rel=0` : '')
+
+/* Enlaces externos solo por https; si no, el enlace no lleva a ningún sitio */
+const urlEnlace = (url = '') => (/^https:\/\//.test(url) ? url : '#')
 
 /* Fila horizontal con flechas que se desactivan en los extremos */
 const activarFila = (seccion) => {
@@ -137,8 +153,8 @@ const cerrarModal = () => {
 
 /* Abre el tráiler de YouTube en el modal con reproducción automática */
 const abrirTrailer = (url, titulo = 'Tráiler') => {
-    if (!url) return toast('Esta película no tiene tráiler disponible', 'error')
-    const src = `${url}${url.includes('?') ? '&' : '?'}autoplay=1&rel=0`
+    const src = urlTrailer(url)
+    if (!src) return toast('Esta película no tiene tráiler disponible', 'error')
     abrirModal(`<div class="Video"><iframe src="${esc(src)}" title="${esc(titulo)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`, { video: true })
 }
 

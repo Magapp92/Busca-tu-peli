@@ -5,7 +5,32 @@ const helmet = require('helmet')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const { router } = require('./routes/router')
-const { notFound, errorHandler } = require('./middlewares')
+const { notFound, errorHandler, limiteGeneral } = require('./middlewares')
+
+/* Orígenes que pueden llamar a la API desde el navegador: la web y los servidores de desarrollo */
+const ORIGENES = [
+    'https://buscatupeli.com',
+    'https://www.buscatupeli.com',
+    /^http:\/\/(localhost|127\.0\.0\.1):\d+$/
+]
+
+/* Política de seguridad de contenidos: solo se cargan recursos de la propia web y de los servicios que usa
+   (fuentes de Google, imágenes de TMDB y miniaturas y vídeos de YouTube). La misma que netlify.toml para las páginas */
+const CSP = {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+    fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+    imgSrc: ["'self'", 'data:', 'https://image.tmdb.org', 'https://i.ytimg.com'],
+    frameSrc: ['https://www.youtube.com', 'https://www.youtube-nocookie.com'],
+    connectSrc: ["'self'"],
+    objectSrc: ["'none'"],
+    baseUri: ["'self'"],
+    formAction: ["'self'"],
+    frameAncestors: ["'none'"],
+    /* En local se sirve por http: no forzamos https (en producción lo pone netlify.toml) */
+    upgradeInsecureRequests: null
+}
 
 /* Conexión reutilizable: en Netlify la misma instancia atiende varias peticiones seguidas;
    si falla se vuelve a intentar en la siguiente */
@@ -27,14 +52,21 @@ const conectar = () => {
 const crearApp = ({ staticDir } = {}) => {
     const app = express()
 
-    app.use(cors())
-    /* Helmet sin CSP para que el front pueda incrustar los trailers de YouTube */
-    app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }))
+    app.use(cors({ origin: ORIGENES }))
+    /* Cabeceras de seguridad; sin COEP para poder incrustar los tráileres de YouTube */
+    app.use(helmet({
+        contentSecurityPolicy: { useDefaults: false, directives: CSP },
+        crossOriginEmbedderPolicy: false,
+        referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
+    }))
     app.use(morgan('dev'))
-    app.use(express.json())
-    app.use(express.urlencoded({ extended: false }))
+    /* Cuerpos de petición pequeños: ningún formulario necesita más de 100 kB */
+    app.use(express.json({ limit: '100kb' }))
+    app.use(express.urlencoded({ extended: false, limit: '100kb' }))
 
     if (staticDir) app.use(express.static(staticDir))
+
+    app.use('/buscatupeli', limiteGeneral)
 
     /* Sin base de datos no entramos al router: 503 con mensaje claro */
     app.use('/buscatupeli', async (req, res, next) => {

@@ -1,5 +1,5 @@
 const express = require('express')
-const { notFound, errorHandler, requireAdmin } = require('../middlewares')
+const { notFound, errorHandler, requireAdmin, limiteAdmin, limiteRecomendaciones } = require('../middlewares')
 const { getPeliculas, getGeneros, getPeliculaById, getRelacionadas, postPelicula,
     putPelicula, patchPelicula, deletePelicula } = require('../controllers/peliculas')
 const { getNoticias, getNoticiaById, postNoticia, putNoticia, patchNoticia,
@@ -10,21 +10,24 @@ const { getBuscarTmdb, postImportarTmdb } = require('../controllers/tmdb')
 
 const router = express.Router()
 
+/* Rutas de admin: primero el límite de intentos fallidos y después la clave */
+const admin = [limiteAdmin, requireAdmin]
+
 /* Lectura pública; crear, editar y borrar exigen la clave de admin (requireAdmin) */
 
 /* Películas: /generos va antes que /:_id para que no se lea como un id */
 router.route('/peliculas')
     .get(getPeliculas)
-    .post(requireAdmin, postPelicula)
+    .post(...admin, postPelicula)
 
 router.route('/peliculas/generos')
     .get(getGeneros)
 
 router.route('/peliculas/:_id')
     .get(getPeliculaById)
-    .put(requireAdmin, putPelicula)
-    .patch(requireAdmin, patchPelicula)
-    .delete(requireAdmin, deletePelicula)
+    .put(...admin, putPelicula)
+    .patch(...admin, patchPelicula)
+    .delete(...admin, deletePelicula)
 
 router.route('/peliculas/:_id/relacionadas')
     .get(getRelacionadas)
@@ -32,34 +35,34 @@ router.route('/peliculas/:_id/relacionadas')
 /* Noticias */
 router.route('/noticias')
     .get(getNoticias)
-    .post(requireAdmin, postNoticia)
+    .post(...admin, postNoticia)
 
 router.route('/noticias/:_id')
     .get(getNoticiaById)
-    .put(requireAdmin, putNoticia)
-    .patch(requireAdmin, patchNoticia)
-    .delete(requireAdmin, deleteNoticia)
+    .put(...admin, putNoticia)
+    .patch(...admin, patchNoticia)
+    .delete(...admin, deleteNoticia)
 
 /* Recomendaciones: el formulario público solo crea; leerlas (llevan emails) es de admin */
 router.route('/recomendaciones')
-    .get(requireAdmin, getRecomendaciones)
-    .post(postRecomendacion)
+    .get(...admin, getRecomendaciones)
+    .post(limiteRecomendaciones, postRecomendacion)
 
 router.route('/recomendaciones/:_id')
-    .get(requireAdmin, getRecomendacionById)
-    .patch(requireAdmin, patchRecomendacion)
-    .delete(requireAdmin, deleteRecomendacion)
+    .get(...admin, getRecomendacionById)
+    .patch(...admin, patchRecomendacion)
+    .delete(...admin, deleteRecomendacion)
 
 /* Importación desde TMDB (panel admin) */
 router.route('/tmdb/buscar')
-    .get(requireAdmin, getBuscarTmdb)
+    .get(...admin, getBuscarTmdb)
 
 router.route('/tmdb/importar/:tmdbId')
-    .post(requireAdmin, postImportarTmdb)
+    .post(...admin, postImportarTmdb)
 
 /* El admin comprueba aquí la clave antes de mostrar el panel */
 router.route('/admin/verificar')
-    .get(requireAdmin, (req, res) => res.status(200).json({ message: 'Clave correcta', data: true }))
+    .get(...admin, (req, res) => res.status(200).json({ message: 'Clave correcta', data: true }))
 
 router.use(notFound)
 router.use(errorHandler)

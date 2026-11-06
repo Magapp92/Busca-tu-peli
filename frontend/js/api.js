@@ -17,7 +17,7 @@ const claveAdmin = {
 }
 
 /* Hace la petición y devuelve una promesa con data; si la API responde error, la promesa se rechaza con su message */
-const apiFetch = (path, { method = 'GET', body, query, clave } = {}) => {
+const apiFetch = (path, { method = 'GET', body, query, admin = false, clave } = {}) => {
     const url = new URL(BASE_URL + path, location.origin)
     if (query) {
         Object.entries(query).forEach(([k, v]) => {
@@ -25,10 +25,10 @@ const apiFetch = (path, { method = 'GET', body, query, clave } = {}) => {
         })
     }
 
-    /* Mandamos la clave de admin si la hay (la de la sesión o la que nos pasen) */
+    /* La clave de admin solo viaja en las peticiones de administración, nunca en las públicas */
     const headers = { 'Content-Type': 'application/json' }
-    const admin = clave ?? claveAdmin.leer()
-    if (admin) headers['x-admin-key'] = admin
+    const claveEnviada = admin ? (clave ?? claveAdmin.leer()) : ''
+    if (claveEnviada) headers['x-admin-key'] = claveEnviada
 
     return fetch(url, {
         method,
@@ -50,36 +50,39 @@ const apiFetch = (path, { method = 'GET', body, query, clave } = {}) => {
             }))
 }
 
-/* Atajos por recurso para que las páginas lean como frases */
+/* Los ids van codificados: un id manipulado en la URL (p. ej. ../recomendaciones) no puede cambiar la ruta */
+const idSeguro = (id) => encodeURIComponent(String(id))
+
+/* Atajos por recurso para que las páginas lean como frases; admin: true en los que exigen la clave */
 const api = {
     peliculas: {
         listar: (query) => apiFetch('/peliculas', { query }),
         generos: () => apiFetch('/peliculas/generos'),
-        obtener: (id) => apiFetch(`/peliculas/${id}`),
-        relacionadas: (id) => apiFetch(`/peliculas/${id}/relacionadas`),
-        crear: (body) => apiFetch('/peliculas', { method: 'POST', body }),
-        reemplazar: (id, body) => apiFetch(`/peliculas/${id}`, { method: 'PUT', body }),
-        modificar: (id, body) => apiFetch(`/peliculas/${id}`, { method: 'PATCH', body }),
-        borrar: (id) => apiFetch(`/peliculas/${id}`, { method: 'DELETE' })
+        obtener: (id) => apiFetch(`/peliculas/${idSeguro(id)}`),
+        relacionadas: (id) => apiFetch(`/peliculas/${idSeguro(id)}/relacionadas`),
+        crear: (body) => apiFetch('/peliculas', { method: 'POST', body, admin: true }),
+        reemplazar: (id, body) => apiFetch(`/peliculas/${idSeguro(id)}`, { method: 'PUT', body, admin: true }),
+        modificar: (id, body) => apiFetch(`/peliculas/${idSeguro(id)}`, { method: 'PATCH', body, admin: true }),
+        borrar: (id) => apiFetch(`/peliculas/${idSeguro(id)}`, { method: 'DELETE', admin: true })
     },
     noticias: {
         listar: (query) => apiFetch('/noticias', { query }),
-        obtener: (id) => apiFetch(`/noticias/${id}`),
-        crear: (body) => apiFetch('/noticias', { method: 'POST', body }),
-        reemplazar: (id, body) => apiFetch(`/noticias/${id}`, { method: 'PUT', body }),
-        borrar: (id) => apiFetch(`/noticias/${id}`, { method: 'DELETE' })
+        obtener: (id) => apiFetch(`/noticias/${idSeguro(id)}`),
+        crear: (body) => apiFetch('/noticias', { method: 'POST', body, admin: true }),
+        reemplazar: (id, body) => apiFetch(`/noticias/${idSeguro(id)}`, { method: 'PUT', body, admin: true }),
+        borrar: (id) => apiFetch(`/noticias/${idSeguro(id)}`, { method: 'DELETE', admin: true })
     },
     admin: {
-        verificar: (clave) => apiFetch('/admin/verificar', { clave })
+        verificar: (clave) => apiFetch('/admin/verificar', { clave, admin: true })
     },
     tmdb: {
-        buscar: (q) => apiFetch('/tmdb/buscar', { query: { q } }),
-        importar: (tmdbId) => apiFetch(`/tmdb/importar/${tmdbId}`, { method: 'POST' })
+        buscar: (q) => apiFetch('/tmdb/buscar', { query: { q }, admin: true }),
+        importar: (tmdbId) => apiFetch(`/tmdb/importar/${idSeguro(tmdbId)}`, { method: 'POST', admin: true })
     },
     recomendaciones: {
-        listar: (query) => apiFetch('/recomendaciones', { query }),
+        listar: (query) => apiFetch('/recomendaciones', { query, admin: true }),
         crear: (body) => apiFetch('/recomendaciones', { method: 'POST', body }),
-        modificar: (id, body) => apiFetch(`/recomendaciones/${id}`, { method: 'PATCH', body }),
-        borrar: (id) => apiFetch(`/recomendaciones/${id}`, { method: 'DELETE' })
+        modificar: (id, body) => apiFetch(`/recomendaciones/${idSeguro(id)}`, { method: 'PATCH', body, admin: true }),
+        borrar: (id) => apiFetch(`/recomendaciones/${idSeguro(id)}`, { method: 'DELETE', admin: true })
     }
 }

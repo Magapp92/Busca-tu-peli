@@ -17,23 +17,32 @@ const ORDENES = {
     duracion: { duracionMin: -1 }
 }
 
+/* Un parámetro de la URL como texto: si llega repetido (?genero=a&genero=b) nos quedamos con el primero */
+const texto = (v, max = 100) => (Array.isArray(v) ? v[0] : v)?.toString().trim().slice(0, max) || ''
+
 /* Listado con filtros opcionales por query: ?q=&genero=&plataforma=&anio=&destacada=&orden=&limite= */
 const getPeliculas = async (req, res, next) => {
     try {
-        const { q, genero, plataforma, anio, destacada, orden = 'titulo', limite } = req.query
+        const q = texto(req.query.q)
+        const genero = texto(req.query.genero, 40)
+        const plataforma = texto(req.query.plataforma, 20)
+        const orden = texto(req.query.orden, 20) || 'titulo'
+        const { anio, destacada, limite } = req.query
         const filtro = {}
 
         if (q) {
-            const re = regexFlexible(q.trim())
+            const re = regexFlexible(q)
             filtro.$or = [{ titulo: re }, { tituloOriginal: re }, { reparto: re }, { direccion: re }]
         }
         if (genero) filtro.generos = genero
         if (plataforma) filtro['plataformas.clave'] = plataforma
-        if (anio) filtro.anio = Number(anio)
+        if (anio && Number.isInteger(Number(anio))) filtro.anio = Number(anio)
         if (destacada !== undefined) filtro.destacada = destacada === 'true'
 
         let consulta = Pelicula.find(filtro).sort(ORDENES[orden] || ORDENES.titulo)
-        if (limite) consulta = consulta.limit(Number(limite))
+        /* Límite entre 1 y 200; si no es un número se ignora */
+        const n = Math.trunc(Number(limite))
+        if (n > 0) consulta = consulta.limit(Math.min(n, 200))
 
         const data = await consulta
 
