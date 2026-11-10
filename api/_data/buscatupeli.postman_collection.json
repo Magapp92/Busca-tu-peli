@@ -96,6 +96,17 @@
           }
         },
         {
+          "name": "Solo las que ya se pueden ver en alguna plataforma (la portada usa este filtro)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/peliculas?orden=recientes&limite=12&enStreaming=true",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
           "name": "Géneros existentes",
           "request": {
             "method": "GET",
@@ -334,6 +345,42 @@
             "method": "DELETE",
             "url": "{{baseUrl}}/buscatupeli/recomendaciones/{{recomendacionId}}",
             "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Suscripciones",
+      "item": [
+        {
+          "name": "Manda un correo con el enlace de confirmación; la respuesta es siempre la misma",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/buscatupeli/suscripciones",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"info@buscatupeli.com\",\n  \"consentimiento\": true\n}"
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Confirmar la suscripción: es el enlace que llega por correo (redirige a la web con ?suscripcion=...)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/buscatupeli/suscripciones/confirmar/PEGA_AQUI_EL_TOKEN_DEL_CORREO",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            }
           }
         }
       ]

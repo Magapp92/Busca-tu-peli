@@ -31,9 +31,13 @@
     gap: 2rem;
 }
 
+/* El logo nunca se encoge: en pantallas estrechas cede espacio el buscador, no el logo */
+.Header-logo{
+    flex-shrink: 0;
+}
 .Header-logo img{
     width: auto;
-    height: 38px;
+    height: 56px;
 }
 
 /* El botón del menú solo se muestra en pantallas pequeñas */
@@ -239,16 +243,19 @@
     }
 
     .Header-logo img{
-        height: 32px;
+        height: 44px;
     }
 
     .Header-menuButton{
         display: grid;
         order: 3;
+        flex-shrink: 0;
     }
 
+    /* El buscador ocupa el espacio que dejan el logo y el botón del menú, y es el único que se encoge */
     .Search{
         width: auto;
+        min-width: 0;
 
         flex: 1;
     }

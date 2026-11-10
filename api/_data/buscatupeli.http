@@ -30,6 +30,9 @@ Authorization: Bearer {{token}}
 ### Listado con filtros combinables (q, genero, plataforma, anio, destacada, orden, limite)
 GET {{baseUrl}}/buscatupeli/peliculas?genero=acción&orden=recientes
 
+### Solo las que ya se pueden ver en alguna plataforma (la portada usa este filtro)
+GET {{baseUrl}}/buscatupeli/peliculas?orden=recientes&limite=12&enStreaming=true
+
 ### Géneros existentes
 GET {{baseUrl}}/buscatupeli/peliculas/generos
 
@@ -145,6 +148,21 @@ Authorization: Bearer {{token}}
 ### Borrar recomendación
 DELETE {{baseUrl}}/buscatupeli/recomendaciones/{{recomendacionId}}
 Authorization: Bearer {{token}}
+
+### ==================== SUSCRIPCIONES ====================
+
+### Pedir la suscripción a la newsletter (formulario del footer, máximo 5 por hora).
+### Manda un correo con el enlace de confirmación; la respuesta es siempre la misma
+POST {{baseUrl}}/buscatupeli/suscripciones
+Content-Type: application/json
+
+{
+  "email": "info@buscatupeli.com",
+  "consentimiento": true
+}
+
+### Confirmar la suscripción: es el enlace que llega por correo (redirige a la web con ?suscripcion=...)
+GET {{baseUrl}}/buscatupeli/suscripciones/confirmar/PEGA_AQUI_EL_TOKEN_DEL_CORREO
 
 ### ==================== TMDB ====================
 
