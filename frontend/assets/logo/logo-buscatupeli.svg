@@ -13,8 +13,9 @@
         fill: #0b9ba8;
       }
 
+      /* Interior del rollo del mismo marrón que la tira de película */
       .cls-3 {
-        fill: #331f0e;
+        fill: #9a6334;
       }
 
       .cls-4 {
