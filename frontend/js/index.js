@@ -14,7 +14,7 @@
 
     /* Cada fila hace su propia llamada filtrada a la API */
     const FILAS = [
-        { titulo: 'Añadidas recientemente', sub: 'Lo último que ha llegado al catálogo', query: { orden: 'recientes', limite: 12 }, link: 'catalogo.html?orden=recientes' },
+        { titulo: 'Añadidas recientemente', sub: 'Lo último que ha llegado al catálogo', query: { orden: 'recientes', limite: 12, enStreaming: true }, link: 'catalogo.html?orden=recientes' },
         { titulo: 'Acción', query: { genero: 'Acción' }, link: 'catalogo.html?genero=Acción' },
         { titulo: 'Comedia', query: { genero: 'Comedia' }, link: 'catalogo.html?genero=Comedia' },
         { titulo: 'Drama', query: { genero: 'Drama' }, link: 'catalogo.html?genero=Drama' },
@@ -170,7 +170,8 @@
     crearFilas()
 
     Promise.all([
-        api.peliculas.listar({ orden: 'recientes', limite: 12 }),
+        /* Solo películas que ya se pueden ver en streaming: los estrenos de cine no salen en la portada */
+        api.peliculas.listar({ orden: 'recientes', limite: 12, enStreaming: true }),
         api.peliculas.listar(),
         api.noticias.listar({ limite: 3 })
     ])

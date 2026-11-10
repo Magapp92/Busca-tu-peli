@@ -88,7 +88,7 @@ Lectura pública. Crear, editar, borrar, importar y leer recomendaciones exigen 
 | Recurso | Método | Ruta |
 |---|---|---|
 | Login | POST | `/login` · GET `/admin/verificar` (comprueba el token) |
-| Películas | GET | `/peliculas?q=&genero=&plataforma=&anio=&destacada=&orden=&limite=` |
+| Películas | GET | `/peliculas?q=&genero=&plataforma=&anio=&destacada=&enStreaming=&orden=&limite=` |
 | | GET | `/peliculas/genero/:genero` · `/peliculas/plataforma/:plataforma` |
 | | GET | `/peliculas/generos` |
 | | GET | `/peliculas/:_id` · `/peliculas/:_id/relacionadas` |

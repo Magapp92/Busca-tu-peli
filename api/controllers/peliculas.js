@@ -44,6 +44,8 @@ const getPeliculas = async (req, res, next) => {
         if (plataforma) filtro['plataformas.clave'] = plataforma
         if (anio && Number.isInteger(Number(anio))) filtro.anio = Number(anio)
         if (destacada !== undefined) filtro.destacada = destacada === 'true'
+        /* Solo las que se pueden ver ya en alguna plataforma (sin los estrenos que aún están en cines) */
+        if (req.query.enStreaming === 'true') filtro['plataformas.0'] = { $exists: true }
 
         let consulta = Pelicula.find(filtro).sort(ORDENES[orden] || ORDENES.titulo)
         /* Límite entre 1 y 200; si no es un número se ignora */
