@@ -30,7 +30,7 @@
     --font-text: 'Inter', system-ui, sans-serif;
 
     --gutter: clamp(16px, 4vw, 56px);
-    --header-h: 72px;
+    --header-h: 90px;
 }
 
 /* Agrupamos las tipografías: Inter para los textos y Outfit para los títulos. Se sirven desde la propia web

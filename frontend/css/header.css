@@ -37,7 +37,7 @@
 }
 .Header-logo img{
     width: auto;
-    height: 56px;
+    height: 70px;
 }
 
 /* El botón del menú solo se muestra en pantallas pequeñas */
@@ -243,7 +243,7 @@
     }
 
     .Header-logo img{
-        height: 44px;
+        height: 55px;
     }
 
     .Header-menuButton{
