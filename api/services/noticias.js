@@ -2,7 +2,7 @@
 /* Noticias generadas con datos de TMDB: las más populares de la semana y las mejor valoradas de cada plataforma.
 Las usan el script `npm run noticias` y la función programada de Netlify (cada lunes) */
 const { Pelicula, Noticia } = require('../models')
-const { obtenerValoracion, tendencias, buscar } = require('./tmdb')
+const { obtenerValoracion, tendencias, buscar, obtenerPelicula, existente } = require('./tmdb')
 
 const NOMBRES = { netflix: 'Netflix', prime: 'Prime Video', disney: 'Disney+', max: 'Max', appletv: 'Apple TV+' }
 const TOP_PLATAFORMA = 5
@@ -87,15 +87,56 @@ const noticiaPlataforma = (clave, pelis, fecha, usadas) => {
 }
 
 /* "Las más populares de la semana" según las tendencias de TMDB, marcando las que están en el catálogo */
+/* Las películas en tendencia que aún no están en el catálogo se importan desde TMDB con su ficha completa,
+para que en la noticia todas sean clicables y tengan su página. Si alguna ya estaba (p. ej. con otro id),
+se reutiliza; si TMDB no tiene datos suficientes (sin póster), se deja fuera del catálogo */
+const importarQueFalten = async ( lista ) => {
+    const yaEstan = new Set((await Pelicula.find({ tmdbId: { $in: lista.map(( m ) => m.tmdbId) } }, { tmdbId: 1 })).map(( p ) => p.tmdbId))
+    const faltan = lista.filter(( m ) => !yaEstan.has(m.tmdbId))
+    let importadas = 0
+    for (let i = 0; i < faltan.length; i += 5) {
+        const lote = await Promise.allSettled(faltan.slice(i, i + 5).map(async ( m ) => {
+            const pelicula = await obtenerPelicula(m.tmdbId)
+            const repetida = await existente(pelicula)
+            if (repetida) return Pelicula.updateOne({ _id: repetida._id }, { $set: { tmdbId: pelicula.tmdbId } })
+            if (!pelicula.poster) throw new Error(`«${pelicula.titulo}» no tiene póster en TMDB`)
+            await Pelicula.create(pelicula)
+            importadas++
+        }))
+        lote.filter(( r ) => r.status === 'rejected').forEach(( r ) => console.log(`No se pudo importar una película en tendencia: ${r.reason.message}`))
+    }
+    return importadas
+}
+
+/* Las películas del catálogo que aún no están en ninguna plataforma (estrenos de cine importados desde las tendencias)
+se vuelven a consultar cada semana: cuando llegan al streaming en España, su ficha muestra ya dónde verlas */
+const actualizarPlataformasPendientes = async () => {
+    const pendientes = await Pelicula.find({ tmdbId: { $exists: true }, plataformas: { $size: 0 } }, { tmdbId: 1 })
+    let actualizadas = 0
+    for (let i = 0; i < pendientes.length; i += 5) {
+        const lote = await Promise.allSettled(pendientes.slice(i, i + 5).map(( p ) => obtenerPelicula(p.tmdbId)))
+        for (const [j, r] of lote.entries()) {
+            if (r.status === 'fulfilled' && r.value.plataformas.length) {
+                await Pelicula.updateOne({ _id: pendientes[i + j]._id }, { $set: { plataformas: r.value.plataformas } })
+                actualizadas++
+            }
+        }
+    }
+    return { pendientes: pendientes.length, actualizadas }
+}
+
 const noticiaPopulares = async (fecha) => {
     const lista = (await tendencias()).slice(0, TOP_POPULARES)
+    const importadas = await importarQueFalten(lista)
     const enCatalogo = await Pelicula.find({ tmdbId: { $in: lista.map((m) => m.tmdbId) } })
     const porId = new Map(enCatalogo.map((p) => [p.tmdbId, p]))
     const [primera] = lista
-    const disponibles = lista.filter((m) => porId.has(m.tmdbId))
+    /* Las que se pueden ver ya en alguna plataforma en España */
+    const enStreaming = lista.filter((m) => porId.get(m.tmdbId)?.plataformas.length)
     const inicioSemana = new Date(fecha.getTime() - 6 * 24 * 3600 * 1000)
+    const nombre = ( m ) => `«${porId.get(m.tmdbId).titulo}»`
 
-    return {
+    const noticia = {
         clave: 'populares-semana',
         titulo: 'Las películas más populares de la semana',
         entradilla: `«${primera.titulo}» lidera las tendencias de esta semana. Repasamos las ${lista.length} películas de las que más se está hablando y te decimos cuáles puedes ver ya en streaming.`,
@@ -104,9 +145,9 @@ const noticiaPopulares = async (fecha) => {
         fecha,
         parrafos: [
             `Esta es la lista de películas en tendencia entre el ${fechaCorta(inicioSemana)} y el ${fechaCorta(fecha)} según TMDB (The Movie Database). La popularidad se calcula con la actividad de sus usuarios: búsquedas, visitas a la ficha, votos y listas; no son datos de audiencia de las plataformas.`,
-            disponibles.length
-                ? `${disponibles.length === 1 ? 'Una de ellas está' : `${disponibles.length} de ellas están`} en nuestro catálogo: ${disponibles.map((m) => `«${porId.get(m.tmdbId).titulo}»`).join(', ')}. Pulsa en ${disponibles.length === 1 ? 'ella' : 'ellas'} para ver la ficha y en qué plataforma está disponible.`
-                : 'Ninguna de ellas está todavía en las plataformas de nuestro catálogo: muchas son estrenos de cine que llegarán al streaming en los próximos meses.',
+            enStreaming.length
+                ? `${enStreaming.length === 1 ? 'Una de ellas se puede' : `${enStreaming.length} de ellas se pueden`} ver ya en streaming en España: ${enStreaming.map(nombre).join(', ')}. El resto son estrenos que todavía no han llegado a ninguna plataforma. Pulsa en cualquiera para ver su ficha, el tráiler y el reparto.`
+                : 'Ninguna de ellas ha llegado todavía a las plataformas de streaming en España: muchas son estrenos de cine. Pulsa en cualquiera para ver su ficha, el tráiler y el reparto; en cuanto estén disponibles, lo verás en su página.',
             'Actualizamos esta lista cada lunes. Si echas en falta alguna película en el catálogo, puedes recomendárnosla desde la sección Recomendar.'
         ],
         lista: [],
@@ -117,14 +158,17 @@ const noticiaPopulares = async (fecha) => {
                 : { posicion: i + 1, titulo: m.titulo, anio: m.anio, poster: m.poster, valoracion: m.valoracion, votos: m.votos, plataformas: [] }
         })
     }
+    return { noticia, importadas }
 }
 
 /* Genera (o actualiza por su clave) todas las noticias de datos */
 const generarNoticias = async () => {
     const enlazadas = await enlazarConTmdb()
     const valoraciones = { ...(await actualizarValoraciones()), enlazadas }
+    const plataformas = await actualizarPlataformasPendientes()
     const ahora = new Date()
-    const todas = [await noticiaPopulares(ahora)]
+    const { noticia: populares, importadas } = await noticiaPopulares(ahora)
+    const todas = [populares]
     const usadas = new Set([todas[0].imagen])
 
     /* Restamos unos segundos a cada noticia para fijar el orden: primero las populares y luego las plataformas */
@@ -140,7 +184,7 @@ const generarNoticias = async () => {
         updateOne: { filter: { clave: n.clave }, update: { $set: n }, upsert: true }
     })))
 
-    return { valoraciones, noticias: todas.map((n) => `${n.titulo} (${n.ranking.length})`) }
+    return { valoraciones, importadas, plataformas, noticias: todas.map((n) => `${n.titulo} (${n.ranking.length})`) }
 }
 
 /* Exportamos el generador para el script npm run noticias y la función semanal */

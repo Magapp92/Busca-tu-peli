@@ -25,11 +25,12 @@
         ? `★ ${r.valoracion.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} · ${r.votos.toLocaleString('es-ES')} votos`
         : 'Sin votos todavía'
 
-    /* Fila del ranking: si la película está en el catálogo enlaza con su ficha y muestra dónde verla */
+    /* Fila del ranking: la película enlaza con su ficha y muestra dónde verla.
+       Si todavía no está en ninguna plataforma (un estreno de cine) lo indicamos en lugar de dejar el hueco vacío */
     const filaRanking = (r) => {
         const logos = r.plataformas
             .map((clave) => PLATAFORMAS[clave] ? `<img src="${PLATAFORMAS[clave].logo}" alt="${PLATAFORMAS[clave].nombre}" title="${PLATAFORMAS[clave].nombre}">` : '')
-            .join('')
+            .join('') || '<span class="Ranking-missing">Aún no está en streaming</span>'
         const contenido = `
             <span class="Ranking-position">${r.posicion}</span>
             <img class="Ranking-poster" src="${esc(r.poster)}" alt="" loading="lazy">

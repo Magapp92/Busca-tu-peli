@@ -12,8 +12,10 @@ const uri = process.argv.includes('--atlas') ? process.env.MONGO_URI_ATLAS : pro
 const ejecutar = async () => {
     try {
         await mongoose.connect(uri, { dbName: 'buscatupeli', serverSelectionTimeoutMS: 10000 })
-        const { valoraciones, noticias } = await generarNoticias()
+        const { valoraciones, importadas, plataformas, noticias } = await generarNoticias()
+        console.log(`📺 Estrenos que ya han llegado a una plataforma: ${plataformas.actualizadas} de ${plataformas.pendientes}`)
         console.log(`🔗 Películas enlazadas con TMDB: ${valoraciones.enlazadas}`)
+        console.log(`🎬 Películas en tendencia añadidas al catálogo: ${importadas}`)
         console.log(`⭐ Valoraciones actualizadas: ${valoraciones.actualizadas} de ${valoraciones.total}`)
         noticias.forEach((n) => console.log(`📰 ${n}`))
     } catch (error) {

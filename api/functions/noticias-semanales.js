@@ -9,8 +9,10 @@ exports.handler = async () => {
     try {
         /* Conectamos con Mongo y generamos las noticias; el resultado queda en los logs de Netlify */
         await conectar()
-        const { valoraciones, noticias } = await generarNoticias()
+        const { valoraciones, importadas, plataformas, noticias } = await generarNoticias()
 
+        console.log(`Estrenos que ya han llegado a una plataforma: ${plataformas.actualizadas} de ${plataformas.pendientes}`)
+        console.log(`Películas en tendencia añadidas al catálogo: ${importadas}`)
         console.log(`Valoraciones actualizadas: ${valoraciones.actualizadas} de ${valoraciones.total}`)
         noticias.forEach(( noticia ) => console.log(`Noticia: ${noticia}`))
 
