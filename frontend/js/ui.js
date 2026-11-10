@@ -49,10 +49,17 @@ const ICON = {
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>'
 }
 
+/* Pósters de TMDB: la tarjeta mide como mucho unos 250px, así que el navegador elige entre w185, w342 y w500 */
+const fuentePoster = (url) => {
+    if (!/image\.tmdb\.org\/t\/p\/w\d+\//.test(url)) return `src="${esc(url)}"`
+    const tam = (t) => esc(url.replace(/\/t\/p\/w\d+\//, `/t/p/${t}/`))
+    return `src="${tam('w342')}" srcset="${tam('w185')} 185w, ${tam('w342')} 342w, ${tam('w500')} 500w" sizes="(max-width: 600px) 45vw, 250px"`
+}
+
 /* Tarjeta de póster: al clicar abre la ficha, que pide la película por id a la API */
 const cardPelicula = (p) => `
     <a class="MovieCard" href="${urlPelicula(p)}" aria-label="${esc(p.titulo)} (${esc(p.anio)})">
-        <img class="MovieCard-image" src="${esc(p.poster)}" alt="" loading="lazy">
+        <img class="MovieCard-image" ${fuentePoster(p.poster)} alt="" loading="lazy">
         <div class="MovieCard-platforms">
             ${(p.plataformas || []).map((pl) => PLATAFORMAS[pl.clave]
                 ? `<img src="${PLATAFORMAS[pl.clave].logo}" alt="${PLATAFORMAS[pl.clave].nombre}" title="${PLATAFORMAS[pl.clave].nombre}">`

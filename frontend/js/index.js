@@ -11,6 +11,8 @@
 
     const HERO_MS = 3500
     const HERO_PELIS = 6
+    /* Margen tras la primera imagen del carrusel antes de pedir lo que no se ve al entrar */
+    const PAUSA_MS = 1000
 
     /* Cada fila hace su propia llamada filtrada a la API */
     const FILAS = [
@@ -22,22 +24,32 @@
         { titulo: 'Terror', query: { genero: 'Terror' }, link: 'catalogo.html?genero=Terror' }
     ]
 
-    /* Fondos de TMDB: el navegador elige el tamaño según la pantalla (hasta el original en 4K) */
-    const fuenteFondo = (url) => {
-        if (!/image\.tmdb\.org\/t\/p\/w\d+\//.test(url)) return `src="${esc(url)}"`
+    /* Fondos de TMDB: el navegador elige el tamaño según la pantalla (w1280 hasta Full HD y el original en 2K, 4K y retina).
+       Las diapositivas que no se ven al entrar llevan la imagen en data-src y se cargan después de la primera */
+    const fuenteFondo = (url, diferida) => {
+        const pre = diferida ? 'data-' : ''
+        if (!/image\.tmdb\.org\/t\/p\/w\d+\//.test(url)) return `${pre}src="${esc(url)}"`
         const tam = (t) => esc(url.replace(/\/t\/p\/w\d+\//, `/t/p/${t}/`))
-        return `src="${tam('w1280')}" srcset="${tam('w780')} 780w, ${tam('w1280')} 1280w, ${tam('original')} 3840w" sizes="100vw"`
+        return `${pre}src="${tam('w1280')}" ${pre}srcset="${tam('w780')} 780w, ${tam('w1280')} 1920w, ${tam('original')} 3840w" sizes="100vw"`
     }
 
 
     /* CARRUSEL (HERO) */
 
+    /* Promesa que se cumple cuando la imagen termina de cargar, si falla o, como mucho, a los 3 segundos */
+    const esperarImagen = (img) => new Promise((listo) => {
+        if (!img || img.complete) return listo()
+        img.addEventListener('load', listo, { once: true })
+        img.addEventListener('error', listo, { once: true })
+        setTimeout(listo, 3000)
+    })
+
     /* Pintamos una diapositiva por película y los puntos para elegirlas */
     const pintarHero = (pelis) => {
         hero.style.setProperty('--hero-ms', `${HERO_MS}ms`)
         hero.innerHTML = pelis.map((p, i) => `
-            <article class="Hero-slide${i === 0 ? ' isActive' : ''}" aria-roledescription="diapositiva" aria-label="${i + 1} de ${pelis.length}" ${i ? 'aria-hidden="true"' : ''}>
-                <img class="Hero-background" ${fuenteFondo(p.backdrop || p.poster)} alt="" ${i ? 'loading="lazy"' : 'fetchpriority="high"'}>
+            <article class="Hero-slide${i === 0 ? ' isActive' : ''}" aria-roledescription="diapositiva" aria-label="${i + 1} de ${pelis.length}" ${i ? 'inert' : ''}>
+                <img class="Hero-background" ${fuenteFondo(p.backdrop || p.poster, i > 0)} alt="" decoding="async" ${i ? '' : 'fetchpriority="high"'}>
                 <div class="Hero-content Container">
                     <div class="Hero-inner">
                         <div class="Hero-eyebrow">
@@ -49,7 +61,7 @@
                         <p class="Hero-text">${esc(p.sinopsis)}</p>
                         <div class="Hero-actions">
                             <button class="Button Button--primary" data-trailer="${esc(p.trailer)}" data-titulo="${esc(p.titulo)}">${ICON.play} Ver tráiler</button>
-                            <a class="Button Button--ghost" href="${urlPelicula(p)}">${ICON.info} Más información</a>
+                            <a class="Button Button--ghost" href="${urlPelicula(p)}">${ICON.info} Más información<span class="u-srOnly"> sobre ${esc(p.titulo)}</span></a>
                         </div>
                     </div>
                 </div>
@@ -60,18 +72,32 @@
 
         const slides = $$('.Hero-slide', hero)
         const dots = $$('.Hero-dot', hero)
+
+        /* Ponemos la imagen de la diapositiva i si aún la tiene guardada en data-src */
+        const cargarFondo = (i) => {
+            const img = slides[i] && $('img[data-src]', slides[i])
+            if (!img) return
+            if (img.dataset.srcset) img.srcset = img.dataset.srcset
+            img.src = img.dataset.src
+            img.removeAttribute('data-src')
+        }
+        /* La segunda se pide un poco después de que se vea la primera; las demás, al llegar la anterior */
+        esperarImagen($('.Hero-background', hero)).then(() => setTimeout(() => cargarFondo(1), PAUSA_MS))
+
         let actual = 0
         let automatico
 
         /* Pasamos a la diapositiva n (da la vuelta al llegar al final) */
         const ir = (n) => {
             slides[actual].classList.remove('isActive')
-            slides[actual].setAttribute('aria-hidden', 'true')
+            slides[actual].inert = true
             dots[actual].classList.remove('isActive')
             dots[actual].setAttribute('aria-selected', 'false')
             actual = (n + slides.length) % slides.length
             slides[actual].classList.add('isActive')
-            slides[actual].removeAttribute('aria-hidden')
+            slides[actual].inert = false
+            cargarFondo(actual)
+            cargarFondo((actual + 1) % slides.length)
             /* Reiniciamos la animación de la barra de progreso */
             void dots[actual].offsetWidth
             dots[actual].classList.add('isActive')
@@ -167,27 +193,33 @@
 
     /* ARRANQUE */
 
-    crearFilas()
+    /* El carrusel va primero y solo: es lo que se ve al entrar. El resto de llamadas esperan a que cargue su primera imagen */
+    const cargarSecciones = () => {
+        crearFilas()
 
-    Promise.all([
-        /* Solo películas que ya se pueden ver en streaming: los estrenos de cine no salen en la portada */
-        api.peliculas.listar({ orden: 'recientes', limite: 12, enStreaming: true }),
-        api.peliculas.listar(),
+        api.peliculas.listar()
+            .then((todas) => {
+                const conteo = {}
+                todas.forEach((p) => p.plataformas.forEach((pl) => { conteo[pl.clave] = (conteo[pl.clave] || 0) + 1 }))
+                pintarPlataformas(conteo)
+            })
+            .catch(() => pintarPlataformas({}))
+
         api.noticias.listar({ limite: 3 })
-    ])
-        .then(([recientes, todas, noticias]) => {
+            .then(pintarNoticias)
+            .catch((error) => { noticiasContainer.innerHTML = estadoError(error) })
+    }
+
+    /* Solo películas que ya se pueden ver en streaming: los estrenos de cine no salen en la portada */
+    api.peliculas.listar({ orden: 'recientes', limite: 12, enStreaming: true })
+        .then((recientes) => {
             /* Las mismas que "Añadidas recientemente", solo las que tienen imagen apaisada */
             pintarHero(recientes.filter((p) => p.backdrop).slice(0, HERO_PELIS))
-
-            const conteo = {}
-            todas.forEach((p) => p.plataformas.forEach((pl) => { conteo[pl.clave] = (conteo[pl.clave] || 0) + 1 }))
-            pintarPlataformas(conteo)
-
-            pintarNoticias(noticias)
+            return esperarImagen($('.Hero-background', hero))
         })
         .catch((error) => {
             hero.innerHTML = `<div class="Container" style="padding-top:calc(var(--header-h) + 80px)">${estadoError(error)}</div>`
-            pintarPlataformas({})
         })
+        .finally(() => setTimeout(cargarSecciones, PAUSA_MS))
 
 })()
